@@ -1,5 +1,4 @@
 ﻿using OnlineShopMVC.Domain.Model;
-using SteamLibraryMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
