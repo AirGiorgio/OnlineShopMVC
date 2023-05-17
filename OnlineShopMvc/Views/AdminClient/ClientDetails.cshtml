@@ -1,0 +1,28 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = "Add Client";
+}
+
+<h2>Add Client</h2>
+
+@if (!string.IsNullOrEmpty(Model))
+{
+    <p>@Model</p>
+}
+
+<form method="post" action="@Url.Action("AddClient", "AdminController")">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" name="surname" required />
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="telephone">Telephone:</label>
+    <input type="text" id="telephone" name="telephone" required />
+
+    <button type="submit">Add Client</button>
+</form>

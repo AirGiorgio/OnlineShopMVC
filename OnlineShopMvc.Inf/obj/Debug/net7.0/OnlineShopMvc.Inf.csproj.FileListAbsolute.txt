@@ -1,0 +1,17 @@
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\bin\Debug\net7.0\OnlineShopMvc.Inf.deps.json
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\bin\Debug\net7.0\OnlineShopMvc.Inf.runtimeconfig.json
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\bin\Debug\net7.0\OnlineShopMvc.Inf.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\bin\Debug\net7.0\OnlineShopMvc.Inf.pdb
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\bin\Debug\net7.0\OnlineShopMvc.Domain.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\bin\Debug\net7.0\OnlineShopMvc.Domain.pdb
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\OnlineShopMvc.Inf.csproj.AssemblyReference.cache
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\OnlineShopMvc.Inf.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\OnlineShopMvc.Inf.AssemblyInfoInputs.cache
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\OnlineShopMvc.Inf.AssemblyInfo.cs
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\OnlineShopMvc.Inf.csproj.CoreCompileInputs.cache
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\OnlineShopMvc.Inf.csproj.CopyComplete
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\OnlineShopMvc.Inf.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\refint\OnlineShopMvc.Inf.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\OnlineShopMvc.Inf.pdb
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\OnlineShopMvc.Inf.genruntimeconfig.cache
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc.Inf\obj\Debug\net7.0\ref\OnlineShopMvc.Inf.dll

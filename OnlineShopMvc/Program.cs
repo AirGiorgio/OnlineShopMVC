@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using OnlineShopMvc.Data;
+using OnlineShopMvc.App;
+using OnlineShopMvc.App.Interfaces;
+using OnlineShopMvc.App.Services;
+using OnlineShopMvc.Inf;
+using OnlineShopMVC.Infrastructure;
 
 namespace OnlineShopMvc
 {
@@ -15,12 +19,12 @@ namespace OnlineShopMvc
             builder.Services.AddDbContext<Context>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
+    
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
+            builder.Services.AddApplication();
+            builder.Services.AddInfrastructure();
             builder.Services.AddControllersWithViews();
-
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -44,9 +48,38 @@ namespace OnlineShopMvc
             app.UseAuthorization();
 
             app.MapControllerRoute(
-                name: "default",
+                name: "HomeController",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
+
+            //app.MapControllerRoute(
+            //   name: "Clients",
+            //   pattern: "{controller=AdminClientController}/{action=ViewClients}");
+            // app.MapControllerRoute(
+            //      name: "AddClient",
+            //      pattern: "{controller=AdminClientController}/{action=AddClient}");
+            // app.MapControllerRoute(
+            //      name: "AddAddress",
+            //      pattern: "{controller=AdminClientController}/{action=AddAddress}");
+
+            // app.MapControllerRoute(
+            //      name: "Orders",
+            //      pattern: "{controller=AdminOrderController}/{action=ViewOrders}");
+
+            // app.MapControllerRoute(
+            //name: "AddTag",
+            //pattern: "{controller=AdminTagController}/{action=AddTag}");
+
+            // app.MapControllerRoute(
+            // name: "Tags",
+            // pattern: "{controller=AdminTagController}/{action=ViewTags}");
+
+            // app.MapControllerRoute(
+            // name: "Categories",
+            // pattern: "{controller=AdminCategoryController}/{action=ViewCategories}");
+
+            // app.MapControllerRoute(
+            //name: "AddCategory",
+            //pattern: "{controller=AdminCategoryController}/{action=AddCategory}");
 
             app.Run();
         }

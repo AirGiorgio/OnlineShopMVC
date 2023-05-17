@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "r1DfrpbRNV3Kl93N0oSi1ZgjxIn0fOw704ZSVFLzBwl8TihUSKSUFbxXv+kWhX3+sLTyLpLkZYy7fqOyR3Ndxg==",
+  "dgSpecHash": "A1LfeEQktIjCK6a1Mypi364r1myQ6WvvVp9isNzd/oIxVte7ViL/W97wAzkuhyJkUmE1K1HIAFfHWUVcjCUKug==",
   "success": true,
   "projectFilePath": "C:\\Users\\Jan Klata\\source\\repos\\OnlineShopMvc\\OnlineShopMvc.Test\\OnlineShopMvc.Test.fsproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jan Klata\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
-    "C:\\Users\\Jan Klata\\.nuget\\packages\\fsharp.core\\6.0.6\\fsharp.core.6.0.6.nupkg.sha512",
+    "C:\\Users\\Jan Klata\\.nuget\\packages\\fsharp.core\\7.0.200\\fsharp.core.7.0.200.nupkg.sha512",
     "C:\\Users\\Jan Klata\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
     "C:\\Users\\Jan Klata\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\Jan Klata\\.nuget\\packages\\microsoft.net.test.sdk\\17.1.0\\microsoft.net.test.sdk.17.1.0.nupkg.sha512",

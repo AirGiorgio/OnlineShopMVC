@@ -1,0 +1,44 @@
+﻿@using OnlineShopMvc.App.DTOs.ClientDTOs;
+@model ClientsForListDTO
+
+@{
+    ViewData["Title"] = "AdminClientController";
+}
+
+<h2>Clients</h2>
+
+@if (Model != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Numer</th>
+                <th>Imie</th>
+                <th>Nazwisko</th> 
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var (client, index) in Model.Clients.Select((c, i) => (c, i)))
+            {
+                <tr>
+                    <td>@(index+1)</td>
+                    <td>@client.Name</td>
+                    <td>@client.Surname</td>
+                    <td><a href="@Url.Action("EditClient", "Clients", new { id = client.Id })">Edytuj klienta</a></td>
+                    <td><a href="@Url.Action("EditClient", "Clients", new { id = client.Id })">Edytuj Adres</a></td>
+                    <td><a href="@Url.Action("DeleteClient", "Clients", new { id = client.Id })">Usuń</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No Clients found.</p>
+}
+
+
+
+

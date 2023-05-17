@@ -1,5 +1,5 @@
-﻿
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OnlineShopMVC.Domain.Model;
 using System;
@@ -9,29 +9,34 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace SteamLibraryMVC.Infrastructure
+namespace OnlineShopMVC.Infrastructure
 {
-    public class Context : IdentityDbContext
-    {
-        public DbSet<Adress> Adresses { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Client> Clients { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductTag> ProductTags { get; set; }
-
-        public DbSet<Tag> Tags { get; set; }
-
-        public Context(DbContextOptions options) : base(options)
+        public class Context : IdentityDbContext
         {
-        }
+            public DbSet<Address> Adresses { get; set; }
+            public DbSet<Category> Categories { get; set; }
+            public DbSet<Client> Clients { get; set; }
+            public DbSet<Order> Orders { get; set; }
+            public DbSet<Product> Products { get; set; }
+            public DbSet<Tag> Tags { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
+            public Context(DbContextOptions options) : base(options)
+            {
 
-        }
 
+            }
+
+            protected override void OnModelCreating(ModelBuilder builder)
+            {
+                base.OnModelCreating(builder);
+
+                builder.Entity<Product>()
+                .Property(p => p.Price)
+                .HasPrecision(18, 2);
+
+                builder.Entity<Order>()
+                .Property(p => p.TotalCost)
+                .HasPrecision(18, 2);
+            }
     }
 }

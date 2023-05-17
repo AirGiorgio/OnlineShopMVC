@@ -1,0 +1,53 @@
+﻿@using OnlineShopMvc.App.DTOs.CategoryDTOs
+@model CategoriesForListDTO
+
+@{
+    ViewData["Title"] = "AdminCategoryController";
+}
+
+<h2>Kategorie</h2>
+
+@if (Model != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Numer</th>
+                <th>Nazwa</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+             @foreach (var (category, index) in Model.Categories.Select((c, i) => (c, i)))
+            {
+                <tr>
+                    <td>@(index + 1)</td>
+                    <td>@category.Name</td>
+                    <td><a href="@Url.Action("UpdateCategory", "AdminCategoryController", new { id = category.Id })">Edytuj</a></td>
+                    <td>
+                        <form method="post" action="@Url.Action("RemoveCategory", "AdminCategoryController", new { id = category.Id })">
+                            <button type="submit">Usuń</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h2>Add Category</h2>
+    <form method="post" action="@Url.Action("AddCategory", "AdminCategoryController")">
+        <input type="text" name="name" placeholder="Nazwa" />
+        <button type="submit">Dodaj</button>
+    </form>
+
+    <h2>Search Category</h2>
+    <form method="get" action="@Url.Action("GetCategoryByName", "AdminCategoryController")">
+        <input type="text" name="name" placeholder="Wyszukaj" />
+        <button type="submit">OK</button>
+    </form>
+}
+else
+{
+    <p>Brak kategorii.</p>
+}

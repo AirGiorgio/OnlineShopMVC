@@ -11,21 +11,13 @@ namespace OnlineShopMVC.Domain.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-
         public string EmailAdress { get; set; }
-
         public string Telephone { get; set; }
-
-        public virtual ICollection<Adress> Adress { get; set; }
-
+        public virtual Address Address { get; set; }
         public virtual ICollection<Order> OrderHistory { get; set; }
-
-
         public override string ToString()
         {
-            return Id + "," + Name + "," + Surname + "," + "," + Telephone;
+            return Name + "," + Surname;
         }
-
-
     }
 }

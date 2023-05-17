@@ -1,0 +1,38 @@
+﻿@using OnlineShopMvc.App.DTOs.OrderDTOs;
+@model OrdersForListDTO
+
+@{
+    ViewData["Title"] = "AdminOrderController";
+}
+
+<h2>Orders</h2>
+
+@if (Model != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Numer</th>
+                <th>Data Zamówienia</th>
+                <th>Całkowity koszt</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var (order, index) in Model.Orders.Select((c, i) => (c, i)))
+            {
+                <tr>
+                    <td>@(index + 1)</td>
+                    <td>@order.OrderDate</td>
+                    <td>@order.TotalCost</td>
+                    <td><a href="@Url.Action("DeleteOrder", "Orders", new { id = order.Id })">Usuń</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No orders found.</p>
+}
