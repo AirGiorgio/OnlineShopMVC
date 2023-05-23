@@ -1,4 +1,5 @@
-﻿using OnlineShopMvc.Inf.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
 using OnlineShopMVC.Infrastructure;
 using System;
@@ -18,64 +19,56 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
             this.context = context;
         }
  
-        public bool UpdateClient(Client client) 
-        {
-            var clientFound = GetClientById(client.Id);
-            if (clientFound != null)
-            {
-                clientFound.Id = client.Id;
-                clientFound.Name = client.Name;
-                clientFound.Surname = client.Surname;
-                clientFound.Address = client.Address;
-                clientFound.Telephone = client.Telephone;
-                clientFound.EmailAdress = client.EmailAdress;
-                context.Update(client);
-                context.SaveChanges();
-                return true;
-            }
-            else return false;
-        }
-
         public bool RemoveClient(int id) 
         {
             var client = GetClientById(id);
             if (client != null)
             {
                 context.Remove(client);
-                context.Remove(context.Adresses.Where(x => x.ClientId == client.Id));
+                context.Remove(context.Addresses.SingleOrDefault(x => x.ClientId == client.Id));
                 context.SaveChanges();
                 return true;
             }
             else return false;
         }
-        public string AddClient(Client client)
-        {
-            context.Add(client);
-            context.SaveChanges();
-            return client.ToString(); 
-        }
 
-        public bool AddAdress(Address adress, Client client)
-        {
-            client.Address = adress;
-            adress.Client = client;
-            context.Add(adress);
-            context.SaveChanges();
-            return true;
-        }
         public IQueryable GetClientsBySurname(string surname)
         {
-            return context.Clients.Where(i => i.Name.StartsWith(surname));
+            return context.Clients.Where(i => i.Surname.StartsWith(surname));
         }
 
         public Client GetClientById(int id) 
         {
-            return context.Clients.SingleOrDefault(i => i.Id == id);
+            return context.Clients.Include(x => x.Address).SingleOrDefault(x =>x.Id==id); 
         }
 
         public IQueryable ShowAllClients()
         {
             return context.Clients;
+        }
+
+        public string AddClientAndAddress(Address adres, Client client)
+        {
+            context.Add(client);
+            context.Add(adres);
+            context.SaveChanges();
+            return client.Name+" "+client.Surname;
+        }
+
+        public bool UpdateClientAndAddress(Address adress, Client client, int id)
+        {
+            var clientF = GetClientById(id);
+            if (clientF==null)
+            {
+                return false;
+            }
+            clientF.Name = client.Name;
+            clientF.Surname = client.Surname;
+            clientF.Telephone = client.Telephone;
+            clientF.EmailAdress = client.EmailAdress;
+            clientF.Address = adress;
+            context.SaveChanges();
+            return true;
         }
     }
 }

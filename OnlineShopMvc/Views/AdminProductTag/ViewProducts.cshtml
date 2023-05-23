@@ -1,0 +1,39 @@
+﻿@using OnlineShopMvc.App.DTOs.ProductDTOs;
+@model ProductsForListDTO
+
+@{
+    ViewData["Title"] = "ProductController";
+}
+
+<h2>Produkty</h2>
+
+@if (Model != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Kategoria</th>
+                <th>Ilość</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Category.Name</td>
+                    <td>@product.Quantity</td>
+                    <td><a href="@Url.Action("UpdateProduct", "AdminProductTagController", new { id = product.Id })">Edytuj</a></td>
+                    <td><a href="@Url.Action("RemoveProduct", "AdminProductTagController", new { id = product.Id })">Usuń</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nie znaleziono produktów</p>
+}

@@ -1,0 +1,39 @@
+﻿@using OnlineShopMvc.App.DTOs.CategoryDTOs
+@model CategoriesProductsDTO;
+
+<h2>Produkty wybranej kategorii</h2>
+
+@if (Model != null)
+{
+
+    <table>
+        <thead>
+            <tr>
+                <th>Numer</th>
+                <th>Nazwa</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var (product, index) in Model.Products.Select((c, i) => (c, i)))
+            {
+                <tr>
+                    <td>@(index + 1)</td>
+                    <td>@product.Name</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
+        <button type="submit">Powrót do listy kategorii</button>
+    </form>
+}
+else
+{
+
+    <p>Nie znaleziono produktów w tej kategorii</p>
+
+}

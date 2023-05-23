@@ -10,8 +10,8 @@ namespace OnlineShopMvc.Controllers
         private readonly IClientService _clientService;
         private readonly IAddressService _addressService;
 
-        private readonly ILogger<ClientController> _logger;
-        public AdminClientController(IClientService clientService, ILogger<ClientController> logger, IAddressService addressService)
+        private readonly ILogger<ClientOrdersController> _logger;
+        public AdminClientController(IClientService clientService, ILogger<ClientOrdersController> logger, IAddressService addressService)
         {
             _clientService = clientService;
             _logger = logger;
@@ -29,66 +29,60 @@ namespace OnlineShopMvc.Controllers
 
         }
         [HttpGet]
-        public IActionResult GetClientByStreetDetails(string? street, string? buildingNumber, string? city)
+        public IActionResult ViewClientsByAddress(string? street, string? buildingNumber, string? city)
         {
             var clients = _addressService.GetClientByStreetDetails(street, buildingNumber, city);
             if (clients != null)
             {
-                return View(clients);
+                return View("ViewClients", clients);
             }
-            else return NotFound();
+            else return View(clients); ;
         }
-       
 
         [HttpGet]
-        public IActionResult GetClientsBySurname(string? surname)
+        public IActionResult ViewClientsBySurname(string? surname)
         {
             var clientsFound = _clientService.GetClientsBySurname(surname);
+            if (clientsFound != null)
+            {
+                return View("ViewClients",clientsFound);
+            }
             return View(clientsFound);
         }
 
-        [HttpPost] //or put
-        public IActionResult AddClient(string? name, string? surname, string? email, string? telephone)
+        [HttpPost]
+        public IActionResult ClientDetails(int id)
         {
-            var Client = _clientService.AddClient(name, surname, email, telephone);
-            if (Client.IsNullOrEmpty())
+            var client = _clientService.GetClientById(id);
+            if (client == null)
             {
                 return BadRequest();
             }
-            else return Ok("Rejestracja udana");
+            else return View(client);
         }
 
-        [HttpPut]  
-        public IActionResult AddAddress(Client client, string? street, string? buildingNumber, string? flatNumber, string? city, string? zipCode)
+        [HttpPost]
+        public IActionResult UpdateClient(int id, string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
+            string? flatNumber, string? city, string? zipCode)
         {
-            var adress = _clientService.AddorUpdateClientAdress(client, street, buildingNumber, flatNumber, city, zipCode);
-            if (adress == false)
+            var status = _clientService.UpdateClientAndAddress(id, name, surname, email, telephone, street, buildingNumber, flatNumber, city, zipCode);
+       
+            if (status ==false)
             {
                 return BadRequest();
             }
-            else return Ok("Udało się zaktualizować adres");
+            else return RedirectToAction("ViewClients");
         }
 
-        [HttpPatch]
-        public IActionResult UpdateClient(Client? client, string? name, string? surname, string? email, string? telephone)
+        [HttpPost]
+        public IActionResult RemoveClient(int id)
         {
-            var Client = _clientService.UpdateClient(client, name, surname, email, telephone);
-            if (Client == false)
-            {
-                return BadRequest();
-            }
-            else return Ok("Udało się zaktualizować dane klienta");
-        }
-
-        [HttpDelete]
-        public IActionResult DeleteClient(Client client)
-        {
-            var ClientDeleted = _clientService.RemoveClient(client.Id);
+            var ClientDeleted = _clientService.RemoveClient(id);
             if (ClientDeleted == false)
             {
                 return NotFound();
             }
-            else return Ok("Usunięto konto klienta");
+            else return RedirectToAction("ViewClients", "AdminClient");
         }
     
     }

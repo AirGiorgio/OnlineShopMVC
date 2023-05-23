@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Azure;
 using Microsoft.IdentityModel.Tokens;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.OrderDTOs;
@@ -32,18 +33,18 @@ namespace OnlineShopMvc.App.Services
         {
             if (name.IsNullOrEmpty())
             {
-                throw new ArgumentException("Nieprawidłowa nazwa tagu");
+                return null;
             }
-            else if (GetTagByName(name) != null)
+            else if (_tagRepo.IsTagNameTaken(name) == true)
             {
-                throw new ArgumentException("Tag o tej nazwie już istnieje");
+                return null;
             }
             else return _tagRepo.AddTag(name);
         }
 
-        public TagsForListDTO GetAllTags()
+        public TagsForListDTO GetAllTags(int pagesize, int pageno, string? name)
         {
-            var tags = _tagRepo.GetAllTags().ProjectTo<TagDTO>(_mapper.ConfigurationProvider).ToList();
+            var tags = _tagRepo.GetAllTags( pagesize, pageno, name).ProjectTo<TagDTO>(_mapper.ConfigurationProvider).ToList();
             var tagsDTO = new TagsForListDTO()
             {
                Tags = tags,
@@ -57,7 +58,7 @@ namespace OnlineShopMvc.App.Services
         {
             if (id<=0 || id ==null)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator tagu");
+                return null;
             }
             else
             {
@@ -68,41 +69,26 @@ namespace OnlineShopMvc.App.Services
             }   
         }
   
-        public TagDTO GetTagByName(string name)
-        {
-            if (name.IsNullOrEmpty())
-            {
-                throw new ArgumentException("Nieprawidłowa nazwa tagu");
-            }
-            else 
-            {
-                var tag = _tagRepo.GetTagByName(name); ;
-                var tagDTO = _mapper.Map<TagDTO>(tag);
-
-                return tagDTO;
-            }
-        }
-
         public bool RemoveTag(int id)
         {
             if (id <= 0 || id==null)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator tagu");
+                return false;
             }
             return _tagRepo.RemoveTag(id);
         }
 
-        public bool UpdateTag(string? name)
+        public bool UpdateTag(int id, string? name)
         {
             if (name.IsNullOrEmpty())
             {
-                throw new ArgumentException("Nieprawidłowa nazwa tagu");
+                return false;
             }
-            else if (GetTagByName(name) != null)
+            else if (_tagRepo.IsTagNameTaken(name) == true)
             {
-                throw new ArgumentException("Tag o tej nazwie już istnieje");
+                return false;
             }
-            return _tagRepo.UpdateTag(name);
+            return _tagRepo.UpdateTag(id,name);
         }
     }
 }

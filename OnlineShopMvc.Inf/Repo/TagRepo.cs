@@ -1,4 +1,5 @@
-﻿using OnlineShopMvc.Inf.Interfaces;
+﻿using Microsoft.IdentityModel.Tokens;
+using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
 using OnlineShopMVC.Infrastructure;
 using System;
@@ -21,13 +22,18 @@ namespace OnlineShopMvc.Inf.Repo
         {
             return context.Tags.SingleOrDefault(i => i.Id == id);
         }
-        public Tag GetTagByName(string? name)
+ 
+        public IQueryable GetAllTags(int pagesize, int pageno, string? name)
         {
-            return context.Tags.Where(i => i.Name.StartsWith(name)).SingleOrDefault();
-        }
-        public IQueryable GetAllTags()
-        {
-            return context.Tags;
+            if (name.IsNullOrEmpty())
+            {
+                return context.Tags;
+            }
+            else
+            {
+                return context.Tags.Where(x => x.Name.StartsWith(name));
+            }
+           
         }
         public bool RemoveTag(int? id)
         {
@@ -40,9 +46,9 @@ namespace OnlineShopMvc.Inf.Repo
             }
             else return false;
         }
-        public bool UpdateTag(string? name)
+        public bool UpdateTag(int id, string? name)
         {
-            var tagFound = GetTagByName(name);
+            var tagFound = GetTagById(id);
             if (tagFound != null)
             {
                 tagFound.Name = name;
@@ -57,10 +63,20 @@ namespace OnlineShopMvc.Inf.Repo
         {
             Tag tag= new Tag();
             tag.Name = name;
+            //tag.Products = null; 
 
             context.Add(tag);
             context.SaveChanges();
             return tag.Name;  
+        }
+
+        public bool IsTagNameTaken(string? name)
+        {
+            if (context.Tags.Any(x => x.Name == name))
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }

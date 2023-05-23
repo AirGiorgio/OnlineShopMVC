@@ -9,18 +9,18 @@ namespace OnlineShopMvc.Inf.Interfaces
 {
     public interface IOrderRepo
     {
-        Order GetOrderById(int? id, Client? client);
+        Order GetOrderById(int? orderId, int clientId);
         Order GetOrderById(int? id);
-        IQueryable GetOrdersFromDate(DateTime? orderDate, Client? client);
+        IQueryable GetOrdersFromDate(DateTime? orderDate, int id);
         IQueryable GetAllOrdersFromDate(DateTime? orderDate);
-        IQueryable GetOrdersByOrderDate(Client? client);
+        IQueryable GetOrdersByOrderDate(int id);
         IQueryable GetOrdersByOrderDate();
-        IQueryable GetOrdersFromValue(Client? client, int? min, int? max);
-        IQueryable GetOrdersFromValue(int? min, int? max);
-        IQueryable GetOrdersByValue(Client? client);
+        IQueryable GetOrdersFromValue(int id, decimal min, decimal max);
+        IQueryable GetOrdersFromValue(decimal min, decimal max);
+        IQueryable GetOrdersByValue(int id);
         IQueryable GetOrdersByValue();
         bool RemoveOrder(int? id);
-        bool AddOrder(Client client, List<Product> orderProducts);
+        bool AddOrder(int id, List<Product> orderProducts);
 
     }
 }

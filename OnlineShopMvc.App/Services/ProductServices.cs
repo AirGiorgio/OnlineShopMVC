@@ -32,7 +32,7 @@ namespace OnlineShopMvc.App.Services
         {
             if (id <= 0 || id==null)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator produktu");
+                return null;
             }
             else
             {
@@ -47,15 +47,15 @@ namespace OnlineShopMvc.App.Services
         {
             if (category == null)
             {
-                throw new ArgumentException("Błędna kategoria");
+                return null;
             }
             else if (category.Name.IsNullOrEmpty())
             {
-                throw new ArgumentException("Nieprawidłowa nazwa produktu");
+                return null;
             }
             else if (category.Products.Count ==0)
             {
-                throw new ArgumentException("Nie przypisano żadnego produktu do kategorii");
+                return null;
             }
             else
             {
@@ -74,12 +74,12 @@ namespace OnlineShopMvc.App.Services
         {
             if (category ==null || productTags.Count==0)
             {
-                throw new ArgumentException("Nieprawidłowa kategoria lub tagi produktu");
+                return null;
             }
 
             if (name == null || price == null || quantity == null || !decimal.TryParse(price, out decimal pric) || !int.TryParse(quantity, out int quant))
             {
-                throw new ArgumentException("Nieprawidłowe dane produktu");
+                return null;
             }
            
             Product product = new Product();
@@ -97,7 +97,7 @@ namespace OnlineShopMvc.App.Services
         {
             if (id <= 0 || id == null)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator produktu");
+                return false;
             }
 
             return _productRepo.RemoveProduct(id);
@@ -119,7 +119,7 @@ namespace OnlineShopMvc.App.Services
         {
             if (tags.Count ==0 && tags.IsNullOrEmpty())
             {
-                throw new ArgumentException("Nieprawidłowe wartości tagów produktu");
+                return null;
             }
             else
             {
@@ -137,7 +137,7 @@ namespace OnlineShopMvc.App.Services
         {
             if (name.IsNullOrEmpty())
             {
-                throw new ArgumentException("Nieprawidłowa nazwa produktu");
+                return null;
             }
             else
             {
@@ -151,19 +151,19 @@ namespace OnlineShopMvc.App.Services
         {
             if (product == null || category == null || productTags.Count ==0) 
             {
-                throw new ArgumentException("Nieprawidłowe dane produktu");
+                return false;
             }
             else if (name==null || price==null || quantity == null)
             {
-                throw new ArgumentException("Nieprawidłowe dane produktu");
+                return false;
             }
             else if (!decimal.TryParse(price, out decimal pric) || !int.TryParse(quantity, out int quant))
             {
-                throw new ArgumentException("Nieprawidłowe dane produktu");
+                return false;
             }
             else if (GetProductByName(name) != null)
             {
-                throw new ArgumentException("Nazwa produktu już istnieje");
+                return false;
             }
             return _productRepo.UpdateProduct(product); 
         }
@@ -172,11 +172,11 @@ namespace OnlineShopMvc.App.Services
         {
             if(product == null)
             {
-                throw new ArgumentException("Produkt nie istnieje");
+                return false;
             }
             else if (!int.TryParse(quantity, out int quant) || quantity == null)
             {
-                throw new ArgumentException("Nieprawidłowa ilość produktu");
+                return false;
             }
             else return _productRepo.UpdateProductAmount(product, Convert.ToInt32(quantity));
         }

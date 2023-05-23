@@ -32,7 +32,7 @@ namespace OnlineShopMvc.App.Services
         {
             if (id <= 0 || id == null)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator klienta");
+                return null;
             }
             else
             {
@@ -44,16 +44,16 @@ namespace OnlineShopMvc.App.Services
 
         public ClientsForListDTO GetClientByStreetDetails(string? street, string? buildingNumber, string? city)
         {
-            var clients = _adressRepo.GetClientByStreetName(street, buildingNumber, city)
-                 .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
-
-            var clientsDTO = new ClientsForListDTO()
-            {
-                Clients = clients,
-                Count = clients.Count
-            };
-        
-            return clientsDTO;
+             var clients = _adressRepo.GetClientByStreetName(street, buildingNumber, city)
+                  .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
+             
+             var clientsDTO = new ClientsForListDTO()
+             {
+                 Clients = clients,
+                 Count = clients.Count
+             };
+             
+             return clientsDTO;
         }
     }
 }

@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,42 +23,52 @@ namespace OnlineShopMvc.App.Services
 {
     public class ClientServices : IClientService
     {
+        private readonly IAddressRepo _adressRepo;
         private readonly IClientRepo _clientRepo;
         private readonly IMapper _mapper;
-        public ClientServices(IClientRepo clientRepo, IMapper mapper)
+        public ClientServices(IClientRepo clientRepo, IMapper mapper, IAddressRepo addressRepo)
         {
             _clientRepo = clientRepo;
             _mapper = mapper;
+            _adressRepo = addressRepo;
         }
-        public bool AddorUpdateClientAdress(Client? client, string? street, string? buildingNumber, string? flatNumber, string? city, string? zipCode)
+        public bool UpdateClientAndAddress(int id, string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
+            string? flatNumber, string? city, string? zipCode)
         {
             if (street.IsNullOrEmpty() || buildingNumber.IsNullOrEmpty() ||flatNumber.IsNullOrEmpty()|| city.IsNullOrEmpty() || zipCode.IsNullOrEmpty())
             {
-                throw new ArgumentException("Nieprawidłowe dane klienta");
+                return false;
             }
-            else if(client==null)
+            else if(id<=0)
             {
-                throw new ArgumentException("Brak klienta");
+                return false;
             }
-            
+            Client client = new Client();
+            client.Id = id;
+            client.Name = name;
+            client.Surname = surname;
+            client.EmailAdress = email;
+            client.Telephone = telephone;
+
             Address address = new Address();
-            address.ClientId = client.Id;
+            address.ClientId = id;
             address.Street = street;
             address.BuildingNumber = buildingNumber;
             address.FlatNumber = flatNumber;
             address.City = city;
             address.ZipCode = zipCode;
                
-            _clientRepo.AddAdress(address, client);
+            _clientRepo.UpdateClientAndAddress(address, client, id);
 
             return true;
         }
 
-        public string AddClient(string? name, string? surname,  string? email, string? telephone)
+        public string AddClientAndAddress(string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
+            string? flatNumber, string? city, string? zipCode)
         {
             if (name.IsNullOrEmpty() || surname.IsNullOrEmpty() || email.IsNullOrEmpty() || telephone.IsNullOrEmpty())
             {
-                throw new ArgumentException("Nieprawidłowe dane klienta");
+                return null;
             }
            
             Client client = new Client();
@@ -65,8 +76,14 @@ namespace OnlineShopMvc.App.Services
             client.Surname = surname;
             client.EmailAdress = email;
             client.Telephone = telephone;
+            Address adr = new Address();
+            adr.Street = street;
+            adr.BuildingNumber = buildingNumber;
+            adr.FlatNumber = flatNumber;
+            adr.City = city;
+            adr.ZipCode = zipCode;
 
-            _clientRepo.AddClient(client);
+            _clientRepo.AddClientAndAddress(adr, client);
 
             return client.ToString();
         }
@@ -75,29 +92,15 @@ namespace OnlineShopMvc.App.Services
         {
             if (id <= 0 || id == null)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator klienta");
+                return null;
             }
             else
             {
                 var client = _clientRepo.GetClientById(id);
-                ClientDetailsDTO clientDTO = new ClientDetailsDTO()
-                {
-                    Id = client.Id,
-                    Name = client.Name,
-                    Surname = client.Surname,
-                    Telephone = client.Telephone,
-                    EmailAdress = client.EmailAdress,
-                   
-                };
-                clientDTO.Adress = new AddressDTO()
-                {
-                    Id = client.Address.Id,
-                    Street = client.Address.Street,
-                    City = client.Address.City,
-                    BuildingNumber = client.Address.BuildingNumber,
-                    ZipCode = client.Address.ZipCode,
-                    FlatNumber = client.Address.FlatNumber
-                };
+                var clientDTO = _mapper.Map<ClientDetailsDTO>(client);
+                var adres = _adressRepo.GetAddressByClientId(id);
+                var adresDTO = _mapper.Map<AddressDTO>(adres);
+                clientDTO.Adress = adresDTO;
                 return clientDTO;
             }
         }
@@ -106,7 +109,7 @@ namespace OnlineShopMvc.App.Services
         {
             if (surname.IsNullOrEmpty())
             {
-                throw new ArgumentException("Nieprawidłowe nazwisko klienta");
+                return ShowAllClients();
             }
             else
             {
@@ -126,7 +129,7 @@ namespace OnlineShopMvc.App.Services
         {
             if (id<=0 || id == null)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator klienta");
+                return false;
             }
             return _clientRepo.RemoveClient(id);
         }
@@ -142,19 +145,6 @@ namespace OnlineShopMvc.App.Services
                 Count = clients.Count
             };
             return clientsDTO;
-        }
-
-        public bool UpdateClient(Client? client, string? name, string? surname, string? email, string? telephone)
-        {
-            if (name.IsNullOrEmpty() || surname.IsNullOrEmpty() || email.IsNullOrEmpty() || telephone.IsNullOrEmpty())
-            {
-                throw new ArgumentException("Nieprawidłowe dane klienta");
-            }
-            else if (client == null)
-            {
-                throw new ArgumentException("Nieprawidłowe dane klienta");
-            }
-            return _clientRepo.UpdateClient(client);
         }
 
     }

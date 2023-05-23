@@ -13,7 +13,7 @@ namespace OnlineShopMVC.Infrastructure
 {
         public class Context : IdentityDbContext
         {
-            public DbSet<Address> Adresses { get; set; }
+            public DbSet<Address> Addresses { get; set; }
             public DbSet<Category> Categories { get; set; }
             public DbSet<Client> Clients { get; set; }
             public DbSet<Order> Orders { get; set; }
@@ -25,7 +25,6 @@ namespace OnlineShopMVC.Infrastructure
 
 
             }
-
             protected override void OnModelCreating(ModelBuilder builder)
             {
                 base.OnModelCreating(builder);

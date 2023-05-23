@@ -26,7 +26,12 @@
                     <td>@(index + 1)</td>
                     <td>@order.OrderDate</td>
                     <td>@order.TotalCost</td>
-                    <td><a href="@Url.Action("DeleteOrder", "Orders", new { id = order.Id })">Usuń</a></td>
+                    <td><a href="@Url.Action("OrderDetails", "AdminOrder", new { id = order.Id })">Szczegóły</a></td>
+                    <td>
+                        <form method="post" action="@Url.Action("RemoveOrder", "AdminOrder", new { id = order.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć to zamówienie?')">
+                            <button type="submit">Usuń</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -34,5 +39,30 @@
 }
 else
 {
-    <p>No orders found.</p>
+    <p>Nie znaleziono zamówień.</p>
 }
+
+<h2>Filtruj zamówienia według daty</h2>
+<form method="get" action="@Url.Action("GetAllOrdersFromDate", "AdminOrder")">
+    <label for="orderDate">Data Zamówienia:</label>
+    <input type="date" id="orderDate" name="orderDate" />
+    <button type="submit">Filtruj</button>
+</form>
+
+<h2>Filtruj zamówienia według wartości</h2>
+<form method="get" action="@Url.Action("GetOrdersFromValue", "AdminOrder")">
+    <label for="minValue">Minimalna wartość:</label>
+    <input type="number" id="minValue" name="min" step="0.01" />
+    <label for="maxValue">Maksymalna wartość:</label>
+    <input type="number" id="maxValue" name="max" step="0.01" />
+    <button type="submit">Filtruj</button>
+</form>
+
+<form method="get" action="@Url.Action("GetOrdersByValue", "AdminOrder")">
+    <button type="submit">Sortuj od najwyższej do najniższej ceny</button>
+</form>
+
+<form method="get" action="@Url.Action("ViewOrders", "AdminOrder")">
+    <button type="submit">Powrót do pełnej listy</button>
+</form>
+<a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>

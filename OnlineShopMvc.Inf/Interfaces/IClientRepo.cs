@@ -9,14 +9,12 @@ namespace OnlineShopMvc.Inf.Interfaces
 {
     public interface IClientRepo
     {
-        bool UpdateClient(Client client);
         bool RemoveClient(int id);
-        string AddClient(Client client);
-        bool AddAdress(Address adress, Client client);
+        string AddClientAndAddress(Address adres, Client client);
+        bool UpdateClientAndAddress(Address adress, Client client, int id);
         IQueryable GetClientsBySurname(string surname);
         Client GetClientById(int id);
         IQueryable ShowAllClients();
-
 
     }
 }

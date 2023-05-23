@@ -1,53 +1,68 @@
 ﻿@using OnlineShopMvc.App.DTOs.CategoryDTOs
 @model CategoriesForListDTO
 
-@{
-    ViewData["Title"] = "AdminCategoryController";
-}
-
 <h2>Kategorie</h2>
 
 @if (Model != null)
 {
-    <table>
-        <thead>
+ 
+<table>
+    <thead>
+        <tr>
+            <th>Numer</th>
+            <th>Nazwa</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var (category, index) in Model.Categories.Select((c, i) => (c, i)))
+        {
             <tr>
-                <th>Numer</th>
-                <th>Nazwa</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-             @foreach (var (category, index) in Model.Categories.Select((c, i) => (c, i)))
-            {
-                <tr>
-                    <td>@(index + 1)</td>
-                    <td>@category.Name</td>
-                    <td><a href="@Url.Action("UpdateCategory", "AdminCategoryController", new { id = category.Id })">Edytuj</a></td>
+                <td>@(index + 1)</td>
+                <td>@category.Name</td>
+                <td></td>
+               <td>
+                    <form method="get" action="@Url.Action("UpdateCategory", "AdminCategory", new { id = category.Id, name = category.Name})">
+                    <input type="text" name="name" placeholder="Nowa nazwa" />
+                    <button type="submit">Edytuj</button>
+                    </form>
+               </td>
+                <td>
+                        <form method="post" action="@Url.Action("RemoveCategory", "AdminCategory", new { id = category.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć tą kategorię?')">
+                        <button type="submit">Usuń</button>
+                    </form>
+                </td>
                     <td>
-                        <form method="post" action="@Url.Action("RemoveCategory", "AdminCategoryController", new { id = category.Id })">
-                            <button type="submit">Usuń</button>
+                        <form method="get" action="@Url.Action("CategoryProducts", "AdminCategory", new { id = category.Id })">
+                            <button type="submit">Zobacz produkty kategorii</button>
                         </form>
                     </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+            </tr>
+        }
+    </tbody>
+</table>
 
-    <h2>Add Category</h2>
-    <form method="post" action="@Url.Action("AddCategory", "AdminCategoryController")">
-        <input type="text" name="name" placeholder="Nazwa" />
-        <button type="submit">Dodaj</button>
+    <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
+        <button type="submit">Powrót do listy</button>
     </form>
 
-    <h2>Search Category</h2>
-    <form method="get" action="@Url.Action("GetCategoryByName", "AdminCategoryController")">
-        <input type="text" name="name" placeholder="Wyszukaj" />
-        <button type="submit">OK</button>
-    </form>
+<h2>Dodaj kategorię</h2>
+<form method="post" action="@Url.Action("AddCategory", "AdminCategory")">
+    <input type="text" name="name" placeholder="Nazwa" />
+    <button type="submit">Dodaj</button>
+</form>
+
+<h2>Wyszukaj kategorię</h2>
+<form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
+    <input type="text" name="name" placeholder="Wyszukaj" />
+    <button type="submit">OK</button>
+</form>
+    <a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>
 }
 else
 {
-    <p>Brak kategorii.</p>
+
+    <p>Nie znaleziono żadnych kategorii</p>
+
 }

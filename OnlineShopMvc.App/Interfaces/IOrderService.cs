@@ -14,14 +14,14 @@ namespace OnlineShopMvc.App.Interfaces
     {
         OrderDetailsDTO GetOrderById(int id); 
         OrdersForListDTO GetAllOrdersFromDate(DateTime? orderDate);  
-        OrdersForListDTO GetOrdersFromDate(DateTime? orderDate, Client? client); 
+        OrdersForListDTO GetOrdersFromDate(DateTime? orderDate, int id); 
         OrdersForListDTO GetOrdersByOrderDate(); 
-        OrdersForListDTO GetOrdersByOrderDate(Client? client); 
-        OrdersForListDTO GetOrdersFromValue(int? min, int? max);
-        OrdersForListDTO GetOrdersFromValue(Client? client, int? min, int? max); 
+        OrdersForListDTO GetOrdersByOrderDate(int id); 
+        OrdersForListDTO GetOrdersFromValue(decimal? min, decimal? max);
+        OrdersForListDTO GetOrdersFromValue(int id, decimal? min, decimal? max); 
         OrdersForListDTO GetOrdersByValue(); 
-        OrdersForListDTO GetOrdersByValue(Client? client);  
+        OrdersForListDTO GetOrdersByValue(int id);  
         bool RemoveOrder(int id);
-        bool AddOrder(Client? client, List<Product> orderProducts); 
+        bool AddOrder(int id, List<Product> orderProducts); 
     }
 }

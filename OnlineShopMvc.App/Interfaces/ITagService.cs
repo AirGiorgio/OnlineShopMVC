@@ -11,10 +11,9 @@ namespace OnlineShopMvc.App.Interfaces
     public interface ITagService
     {
         TagDTO GetTagById(int id);  
-        TagDTO GetTagByName(string? name);   
-        TagsForListDTO GetAllTags();  
+        TagsForListDTO GetAllTags(int pagesize, int pageno, string? name);  
         bool RemoveTag(int id);
-        bool UpdateTag(string? name);
+        bool UpdateTag(int id, string? name);
         string AddTag(string? name);
 
     }

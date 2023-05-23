@@ -1,20 +1,22 @@
-﻿@using OnlineShopMvc.App.DTOs.ClientDTOs;
+﻿@using OnlineShopMvc.App.DTOs.ClientDTOs
 @model ClientsForListDTO
 
-@{
-    ViewData["Title"] = "AdminClientController";
-}
-
-<h2>Clients</h2>
+<h2>Klienci</h2>
 
 @if (Model != null)
 {
+
     <table>
         <thead>
             <tr>
                 <th>Numer</th>
                 <th>Imie</th>
-                <th>Nazwisko</th> 
+                <th>Nazwisko</th>
+                <th>Ulica</th>
+                <th>Nr budynku</th>
+                <th>Nr mieszkania</th>
+                <th>Miasto</th>
+                <th>Kod pocztowy</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -23,20 +25,49 @@
             @foreach (var (client, index) in Model.Clients.Select((c, i) => (c, i)))
             {
                 <tr>
-                    <td>@(index+1)</td>
+                    <td>@(index + 1)</td>
                     <td>@client.Name</td>
                     <td>@client.Surname</td>
-                    <td><a href="@Url.Action("EditClient", "Clients", new { id = client.Id })">Edytuj klienta</a></td>
-                    <td><a href="@Url.Action("EditClient", "Clients", new { id = client.Id })">Edytuj Adres</a></td>
-                    <td><a href="@Url.Action("DeleteClient", "Clients", new { id = client.Id })">Usuń</a></td>
+                    <td>@client.Adress.Street</td>
+                    <td>@client.Adress.BuildingNumber</td>
+                    <td>@client.Adress.FlatNumber</td>
+                    <td>@client.Adress.City</td>
+                    <td>@client.Adress.ZipCode</td>
+                    <td></td>
+                    <td>
+                        <form method="post" action="@Url.Action("ClientDetails", "AdminClient", new { id = client.Id})">
+                            <button type="submit">Edytuj</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="@Url.Action("RemoveClient", "AdminClient", new { id = client.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć tego klienta?')">
+                            <button type="submit">Usuń</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
+    <h2>Wyszukaj klienta po nazwisku</h2>
+    <form method="get" action="@Url.Action("ViewClientsBySurname", "AdminClient")">
+        <input type="text" name="surname" placeholder="Wyszukaj" />
+        <button type="submit">OK</button>
+    </form>
+    <h2>Wyszukaj klienta po:</h2>
+    <form method="get" action="@Url.Action("ViewClientsByAddress", "AdminClient")">
+        <input type="text" name="street" placeholder="Ulica" />
+        <input type="text" name="buildingNumber" placeholder="Nr budynku" />
+        <input type="text" name="city" placeholder="Miasto" />
+        <button type="submit">OK</button>
+    </form>
+    <form method="get" action="@Url.Action("ViewClients", "AdminClient")">
+        <button type="submit">Powrót do listy</button>
+    </form>
+    <a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>
 }
 else
 {
-    <p>No Clients found.</p>
+    <p>Nie znaleziono żadnych klientów</p>
 }
 
 

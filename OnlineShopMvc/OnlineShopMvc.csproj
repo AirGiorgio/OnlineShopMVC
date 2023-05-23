@@ -22,4 +22,8 @@
     <ProjectReference Include="..\OnlineShopMvc.Inf\OnlineShopMvc.Inf.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Product\" />
+  </ItemGroup>
+
 </Project>

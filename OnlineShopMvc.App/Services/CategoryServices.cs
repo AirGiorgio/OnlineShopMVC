@@ -32,18 +32,25 @@ namespace OnlineShopMvc.App.Services
         {
             if (name.IsNullOrEmpty())
             {
-                throw new ArgumentException("Nieprawidłowa nazwa kategorii");
+                return null;
             }
-            else if (GetCategoryByName(name) != null)
+            else if (_categoryRepo.IsCategoryNameTaken(name) == true)
             {
-                throw new ArgumentException("Kategoria o tej nazwie już istnieje");
+                return null;
             }
             else return _categoryRepo.AddCategory(name); 
         }
 
-        public CategoriesForListDTO GetAllCategories(int pagesize, int pageno)
+        public CategoriesProductsDTO GetCategoryProducts(int id)
         {
-            var categories = _categoryRepo.GetAllCategories(pagesize,pageno).ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
+            var category = _categoryRepo.GetCategoryById(id);
+            var categoryDTO = _mapper.Map<CategoriesProductsDTO>(category);
+            return categoryDTO;
+        }
+ 
+        public CategoriesForListDTO GetAllCategories(int pagesize, int pageno, string? name)
+        {
+            var categories = _categoryRepo.GetAllCategories(pagesize,pageno,name).ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
             var categoriesToShow = categories.Skip(pagesize*(pageno-1)).Take(pagesize).ToList();
             var categoriesDTO = new CategoriesForListDTO()
             {
@@ -60,7 +67,7 @@ namespace OnlineShopMvc.App.Services
         {
             if (id<=0 || id ==null)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator kategorii");
+                return null;
             }
             else
             {
@@ -70,40 +77,26 @@ namespace OnlineShopMvc.App.Services
             }
         }
 
-        public CategoryDTO GetCategoryByName(string? name)
-        {
-            if (name.IsNullOrEmpty())
-            {
-                throw new ArgumentException("Nieprawidłowa nazwa kategorii");
-            }
-            else
-            {
-                var category = _categoryRepo.GetCategoryByName(name);
-                var categoryDTO = _mapper.Map<CategoryDTO>(category);
-                return categoryDTO;
-            }
-        }
-
         public bool RemoveCategory(int id)
         {
             if (id<=0 || id == null)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator kategorii");
+                return false;
             }
             else return _categoryRepo.RemoveCategory(id);
         }
 
-        public bool UpdateCategory(string? name)
+        public bool UpdateCategory(int id, string? name)
         {
             if (name.IsNullOrEmpty())
             {
-                throw new ArgumentException("Nieprawidłowa nazwa kategorii");
+                return false;
             }
-            else if (GetCategoryByName(name) != null)
+            else if (_categoryRepo.IsCategoryNameTaken(name)== true)
             {
-                throw new ArgumentException("Kategoria o tej nazwie już istnieje");
+                return false;
             }
-            else return _categoryRepo.UpdateCategory(name);
+            else return _categoryRepo.UpdateCategory(id, name);
         }
     }
 }

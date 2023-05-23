@@ -26,24 +26,24 @@ namespace OnlineShopMvc.App.Services
             _orderRepo = orderRepo;
             _mapper = mapper;
         }
-        public bool AddOrder(Client? client, List<Product> orderProducts)
+        public bool AddOrder(int id, List<Product> orderProducts)
         {
-            if (client==null)
+            if (id == null || id <= 0)
             {
-                throw new ArgumentException("Nieprawidłowe dane klienta");
+                return false;
             }
             else if (orderProducts.Count == 0)
             {
-                throw new ArgumentException("Nie ma produktów na liście zakupów");
+                return false;
             }
-           else return _orderRepo.AddOrder(client, orderProducts);
+           else return _orderRepo.AddOrder(id, orderProducts);
         }
 
         public OrdersForListDTO GetAllOrdersFromDate(DateTime? orderDate)
         {
             if (orderDate == null)
             {
-                throw new ArgumentException("Nieprawidłowa data zamówienia");
+                return null;
             }
             else  
             {
@@ -63,7 +63,7 @@ namespace OnlineShopMvc.App.Services
         {
             if (id == null || id <= 0)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator zamówienia");
+                return null;
             }
             else 
             {
@@ -86,15 +86,15 @@ namespace OnlineShopMvc.App.Services
             return ordersDTO;
         }
 
-        public OrdersForListDTO GetOrdersByOrderDate(Client? client)
+        public OrdersForListDTO GetOrdersByOrderDate(int id)
         {
-            if (client == null)
+            if (id<=0 || id == null)
             {
-                throw new ArgumentException("Nieprawidłowe dane klienta");
+                return null;
             }
             else
             {
-                var orders = _orderRepo.GetOrdersByOrderDate(client).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
+                var orders = _orderRepo.GetOrdersByOrderDate(id).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
                 var ordersDTO = new OrdersForListDTO()
                 {
                     Orders = orders,
@@ -106,7 +106,7 @@ namespace OnlineShopMvc.App.Services
 
         public OrdersForListDTO GetOrdersByValue()
         {
-            var orders = _orderRepo.GetOrdersByValue().ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
+            var orders = _orderRepo.GetOrdersByValue().ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();  
             var ordersDTO = new OrdersForListDTO()
             {
                 Orders = orders,
@@ -115,15 +115,15 @@ namespace OnlineShopMvc.App.Services
             return ordersDTO;
         }
 
-        public OrdersForListDTO GetOrdersByValue(Client? client)
+        public OrdersForListDTO GetOrdersByValue(int id)
         {
-            if (client == null)
+            if (id <= 0 || id == null)
             {
-                throw new ArgumentException("Nieprawidłowe dane klienta");
+                return null;
             }
             else
             {
-                var orders = _orderRepo.GetOrdersByValue(client).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
+                var orders = _orderRepo.GetOrdersByValue(id).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
                 var ordersDTO = new OrdersForListDTO()
                 {
                     Orders = orders,
@@ -133,19 +133,19 @@ namespace OnlineShopMvc.App.Services
             }
         }
 
-        public OrdersForListDTO GetOrdersFromDate(DateTime? orderDate, Client? client)
+        public OrdersForListDTO GetOrdersFromDate(DateTime? orderDate, int id)
         {
-            if (client == null )
+            if (id <= 0 || id == null)
             {
-                throw new ArgumentException("Nieprawidłowe dane klienta");
+                return null;
             }
             else if (orderDate == null)
             {
-                throw new ArgumentException("Nieprawidłowe dane zamówienia");
+                return null;
             }
             else
             {
-                var orders = _orderRepo.GetOrdersFromDate(orderDate, client).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
+                var orders = _orderRepo.GetOrdersFromDate(orderDate, id).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
                 var ordersDTO = new OrdersForListDTO()
                 {
                     Orders = orders,
@@ -155,55 +155,48 @@ namespace OnlineShopMvc.App.Services
             }
         }
 
-        public OrdersForListDTO GetOrdersFromValue(int? min, int? max)
+        public OrdersForListDTO GetOrdersFromValue(decimal? min, decimal? max)
         {
-            if (min <= 0 || max <= 0)
+            if (!min.HasValue || !max.HasValue || min<=0 || max<=0)
             {
-                throw new ArgumentException("Nieprawidłowe wartości zamówienia");
+                min = 0;
+                max = 0;
             }
-            else
-            {
-                var orders = _orderRepo.GetOrdersFromValue(min, max).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
+                var orders = _orderRepo.GetOrdersFromValue(min.Value, max.Value).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
                 var ordersDTO = new OrdersForListDTO()
                 {
                     Orders = orders,
                     Count = orders.Count
                 };
                 return ordersDTO;
-            }
         }
 
-        public OrdersForListDTO GetOrdersFromValue(Client? client, int? min, int? max)
+        public OrdersForListDTO GetOrdersFromValue(int id, decimal? min, decimal? max)
         {
-            if (client == null )
+            if (id<=0 || id == null )
             {
-                throw new ArgumentException("Nieprawidłowe dane klienta");
+                return null;
             }
-            else if (min == null || max == null)
+            else if (!min.HasValue || !max.HasValue || min <= 0 || max <= 0)
             {
-                throw new ArgumentException("Nieprawidłowe dane zamówienia");
+                min = 0;
+                max = 0;
             }
-            else if (min <= 0 || max <= 0)
-            {
-                throw new ArgumentException("Nieprawidłowe wartości zamówienia");
-            }
-            else
-            {
-                var orders = _orderRepo.GetOrdersFromValue(client, min, max).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
+                var orders = _orderRepo.GetOrdersFromValue(id, min.Value, max.Value).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
                 var ordersDTO = new OrdersForListDTO()
                 {
                     Orders = orders,
                     Count = orders.Count
                 };
                 return ordersDTO;
-            }
+            
         }
 
         public bool RemoveOrder(int id)
         {
             if (id <= 0 || id == null)
             {
-                throw new ArgumentException("Nieprawidłowy identyfikator zamówienia");
+                return false;
             }
             else return _orderRepo.RemoveOrder(id);
         }

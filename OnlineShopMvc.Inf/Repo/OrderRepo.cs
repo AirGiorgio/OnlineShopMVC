@@ -18,49 +18,49 @@ namespace OnlineShopMvc.Inf.Repo
         {
             this.context = context;
         }
-        public Order GetOrderById(int? id, Client? client)
+        public Order GetOrderById(int? orderId, int clientId)
         {
-            return context.Orders.SingleOrDefault(i => i.Id == id && i.ClientId == client.Id);
+            return context.Orders.SingleOrDefault(i => i.Id == orderId && i.ClientId == clientId);
         }
         public Order GetOrderById(int? id)
         {
             return context.Orders.SingleOrDefault(i => i.Id == id);
         }
 
-        public IQueryable GetOrdersFromDate(DateTime? orderDate, Client? client)  // od konkretnej daty
+        public IQueryable GetOrdersFromDate(DateTime? orderDate, int id)  // od konkretnej daty dla klienta
         {
-            return context.Orders.Where(x => x.OrderDate > orderDate && x.ClientId == client.Id);
+            return context.Orders.Where(x => x.OrderDate > orderDate && x.ClientId == id).OrderBy(x => x.OrderDate);
                                            
         }
         public IQueryable GetAllOrdersFromDate(DateTime? orderDate)  // od konkretnej daty
         {
-            return context.Orders.Where(x => x.OrderDate > orderDate);
+            return context.Orders.Where(x => x.OrderDate > orderDate).OrderBy(x=>x.OrderDate);
           
         }
-        public IQueryable GetOrdersByOrderDate(Client? client) //od początku do końca
+        public IQueryable GetOrdersByOrderDate(int id) //od początku do końca
         {
-            return context.Orders.Where(x => x.ClientId == client.Id).OrderBy(x => x.OrderDate);
+            return context.Orders.Where(x => x.ClientId == id).OrderBy(x => x.OrderDate);
         }
         public IQueryable GetOrdersByOrderDate() //od początku do końca
         {
             return context.Orders.OrderBy(x => x.OrderDate);
         }
-        public IQueryable GetOrdersFromValue(Client? client, int? min, int? max) //w konkretnych przedziałach
+        public IQueryable GetOrdersFromValue(int id, decimal min, decimal max) //w konkretnych przedziałach
         {
-            return context.Orders.Where(x => x.GetTotalPrice() > min && x.GetTotalPrice() < max && x.ClientId == client.Id);
+            return context.Orders.Where(x => x.TotalCost > min && x.TotalCost < max && x.ClientId == id);
         }
-        public IQueryable GetOrdersFromValue(int? min, int? max) //w konkretnych przedziałach
+        public IQueryable GetOrdersFromValue(decimal min, decimal max) //w konkretnych przedziałach
         {
-            return context.Orders.Where(x => x.GetTotalPrice() > min && x.GetTotalPrice() < max);
+            return context.Orders.Where(x => x.TotalCost > min && x.TotalCost < max);
         }
 
-        public IQueryable GetOrdersByValue(Client? client) 
+        public IQueryable GetOrdersByValue(int id) 
         {
-            return context.Orders.Where(x => x.ClientId == client.Id).OrderBy(x => x.GetTotalPrice());
+            return context.Orders.Where(x => x.ClientId == id).OrderBy(x => x.TotalCost);
         }
         public IQueryable GetOrdersByValue()
         {
-            return context.Orders.OrderBy(x => x.GetTotalPrice());
+            return context.Orders.OrderBy(x => x.TotalCost);
         }
 
         public bool RemoveOrder(int? id) 
@@ -75,17 +75,17 @@ namespace OnlineShopMvc.Inf.Repo
             else return false;
         }
 
-        public bool AddOrder(Client client, List<Product> orderProducts)
+        public bool AddOrder(int id, List<Product> orderProducts)
         {
-            Order order = new Order();
-            order.ClientId = client.Id;
-            order.OrderDate = DateTime.Now;
-            order.Products = orderProducts;
-            order.TotalCost = order.GetTotalPrice();
-            client.OrderHistory.Add(order);
+            //Order order = new Order();
+            //order.ClientId = id;
+            //order.OrderDate = DateTime.Now;
+            //order.Products = orderProducts;
+            //order.TotalCost = order.GetTotalPrice();
+            ////client.OrderHistory.Add(order);
 
-            context.Add(order);
-            context.SaveChanges();
+            //context.Add(order);
+            //context.SaveChanges();
             return true;            
         }
       

@@ -13,22 +13,27 @@ namespace OnlineShopMvc.Controllers
             _categoryService = categoryService;
             _logger = logger;
         }
-        
+     
         [HttpGet]
-        public IActionResult GetCategoryByName(string? name)  
+        public IActionResult ViewCategories(int pageSize, int? pageNo, string? name)  
         {
-            var category = _categoryService.GetCategoryByName(name);
+            if (!pageNo.HasValue)
+            {
+                pageNo = 1;
+            }
+            var category = _categoryService.GetAllCategories(pageSize, pageNo.Value, name);
             if (category != null)
             {
                 return View(category);
             }
             else return NotFound();
         }
-     
+
         [HttpGet]
-        public IActionResult ViewCategories(int pageSize, int pageNo)  
+        public IActionResult CategoryProducts(int id)
         {
-            var category = _categoryService.GetAllCategories(pageSize, pageNo);
+           
+            var category = _categoryService.GetCategoryProducts(id);
             if (category != null)
             {
                 return View(category);
@@ -44,20 +49,20 @@ namespace OnlineShopMvc.Controllers
             {
                 return BadRequest();
             }
-            else return Ok("Dodano nową kategorię");
+            else return RedirectToAction("ViewCategories", "AdminCategory");
         }
 
-        [HttpPatch]
-        public IActionResult UpdateCategory(string? name)  
+        [HttpGet]
+        public IActionResult UpdateCategory(int id, string? name)  
         {
-            var category = _categoryService.UpdateCategory(name);
+            var category = _categoryService.UpdateCategory(id, name);
             if (category == false)
             {
                 return BadRequest();
             }
-            else return Ok("Zaktualizowano kategorię");
+            else return RedirectToAction("ViewCategories", "AdminCategory");
         }
-        [HttpDelete]
+        [HttpPost]
         public IActionResult RemoveCategory(int id)  
         {
             var category = _categoryService.RemoveCategory(id);
@@ -65,7 +70,7 @@ namespace OnlineShopMvc.Controllers
             {
                 return BadRequest();
             }
-            else return Ok("Usunięto kategorię");
+            else return RedirectToAction("ViewCategories", "AdminCategory");
         }
 
     }

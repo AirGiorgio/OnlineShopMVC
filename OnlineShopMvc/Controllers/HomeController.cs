@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShopMvc.Inf;
 using OnlineShopMvc.Models;
+using OnlineShopMVC.Infrastructure;
 using System.Diagnostics;
 
 namespace OnlineShopMvc.Controllers
@@ -7,10 +9,11 @@ namespace OnlineShopMvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            //Seeder seeder = new Seeder();
+            //seeder.SeedData();
         }
 
         public IActionResult Index()

@@ -11,10 +11,10 @@ namespace OnlineShopMvc.App.Interfaces
 {
     public interface ICategoryService
     {
+        CategoriesProductsDTO GetCategoryProducts(int id);
         CategoryDTO GetCategoryById(int id);      
-        CategoryDTO GetCategoryByName(string? name); 
-        CategoriesForListDTO GetAllCategories(int pagesize, int pageno);        
-        bool UpdateCategory(string? name);
+        CategoriesForListDTO GetAllCategories(int pagesize, int pageno, string? name);        
+        bool UpdateCategory(int id, string? name);
         bool RemoveCategory(int id);
         string AddCategory(string? name);
 

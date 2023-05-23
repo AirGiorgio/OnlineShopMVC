@@ -1,4 +1,5 @@
-﻿using OnlineShopMvc.Inf.Interfaces;
+﻿using Microsoft.IdentityModel.Tokens;
+using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
 using OnlineShopMVC.Infrastructure;
 using System;
@@ -17,27 +18,30 @@ namespace OnlineShopMvc.Inf.Repo
         {
             this.context = context;
         }
-
+        
         public Category GetCategoryById(int? id)
         {
             return context.Categories.SingleOrDefault(i => i.Id == id);
         }
-        public Category GetCategoryByName(string name)
-        {
-            return context.Categories.Where(i => i.Name.StartsWith(name)).SingleOrDefault();
-        }
 
-        public IQueryable GetAllCategories(int pagesize, int pageno)
+        public IQueryable GetAllCategories(int pagesize, int pageno, string? name)
         {
-            return context.Categories;
+            if (name.IsNullOrEmpty())
+            {
+                return context.Categories;
+            }
+            else
+            {
+                return context.Categories.Where(x => x.Name.StartsWith(name));
+            }
         }
-        public bool UpdateCategory(string c)
+        public bool UpdateCategory(int id, string c)
         {
-            var category = GetCategoryByName(c);
+            var category = GetCategoryById(id);
             if (category != null)
             {
                 category.Name = c;
-                context.Update(c);
+                context.Update(category);
                 context.SaveChanges();
                 return true;
             }
@@ -63,6 +67,15 @@ namespace OnlineShopMvc.Inf.Repo
             context.Add(category);
             context.SaveChanges();
             return category.Name; 
+        }
+
+        public bool IsCategoryNameTaken(string? name)
+        {
+            if (context.Categories.Any(x => x.Name == name))
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }

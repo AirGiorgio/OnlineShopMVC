@@ -1,28 +1,49 @@
-﻿@model string
-
+﻿@using OnlineShopMvc.App.DTOs.ClientDTOs
+@model ClientDetailsDTO 
 @{
-    ViewData["Title"] = "Add Client";
+    ViewData["Title"] = "ClientDetails";
 }
 
-<h2>Add Client</h2>
+<h2>Edytowanie klienta</h2>
 
-@if (!string.IsNullOrEmpty(Model))
+@if (Model != null)
 {
-    <p>@Model</p>
+    <form method="post" action="@Url.Action("UpdateClient", "AdminClient", new {id = Model.Id})">
+        <label for="name">Imię:</label>
+        <input type="text" id="name" name="name" value="@Model.Name" required />
+
+        <label for="surname">Nazwisko:</label>
+        <input type="text" id="surname" name="surname" value="@Model.Surname" required />
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" value="@Model.EmailAdress" required /> 
+
+        <label for="telephone">Telefon:</label>
+        <input type="text" id="telephone" name="telephone" value="@Model.Telephone" required />
+
+        <label for="street">Ulica:</label>
+        <input type="text" id="street" name="street" value="@Model.Adress.Street" required />
+
+        <label for="buildingNumber">Nr budynku:</label>
+        <input type="text" id="buildingNumber" name="buildingNumber" value="@Model.Adress.BuildingNumber" required />
+
+        <label for="flatNumber">Nr mieszkania:</label>
+        <input type="text" id="flatNumber" name="flatNumber" value="@Model.Adress.FlatNumber" required />
+
+        <label for="city">Miejscowość:</label>
+        <input type="text" id="city" name="city" value="@Model.Adress.City" required />
+
+        <label for="zipCode">Kod pocztowy:</label>
+        <input type="text" id="zipCode" name="zipCode" value="@Model.Adress.ZipCode" required />
+
+        <button type="submit">Edytuj</button>
+        
+    </form>
+    <form method="get" action="@Url.Action("ViewClients", "AdminClient")">
+        <button type="submit">Powrót do listy</button>
+    </form>
 }
-
-<form method="post" action="@Url.Action("AddClient", "AdminController")">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required />
-
-    <label for="surname">Surname:</label>
-    <input type="text" id="surname" name="surname" required />
-
-    <label for="email">Email Address:</label>
-    <input type="email" id="email" name="email" required />
-
-    <label for="telephone">Telephone:</label>
-    <input type="text" id="telephone" name="telephone" required />
-
-    <button type="submit">Add Client</button>
-</form>
+else
+{
+    <p>Nie znaleziono danych tego klienta</p>
+}

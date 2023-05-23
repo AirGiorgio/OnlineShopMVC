@@ -11,10 +11,10 @@ namespace OnlineShopMvc.Inf.Interfaces
     public interface ICategoryRepo
     {
         Category GetCategoryById(int? id);
-        Category GetCategoryByName(string name);
-        IQueryable GetAllCategories(int pagesize, int pageno);
-        bool UpdateCategory(string c);
+        IQueryable GetAllCategories(int pagesize, int pageno, string? name);
+        bool UpdateCategory(int id, string c);
         bool RemoveCategory(int? id);
+        bool IsCategoryNameTaken(string? name);
         string AddCategory(string name);
     }
 }

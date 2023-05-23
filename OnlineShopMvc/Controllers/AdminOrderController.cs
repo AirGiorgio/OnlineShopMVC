@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMVC.Domain.Model;
+using static NuGet.Packaging.PackagingConstants;
 
 namespace OnlineShopMvc.Controllers
 {
@@ -14,18 +15,20 @@ namespace OnlineShopMvc.Controllers
             _orderService = orderService;
             _logger = logger;
         }
+
         [HttpGet]
-        public IActionResult GetAllOrdersFromDate(DateTime? orderDate)
+        public IActionResult GetAllOrdersFromDate(DateTime? orderDate)  
         {
             var Orders = _orderService.GetAllOrdersFromDate(orderDate);
             if (Orders != null)
             {
-                return View(Orders);
+                return View("ViewOrders",Orders);
             }
-            else return NotFound();
+            else return RedirectToAction("ViewOrders");
         }
+
         [HttpGet]
-        public IActionResult ViewOrders()
+        public IActionResult ViewOrders()  
         {
             var Orders = _orderService.GetOrdersByOrderDate();
             if (Orders != null)
@@ -34,46 +37,49 @@ namespace OnlineShopMvc.Controllers
             }
             else return NotFound();
         }
+
         [HttpGet]
-        public IActionResult GetOrderById(int id)
+        public IActionResult OrderDetails(int id)  
         {
             var Order = _orderService.GetOrderById(id);
             if (Order != null)
             {
                 return View(Order);
             }
-            else return NotFound();
+            else return BadRequest();
         }
+
         [HttpGet]
-        public IActionResult GetOrdersFromValue(int? min, int? max)
+        public IActionResult GetOrdersFromValue(int? min, int? max)  
         {
             var Orders = _orderService.GetOrdersFromValue(min, max);
             if (Orders != null)
             {
-                return View(Orders);
+                return View("ViewOrders", Orders);
             }
-            else return NotFound();
+            else return RedirectToAction("ViewOrders");
         }
+
         [HttpGet]
-        public IActionResult GetOrdersByValue()
+        public IActionResult GetOrdersByValue()  
         {
             var Orders = _orderService.GetOrdersByValue();
             if (Orders != null)
             {
-                return View(Orders);
+                return View("ViewOrders", Orders);
             }
             else return NotFound();
         }
-        [HttpPatch]
-        public IActionResult RemoveOrder(Order order)
+
+        [HttpPost]
+        public IActionResult RemoveOrder(int id)  
         {
-            var orderDeleted = _orderService.RemoveOrder(order.Id);
+            var orderDeleted = _orderService.RemoveOrder(id);
             if (orderDeleted == false)
             {
                 return NotFound();
             }
-            else return Ok("Zamówienie zostało usunięte");
-
+            else return RedirectToAction("ViewOrders");
         }
     }
 }

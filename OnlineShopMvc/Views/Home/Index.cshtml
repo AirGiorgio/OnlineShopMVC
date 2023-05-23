@@ -3,6 +3,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Witaj admin</h1>
+</div>
+
+<div class="text-center">
+    <a href="@Url.Action("ViewCategories", "AdminCategory")" class="btn btn-primary">Zarządzaj kategoriami</a>
+    <a href="@Url.Action("ViewClients", "AdminClient")" class="btn btn-primary">Zarządzaj klientami</a>
+    <a href="@Url.Action("ViewProducts", "AdminTag")" class="btn btn-primary">Zarządzaj produktami</a>
+    <a href="@Url.Action("ViewOrders", "AdminOrder")" class="btn btn-primary">Zarządzaj zamówieniami</a>
 </div>
