@@ -2,6 +2,7 @@
 using OnlineShopMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -18,7 +19,7 @@ namespace OnlineShopMvc.App.Interfaces
         bool RemoveClient(int id);
         ClientsForListDTO GetClientsBySurname(string? surname);
         ClientDetailsDTO GetClientById(int id);        
-        ClientsForListDTO ShowAllClients();  
- 
+        ClientsForListDTO ShowAllClients();
+        ClientsForListDTO GetClientByStreetDetails(string street, string buildingNumber, string city);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using OnlineShopMvc.App.DTOs.CategoryDTOs;
+using OnlineShopMvc.App.DTOs.OrderDTOs;
 using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMVC.Domain.Model;
@@ -12,15 +13,16 @@ namespace OnlineShopMvc.App.Interfaces
 {
     public interface IProductService
     {
+        ProductsForListDTO GetProductsFromValue(decimal? min, decimal? max);
         ProductsForListDTO GetAllProducts(); 
         ProductDetailsDTO GetProductById(int id); 
-        ProductsForListDTO GetProductsFromTags(List<Tag>? tags); 
-        ProductDTO GetProductByName(string? name); 
-        ProductsForListDTO GetProductsByCategory(Category? category); 
-        bool UpdateProduct(Product? product, string? name, string? price, string? quantity, Category? category, List<Tag>? tags);
-        bool UpdateProductAmount(Product? product, string? quantity);  
+        ProductsForListDTO GetProductsFromTags(List<Tag>? tags);
+        ProductsForListDTO GetProductByName(string? name);
+        ProductsForListDTO GetProductsByCategory(int id); 
+        bool UpdateProduct(int id, string? name, string? price, int categoryId, List<Tag>? tags);
+        bool UpdateProductAmount(int id, string? quantity);  
         bool RemoveProduct(int id);
-        string AddProduct(string? name, string? price, string? quantity, Category? category, List<Tag>? tags);
+        string AddProduct(string? name, string? price, string? quantity, int categoryId, List<Tag>? tags);
       
 
     }

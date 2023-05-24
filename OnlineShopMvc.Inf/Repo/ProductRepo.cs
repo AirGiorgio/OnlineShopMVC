@@ -1,4 +1,6 @@
 ﻿using Azure;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.IdentityModel.Tokens;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
 using OnlineShopMVC.Infrastructure;
@@ -22,50 +24,55 @@ namespace OnlineShopMvc.Inf.Repo
             return context.Products;
         }
 
-        public Product GetProductById(int? id)
+        public Product GetProductById(int id)
         {
             return context.Products.SingleOrDefault(i => i.Id == id);
         }
-        public IQueryable GetProductsFromTags(List<Tag> tags)
+        public IQueryable GetProductsFromTags(List<Tag> tags) //nie zadziała
         {
-            return context.Products.Where(x => x.Tags == tags);
+            return context.Products.Where(x => x.Tags == tags).OrderBy(x => x.Price);
         }
-        public Product GetProductByName(string name)
+        public IQueryable GetProductByName(string name)
         {
-            return context.Products.Where(i => i.Name.StartsWith(name)).SingleOrDefault();
+            return context.Products.Where(i => i.Name.StartsWith(name)).OrderBy(x => x.Price);
         }
-        public IQueryable GetProductsByCategory(Category category)
+        public IQueryable GetProductsByCategory(int id)
         {
-            return context.Products.Where(x => x.Category == category);
+            return context.Products.Where(x => x.Category.Id == id).OrderBy(x => x.Price);
         }
-        public bool UpdateProductAmount(Product? product, int quantity)
+        public bool UpdateProductAmount(int id, int quantity)
         {
-            var productFound = GetProductById(product.Id);
+            var productFound = GetProductById(id);
             if (productFound != null)
             {
-                product.Quantity = quantity;
+                productFound.Quantity = quantity;
                 context.Update(productFound);
                 context.SaveChanges();
                 return true;
             }
             else return false;
         }
-        public bool UpdateProduct(Product product)
+        public bool UpdateProduct(int id, string name, decimal price, int categoryId, List<Tag> tags)
         {
-            var productFound = GetProductById(product.Id);
+            var productFound = GetProductById(id);
             if (productFound != null)
             {
-                productFound.Name = product.Name;
-                productFound.Price = product.Price;
-                productFound.Quantity = product.Quantity;
-                productFound.Category = product.Category;
-                context.Update(productFound);
-                context.SaveChanges();
-                return true;
+                productFound.Name = name;
+                productFound.Price = price;
+                var cat = context.Categories.Where(x => x.Id == categoryId).SingleOrDefault();
+                if (cat!=null || !tags.IsNullOrEmpty())
+                {
+                    productFound.Category = cat;
+                    productFound.Tags = tags;
+                    context.Update(productFound);
+                    context.SaveChanges();
+                    return true;
+                }
+                else return false;
             }
             else return false;
         }
-        public bool RemoveProduct(int? id)  
+        public bool RemoveProduct(int id)  
         {
             var product = GetProductById(id);
             if (product != null)
@@ -82,6 +89,16 @@ namespace OnlineShopMvc.Inf.Repo
             context.Add(product);
             context.SaveChanges();
             return product.Name;           
+        }
+
+        public IQueryable GetProductsByOrderId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable GetProductsFromValue(decimal min, decimal max)
+        {
+            return context.Products.Where(x => x.Price > min && x.Price < max).OrderBy(x => x.Price);
         }
     }
 }

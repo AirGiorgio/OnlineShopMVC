@@ -16,6 +16,7 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
         public int Id { get; set; }
         public CategoryDTO Category { get; set; }
         public int Quantity { get; set; }
+        public decimal Price { get; set; }
         public string Name { get; set; }
 
         public void Mapping(Profile profile)
@@ -24,6 +25,7 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
                 .ForMember(x => x.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(x => x.Category, opt => opt.MapFrom(s => s.Category))
                 .ForMember(x => x.Name, opt => opt.MapFrom(s => s.Name))
+                .ForMember(x => x.Price, opt => opt.MapFrom(s => s.Price))
                 .ForMember(x => x.Quantity, opt => opt.MapFrom(s => s.Quantity));
         }
         

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using OnlineShopMvc.Domain.Model;
 using OnlineShopMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace OnlineShopMVC.Infrastructure
             public DbSet<Client> Clients { get; set; }
             public DbSet<Order> Orders { get; set; }
             public DbSet<Product> Products { get; set; }
+            //public DbSet<ProductTag> ProductTag { get; set; }
+            //public DbSet<OrderProduct> OrderProduct { get; set; }
             public DbSet<Tag> Tags { get; set; }
 
             public Context(DbContextOptions options) : base(options)
@@ -29,13 +32,13 @@ namespace OnlineShopMVC.Infrastructure
             {
                 base.OnModelCreating(builder);
 
-                builder.Entity<Product>()
+                 builder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasPrecision(18, 2);
 
                 builder.Entity<Order>()
-                .Property(p => p.TotalCost)
-                .HasPrecision(18, 2);
-            }
+                  .Property(p => p.TotalCost)
+                  .HasPrecision(18, 2);
+            }    
     }
 }

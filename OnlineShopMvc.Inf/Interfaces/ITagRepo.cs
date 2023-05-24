@@ -10,7 +10,7 @@ namespace OnlineShopMvc.Inf.Interfaces
     public interface ITagRepo
     {
         Tag GetTagById(int? id);
-        IQueryable GetAllTags(int pagesize, int pageno, string? name);
+        IQueryable GetAllTags(string? name);
         bool RemoveTag(int? id);
         bool UpdateTag(int id, string? name);
         bool IsTagNameTaken(string? name);

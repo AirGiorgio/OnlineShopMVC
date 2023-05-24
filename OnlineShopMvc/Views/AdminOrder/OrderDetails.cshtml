@@ -1,5 +1,52 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using OnlineShopMvc.App.DTOs.OrderDTOs
+@model OrderDetailsDTO
+
 @{
+    ViewData["Title"] = "AdminOrderController";
+}
+
+<h2>Szczegóły zamówienia</h2>
+
+@if (Model != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Id zamówienia</th>
+                <th>Imię klienta</th>
+                <th>Nazwisko klienta</th>
+                <th>Data zamówienia</th>
+                <th>Nazwa produktu</th>
+                <th>Cena produktu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Client.Name</td>
+                <td>@Model.Client.Surname</td>
+                <td>@Model.OrderDate</td>
+                <td>
+                    @foreach (var product in Model.Products)
+                    {
+                        <p>@product.Name</p>
+                    }
+                </td>
+                <td>
+                    @foreach (var product in Model.Products)
+                    {
+                        <p>@product.Price</p>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Koszt całkowity: @Model.TotalCost</p>
+    <p>
+        <a href="@Url.Action("ViewOrders", "AdminOrder")">Powrót do listy zamówień</a>
+    </p>
+}
+else
+{
+    <p>Nie znaleziono szczegółów tego zamówienia.</p>
 }

@@ -260,7 +260,7 @@ namespace OnlineShopMvc.Inf.Migrations
                     b.HasIndex("ClientId")
                         .IsUnique();
 
-                    b.ToTable("Adresses");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("OnlineShopMVC.Domain.Model.Category", b =>

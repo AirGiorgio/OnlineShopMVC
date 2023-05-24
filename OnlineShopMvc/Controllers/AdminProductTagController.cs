@@ -21,13 +21,13 @@ namespace OnlineShopMvc.Controllers
             _tagService = tagService;
         }
         [HttpGet]
-        public IActionResult ViewTags(int pageSize, int? pageNo, string? name)
+        public IActionResult ViewTags(string? name)
         {
-            if (!pageNo.HasValue)
-            {
-                pageNo = 1;
-            }
-            var tags = _tagService.GetAllTags(pageSize, pageNo.Value, name);
+            //if (!pageNo.HasValue)
+            //{
+            //    pageNo = 1;
+            //}
+            var tags = _tagService.GetAllTags(name);
             if (tags != null)
             {
                 return View(tags);
@@ -76,16 +76,16 @@ namespace OnlineShopMvc.Controllers
             else return NotFound();
         }
         [HttpGet]
-        public IActionResult GetProductById(int id)
+        public IActionResult ProductDetails(int id)
         {
             var product = _productService.GetProductById(id);
             if (product != null)
             {
                 return View(product);
             }
-            else return NotFound();
+            else return BadRequest();
         }
-        [HttpGet]
+        [HttpGet]  //klienckie
         public IActionResult GetProductsFromTags(List<Tag> tags)
         {
             var products = _productService.GetProductsFromTags(tags);
@@ -93,48 +93,63 @@ namespace OnlineShopMvc.Controllers
             {
                 return View(products);
             }
-            else return NotFound();
+            else return RedirectToAction("ViewProducts");
         }
         [HttpGet]
+        public IActionResult GetProductsFromValue(decimal? min, decimal? max)
+        {
+            var products = _productService.GetProductsFromValue(min, max);
+            if (products != null)
+            {
+                return View("ViewProducts", products);
+            }
+            else return RedirectToAction("ViewProducts");
+        }
+        [HttpGet] 
         public IActionResult GetProductByName(string? name)
         {
-            var product = _productService.GetProductByName(name);
-            if (product != null)
+            var products = _productService.GetProductByName(name);
+            if (products != null)
             {
-                return View(product);
+                return View("ViewProducts",products);
             }
-            else return NotFound();
+            else return RedirectToAction("ViewProducts");
         }
         [HttpGet]
-        public IActionResult GetProductsByCategory(Category? category)
+        public IActionResult GetProductsByCategory(int id)
         {
-            var products = _productService.GetProductsByCategory(category);
+            var products = _productService.GetProductsByCategory(id);
             if (products != null)
             {
                 return View(products);
             }
-            else return NotFound();
+            else return RedirectToAction("ViewProducts");
         }
         [HttpPost]
-        public IActionResult AddProduct(string? name, string? price, string? quantity, Category category, List<Tag> productTags)
+        public IActionResult AddProduct(string? name, string? price, string? quantity, int categoryId, List<Tag> productTags)
         {
-            var product = _productService.AddProduct(name,price,quantity,category, productTags);
+            var product = _productService.AddProduct(name,price,quantity,categoryId, productTags);
             if (product.IsNullOrEmpty())
             {
                 return BadRequest();
             }
-            else return Ok("Dodano nowy produkt");
+            else return RedirectToAction("ViewProducts");
+        }
+        [HttpGet]
+        public IActionResult AddProduct()
+        {
+            return View();
         }
 
-        [HttpPatch]
-        public IActionResult UpdateProduct(Product? product, string? name, string? price, string? quantity, Category category, List<Tag> productTags)
+        [HttpPost]
+        public IActionResult UpdateProduct(int id, string? name, string? price, int categoryId, List<Tag> productTags)
         {
-            var Product = _productService.UpdateProduct(product,name,price,quantity,category,productTags);
+            var Product = _productService.UpdateProduct(id,name,price,categoryId,productTags);
             if (Product == false)
             {
                 return BadRequest();
             }
-            else return Ok("Zaktualizowano produkt");
+            else return RedirectToAction("ViewProducts");
         }
         [HttpPost]
         public IActionResult RemoveProduct(int id)
@@ -144,7 +159,7 @@ namespace OnlineShopMvc.Controllers
             {
                 return BadRequest();
             }
-            else return Ok("Usunięto produkt");
+            else return RedirectToAction("ViewProducts");
         }
     }
 }

@@ -8,14 +8,12 @@ namespace OnlineShopMvc.Controllers
     public class AdminClientController : Controller
     {
         private readonly IClientService _clientService;
-        private readonly IAddressService _addressService;
 
         private readonly ILogger<ClientOrdersController> _logger;
-        public AdminClientController(IClientService clientService, ILogger<ClientOrdersController> logger, IAddressService addressService)
+        public AdminClientController(IClientService clientService, ILogger<ClientOrdersController> logger)
         {
             _clientService = clientService;
             _logger = logger;
-            _addressService = addressService;
         }
         [HttpGet]
         public IActionResult ViewClients()
@@ -31,7 +29,7 @@ namespace OnlineShopMvc.Controllers
         [HttpGet]
         public IActionResult ViewClientsByAddress(string? street, string? buildingNumber, string? city)
         {
-            var clients = _addressService.GetClientByStreetDetails(street, buildingNumber, city);
+            var clients = _clientService.GetClientByStreetDetails(street, buildingNumber, city);
             if (clients != null)
             {
                 return View("ViewClients", clients);

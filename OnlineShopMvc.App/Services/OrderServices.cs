@@ -20,11 +20,15 @@ namespace OnlineShopMvc.App.Services
     public class OrderServices : IOrderService
     {
         private readonly IOrderRepo _orderRepo;
+        private readonly IClientRepo _clientRepo;
+        private readonly IProductRepo _productRepo;
         private readonly IMapper _mapper;
-        public OrderServices(IOrderRepo orderRepo, IMapper mapper)
+        public OrderServices(IOrderRepo orderRepo, IMapper mapper, IClientRepo clientRepo, IProductRepo productRepo)
         {
             _orderRepo = orderRepo;
             _mapper = mapper;
+            _clientRepo = clientRepo;
+            _productRepo = productRepo;
         }
         public bool AddOrder(int id, List<Product> orderProducts)
         {
@@ -69,7 +73,10 @@ namespace OnlineShopMvc.App.Services
             {
                 var order = _orderRepo.GetOrderById(id);
                 var orderDTO = _mapper.Map<OrderDetailsDTO>(order);
-
+                var client = _clientRepo.GetClientById(order.ClientId);
+                var clientDTO = _mapper.Map<ClientDTO>(client);
+                //var product = _productRepo.GetProductsByOrderId(id);
+                orderDTO.Client = clientDTO;
                 return orderDTO;
             }  
         }

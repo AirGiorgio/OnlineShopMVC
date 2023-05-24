@@ -11,7 +11,7 @@ namespace OnlineShopMvc.Inf.Interfaces
     public interface ICategoryRepo
     {
         Category GetCategoryById(int? id);
-        IQueryable GetAllCategories(int pagesize, int pageno, string? name);
+        IQueryable GetAllCategories(string? name);
         bool UpdateCategory(int id, string c);
         bool RemoveCategory(int? id);
         bool IsCategoryNameTaken(string? name);

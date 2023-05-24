@@ -32,26 +32,26 @@ namespace OnlineShopMvc.Inf.Repo
             return context.Orders.Where(x => x.OrderDate > orderDate && x.ClientId == id).OrderBy(x => x.OrderDate);
                                            
         }
-        public IQueryable GetAllOrdersFromDate(DateTime? orderDate)  // od konkretnej daty
+        public IQueryable GetAllOrdersFromDate(DateTime? orderDate)   
         {
             return context.Orders.Where(x => x.OrderDate > orderDate).OrderBy(x=>x.OrderDate);
           
         }
-        public IQueryable GetOrdersByOrderDate(int id) //od początku do końca
+        public IQueryable GetOrdersByOrderDate(int id) //od początku do końca dla klienta
         {
             return context.Orders.Where(x => x.ClientId == id).OrderBy(x => x.OrderDate);
         }
-        public IQueryable GetOrdersByOrderDate() //od początku do końca
+        public IQueryable GetOrdersByOrderDate()   
         {
             return context.Orders.OrderBy(x => x.OrderDate);
         }
-        public IQueryable GetOrdersFromValue(int id, decimal min, decimal max) //w konkretnych przedziałach
+        public IQueryable GetOrdersFromValue(int id, decimal min, decimal max) //w konkretnych przedziałach dla klienta
         {
-            return context.Orders.Where(x => x.TotalCost > min && x.TotalCost < max && x.ClientId == id);
+            return context.Orders.Where(x => x.TotalCost > min && x.TotalCost < max && x.ClientId == id).OrderBy(x => x.OrderDate);
         }
-        public IQueryable GetOrdersFromValue(decimal min, decimal max) //w konkretnych przedziałach
+        public IQueryable GetOrdersFromValue(decimal min, decimal max)  
         {
-            return context.Orders.Where(x => x.TotalCost > min && x.TotalCost < max);
+            return context.Orders.Where(x => x.TotalCost > min && x.TotalCost < max).OrderBy(x=>x.OrderDate);
         }
 
         public IQueryable GetOrdersByValue(int id) 

@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using OnlineShopMvc.App.DTOs.AdressDTOs;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.ClientDTOs;
+using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMvc.Inf.Repo;
@@ -21,11 +22,13 @@ namespace OnlineShopMvc.App.Services
     {
         private readonly ICategoryRepo _categoryRepo;
         private readonly IMapper _mapper;
+        private readonly IProductRepo _productRepo;
 
-        public CategoryServices(ICategoryRepo categoryRepo, IMapper mapper)
+        public CategoryServices(ICategoryRepo categoryRepo, IMapper mapper, IProductRepo productRepo)
         {
             _categoryRepo = categoryRepo;
             _mapper = mapper;
+            _productRepo = productRepo;
         }
 
         public string AddCategory(string? name)
@@ -45,17 +48,20 @@ namespace OnlineShopMvc.App.Services
         {
             var category = _categoryRepo.GetCategoryById(id);
             var categoryDTO = _mapper.Map<CategoriesProductsDTO>(category);
-            return categoryDTO;
+            var products = _productRepo.GetProductsByCategory(id)
+                .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
+           categoryDTO.Products = products;
+           return categoryDTO;
         }
  
-        public CategoriesForListDTO GetAllCategories(int pagesize, int pageno, string? name)
+        public CategoriesForListDTO GetAllCategories(string? name)
         {
-            var categories = _categoryRepo.GetAllCategories(pagesize,pageno,name).ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
-            var categoriesToShow = categories.Skip(pagesize*(pageno-1)).Take(pagesize).ToList();
+            var categories = _categoryRepo.GetAllCategories(name).ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
+            //var categoriesToShow = categories.Skip(pagesize*(pageno-1)).Take(pagesize).ToList();
             var categoriesDTO = new CategoriesForListDTO()
             {
-                PageNum= pageno,
-                PageSize=pagesize,
+                //PageNum= pageno,
+                //PageSize=pagesize,
                 Categories = categories,
                 Count = categories.Count
             };

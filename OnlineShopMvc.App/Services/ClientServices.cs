@@ -23,14 +23,12 @@ namespace OnlineShopMvc.App.Services
 {
     public class ClientServices : IClientService
     {
-        private readonly IAddressRepo _adressRepo;
         private readonly IClientRepo _clientRepo;
         private readonly IMapper _mapper;
-        public ClientServices(IClientRepo clientRepo, IMapper mapper, IAddressRepo addressRepo)
+        public ClientServices(IClientRepo clientRepo, IMapper mapper)
         {
             _clientRepo = clientRepo;
             _mapper = mapper;
-            _adressRepo = addressRepo;
         }
         public bool UpdateClientAndAddress(int id, string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
             string? flatNumber, string? city, string? zipCode)
@@ -98,7 +96,7 @@ namespace OnlineShopMvc.App.Services
             {
                 var client = _clientRepo.GetClientById(id);
                 var clientDTO = _mapper.Map<ClientDetailsDTO>(client);
-                var adres = _adressRepo.GetAddressByClientId(id);
+                var adres = _clientRepo.GetAddressByClientId(id);
                 var adresDTO = _mapper.Map<AddressDTO>(adres);
                 clientDTO.Adress = adresDTO;
                 return clientDTO;
@@ -146,6 +144,32 @@ namespace OnlineShopMvc.App.Services
             };
             return clientsDTO;
         }
+        public AddressDTO GetAddressByClientId(int id)
+        {
+            if (id <= 0 || id == null)
+            {
+                return null;
+            }
+            else
+            {
+                var adres = _clientRepo.GetAddressByClientId(id);
+                var adresDTO = _mapper.Map<AddressDTO>(adres);
+                return adresDTO;
+            }
+        }
 
+        public ClientsForListDTO GetClientByStreetDetails(string? street, string? buildingNumber, string? city)
+        {
+            var clients = _clientRepo.GetClientByStreetName(street, buildingNumber, city)
+                 .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
+
+            var clientsDTO = new ClientsForListDTO()
+            {
+                Clients = clients,
+                Count = clients.Count
+            };
+
+            return clientsDTO;
+        }
     }
 }

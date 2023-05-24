@@ -44,6 +44,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5PcmRlclxWaWV3T3JkZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/AdminProductTag/AddProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0VGFnXEFkZFByb2R1Y3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/AdminProductTag/ProductDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0VGFnXFByb2R1Y3REZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,12 +56,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0VGFnXFZpZXdQcm9kdWN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Client/AddAddress.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFkZEFkZHJlc3MuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Client/AddClient.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFkZENsaWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Client/AddOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFkZE9yZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Client/ClientOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENsaWVudE9yZGVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Client/OrderDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XE9yZGVyRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Home/Index.cshtml]
@@ -66,18 +78,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Order/AddOrder.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcQWRkT3JkZXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Order/ClientOrders.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcQ2xpZW50T3JkZXJzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Order/OrderDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcT3JkZXJEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Shared/Error.cshtml]

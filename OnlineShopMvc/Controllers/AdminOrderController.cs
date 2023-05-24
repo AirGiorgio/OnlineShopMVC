@@ -50,7 +50,7 @@ namespace OnlineShopMvc.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetOrdersFromValue(int? min, int? max)  
+        public IActionResult GetOrdersFromValue(decimal? min, decimal? max)  
         {
             var Orders = _orderService.GetOrdersFromValue(min, max);
             if (Orders != null)

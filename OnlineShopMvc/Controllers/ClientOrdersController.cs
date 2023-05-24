@@ -11,14 +11,12 @@ namespace OnlineShopMvc.Controllers
     public class ClientOrdersController : Controller
     {
         private readonly IClientService _clientService;
-        private readonly IAddressService _addressService;
 
         private readonly ILogger<ClientOrdersController> _logger;
-        public ClientOrdersController(IClientService clientService, ILogger<ClientOrdersController> logger, IAddressService addressService)
+        public ClientOrdersController(IClientService clientService, ILogger<ClientOrdersController> logger)
         {
             _clientService = clientService;
             _logger = logger;
-            _addressService = addressService;
         }
 
         //[HttpPost] 

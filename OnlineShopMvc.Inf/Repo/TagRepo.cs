@@ -23,7 +23,7 @@ namespace OnlineShopMvc.Inf.Repo
             return context.Tags.SingleOrDefault(i => i.Id == id);
         }
  
-        public IQueryable GetAllTags(int pagesize, int pageno, string? name)
+        public IQueryable GetAllTags(string? name)
         {
             if (name.IsNullOrEmpty())
             {

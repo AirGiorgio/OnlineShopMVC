@@ -15,7 +15,6 @@ namespace OnlineShopMvc.Inf
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddTransient<IAddressRepo, AddressRepo>();
             services.AddTransient<IOrderRepo, OrderRepo>();
             services.AddTransient<IClientRepo, ClientRepo>();
             services.AddTransient<ICategoryRepo, CategoryRepo>();

@@ -15,13 +15,13 @@ namespace OnlineShopMvc.Controllers
         }
      
         [HttpGet]
-        public IActionResult ViewCategories(int pageSize, int? pageNo, string? name)  
+        public IActionResult ViewCategories(string? name)  
         {
-            if (!pageNo.HasValue)
-            {
-                pageNo = 1;
-            }
-            var category = _categoryService.GetAllCategories(pageSize, pageNo.Value, name);
+            //if (!pageNo.HasValue)
+            //{
+            //    pageNo = 1;
+            //}
+            var category = _categoryService.GetAllCategories( name);
             if (category != null)
             {
                 return View(category);

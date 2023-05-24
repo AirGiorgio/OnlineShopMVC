@@ -24,7 +24,7 @@ namespace OnlineShopMvc.Inf.Repo
             return context.Categories.SingleOrDefault(i => i.Id == id);
         }
 
-        public IQueryable GetAllCategories(int pagesize, int pageno, string? name)
+        public IQueryable GetAllCategories(string? name)
         {
             if (name.IsNullOrEmpty())
             {

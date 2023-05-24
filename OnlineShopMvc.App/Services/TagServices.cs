@@ -42,9 +42,9 @@ namespace OnlineShopMvc.App.Services
             else return _tagRepo.AddTag(name);
         }
 
-        public TagsForListDTO GetAllTags(int pagesize, int pageno, string? name)
+        public TagsForListDTO GetAllTags(string? name)
         {
-            var tags = _tagRepo.GetAllTags( pagesize, pageno, name).ProjectTo<TagDTO>(_mapper.ConfigurationProvider).ToList();
+            var tags = _tagRepo.GetAllTags(name).ProjectTo<TagDTO>(_mapper.ConfigurationProvider).ToList();
             var tagsDTO = new TagsForListDTO()
             {
                Tags = tags,

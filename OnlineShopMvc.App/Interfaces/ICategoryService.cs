@@ -13,7 +13,7 @@ namespace OnlineShopMvc.App.Interfaces
     {
         CategoriesProductsDTO GetCategoryProducts(int id);
         CategoryDTO GetCategoryById(int id);      
-        CategoriesForListDTO GetAllCategories(int pagesize, int pageno, string? name);        
+        CategoriesForListDTO GetAllCategories( string? name);        
         bool UpdateCategory(int id, string? name);
         bool RemoveCategory(int id);
         string AddCategory(string? name);
