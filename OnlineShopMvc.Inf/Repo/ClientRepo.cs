@@ -70,10 +70,6 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
             context.SaveChanges();
             return true;
         }
-        public Address GetAddressByClientId(int id)
-        {
-            return context.Addresses.SingleOrDefault(i => i.ClientId == id);
-        }
 
         public IQueryable GetClientByStreetName(string? street, string? buildingNumber, string? city)
         {

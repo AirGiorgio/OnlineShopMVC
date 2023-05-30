@@ -1,5 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using OnlineShopMvc.App.DTOs.ProductDTOs
+@model ProductDetailsDTO
+
 @{
+    ViewData["Title"] = "ProductDetails";
+}
+
+<h2>Product Details</h2>
+
+@if (Model != null)
+{
+    <form method="post" action="@Url.Action("UpdateProduct", "AdminProduct", new { id = Model.Id })">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="@Model.Name" required />
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" value="@Model.Price" required />
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="@Model.Quantity" required />
+
+        <label for="category">Category:</label>
+        <select id="category" name="categoryId">
+            <option value="">Select category</option>
+          @*  @foreach (var category in Model.Category)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }*@
+        </select>
+
+        <label for="tags">Tags:</label>
+        <select id="tags" name="tagIds" multiple>
+            @foreach (var tag in Model.Tags)
+            {
+                <option value="@tag.Id">@tag.Name</option>
+            }
+        </select>
+
+        <button type="submit">Update</button>
+    </form>
+    <form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
+        <button type="submit">Back to list</button>
+    </form>
+}
+else
+{
+    <p>Product data not found</p>
 }

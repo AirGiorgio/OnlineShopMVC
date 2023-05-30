@@ -31,18 +31,17 @@ namespace OnlineShopMvc.App.Services
             _mapper = mapper;
         }
         public bool UpdateClientAndAddress(int id, string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
-            string? flatNumber, string? city, string? zipCode)
+         string? flatNumber, string? city, string? zipCode)
         {
             if (street.IsNullOrEmpty() || buildingNumber.IsNullOrEmpty() ||flatNumber.IsNullOrEmpty()|| city.IsNullOrEmpty() || zipCode.IsNullOrEmpty())
             {
                 return false;
             }
-            else if(id<=0)
+            else if (name.IsNullOrEmpty() || surname.IsNullOrEmpty() || email.IsNullOrEmpty() || telephone.IsNullOrEmpty())
             {
                 return false;
             }
             Client client = new Client();
-            client.Id = id;
             client.Name = name;
             client.Surname = surname;
             client.EmailAdress = email;
@@ -55,37 +54,20 @@ namespace OnlineShopMvc.App.Services
             address.FlatNumber = flatNumber;
             address.City = city;
             address.ZipCode = zipCode;
-               
-            _clientRepo.UpdateClientAndAddress(address, client, id);
 
-            return true;
-        }
-
-        public string AddClientAndAddress(string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
-            string? flatNumber, string? city, string? zipCode)
-        {
-            if (name.IsNullOrEmpty() || surname.IsNullOrEmpty() || email.IsNullOrEmpty() || telephone.IsNullOrEmpty())
+            if (id <= 0 && id == null)
             {
-                return null;
+                _clientRepo.AddClientAndAddress(address, client);
+               
+                return true;
             }
-           
-            Client client = new Client();
-            client.Name = name;
-            client.Surname = surname;
-            client.EmailAdress = email;
-            client.Telephone = telephone;
-            Address adr = new Address();
-            adr.Street = street;
-            adr.BuildingNumber = buildingNumber;
-            adr.FlatNumber = flatNumber;
-            adr.City = city;
-            adr.ZipCode = zipCode;
-
-            _clientRepo.AddClientAndAddress(adr, client);
-
-            return client.ToString();
+            else
+            {
+                _clientRepo.UpdateClientAndAddress(address, client, id);
+                return true;
+            }         
         }
-
+       
         public ClientDetailsDTO GetClientById(int id)
         {
             if (id <= 0 || id == null)
@@ -96,33 +78,11 @@ namespace OnlineShopMvc.App.Services
             {
                 var client = _clientRepo.GetClientById(id);
                 var clientDTO = _mapper.Map<ClientDetailsDTO>(client);
-                var adres = _clientRepo.GetAddressByClientId(id);
-                var adresDTO = _mapper.Map<AddressDTO>(adres);
-                clientDTO.Adress = adresDTO;
+               
                 return clientDTO;
             }
         }
-
-        public ClientsForListDTO GetClientsBySurname(string? surname)
-        {
-            if (surname.IsNullOrEmpty())
-            {
-                return ShowAllClients();
-            }
-            else
-            {
-                var clients = _clientRepo.GetClientsBySurname(surname)
-                    .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList(); 
-             
-                var clientsDTO = new ClientsForListDTO()
-                {
-                    Clients = clients,
-                    Count = clients.Count
-                };
-                return clientsDTO;
-            }
-        }
-
+   
         public bool RemoveClient(int id)
         {
             if (id<=0 || id == null)
@@ -132,44 +92,59 @@ namespace OnlineShopMvc.App.Services
             return _clientRepo.RemoveClient(id);
         }
 
-        public ClientsForListDTO ShowAllClients()
+        public ClientsForListDTO ShowAllClients(int? pageSize, int? pageNo, string? street, string? buildingNumber, string? city, string? surname)
         {
-            var clients = _clientRepo.ShowAllClients()
-             .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
-
-            var clientsDTO = new ClientsForListDTO()
+            if (!pageNo.HasValue || !pageSize.HasValue)
             {
-                Clients = clients,
-                Count = clients.Count
-            };
-            return clientsDTO;
-        }
-        public AddressDTO GetAddressByClientId(int id)
-        {
-            if (id <= 0 || id == null)
-            {
-                return null;
+                pageNo = 1;
+                pageSize = 10;
             }
-            else
+            if (surname.IsNullOrEmpty() && street.IsNullOrEmpty() && buildingNumber.IsNullOrEmpty() && city.IsNullOrEmpty())
             {
-                var adres = _clientRepo.GetAddressByClientId(id);
-                var adresDTO = _mapper.Map<AddressDTO>(adres);
-                return adresDTO;
+                var clients = _clientRepo.ShowAllClients()
+                .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
+                var clientsToShow = clients.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
+                var clientsDTO = new ClientsForListDTO()
+                {
+                    PageNum = pageNo.Value,
+                    PageSize = pageSize.Value,
+                    Clients = clientsToShow,
+                    Count = clients.Count
+                };
+                return clientsDTO;
             }
-        }
-
-        public ClientsForListDTO GetClientByStreetDetails(string? street, string? buildingNumber, string? city)
-        {
-            var clients = _clientRepo.GetClientByStreetName(street, buildingNumber, city)
-                 .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
-
-            var clientsDTO = new ClientsForListDTO()
+            else if (street.IsNullOrEmpty() && buildingNumber.IsNullOrEmpty() && city.IsNullOrEmpty())
             {
-                Clients = clients,
-                Count = clients.Count
-            };
+                var clients = _clientRepo.GetClientsBySurname(surname)
+                    .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
+                var clientsToShow = clients.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
+                var clientsDTO = new ClientsForListDTO()
+                {
+                    PageNum = pageNo.Value,
+                    PageSize = pageSize.Value,
+                    Clients = clientsToShow,
+                    Count = clients.Count
+                };
+                return clientsDTO;
 
-            return clientsDTO;
+            }
+            else if (surname.IsNullOrEmpty())
+            {
+                var clients = _clientRepo.GetClientByStreetName(street, buildingNumber, city)
+                    .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
+                var clientsToShow = clients.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
+                var clientsDTO = new ClientsForListDTO()
+                {
+                    PageNum = pageNo.Value,
+                    PageSize = pageSize.Value,
+                    Clients = clientsToShow,
+                    Count = clients.Count
+                };
+                return clientsDTO;
+            }
+            else return null;
         }
+
+       
     }
 }

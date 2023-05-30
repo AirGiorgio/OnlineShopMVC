@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace OnlineShopMvc.Domain.Model
 {
-    public class OrderProduct
+    public class OrderProduct 
     {
         public int OrderId { get; set; }
-
-        public virtual ICollection<Order> ProductOrders{ get; set; }
+        public virtual Order Order { get; set; }
         public int ProductId { get; set; }
-
-        public virtual ICollection<Product> OrderProducts { get; set; }
+        public virtual Product  Product{ get; set; }
     }
 }

@@ -375,40 +375,37 @@ namespace OnlineShopMvc.Inf.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
+            modelBuilder.Entity("OnlineShopMvc.Domain.Model.OrderProduct", b =>
                 {
-                    b.Property<int>("OrdersId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductsId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("OrdersId", "ProductsId");
+                    b.HasKey("OrderId", "ProductId");
 
-                    b.HasIndex("ProductsId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderProduct");
                 });
 
-            modelBuilder.Entity("ProductTag", b =>
+            modelBuilder.Entity("OnlineShopMvc.Domain.Model.ProductTag", b =>
                 {
-                    b.Property<int>("ProductsId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagsId")
+                    b.Property<int>("TagId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductsId", "TagsId");
+                    b.HasKey("ProductId", "TagId");
 
-                    b.HasIndex("TagsId");
+                    b.HasIndex("TagId");
 
                     b.ToTable("ProductTag");
                 });
@@ -497,34 +494,42 @@ namespace OnlineShopMvc.Inf.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
+            modelBuilder.Entity("OnlineShopMvc.Domain.Model.OrderProduct", b =>
                 {
-                    b.HasOne("OnlineShopMVC.Domain.Model.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersId")
+                    b.HasOne("OnlineShopMVC.Domain.Model.Order", "Order")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineShopMVC.Domain.Model.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
+                    b.HasOne("OnlineShopMVC.Domain.Model.Product", "Product")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("ProductTag", b =>
+            modelBuilder.Entity("OnlineShopMvc.Domain.Model.ProductTag", b =>
                 {
-                    b.HasOne("OnlineShopMVC.Domain.Model.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
+                    b.HasOne("OnlineShopMVC.Domain.Model.Product", "Product")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineShopMVC.Domain.Model.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagsId")
+                    b.HasOne("OnlineShopMVC.Domain.Model.Tag", "Tag")
+                        .WithMany("ProductTags")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("OnlineShopMVC.Domain.Model.Category", b =>
@@ -538,6 +543,23 @@ namespace OnlineShopMvc.Inf.Migrations
                         .IsRequired();
 
                     b.Navigation("OrderHistory");
+                });
+
+            modelBuilder.Entity("OnlineShopMVC.Domain.Model.Order", b =>
+                {
+                    b.Navigation("OrderProducts");
+                });
+
+            modelBuilder.Entity("OnlineShopMVC.Domain.Model.Product", b =>
+                {
+                    b.Navigation("OrderProducts");
+
+                    b.Navigation("ProductTags");
+                });
+
+            modelBuilder.Entity("OnlineShopMVC.Domain.Model.Tag", b =>
+                {
+                    b.Navigation("ProductTags");
                 });
 #pragma warning restore 612, 618
         }

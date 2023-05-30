@@ -12,7 +12,7 @@ namespace OnlineShopMvc.Inf.Interfaces
     {
         Category GetCategoryById(int? id);
         IQueryable GetAllCategories(string? name);
-        bool UpdateCategory(int id, string c);
+        string UpdateCategory(int id, string c);
         bool RemoveCategory(int? id);
         bool IsCategoryNameTaken(string? name);
         string AddCategory(string name);

@@ -11,9 +11,9 @@ namespace OnlineShopMvc.Domain.Model
     {
         public int ProductId { get; set; }
 
-        public virtual ICollection<Product> TagProducts { get; set; }
+        public virtual Product Product { get; set; }
         public int TagId { get; set; }
 
-        public virtual ICollection<Tag> ProductTags { get; set; }
+        public virtual Tag Tag { get; set; }
     }
 }

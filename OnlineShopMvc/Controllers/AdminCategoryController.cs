@@ -13,32 +13,20 @@ namespace OnlineShopMvc.Controllers
             _categoryService = categoryService;
             _logger = logger;
         }
-     
+    
         [HttpGet]
-        public IActionResult ViewCategories(string? name)  
+        public IActionResult ViewCategories(int? pageSize, int? pageNo, string? name)  
         {
-            //if (!pageNo.HasValue)
-            //{
-            //    pageNo = 1;
-            //}
-            var category = _categoryService.GetAllCategories( name);
-            if (category != null)
-            {
-                return View(category);
-            }
-            else return NotFound();
+            var category = _categoryService.GetAllCategories(pageSize, pageNo, name);
+            return View(category);
+           
         }
 
         [HttpGet]
         public IActionResult CategoryProducts(int id)
         {
-           
             var category = _categoryService.GetCategoryProducts(id);
-            if (category != null)
-            {
-                return View(category);
-            }
-            else return NotFound();
+            return View(category);
         }
 
         [HttpPost]
@@ -47,20 +35,21 @@ namespace OnlineShopMvc.Controllers
             var category = _categoryService.AddCategory(name);
             if (category.IsNullOrEmpty())
             {
-                return BadRequest();
+                TempData["Message"] = "Nazwa jest pusta";
             }
-            else return RedirectToAction("ViewCategories", "AdminCategory");
+            else
+            {
+                TempData["Message"] = category;
+            }
+            return RedirectToAction("ViewCategories", "AdminCategory");
         }
 
         [HttpGet]
         public IActionResult UpdateCategory(int id, string? name)  
         {
             var category = _categoryService.UpdateCategory(id, name);
-            if (category == false)
-            {
-                return BadRequest();
-            }
-            else return RedirectToAction("ViewCategories", "AdminCategory");
+            TempData["Message"] = category;
+            return RedirectToAction("ViewCategories", "AdminCategory");
         }
         [HttpPost]
         public IActionResult RemoveCategory(int id)  
@@ -68,9 +57,13 @@ namespace OnlineShopMvc.Controllers
             var category = _categoryService.RemoveCategory(id);
             if (category == false)
             {
-                return BadRequest();
+                TempData["Message"] = "Kategoria już nie istnieje";
             }
-            else return RedirectToAction("ViewCategories", "AdminCategory");
+            else
+            {
+                TempData["Message"] = "Usunięto kategorię i jej produkty";
+            }
+             return RedirectToAction("ViewCategories", "AdminCategory");
         }
 
     }

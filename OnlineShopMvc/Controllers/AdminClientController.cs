@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMVC.Domain.Model;
+using System.Drawing.Printing;
 
 namespace OnlineShopMvc.Controllers
 {
@@ -16,36 +17,15 @@ namespace OnlineShopMvc.Controllers
             _logger = logger;
         }
         [HttpGet]
-        public IActionResult ViewClients()
+        public IActionResult ViewClients(int? pageSize, int? pageNo, string? street, string? buildingNumber, string? city, string? surname)
         {
-            var Clients = _clientService.ShowAllClients();
+            var Clients = _clientService.ShowAllClients(pageSize,pageNo,street,buildingNumber,city,surname);
             if (Clients != null)
             {
                 return View(Clients);
             }
             else return NotFound();
 
-        }
-        [HttpGet]
-        public IActionResult ViewClientsByAddress(string? street, string? buildingNumber, string? city)
-        {
-            var clients = _clientService.GetClientByStreetDetails(street, buildingNumber, city);
-            if (clients != null)
-            {
-                return View("ViewClients", clients);
-            }
-            else return View(clients); ;
-        }
-
-        [HttpGet]
-        public IActionResult ViewClientsBySurname(string? surname)
-        {
-            var clientsFound = _clientService.GetClientsBySurname(surname);
-            if (clientsFound != null)
-            {
-                return View("ViewClients",clientsFound);
-            }
-            return View(clientsFound);
         }
 
         [HttpPost]

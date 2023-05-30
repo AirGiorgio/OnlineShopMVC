@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
 using OnlineShopMVC.Infrastructure;
@@ -21,7 +22,7 @@ namespace OnlineShopMvc.Inf.Repo
         
         public Category GetCategoryById(int? id)
         {
-            return context.Categories.SingleOrDefault(i => i.Id == id);
+            return context.Categories.Include(x=>x.Products).SingleOrDefault(i => i.Id == id);
         }
 
         public IQueryable GetAllCategories(string? name)
@@ -35,7 +36,7 @@ namespace OnlineShopMvc.Inf.Repo
                 return context.Categories.Where(x => x.Name.StartsWith(name));
             }
         }
-        public bool UpdateCategory(int id, string c)
+        public string UpdateCategory(int id, string c)
         {
             var category = GetCategoryById(id);
             if (category != null)
@@ -43,9 +44,9 @@ namespace OnlineShopMvc.Inf.Repo
                 category.Name = c;
                 context.Update(category);
                 context.SaveChanges();
-                return true;
+                return "Uaktualniono kateogorię";
             }
-            else return false;
+            else return "Nie udało się odnaleźć tej kategorii";
         }
         public bool RemoveCategory(int? id)
         {
@@ -66,7 +67,7 @@ namespace OnlineShopMvc.Inf.Repo
 
             context.Add(category);
             context.SaveChanges();
-            return category.Name; 
+            return "Udało się dodać kategorię " + category.Name; 
         }
 
         public bool IsCategoryNameTaken(string? name)

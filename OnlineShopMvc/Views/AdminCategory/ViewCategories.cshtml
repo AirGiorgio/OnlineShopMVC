@@ -5,7 +5,11 @@
 
 @if (Model != null)
 {
- 
+
+    @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
 <table>
     <thead>
         <tr>
@@ -19,7 +23,7 @@
          @foreach (var (category, index) in Model.Categories.Select((c, i) => (c, i)))
         {
             <tr>
-                <td>@(index + 1)</td>
+                <td>@((index + 1) + (10 * (Model.PageNum - 1)))</td>
                 <td>@category.Name</td>
                 <td></td>
                <td>
@@ -29,7 +33,7 @@
                     </form>
                </td>
                 <td>
-                        <form method="post" action="@Url.Action("RemoveCategory", "AdminCategory", new { id = category.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć tą kategorię?')">
+                        <form method="post" action="@Url.Action("RemoveCategory", "AdminCategory", new { id = category.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć tą kategorię i jej produkty?')">
                         <button type="submit">Usuń</button>
                     </form>
                 </td>
@@ -42,7 +46,31 @@
         }
     </tbody>
 </table>
-
+<div class="row">
+    <table>
+        <tr>
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+                {
+                    <td>
+                        @if (i!=Model.PageNum)
+                        {
+                            <a href="javascript:PagerClick(@i)">@i</a>
+                        }
+                        else
+                        {
+                           <span>@i</span>
+                        }
+                    </td>
+                }
+        </tr>
+            <form id="ViewCategories" method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
+                <input type="hidden" name="pageNo" id="pageNo" value="@Model.PageNum" />
+                <input type="hidden" name="pageSize" id="pageSize" value="@Model.PageSize" />
+            </form>
+    </table>
+     
+       
+</div>
     <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
         <button type="submit">Powrót do listy</button>
     </form>
@@ -55,6 +83,7 @@
 
 <h2>Wyszukaj kategorię</h2>
 <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
+       
     <input type="text" name="name" placeholder="Wyszukaj" />
     <button type="submit">OK</button>
 </form>
@@ -65,4 +94,14 @@ else
 
     <p>Nie znaleziono żadnych kategorii</p>
 
+}
+@section Scripts
+{
+    <script type="text/javascript">
+        function PagerClick(index)
+        {
+            document.getElementById("pageNo").value = index;
+            document.getElementById("ViewCategories").submit();
+        }    
+    </script>
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShopMvc.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace OnlineShopMVC.Domain.Model
         public int Quantity { get; set; }
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<Tag> Tags { get; set; }
+        public ICollection<OrderProduct> OrderProducts { get; set; }
+        public virtual ICollection<ProductTag> ProductTags { get; set; }
     }
 }

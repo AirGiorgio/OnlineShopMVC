@@ -1,13 +1,4 @@
-﻿@using OnlineShopMvc.App.DTOs.OrderDTOs
-@model OrderDetailsDTO
-
-@{
-    ViewData["Title"] = "AdminOrderController";
-}
-
-<h2>Szczegóły zamówienia</h2>
-
-@if (Model != null)
+﻿@if (Model != null)
 {
     <table>
         <thead>
@@ -16,8 +7,6 @@
                 <th>Imię klienta</th>
                 <th>Nazwisko klienta</th>
                 <th>Data zamówienia</th>
-                <th>Nazwa produktu</th>
-                <th>Cena produktu</th>
             </tr>
         </thead>
         <tbody>
@@ -26,21 +15,29 @@
                 <td>@Model.Client.Name</td>
                 <td>@Model.Client.Surname</td>
                 <td>@Model.OrderDate</td>
-                <td>
-                    @foreach (var product in Model.Products)
-                    {
-                        <p>@product.Name</p>
-                    }
-                </td>
-                <td>
-                    @foreach (var product in Model.Products)
-                    {
-                        <p>@product.Price</p>
-                    }
-                </td>
             </tr>
         </tbody>
     </table>
+
+    <h3>Produkty w zamówieniu:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nazwa produktu</th>
+                <th>Cena produktu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.OrderProducts)
+            {
+                <tr>
+                    <td>@product.Product.Name</td>
+                    <td>@product.Product.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
     <p>Koszt całkowity: @Model.TotalCost</p>
     <p>
         <a href="@Url.Action("ViewOrders", "AdminOrder")">Powrót do listy zamówień</a>

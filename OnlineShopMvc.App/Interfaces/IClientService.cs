@@ -12,14 +12,11 @@ namespace OnlineShopMvc.App.Interfaces
 {
     public interface IClientService
     {
-        string AddClientAndAddress(string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
-            string? flatNumber, string? city, string? zipCode);
         bool UpdateClientAndAddress(int id, string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
             string? flatNumber, string? city, string? zipCode);
         bool RemoveClient(int id);
-        ClientsForListDTO GetClientsBySurname(string? surname);
         ClientDetailsDTO GetClientById(int id);        
-        ClientsForListDTO ShowAllClients();
-        ClientsForListDTO GetClientByStreetDetails(string street, string buildingNumber, string city);
+        ClientsForListDTO ShowAllClients(int? pageSize, int? pageNo, string? street, string? buildingNumber, string? city, string? surname);
+       
     }
 }

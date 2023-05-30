@@ -36,21 +36,40 @@
             }
         </tbody>
     </table>
-}
-else
-{
-    <p>Nie znaleziono zamówień.</p>
-}
+    <div class="row">
+        <table>
+            <tr>
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+                {
+                    <td>
+                        @if (i != Model.PageNum)
+                        {
+                            <a href="javascript:PagerClick(@i, 'ViewOrders')">@i</a>
+                        }
+                        else
+                        {
+                            <span>@i</span>
+                        }
+                    </td>
+                }
+            </tr>
+            <form id="ViewOrders" method="get" action="@Url.Action("ViewOrders", "AdminOrder")">
+                <input type="hidden" name="pageNo" id="pageNo" />
+                <input type="hidden" name="pageSize" id="pageSize" value="10" />
+            </form>
+        </table>
+    </div>
+
 
 <h2>Filtruj zamówienia według daty</h2>
-<form method="get" action="@Url.Action("GetAllOrdersFromDate", "AdminOrder")">
+<form method="get" action="@Url.Action("ViewOrders", "AdminOrder")">
     <label for="orderDate">Data Zamówienia:</label>
     <input type="date" id="orderDate" name="orderDate" />
     <button type="submit">Filtruj</button>
 </form>
 
 <h2>Filtruj zamówienia według wartości</h2>
-<form method="get" action="@Url.Action("GetOrdersFromValue", "AdminOrder")">
+<form method="get" action="@Url.Action("ViewOrders", "AdminOrder")">
     <label for="minValue">Minimalna wartość:</label>
     <input type="number" id="minValue" name="min" step="0.01" />
     <label for="maxValue">Maksymalna wartość:</label>
@@ -58,7 +77,8 @@ else
     <button type="submit">Filtruj</button>
 </form>
 
-<form method="get" action="@Url.Action("GetOrdersByValue", "AdminOrder")">
+<form method="get" action="@Url.Action("ViewOrders", "AdminOrder") ">
+    <input type="hidden" id="value" name="value" value="0" />
     <button type="submit">Sortuj od najwyższej do najniższej ceny</button>
 </form>
 
@@ -66,3 +86,19 @@ else
     <button type="submit">Powrót do pełnej listy</button>
 </form>
 <a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>
+}
+else
+{
+    <p>Nie znaleziono zamówień.</p>
+}
+@section Scripts
+    {
+    <script type="text/javascript">
+        function PagerClick(index) 
+        {
+            document.getElementById("pageNo").value = index;
+            document.getElementById("ViewOrders").submit();
+        }
+    </script>
+
+}

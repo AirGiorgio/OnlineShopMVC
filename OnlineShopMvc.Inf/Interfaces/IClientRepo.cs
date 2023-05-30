@@ -15,7 +15,6 @@ namespace OnlineShopMvc.Inf.Interfaces
         IQueryable GetClientsBySurname(string surname);
         Client GetClientById(int id);
         IQueryable ShowAllClients();
-        Address GetAddressByClientId(int id);
         IQueryable GetClientByStreetName(string? street, string? buildingNumber, string? city);
     }
 }

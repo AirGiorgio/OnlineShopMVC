@@ -11,6 +11,8 @@ namespace OnlineShopMvc.App.DTOs.ClientDTOs
     public class ClientsForListDTO : IMapFrom<Client>
     {
         public List<ClientDTO> Clients { get; set; }
+        public int PageSize { get; set; }
+        public int PageNum { get; set; }
         public int Count { get; set; }
     }
 }

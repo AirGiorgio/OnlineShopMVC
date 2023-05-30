@@ -28,49 +28,7 @@ namespace OnlineShopMvc.Controllers
         }
 
    
-        [HttpGet]
-        public IActionResult GetOrdersFromDate(DateTime? orderDate, int id)
-        {
-            var Orders = _orderService.GetOrdersFromDate(orderDate, id);
-            if (Orders != null)
-            {
-                return View(Orders);
-            }
-            else return NotFound();
-        }
-        
-        [HttpGet]
-        public IActionResult GetOrdersByOrderDate(int id)
-        {
-            var Orders = _orderService.GetOrdersByOrderDate(id);
-            if (Orders != null)
-            {
-                return View(Orders);
-            }
-            else return NotFound();
-        }
-     
-        [HttpGet]
-        public IActionResult GetOrdersFromValue(int id, int? min, int? max)
-        {
-            var Orders = _orderService.GetOrdersFromValue(id, min, max);
-            if (Orders != null)
-            {
-                return View(Orders);
-            }
-            else return NotFound();
-        }
-     
-        [HttpGet]
-        public IActionResult GetOrdersByValue(int id)
-        {
-            var Orders = _orderService.GetOrdersByValue(id);
-            if (Orders != null)
-            {
-                return View(Orders);
-            }
-            else return NotFound();
-        }
+   
 
     }
 }

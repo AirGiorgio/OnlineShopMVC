@@ -11,6 +11,8 @@ namespace OnlineShopMvc.App.DTOs.OrderDTOs
     public class OrdersForListDTO : IMapFrom<Order>
     {
         public List<OrderDTO> Orders { get; set; }
+        public int PageSize { get; set; }
+        public int PageNum { get; set; }
         public int Count { get; set; }
     }
 }

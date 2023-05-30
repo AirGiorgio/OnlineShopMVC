@@ -48,44 +48,6 @@ namespace OnlineShopMvc.App.Services
             }
             
         }
-
-        public ProductsForListDTO GetProductsByCategory(int? id)
-        {
-            if (id<=0 || id== null)
-            {
-                return null;
-            }
-            else 
-            {
-                var products = _productRepo.GetProductsByCategory(id.Value)
-                    .ProjectTo<ProductDTO> (_mapper.ConfigurationProvider).ToList();
-                var productsDTO = new ProductsForListDTO()
-                {
-                  Products = products,
-                  Count = products.Count
-                };
-
-                return productsDTO;
-            }
-        }
-
-        public string AddProduct(string? name, string? price, string? quantity, int categoryId, List<Tag>? tags)
-        {
-            if (name == null || price == null || quantity == null || !decimal.TryParse(price, out decimal pric) || !int.TryParse(quantity, out int quant) || tags.IsNullOrEmpty())
-            {
-                return null;
-            }
-           
-            Product product = new Product();
-            product.Name = name;
-            product.Price = Convert.ToDecimal(price);
-            product.Quantity = Convert.ToInt32(quantity);
-            product.CategoryId = categoryId;
-            product.Tags = tags;
-
-            return _productRepo.AddProduct(product);
-        }
-
         public bool RemoveProduct(int id)
         {
             if (id <= 0 || id == null)
@@ -96,68 +58,64 @@ namespace OnlineShopMvc.App.Services
             return _productRepo.RemoveProduct(id);
         }
 
-        public ProductsForListDTO GetAllProducts()
-        {  
-             var products = _productRepo.GetAllProducts()
-               .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
-          
+        public ProductsForListDTO GetAllProducts(int? pageSize, int? pageNo, int? categoryId, List<Tag> tags, decimal? min, decimal? max, string? name)
+        {
+            List<ProductDTO> products = new List<ProductDTO>();
+
+            if (!pageNo.HasValue || !pageSize.HasValue)
+            {
+                pageNo = 1;
+                pageSize = 10;
+            }
+            if (!categoryId.HasValue && !min.HasValue && !max.HasValue && name.IsNullOrEmpty() && tags.IsNullOrEmpty())
+            {
+                 products = _productRepo.GetAllProducts()
+                .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
+                
+            }
+            else if (!min.HasValue && !max.HasValue && name.IsNullOrEmpty() && tags.IsNullOrEmpty())
+            {
+                 products = _productRepo.GetProductsByCategory(categoryId.Value)
+                .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
+            }
+            else if (min.HasValue || max.HasValue)
+            {
+                products = _productRepo.GetProductsFromValue(min.Value, max.Value) //min max
+                    .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
+            }
+            else if (!name.IsNullOrEmpty())
+            {
+                products = _productRepo.GetProductByName(name)
+                    .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
+            }
+            else if (tags.Count > 0)
+            {
+                 products = _productRepo.GetProductsFromTags(tags)
+                    .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
+            }
+            var productsToShow = products.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
             var categories = _categoryRepo.GetAllCategories(null)
-                .ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();  
-            var tags = _tagRepo.GetAllTags(null)
+                .ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
+            var tag = _tagRepo.GetAllTags(null)
                 .ProjectTo<TagDTO>(_mapper.ConfigurationProvider).ToList();
 
             var productsDTO = new ProductsForListDTO()
             {
-                Products = products,
+                Products = productsToShow,
+                PageNum = pageNo.Value,
                 Categories = categories,
-                Tags = tags,
+                Tags = tag,
+                PageSize = pageSize.Value,
                 Count = products.Count
             };
-
             return productsDTO;
+
         }
 
-        public ProductsForListDTO GetProductsFromTags(List<Tag> tags)
-        {
-            if (tags.Count ==0 && tags.IsNullOrEmpty())
-            {
-                return null;
-            }
-            else
-            {
-                var products = _productRepo.GetProductsFromTags(tags).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
-                var productsDTO = new ProductsForListDTO()
-                {
-                    Products = products,
-                    Count = products.Count
-                };
-
-                return productsDTO;
-            }
-        }
-
-        public ProductsForListDTO GetProductByName(string? name)
-        {
-            if (name.IsNullOrEmpty())
-            {
-                return GetAllProducts();
-            }
-            else
-            {
-                var products = _productRepo.GetProductByName(name).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
-                var productsDTO = new ProductsForListDTO()
-                {
-                    Products = products,
-                    Count = products.Count
-                };
-                return productsDTO;
-            }
-        }
-
-        public bool UpdateProduct(int id, string? name, string? price, int categoryId, List<Tag>? tags)
+        public bool AddOrUpdateProduct(int id, int? amount, string? name, string? price, int categoryId, List<Tag>? tags)
         {
        
-            if (name==null || price==null || categoryId<=0 || tags.IsNullOrEmpty())
+            if (name==null || price==null || categoryId<=0 || amount<=0 || tags.IsNullOrEmpty())
             {
                 return false;
             }
@@ -165,45 +123,11 @@ namespace OnlineShopMvc.App.Services
             {
                 return false;
             }
-            else if (GetProductByName(name) != null)
+            else if (_productRepo.GetProductByName(name) != null)
             {
                 return false;
             }
             else return _productRepo.UpdateProduct(id, name, Convert.ToInt32(price), categoryId, tags); 
-        }
-
-        public bool UpdateProductAmount(int id, string? quantity)
-        {
-            if(id<=0 || id == null)
-            {
-                return false;
-            }
-            else if (!int.TryParse(quantity, out int quant) || quantity == null)
-            {
-                return false;
-            }
-            else return _productRepo.UpdateProductAmount(id, Convert.ToInt32(quantity));
-        }
-
-        public ProductsForListDTO GetProductsByCategory(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ProductsForListDTO GetProductsFromValue(decimal? min, decimal? max)
-        {
-            if (!min.HasValue || !max.HasValue || min <= 0 || max <= 0)
-            {
-                min = 0;
-                max = 0;
-            }
-            var products = _productRepo.GetProductsFromValue(min.Value, max.Value).ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
-            var productsDTO = new ProductsForListDTO()
-            {
-                Products = products,
-                Count = products.Count
-            };
-            return productsDTO;
         }
     }
 }

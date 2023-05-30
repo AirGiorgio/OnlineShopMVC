@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\AdminProductTag\ViewTags.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5" />
@@ -24,6 +28,18 @@
 
   <ItemGroup>
     <Folder Include="Views\Product\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\AdminProductTag\ViewTags.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\AdminProductTag\ViewTags.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\AdminProductTag\ViewTags.cshtml" />
   </ItemGroup>
 
 </Project>

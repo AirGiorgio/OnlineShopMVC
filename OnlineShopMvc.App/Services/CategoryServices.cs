@@ -22,13 +22,12 @@ namespace OnlineShopMvc.App.Services
     {
         private readonly ICategoryRepo _categoryRepo;
         private readonly IMapper _mapper;
-        private readonly IProductRepo _productRepo;
+        CategoriesForListDTO categoriesDTO = new CategoriesForListDTO();
 
-        public CategoryServices(ICategoryRepo categoryRepo, IMapper mapper, IProductRepo productRepo)
+        public CategoryServices(ICategoryRepo categoryRepo, IMapper mapper)
         {
             _categoryRepo = categoryRepo;
             _mapper = mapper;
-            _productRepo = productRepo;
         }
 
         public string AddCategory(string? name)
@@ -39,7 +38,7 @@ namespace OnlineShopMvc.App.Services
             }
             else if (_categoryRepo.IsCategoryNameTaken(name) == true)
             {
-                return null;
+                return "Nazwa kategorii jest zajęta";
             }
             else return _categoryRepo.AddCategory(name); 
         }
@@ -48,23 +47,34 @@ namespace OnlineShopMvc.App.Services
         {
             var category = _categoryRepo.GetCategoryById(id);
             var categoryDTO = _mapper.Map<CategoriesProductsDTO>(category);
-            var products = _productRepo.GetProductsByCategory(id)
-                .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
-           categoryDTO.Products = products;
+         
            return categoryDTO;
         }
  
-        public CategoriesForListDTO GetAllCategories(string? name)
+        public CategoriesForListDTO GetAllCategories(int? pageSize, int? pageNo, string? name)
         {
-            var categories = _categoryRepo.GetAllCategories(name).ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
-            //var categoriesToShow = categories.Skip(pagesize*(pageno-1)).Take(pagesize).ToList();
-            var categoriesDTO = new CategoriesForListDTO()
+            if (!pageNo.HasValue || !pageSize.HasValue)
             {
-                //PageNum= pageno,
-                //PageSize=pagesize,
-                Categories = categories,
-                Count = categories.Count
-            };
+                pageNo = 1;
+                pageSize = 10;
+            }
+          
+            if (!name.IsNullOrEmpty())
+            {
+                if (categoriesDTO.SearchString != name)
+                {
+                    categoriesDTO.SearchString = name;
+                    pageNo = 1;
+                   
+                }
+            }
+            var categories = _categoryRepo.GetAllCategories(categoriesDTO.SearchString).ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
+            var categoriesToShow = categories.Skip(pageSize.Value*(pageNo.Value-1)).Take(pageSize.Value).ToList();
+
+            categoriesDTO.PageNum = pageNo.Value;
+            categoriesDTO.PageSize = pageSize.Value;
+            categoriesDTO.Categories = categoriesToShow;
+            categoriesDTO.Count = categories.Count;
             
             return categoriesDTO;         
         }
@@ -92,15 +102,15 @@ namespace OnlineShopMvc.App.Services
             else return _categoryRepo.RemoveCategory(id);
         }
 
-        public bool UpdateCategory(int id, string? name)
+        public string UpdateCategory(int id, string? name)
         {
             if (name.IsNullOrEmpty())
             {
-                return false;
+                return "Niepoprawna nazwa";
             }
             else if (_categoryRepo.IsCategoryNameTaken(name)== true)
             {
-                return false;
+                return "Nazwa jest zajęta";
             }
             else return _categoryRepo.UpdateCategory(id, name);
         }

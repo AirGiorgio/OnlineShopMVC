@@ -17,20 +17,9 @@ namespace OnlineShopMvc.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllOrdersFromDate(DateTime? orderDate)  
+        public IActionResult ViewOrders(int? pageSize, int? pageNo, DateTime? orderDate, decimal? min, decimal? max, int? value)  
         {
-            var Orders = _orderService.GetAllOrdersFromDate(orderDate);
-            if (Orders != null)
-            {
-                return View("ViewOrders",Orders);
-            }
-            else return RedirectToAction("ViewOrders");
-        }
-
-        [HttpGet]
-        public IActionResult ViewOrders()  
-        {
-            var Orders = _orderService.GetOrdersByOrderDate();
+            var Orders = _orderService.GetOrders(pageSize,pageNo,orderDate,min,max,value);
             if (Orders != null)
             {
                 return View(Orders);
@@ -47,28 +36,6 @@ namespace OnlineShopMvc.Controllers
                 return View(Order);
             }
             else return BadRequest();
-        }
-
-        [HttpGet]
-        public IActionResult GetOrdersFromValue(decimal? min, decimal? max)  
-        {
-            var Orders = _orderService.GetOrdersFromValue(min, max);
-            if (Orders != null)
-            {
-                return View("ViewOrders", Orders);
-            }
-            else return RedirectToAction("ViewOrders");
-        }
-
-        [HttpGet]
-        public IActionResult GetOrdersByValue()  
-        {
-            var Orders = _orderService.GetOrdersByValue();
-            if (Orders != null)
-            {
-                return View("ViewOrders", Orders);
-            }
-            else return NotFound();
         }
 
         [HttpPost]

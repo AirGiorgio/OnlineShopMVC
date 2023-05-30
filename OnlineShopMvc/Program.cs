@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using OnlineShopMvc.App;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.App.Services;
@@ -25,6 +26,8 @@ namespace OnlineShopMvc
             builder.Services.AddInfrastructure();
             builder.Services.AddControllersWithViews();
             var app = builder.Build();
+            Seeder seeder = new Seeder();
+            seeder.BreedTheSeedAndNeedForSpeed();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

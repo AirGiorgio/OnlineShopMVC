@@ -17,7 +17,7 @@ namespace OnlineShopMvc.App
         {
             services.AddTransient<IClientService, ClientServices>();
             services.AddTransient<IOrderService, OrderServices>();
-            services.AddTransient<ICategoryService, CategoryServices>();
+            services.AddScoped<ICategoryService, CategoryServices>();
             services.AddTransient<IProductService, ProductServices>();
             services.AddTransient<ITagService, TagServices>();
 

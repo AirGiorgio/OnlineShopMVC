@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.IdentityModel.Tokens;
 using OnlineShopMvc.Inf.Interfaces;
@@ -21,24 +22,24 @@ namespace OnlineShopMvc.Inf.Repo
         }
         public IQueryable GetAllProducts() 
         {
-            return context.Products;
+            return context.Products.Include(x=>x.ProductTags).Include(x=>x.Category);
         }
 
         public Product GetProductById(int id)
         {
-            return context.Products.SingleOrDefault(i => i.Id == id);
+            return context.Products.Include(x => x.ProductTags).Include(x => x.Category).SingleOrDefault(i => i.Id == id);
         }
         public IQueryable GetProductsFromTags(List<Tag> tags) //nie zadziała
         {
-            return context.Products.Where(x => x.Tags == tags).OrderBy(x => x.Price);
+            return context.Products.Where(x => x.ProductTags== tags).OrderBy(x => x.Price);
         }
         public IQueryable GetProductByName(string name)
         {
-            return context.Products.Where(i => i.Name.StartsWith(name)).OrderBy(x => x.Price);
+            return context.Products.Include(x => x.ProductTags).Include(x => x.Category).Where(i => i.Name.StartsWith(name)).OrderBy(x => x.Price);
         }
         public IQueryable GetProductsByCategory(int id)
         {
-            return context.Products.Where(x => x.Category.Id == id).OrderBy(x => x.Price);
+            return context.Products.Include(x => x.ProductTags).Include(x => x.Category).Where(x => x.CategoryId == id).OrderBy(x => x.Price);
         }
         public bool UpdateProductAmount(int id, int quantity)
         {
@@ -63,7 +64,7 @@ namespace OnlineShopMvc.Inf.Repo
                 if (cat!=null || !tags.IsNullOrEmpty())
                 {
                     productFound.Category = cat;
-                    productFound.Tags = tags;
+                    //productFound.Tags = tags;
                     context.Update(productFound);
                     context.SaveChanges();
                     return true;
@@ -98,7 +99,7 @@ namespace OnlineShopMvc.Inf.Repo
 
         public IQueryable GetProductsFromValue(decimal min, decimal max)
         {
-            return context.Products.Where(x => x.Price > min && x.Price < max).OrderBy(x => x.Price);
+            return context.Products.Include(x => x.ProductTags).Include(x => x.Category).Where(x => x.Price > min && x.Price < max).OrderBy(x => x.Price);
         }
     }
 }

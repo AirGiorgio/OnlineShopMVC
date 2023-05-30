@@ -5,7 +5,6 @@
 
 @if (Model != null)
 {
-
     <table>
         <thead>
             <tr>
@@ -48,13 +47,37 @@
             }
         </tbody>
     </table>
+<div class="row">
+    <table>
+        <tr>
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+                {
+                    <td>
+                        @if (i != Model.PageNum)
+                        {
+                            <a href="javascript:PagerClick(@i, 'ViewClients')">@i</a>
+                        }
+                        else
+                        {
+                            <span>@i</span>
+                        }
+                    </td>
+                }
+        </tr>
+            <form id="ViewClients" method="get" action="@Url.Action("ViewClients", "AdminClient")">
+                <input type="hidden" name="pageNo" id="pageNo" />
+                <input type="hidden" name="pageSize" id="pageSize" value="10" />
+            </form>
+    </table>
+    </div>
+
     <h2>Wyszukaj klienta po nazwisku</h2>
-    <form method="get" action="@Url.Action("ViewClientsBySurname", "AdminClient")">
+    <form id="ViewClientsBySurname" method="get" action="@Url.Action("ViewClients", "AdminClient")">
         <input type="text" name="surname" placeholder="Wyszukaj" />
         <button type="submit">OK</button>
     </form>
     <h2>Wyszukaj klienta po:</h2>
-    <form method="get" action="@Url.Action("ViewClientsByAddress", "AdminClient")">
+    <form id="ViewClientsByAddress" method="get" action="@Url.Action("ViewClients", "AdminClient")">
         <input type="text" name="street" placeholder="Ulica" />
         <input type="text" name="buildingNumber" placeholder="Nr budynku" />
         <input type="text" name="city" placeholder="Miasto" />
@@ -68,6 +91,16 @@
 else
 {
     <p>Nie znaleziono żadnych klientów</p>
+}
+@section Scripts
+    {
+    <script type="text/javascript">
+        function PagerClick(index) {
+            document.getElementById("pageNo").value = index;
+            document.getElementById("ViewClients").submit();
+        }
+    </script>
+
 }
 
 
