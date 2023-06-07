@@ -20,16 +20,8 @@ namespace OnlineShopMVC.Infrastructure
             public DbSet<Order> Orders { get; set; }
             public DbSet<Product> Products { get; set; }
             public DbSet<Tag> Tags { get; set; }
-            
-            public Context()
-            {
-
-            }
-
-            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            {
-                 optionsBuilder.UseSqlServer("Server=.;Database=OnlineShopMvc;Trusted_Connection=True;TrustServerCertificate=True;");
-            }
+  
+  
             public Context(DbContextOptions options) : base(options)
             {
 

@@ -10,8 +10,8 @@ namespace OnlineShopMvc.Controllers
     {
         private readonly IClientService _clientService;
 
-        private readonly ILogger<ClientOrdersController> _logger;
-        public AdminClientController(IClientService clientService, ILogger<ClientOrdersController> logger)
+        private readonly ILogger<ClientDataController> _logger;
+        public AdminClientController(IClientService clientService, ILogger<ClientDataController> logger)
         {
             _clientService = clientService;
             _logger = logger;

@@ -28,9 +28,16 @@ namespace OnlineShopMvc
             builder.Services.AddInfrastructure();
             builder.Services.AddControllersWithViews();
             var app = builder.Build();
-            Seeder seeder = new Seeder();
-            seeder.BreedTheSeedAndNeedForSpeed();
+           
+          
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<Context>();
+                context.Database.EnsureCreated();
+                Seeder seeder = new Seeder(context);
+                seeder.BreedTheSeedAndNeedForSpeed();
+            }
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

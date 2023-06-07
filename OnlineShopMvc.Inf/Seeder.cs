@@ -12,7 +12,11 @@ namespace OnlineShopMvc.Inf
 {
     public class Seeder
     {
-        Context _context = new Context();
+        private readonly Context _context;
+        public Seeder(Context context)
+        {
+            _context = context;
+        }
         private int i = 1;
         public void BreedTheSeedAndNeedForSpeed()
         {
@@ -26,6 +30,7 @@ namespace OnlineShopMvc.Inf
                 var categories = GetData();
                 _context.Categories.AddRange(categories);
                 _context.SaveChanges();
+              
             }
         }
 

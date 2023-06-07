@@ -61,7 +61,33 @@ namespace OnlineShopMvc.App.Services
 
             return _clientRepo.UpdateClientAndAddress(address, client, id);       
         }
-       
+        public string AddClientAndAddress(string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
+         string? flatNumber, string? city, string? zipCode)
+        {
+            if (street.IsNullOrEmpty() || buildingNumber.IsNullOrEmpty() || flatNumber.IsNullOrEmpty() || city.IsNullOrEmpty() || zipCode.IsNullOrEmpty())
+            {
+                return "Dane adresowe są niepoprawne";
+            }
+            else if (name.IsNullOrEmpty() || surname.IsNullOrEmpty() || email.IsNullOrEmpty() || telephone.IsNullOrEmpty())
+            {
+                return "Dane klienta są niepoprawne";
+            }
+            Address address = new Address();
+            address.Street = street;
+            address.BuildingNumber = buildingNumber;
+            address.FlatNumber = flatNumber;
+            address.City = city;
+            address.ZipCode = zipCode;
+
+            Client client = new Client();
+            client.Name = name;
+            client.Surname = surname;
+            client.EmailAdress = email;
+            client.Telephone = telephone;
+            client.Address = address;
+         
+            return _clientRepo.AddClientAndAddress(address, client);
+        }
         public ClientDetailsDTO GetClientById(int id)
         {
             if (id <= 0 || id == null)
@@ -127,6 +153,6 @@ namespace OnlineShopMvc.App.Services
                  
         }
 
-       
+        
     }
 }

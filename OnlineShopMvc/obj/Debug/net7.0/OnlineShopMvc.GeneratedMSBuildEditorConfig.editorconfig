@@ -60,20 +60,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5UYWdcVmlld1RhZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Client/AddClient.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFkZENsaWVudC5jc2h0bWw=
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/ClientData/AddClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50RGF0YVxBZGRDbGllbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Client/AddOrder.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFkZE9yZGVyLmNzaHRtbA==
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/ClientData/ClientDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50RGF0YVxDbGllbnREZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Client/ClientOrders.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENsaWVudE9yZGVycy5jc2h0bWw=
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/ClientData/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50RGF0YVxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Client/OrderDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XE9yZGVyRGV0YWlscy5jc2h0bWw=
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/ClientShop/AddOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2hvcFxBZGRPcmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/ClientShop/ClientOrders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2hvcFxDbGllbnRPcmRlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/ClientShop/OrderDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2hvcFxPcmRlckRldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/ClientShop/RegisterClient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2hvcFxSZWdpc3RlckNsaWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/ClientShop/ViewProducts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2hvcFxWaWV3UHJvZHVjdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Home/Index.cshtml]
