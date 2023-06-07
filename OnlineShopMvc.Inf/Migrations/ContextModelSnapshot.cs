@@ -380,32 +380,32 @@ namespace OnlineShopMvc.Inf.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("OnlineShopMvc.Domain.Model.OrderProduct", b =>
+            modelBuilder.Entity("OrderProduct", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<int>("OrdersId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int>("ProductsId")
                         .HasColumnType("int");
 
-                    b.HasKey("OrderId", "ProductId");
+                    b.HasKey("OrdersId", "ProductsId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductsId");
 
                     b.ToTable("OrderProduct");
                 });
 
-            modelBuilder.Entity("OnlineShopMvc.Domain.Model.ProductTag", b =>
+            modelBuilder.Entity("ProductTag", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("ProductsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TagId")
+                    b.Property<int>("TagsId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductId", "TagId");
+                    b.HasKey("ProductsId", "TagsId");
 
-                    b.HasIndex("TagId");
+                    b.HasIndex("TagsId");
 
                     b.ToTable("ProductTag");
                 });
@@ -494,42 +494,34 @@ namespace OnlineShopMvc.Inf.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("OnlineShopMvc.Domain.Model.OrderProduct", b =>
+            modelBuilder.Entity("OrderProduct", b =>
                 {
-                    b.HasOne("OnlineShopMVC.Domain.Model.Order", "Order")
-                        .WithMany("OrderProducts")
-                        .HasForeignKey("OrderId")
+                    b.HasOne("OnlineShopMVC.Domain.Model.Order", null)
+                        .WithMany()
+                        .HasForeignKey("OrdersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineShopMVC.Domain.Model.Product", "Product")
-                        .WithMany("OrderProducts")
-                        .HasForeignKey("ProductId")
+                    b.HasOne("OnlineShopMVC.Domain.Model.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("OnlineShopMvc.Domain.Model.ProductTag", b =>
+            modelBuilder.Entity("ProductTag", b =>
                 {
-                    b.HasOne("OnlineShopMVC.Domain.Model.Product", "Product")
-                        .WithMany("ProductTags")
-                        .HasForeignKey("ProductId")
+                    b.HasOne("OnlineShopMVC.Domain.Model.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineShopMVC.Domain.Model.Tag", "Tag")
-                        .WithMany("ProductTags")
-                        .HasForeignKey("TagId")
+                    b.HasOne("OnlineShopMVC.Domain.Model.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("OnlineShopMVC.Domain.Model.Category", b =>
@@ -543,23 +535,6 @@ namespace OnlineShopMvc.Inf.Migrations
                         .IsRequired();
 
                     b.Navigation("OrderHistory");
-                });
-
-            modelBuilder.Entity("OnlineShopMVC.Domain.Model.Order", b =>
-                {
-                    b.Navigation("OrderProducts");
-                });
-
-            modelBuilder.Entity("OnlineShopMVC.Domain.Model.Product", b =>
-                {
-                    b.Navigation("OrderProducts");
-
-                    b.Navigation("ProductTags");
-                });
-
-            modelBuilder.Entity("OnlineShopMVC.Domain.Model.Tag", b =>
-                {
-                    b.Navigation("ProductTags");
                 });
 #pragma warning restore 612, 618
         }

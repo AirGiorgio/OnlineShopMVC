@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
 using OnlineShopMVC.Infrastructure;
@@ -20,7 +21,7 @@ namespace OnlineShopMvc.Inf.Repo
         }
         public Tag GetTagById(int? id)
         {
-            return context.Tags.SingleOrDefault(i => i.Id == id);
+            return context.Tags.Include(x => x.Products).SingleOrDefault(i => i.Id == id);
         }
  
         public IQueryable GetAllTags(string? name)
@@ -46,7 +47,7 @@ namespace OnlineShopMvc.Inf.Repo
             }
             else return false;
         }
-        public bool UpdateTag(int id, string? name)
+        public string UpdateTag(int id, string? name)
         {
             var tagFound = GetTagById(id);
             if (tagFound != null)
@@ -54,20 +55,19 @@ namespace OnlineShopMvc.Inf.Repo
                 tagFound.Name = name;
                 context.Update(tagFound);
                 context.SaveChanges();
-                return true;
+                return "Uaktualniono tag";
             }
-            else return false;
+            else return "Nie udało się odnaleźć tego tagu";
         }
 
         public string AddTag(string name)
         {
             Tag tag= new Tag();
             tag.Name = name;
-            //tag.Products = null; 
 
             context.Add(tag);
             context.SaveChanges();
-            return tag.Name;  
+            return "Udało się dodać tag " +  tag.Name;  
         }
 
         public bool IsTagNameTaken(string? name)

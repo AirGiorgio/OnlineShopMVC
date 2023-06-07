@@ -12,7 +12,7 @@ namespace OnlineShopMvc.Inf.Interfaces
         Tag GetTagById(int? id);
         IQueryable GetAllTags(string? name);
         bool RemoveTag(int? id);
-        bool UpdateTag(int id, string? name);
+        string UpdateTag(int id, string? name);
         bool IsTagNameTaken(string? name);
         string AddTag(string name);
 

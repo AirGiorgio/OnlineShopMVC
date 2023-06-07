@@ -20,33 +20,31 @@ namespace OnlineShopMvc.Controllers
         public IActionResult ViewOrders(int? pageSize, int? pageNo, DateTime? orderDate, decimal? min, decimal? max, int? value)  
         {
             var Orders = _orderService.GetOrders(pageSize,pageNo,orderDate,min,max,value);
-            if (Orders != null)
-            {
-                return View(Orders);
-            }
-            else return NotFound();
+             return View(Orders);
+         
         }
 
         [HttpGet]
         public IActionResult OrderDetails(int id)  
         {
             var Order = _orderService.GetOrderById(id);
-            if (Order != null)
-            {
-                return View(Order);
-            }
-            else return BadRequest();
+            return View(Order);
+             
         }
 
         [HttpPost]
         public IActionResult RemoveOrder(int id)  
         {
-            var orderDeleted = _orderService.RemoveOrder(id);
-            if (orderDeleted == false)
+            var status = _orderService.RemoveOrder(id);
+            if (status == false)
             {
-                return NotFound();
+                TempData["Message"] = "Zamówienie już nie istnieje";
             }
-            else return RedirectToAction("ViewOrders");
+            else
+            {
+                TempData["Message"] = "Usunięto zamówienie";
+            }
+            return RedirectToAction("ViewOrders");
         }
     }
 }

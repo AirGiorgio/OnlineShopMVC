@@ -25,7 +25,7 @@ namespace OnlineShopMvc.Inf.Repo
         }
         public Order GetOrderById(int? id)
         {
-            return context.Orders.Include(x=>x.OrderProducts).ThenInclude(x=>x.Product).Include(x=>x.Client).SingleOrDefault(i => i.Id == id);
+            return context.Orders.Include(x=>x.Products).Include(x=>x.Client).SingleOrDefault(i => i.Id == id);
         }
 
         public IQueryable GetOrdersFromDate(DateTime? orderDate, int id)  

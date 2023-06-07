@@ -17,18 +17,20 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
-        public CategoryDTO Category { get; set; }
-        public List<TagDTO> Tags { get; set; }
+        public CategoryDTO ProductCategory { get; set; }
         public List<CategoryDTO> Categories { get; set; }
+        public List<TagDTO> ProductTags { get; set; }
+        public List<TagDTO> Tags { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Product, ProductDetailsDTO>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(x => x.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(x => x.Price, opt => opt.MapFrom(s => s.Price))
-                //.ForMember(x => x.Tags, opt => opt.MapFrom(s => s.Tags))
+                .ForMember(x => x.ProductTags, opt => opt.MapFrom(s => s.Tags))
                 .ForMember(x=>x.Quantity, opt=>opt.MapFrom(s => s.Quantity))
-                .ForMember(x => x.Category, opt => opt.MapFrom(s => s.Category));
+                .ForMember(x => x.ProductCategory, opt => opt.MapFrom(s => s.Category));
         }
     }
 }

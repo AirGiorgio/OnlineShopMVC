@@ -12,8 +12,6 @@ namespace OnlineShopMvc.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            //Seeder seeder = new Seeder();
-            //seeder.SeedData();
         }
 
         public IActionResult Index()

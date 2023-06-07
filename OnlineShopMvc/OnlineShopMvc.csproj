@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\AdminProductTag\ViewTags.cshtml" />
+    <Content Remove="Views\AdminProduct\ViewTags.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,15 +31,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\AdminProductTag\ViewTags.cshtml" />
+    <UpToDateCheckInput Remove="Views\AdminProduct\ViewTags.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\AdminProductTag\ViewTags.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\AdminProduct\ViewTags.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\AdminProductTag\ViewTags.cshtml" />
+    <None Include="Views\AdminTag\ViewTags.cshtml" />
   </ItemGroup>
 
 </Project>

@@ -7,37 +7,46 @@
 <h2>Edytowanie klienta</h2>
 
 @if (Model != null)
-{
+{ @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
     <form method="post" action="@Url.Action("UpdateClient", "AdminClient", new {id = Model.Id})">
         <label for="name">Imię:</label>
-        <input type="text" id="name" name="name" value="@Model.Name" required />
+        <input type="text" id="name" name="name" value="@Model.Name"/>
 
         <label for="surname">Nazwisko:</label>
-        <input type="text" id="surname" name="surname" value="@Model.Surname" required />
+        <input type="text" id="surname" name="surname" value="@Model.Surname"/>
 
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email" value="@Model.EmailAdress" required /> 
+        <input type="text" id="email" name="email" value="@Model.EmailAdress" /> 
 
         <label for="telephone">Telefon:</label>
-        <input type="text" id="telephone" name="telephone" value="@Model.Telephone" required />
+        <input type="text" id="telephone" name="telephone" value="@Model.Telephone"/>
 
         <label for="street">Ulica:</label>
-        <input type="text" id="street" name="street" value="@Model.Adress.Street" required />
+        <input type="text" id="street" name="street" value="@Model.Adress.Street"/>
 
         <label for="buildingNumber">Nr budynku:</label>
-        <input type="text" id="buildingNumber" name="buildingNumber" value="@Model.Adress.BuildingNumber" required />
+        <input type="text" id="buildingNumber" name="buildingNumber" value="@Model.Adress.BuildingNumber"/>
 
         <label for="flatNumber">Nr mieszkania:</label>
-        <input type="text" id="flatNumber" name="flatNumber" value="@Model.Adress.FlatNumber" required />
+        <input type="text" id="flatNumber" name="flatNumber" value="@Model.Adress.FlatNumber"/>
 
         <label for="city">Miejscowość:</label>
-        <input type="text" id="city" name="city" value="@Model.Adress.City" required />
+        <input type="text" id="city" name="city" value="@Model.Adress.City"/>
 
         <label for="zipCode">Kod pocztowy:</label>
-        <input type="text" id="zipCode" name="zipCode" value="@Model.Adress.ZipCode" required />
+        <input type="text" id="zipCode" name="zipCode" value="@Model.Adress.ZipCode" />
+        @if (Model.Name!=null)
+        {
+            <button type="submit">Edytuj</button>
+        }
+        else
+        {
+            <button type="submit">Zarejestruj</button>
+        }
 
-        <button type="submit">Edytuj</button>
-        
     </form>
     <form method="get" action="@Url.Action("ViewClients", "AdminClient")">
         <button type="submit">Powrót do listy</button>

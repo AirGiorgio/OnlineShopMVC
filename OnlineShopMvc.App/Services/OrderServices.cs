@@ -20,15 +20,12 @@ namespace OnlineShopMvc.App.Services
     public class OrderServices : IOrderService
     {
         private readonly IOrderRepo _orderRepo;
-        private readonly IClientRepo _clientRepo;
-        private readonly IProductRepo _productRepo;
         private readonly IMapper _mapper;
-        public OrderServices(IOrderRepo orderRepo, IMapper mapper, IClientRepo clientRepo, IProductRepo productRepo)
+        public OrderServices(IOrderRepo orderRepo, IMapper mapper)
         {
             _orderRepo = orderRepo;
             _mapper = mapper;
-            _clientRepo = clientRepo;
-            _productRepo = productRepo;
+            
         }
         public bool AddOrder(int id, List<Product> orderProducts)
         {
@@ -45,6 +42,8 @@ namespace OnlineShopMvc.App.Services
 
         public OrdersForListDTO GetAllClientOrders(int id, int? pageSize, int? pageNo, DateTime? orderDate, decimal? min, decimal? max, int? value)
         {
+            List<OrderDTO> orders = new List<OrderDTO>();
+
             if (id == null || id <= 0)
             {
                 return null;
@@ -56,58 +55,45 @@ namespace OnlineShopMvc.App.Services
             }
             if (orderDate == null && !min.HasValue && !max.HasValue && !value.HasValue)
             {
-                var orders = _orderRepo.GetOrdersByOrderDate(id)
+                 orders = _orderRepo.GetOrdersByOrderDate(id)
                 .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
-                var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
-                var ordersDTO = new OrdersForListDTO()
-                {
-                    Orders = ordersToShow,
-                    PageNum = pageNo.Value,
-                    PageSize = pageSize.Value,
-                    Count = orders.Count
-                };
-                return ordersDTO;
+             
             }
             else if (!min.HasValue && !max.HasValue && !value.HasValue)
             {
-                var orders = _orderRepo.GetOrdersFromDate(orderDate,id).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
-                var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
-                var ordersDTO = new OrdersForListDTO()
-                {
-                    Orders = ordersToShow,
-                    PageNum = pageNo.Value,
-                    PageSize = pageSize.Value,
-                    Count = orders.Count
-                };
-                return ordersDTO;
+                 orders = _orderRepo.GetOrdersFromDate(orderDate,id)
+                    .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
+                 
             }
             else if (min.HasValue || max.HasValue)
             {
-                var orders = _orderRepo.GetOrdersFromValue(id, min.Value, max.Value).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
-                var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
-                var ordersDTO = new OrdersForListDTO()
+                if (min.HasValue && !max.HasValue)
                 {
-                    Orders = ordersToShow,
-                    PageNum = pageNo.Value,
-                    PageSize = pageSize.Value,
-                    Count = orders.Count
-                };
-                return ordersDTO;
+                    max = decimal.MaxValue;
+                }
+                else if (max.HasValue && !min.HasValue)
+                {
+                    min = 0;
+                }
+                orders = _orderRepo.GetOrdersFromValue(id, min.Value, max.Value)
+                    .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
+                
             }
             else if (value.HasValue)
             {
-                var orders = _orderRepo.GetOrdersByValue(id).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
-                var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
-                var ordersDTO = new OrdersForListDTO()
-                {
-                    Orders = ordersToShow,
-                    PageNum = pageNo.Value,
-                    PageSize = pageSize.Value,
-                    Count = orders.Count
-                };
-                return ordersDTO;
+                 orders = _orderRepo.GetOrdersByValue(id)
+                    .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
+               
             }
-            else return null;
+            var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
+            var ordersDTO = new OrdersForListDTO()
+            {
+                Orders = ordersToShow,
+                PageNum = pageNo.Value,
+                PageSize = pageSize.Value,
+                Count = orders.Count
+            };
+            return ordersDTO;
         }
 
         public OrderDetailsDTO GetOrderById(int id)
@@ -127,6 +113,7 @@ namespace OnlineShopMvc.App.Services
 
         public OrdersForListDTO GetOrders(int? pageSize, int? pageNo, DateTime? orderDate, decimal? min, decimal? max, int? value)
         {
+            List<OrderDTO> orders = new List<OrderDTO>();
             if (!pageNo.HasValue || !pageSize.HasValue)
             {
                 pageNo = 1;
@@ -134,58 +121,40 @@ namespace OnlineShopMvc.App.Services
             }
             if (orderDate == null && !min.HasValue && !max.HasValue && !value.HasValue)
             {
-                var orders = _orderRepo.GetOrdersByOrderDate()
+                orders = _orderRepo.GetOrdersByOrderDate()
                 .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
-                var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
-                var ordersDTO = new OrdersForListDTO()
-                {
-                    Orders = ordersToShow,
-                    PageNum = pageNo.Value,
-                    PageSize = pageSize.Value,
-                    Count = orders.Count
-                };
-                return ordersDTO;
+              
             }
             else if (!min.HasValue && !max.HasValue && !value.HasValue)
             {
-                var orders = _orderRepo.GetAllOrdersFromDate(orderDate).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
-                var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
-                var ordersDTO = new OrdersForListDTO()
-                {
-                    Orders = ordersToShow,
-                    PageNum = pageNo.Value,
-                    PageSize = pageSize.Value,
-                    Count = orders.Count
-                };
-                return ordersDTO;
+                 orders = _orderRepo.GetAllOrdersFromDate(orderDate)
+                    .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
+               
             }
             else if (min.HasValue || max.HasValue)
             {
-                var orders = _orderRepo.GetOrdersFromValue(min.Value, max.Value).ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
-                var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
-                var ordersDTO = new OrdersForListDTO()
-                {
-                    Orders = ordersToShow,
-                    PageNum = pageNo.Value,
-                    PageSize = pageSize.Value,
-                    Count = orders.Count
-                };
-                return ordersDTO;
+                orders = _orderRepo.GetOrdersFromValue(min.Value, max.Value)
+                    .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
             }
             else if (value.HasValue)
             {
-                var orders = _orderRepo.GetOrdersByValue().ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
-                var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
-                var ordersDTO = new OrdersForListDTO()
-                {
-                    Orders = ordersToShow,
-                    PageNum = pageNo.Value,
-                    PageSize = pageSize.Value,
-                    Count = orders.Count
-                };
-                return ordersDTO;
+                orders = _orderRepo.GetOrdersByValue().
+                    ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList(); 
             }
-            else return null;
+            var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
+             
+            var ordersDTO = new OrdersForListDTO()
+            {
+                Orders = ordersToShow,
+                PageNum = pageNo.Value,
+                MinValue = min,
+                MaxValue = max,
+                SortByPrice = value,
+                OrderDate = orderDate,
+                PageSize = pageSize.Value,
+                Count = orders.Count
+            };
+            return ordersDTO;
         }
  
         public bool RemoveOrder(int id)

@@ -11,15 +11,14 @@ namespace OnlineShopMvc.Inf.Interfaces
     {
         IQueryable GetProductsFromValue(decimal min, decimal max);
         IQueryable GetAllProducts();
-        IQueryable GetProductsByOrderId(int id);
         Product GetProductById(int id);
-        IQueryable GetProductsFromTags(List<Tag> tags);
+        IQueryable GetProductsFromTags(List<int> tags);
         IQueryable GetProductByName(string name);
         IQueryable GetProductsByCategory(int id);
-        bool UpdateProductAmount(int id, int quantity);
-        bool UpdateProduct(int id, string name, decimal price, int categoryId, List<Tag> tags);
+        string UpdateProduct(int id, int amount, string name, decimal price, int categoryId, List<Tag> tags);
         bool RemoveProduct(int id);
-        string AddProduct(Product product);
+        string AddProduct(int amount, string name, decimal price, int categoryId, List<Tag> tags);
 
     }
+   
 }

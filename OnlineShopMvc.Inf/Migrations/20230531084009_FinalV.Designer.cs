@@ -12,7 +12,7 @@ using OnlineShopMVC.Infrastructure;
 namespace OnlineShopMvc.Inf.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230518093021_FinalV")]
+    [Migration("20230531084009_FinalV")]
     partial class FinalV
     {
         /// <inheritdoc />
@@ -263,7 +263,7 @@ namespace OnlineShopMvc.Inf.Migrations
                     b.HasIndex("ClientId")
                         .IsUnique();
 
-                    b.ToTable("Adresses");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("OnlineShopMVC.Domain.Model.Category", b =>
@@ -377,9 +377,6 @@ namespace OnlineShopMvc.Inf.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

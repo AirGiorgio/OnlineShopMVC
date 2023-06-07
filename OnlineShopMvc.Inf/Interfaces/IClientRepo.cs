@@ -11,7 +11,7 @@ namespace OnlineShopMvc.Inf.Interfaces
     {
         bool RemoveClient(int id);
         string AddClientAndAddress(Address adres, Client client);
-        bool UpdateClientAndAddress(Address adress, Client client, int id);
+        string UpdateClientAndAddress(Address adress, Client client, int id);
         IQueryable GetClientsBySurname(string surname);
         Client GetClientById(int id);
         IQueryable ShowAllClients();

@@ -44,16 +44,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5PcmRlclxWaWV3T3JkZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/AdminProductTag/AddProduct.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0VGFnXEFkZFByb2R1Y3QuY3NodG1s
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/AdminProduct/ProductDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0XFByb2R1Y3REZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/AdminProductTag/ProductDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0VGFnXFByb2R1Y3REZXRhaWxzLmNzaHRtbA==
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/AdminProduct/ViewProducts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0XFZpZXdQcm9kdWN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/AdminProductTag/ViewProducts.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Qcm9kdWN0VGFnXFZpZXdQcm9kdWN0cy5jc2h0bWw=
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/AdminTag/TagProducts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5UYWdcVGFnUHJvZHVjdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/AdminTag/ViewTags.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5UYWdcVmlld1RhZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Jan Klata/source/repos/OnlineShopMvc/OnlineShopMvc/Views/Client/AddClient.cshtml]

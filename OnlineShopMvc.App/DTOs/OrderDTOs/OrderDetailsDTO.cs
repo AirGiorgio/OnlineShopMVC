@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using OnlineShopMvc.App.DTOs.AdressDTOs;
 using OnlineShopMvc.App.DTOs.ClientDTOs;
-using OnlineShopMvc.App.DTOs.ProductDTOs;
-using OnlineShopMvc.App.DTOs.OrderProductDTOs;
 using OnlineShopMvc.App.Mapping;
 using OnlineShopMVC.Domain.Model;
 using System;
@@ -19,7 +17,7 @@ namespace OnlineShopMvc.App.DTOs.OrderDTOs
         public DateTime OrderDate { get; set; }
         public decimal TotalCost { get; set; }
         public ClientDTO Client { get; set; }
-        public List<OrderProductDTO> OrderProducts { get; set; }
+        public List<OrderProductsDTO> Products { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -27,8 +25,8 @@ namespace OnlineShopMvc.App.DTOs.OrderDTOs
                .ForMember(x => x.Id, opt => opt.MapFrom(s => s.Id))
                .ForMember(x => x.OrderDate, opt => opt.MapFrom(s => s.OrderDate))
                .ForMember(x => x.TotalCost, opt => opt.MapFrom(s => s.TotalCost))
-               .ForMember(x => x.OrderProducts, opt => opt.MapFrom(s => s.OrderProducts))
-               .ForMember(x => x.Client, opt => opt.MapFrom(s => s.Client));
+               .ForMember(x => x.Client, opt => opt.MapFrom(s => s.Client))
+               .ForMember(x => x.Products, opt => opt.MapFrom(s => s.Products));
         }
 
     }

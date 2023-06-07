@@ -1,5 +1,4 @@
-﻿using OnlineShopMvc.Domain.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,15 +13,15 @@ namespace OnlineShopMVC.Domain.Model
         public int ClientId { get; set; }
         public virtual Client Client { get; set; }
         public DateTime OrderDate { get; set; }
-        public ICollection<OrderProduct> OrderProducts { get; set; }
+        public ICollection<Product> Products { get; set; }
         public decimal TotalCost { get; set; } 
         public decimal GetTotalPrice()
         {
             decimal totalPrice = 0;
 
-            foreach (var product in OrderProducts)
+            foreach (var product in Products)
             {
-                totalPrice += product.Product.Price;
+                totalPrice += product.Price;
             }
 
             return totalPrice;

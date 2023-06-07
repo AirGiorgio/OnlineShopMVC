@@ -1,0 +1,43 @@
+﻿@using OnlineShopMvc.App.DTOs.TagsDTOs
+@model TagProductsDTO;
+
+<h2>Produkty wybranego tagu</h2>
+
+@if (Model != null)
+{
+    @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
+    <h2>Produkty które należą do tagu @Model.Name</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Numer</th>
+                <th>Nazwa</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var (product, index) in Model.Products.Select((c, i) => (c, i)))
+            {
+                <tr>
+                    <td>@(index + 1)</td>
+                    <td>@product.Name</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <form method="get" action="@Url.Action("ViewTags", "AdminTag")">
+        <button type="submit">Powrót do listy kategorii</button>
+    </form>
+}
+else
+{
+
+    <p>Nie znaleziono produktów należących do tego tagu</p>
+
+}

@@ -5,7 +5,11 @@
 
 @if (Model != null)
 {
-
+    @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
+    <h2>Produkty które należą do kategorii @Model.Name</h2>
     <table>
         <thead>
             <tr>

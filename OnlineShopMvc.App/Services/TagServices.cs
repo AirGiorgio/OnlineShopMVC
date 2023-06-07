@@ -28,7 +28,13 @@ namespace OnlineShopMvc.App.Services
            _tagRepo = tagRepo;
             _mapper = mapper;
         }
+        public TagProductsDTO GetTagProducts(int id)
+        {
+            var tag = _tagRepo.GetTagById(id);
+            var tagDTO = _mapper.Map<TagProductsDTO>(tag);
 
+            return tagDTO;
+        }
         public string AddTag(string? name)
         {
             if (name.IsNullOrEmpty())
@@ -37,17 +43,28 @@ namespace OnlineShopMvc.App.Services
             }
             else if (_tagRepo.IsTagNameTaken(name) == true)
             {
-                return null;
+                return "Nazwa tagu jest zajęta";
             }
             else return _tagRepo.AddTag(name);
         }
 
-        public TagsForListDTO GetAllTags(string? name)
+        public TagsForListDTO GetAllTags(int? pageSize, int? pageNo, string? name)
         {
-            var tags = _tagRepo.GetAllTags(name).ProjectTo<TagDTO>(_mapper.ConfigurationProvider).ToList();
+            if (!pageNo.HasValue || !pageSize.HasValue)
+            {
+                pageNo = 1;
+                pageSize = 10;
+            }
+
+            var tags = _tagRepo.GetAllTags(name)
+                .ProjectTo<TagDTO>(_mapper.ConfigurationProvider).ToList();
+            var tagsToShow = tags.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
             var tagsDTO = new TagsForListDTO()
             {
-               Tags = tags,
+               Tags = tagsToShow,
+               SearchString = name,
+               PageNum = pageNo.Value,
+               PageSize = pageSize.Value,
                Count = tags.Count
             };
 
@@ -78,15 +95,15 @@ namespace OnlineShopMvc.App.Services
             return _tagRepo.RemoveTag(id);
         }
 
-        public bool UpdateTag(int id, string? name)
+        public string UpdateTag(int id, string? name)
         {
             if (name.IsNullOrEmpty())
             {
-                return false;
+                return "Niepoprawna nazwa";
             }
             else if (_tagRepo.IsTagNameTaken(name) == true)
             {
-                return false;
+                return "Nazwa jest zajęta"; ;
             }
             return _tagRepo.UpdateTag(id,name);
         }

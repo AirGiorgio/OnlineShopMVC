@@ -52,15 +52,15 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
             context.Add(client);
             context.Add(adres);
             context.SaveChanges();
-            return client.Name+" "+client.Surname;
+            return "Rejestracja udana";
         }
 
-        public bool UpdateClientAndAddress(Address adress, Client client, int id)
+        public string UpdateClientAndAddress(Address adress, Client client, int id)
         {
             var clientF = GetClientById(id);
             if (clientF==null)
             {
-                return false;
+                return "Nie udało się znaleźć klienta";
             }
             clientF.Name = client.Name;
             clientF.Surname = client.Surname;
@@ -68,7 +68,7 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
             clientF.EmailAdress = client.EmailAdress;
             clientF.Address = adress;
             context.SaveChanges();
-            return true;
+            return "Udało się zaktualizować klienta";
         }
 
         public IQueryable GetClientByStreetName(string? street, string? buildingNumber, string? city)

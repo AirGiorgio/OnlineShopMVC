@@ -1,0 +1,137 @@
+﻿@using OnlineShopMvc.App.DTOs.ProductDTOs;
+@model ProductsForListDTO
+
+@{
+    ViewData["Title"] = "ProductController";
+}
+
+<h2>Znaleziono @Model.Count Produktów</h2>
+
+@if (Model != null  )
+{ @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
+    <form method="get" action="@Url.Action("AddProduct", "AdminProduct")">
+        <button type="submit">Dodaj Produkt</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Numer</th>
+                <th>Nazwa</th>
+                <th>Kategoria</th>
+                <th>Cena</th>
+                <th>Ilość</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var (product, index) in Model.Products.Select((c, i) => (c, i)))
+            {
+                <tr>
+                    <td>@((index + 1) + (10 * (Model.PageNum -1))) </td>
+                    <td>@product.Name</td>
+                    <td>@product.Category.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Quantity @if (product.Quantity < 5)
+                        {
+                            <span style="color: red;">(Brakuje w magazynie)</span>
+                        }</td>
+                    <td>
+                        <form method="get" action="@Url.Action("ProductDetails", "AdminProduct", new { id = product.Id})">
+                            <button type="submit">Edytuj</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="@Url.Action("RemoveProduct", "AdminProduct", new { id = product.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć ten produkt?')">
+                            <button type="submit">Usuń</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row">
+    <table>
+        <tr>
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+                {
+                    <td>
+                        @if (i!=Model.PageNum)
+                        {
+                            <a href="javascript:PagerClick(@i)">@i</a>
+                        }
+                        else
+                        {
+                           <span>@i</span>
+                        }
+                    </td>
+                }
+        </tr>
+            <form id="ViewProducts" method="get" action="@Url.Action("ViewProducts", "AdminProduct")">  
+                <input type="hidden" asp-for=MinValue name="min" id="min" value=@Model.MinValue />
+                <input type="hidden" asp-for=MaxValue name="max" id="max" value=@Model.MaxValue />
+                <input type="hidden" asp-for=SearchString name="name" id="name" value=@Model.SearchString />
+                <input type="hidden" asp-for=PageNum name="pageNo" id="pageNo" value="1" />
+                <input type="hidden" asp-for=PageSize name="pageSize" id="pageSize" value="10" />
+            </form>
+        </table>
+    </div>
+
+<h2>Wyszukaj produkt po nazwie</h2>
+<form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
+  <input asp-for="SearchString" value="@Model.SearchString" type="text" name="name" placeholder="Wyszukaj" />  
+    <button type="submit">OK</button>
+</form>
+<h2>Filtruj produkty według ceny</h2>
+<form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
+    <label for="minValue">Minimalna wartość:</label>
+    <input asp-for="MinValue" value="@Model.MinValue" type="number" id="minValue" name="min" step="0.01" />
+    <label for="maxValue">Maksymalna wartość:</label>
+    <input asp-for="MaxValue" value="@Model.MaxValue" type="number" id="maxValue" name="max" step="0.01" />
+    <button type="submit">Filtruj</button>
+</form>
+    <h2>Wyszukaj po kategorii</h2>
+<form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
+    <select id="categoryId" name="categoryId">
+            <option >Wybierz kategorię</option>
+        @foreach (var category in Model.Categories)
+        {
+                <option value="@category.Id">@category.Name</option>
+        }
+        <option selected="@Model.SearchCategory"></option>
+    </select>
+    <button type="submit">Sortuj</button>
+</form>
+    <h2>Wyszukaj po tagach (zaznaczając)</h2>
+    <form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
+        <select name="searchTags" multiple>
+            <option >Wybierz tag</option>
+            @foreach (var tag in Model.Tags)
+            {
+                <option  value="@tag.Id">@tag.Name</option>
+            }
+            <option selected="@Model.SearchTags"></option>
+        </select>
+        <button type="submit">Sortuj</button>
+    </form>
+<form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
+    <button type="submit">Powrót do pełnej listy</button>
+</form>
+    <a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>
+}
+else
+{
+    <p>Nie znaleziono produktów</p>
+}
+@section Scripts
+    {
+    <script type="text/javascript">
+        function PagerClick(index) {
+            document.getElementById("pageNo").value = index;
+            document.getElementById("ViewProducts").submit();
+        }
+    </script>
+}

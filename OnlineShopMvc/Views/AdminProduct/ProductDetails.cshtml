@@ -5,7 +5,7 @@
     ViewData["Title"] = "ProductDetails";
 }
 
-<h2>Product Details</h2>
+<h2>Edytowanie produktu</h2>
 
 @if (Model != null)
 {
@@ -14,35 +14,41 @@
         <input type="text" id="name" name="name" value="@Model.Name" required />
 
         <label for="price">Price:</label>
-        <input type="number" id="price" name="price" step="0.01" value="@Model.Price" required />
+        <input type="text" id="price" name="price" step="0.01" value="@Model.Price" required />
 
         <label for="quantity">Quantity:</label>
         <input type="number" id="quantity" name="quantity" value="@Model.Quantity" required />
 
         <label for="category">Category:</label>
         <select id="category" name="categoryId">
-            <option value="">Select category</option>
-          @*  @foreach (var category in Model.Category)
-            {
-                <option value="@category.Id">@category.Name</option>
-            }*@
+            <option >Select category</option>
+
+       @foreach (var category in Model.Categories)
+        {
+                <option value=@category.Id >@category.Name</option>
+        }
+            <option selected="@Model.ProductCategory"></option>
         </select>
 
-        <label for="tags">Tags:</label>
-        <select id="tags" name="tagIds" multiple>
+        <select name="tags" multiple>
+            <option >Wybierz tag</option>
             @foreach (var tag in Model.Tags)
             {
+
                 <option value="@tag.Id">@tag.Name</option>
             }
+            <option selected="@Model.ProductTags"></option>
         </select>
-
-        <button type="submit">Update</button>
+      
+        <button type="submit">Zatwierdź</button>
     </form>
+
     <form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
-        <button type="submit">Back to list</button>
+        <button type="submit">Powrót do listy</button>
     </form>
 }
 else
 {
-    <p>Product data not found</p>
+    <p>Nie znaleziono danych tego produktu</p>
+ 
 }

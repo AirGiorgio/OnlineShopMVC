@@ -1,7 +1,7 @@
 ﻿@using OnlineShopMvc.App.DTOs.CategoryDTOs
 @model CategoriesForListDTO
 
-<h2>Kategorie</h2>
+<h2>Znaleziono @Model.Count Kategorii</h2>
 
 @if (Model != null)
 {
@@ -64,8 +64,9 @@
                 }
         </tr>
             <form id="ViewCategories" method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
-                <input type="hidden" name="pageNo" id="pageNo" value="@Model.PageNum" />
-                <input type="hidden" name="pageSize" id="pageSize" value="@Model.PageSize" />
+                <input type="hidden" asp-for=SearchString name="name" id="name" value=@Model.SearchString />
+                <input type="hidden" asp-for=PageNum name="pageNo" id="pageNo" value="1" />
+                <input type="hidden" asp-for=PageSize name="pageSize" id="pageSize" value ="10"/>
             </form>
     </table>
      
@@ -82,10 +83,9 @@
 </form>
 
 <h2>Wyszukaj kategorię</h2>
-<form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
-       
-    <input type="text" name="name" placeholder="Wyszukaj" />
-    <button type="submit">OK</button>
+<form method="get" action="@Url.Action("ViewCategories", "AdminCategory")"> 
+ <input id="searchString" value="@Model.SearchString" type="text" asp-for=SearchString name="name" placeholder="Wyszukaj" />
+ <button type="submit">OK</button>
 </form>
     <a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>
 }

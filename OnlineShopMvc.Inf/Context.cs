@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using OnlineShopMvc.Domain.Model;
 using OnlineShopMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,8 +19,6 @@ namespace OnlineShopMVC.Infrastructure
             public DbSet<Client> Clients { get; set; }
             public DbSet<Order> Orders { get; set; }
             public DbSet<Product> Products { get; set; }
-            public DbSet<ProductTag> ProductTag { get; set; }
-            public DbSet<OrderProduct> OrderProduct { get; set; }
             public DbSet<Tag> Tags { get; set; }
             
             public Context()
@@ -49,31 +47,21 @@ namespace OnlineShopMVC.Infrastructure
                   .Property(p => p.TotalCost)
                   .HasPrecision(18, 2);
 
-                builder.Entity<OrderProduct>()
-                .HasKey(op => new { op.OrderId, op.ProductId }); //?
+                 builder.Entity<Product>()
+                 .HasMany(e => e.Tags)
+                 .WithMany(e => e.Products);
 
-                builder.Entity<OrderProduct>()
-                    .HasOne<Order>(op => op.Order)
-                    .WithMany(o => o.OrderProducts)
-                    .HasForeignKey(op => op.OrderId);
-           
-            builder.Entity<OrderProduct>()
-                   .HasOne<Product>(op => op.Product)
-                   .WithMany(o => o.OrderProducts)
-                   .HasForeignKey(op => op.ProductId);
+                builder.Entity<Tag>()
+                 .HasMany(e => e.Products)
+                 .WithMany(e => e.Tags);
 
-            builder.Entity<ProductTag>()
-                    .HasKey(pt => new { pt.ProductId, pt.TagId });
+                builder.Entity<Product>()
+                .HasMany(e => e.Orders)
+                .WithMany(e => e.Products);
 
-                builder.Entity<ProductTag>()
-                .HasOne<Product>(pt => pt.Product)
-                .WithMany(p => p.ProductTags)
-                .HasForeignKey(pt => pt.ProductId);
-           
-            builder.Entity<ProductTag>()
-              .HasOne<Tag>(pt => pt.Tag)
-              .WithMany(p => p.ProductTags)
-              .HasForeignKey(pt => pt.TagId);
+                builder.Entity<Order>()
+                .HasMany(e => e.Products)
+                .WithMany(e => e.Orders);
         }    
     }
 }

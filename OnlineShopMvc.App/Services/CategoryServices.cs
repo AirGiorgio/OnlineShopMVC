@@ -22,7 +22,7 @@ namespace OnlineShopMvc.App.Services
     {
         private readonly ICategoryRepo _categoryRepo;
         private readonly IMapper _mapper;
-        CategoriesForListDTO categoriesDTO = new CategoriesForListDTO();
+      
 
         public CategoryServices(ICategoryRepo categoryRepo, IMapper mapper)
         {
@@ -50,7 +50,7 @@ namespace OnlineShopMvc.App.Services
          
            return categoryDTO;
         }
- 
+
         public CategoriesForListDTO GetAllCategories(int? pageSize, int? pageNo, string? name)
         {
             if (!pageNo.HasValue || !pageSize.HasValue)
@@ -58,24 +58,17 @@ namespace OnlineShopMvc.App.Services
                 pageNo = 1;
                 pageSize = 10;
             }
-          
-            if (!name.IsNullOrEmpty())
-            {
-                if (categoriesDTO.SearchString != name)
-                {
-                    categoriesDTO.SearchString = name;
-                    pageNo = 1;
-                   
-                }
-            }
-            var categories = _categoryRepo.GetAllCategories(categoriesDTO.SearchString).ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
-            var categoriesToShow = categories.Skip(pageSize.Value*(pageNo.Value-1)).Take(pageSize.Value).ToList();
 
-            categoriesDTO.PageNum = pageNo.Value;
-            categoriesDTO.PageSize = pageSize.Value;
-            categoriesDTO.Categories = categoriesToShow;
-            categoriesDTO.Count = categories.Count;
-            
+            var categories = _categoryRepo.GetAllCategories(name).ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
+            var categoriesToShow = categories.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
+            var categoriesDTO = new CategoriesForListDTO()
+            {
+                  SearchString = name,
+                  PageNum = pageNo.Value,
+                  PageSize = pageSize.Value,
+                  Categories = categoriesToShow,
+                  Count = categories.Count
+             };
             return categoriesDTO;         
         }
 

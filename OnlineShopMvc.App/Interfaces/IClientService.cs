@@ -12,7 +12,7 @@ namespace OnlineShopMvc.App.Interfaces
 {
     public interface IClientService
     {
-        bool UpdateClientAndAddress(int id, string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
+        string UpdateClientAndAddress(int id, string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
             string? flatNumber, string? city, string? zipCode);
         bool RemoveClient(int id);
         ClientDetailsDTO GetClientById(int id);        

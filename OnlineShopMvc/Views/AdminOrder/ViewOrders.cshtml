@@ -5,10 +5,14 @@
     ViewData["Title"] = "AdminOrderController";
 }
 
-<h2>Zamówienia</h2>
+<h2>Znaleziono @Model.Count Zamówień</h2>
+<th>Domyślnie posortowano po dacie zamówienia</th>
 
 @if (Model != null)
-{
+{ @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
     <table>
         <thead>
             <tr>
@@ -23,7 +27,7 @@
             @foreach (var (order, index) in Model.Orders.Select((c, i) => (c, i)))
             {
                 <tr>
-                    <td>@(index + 1)</td>
+                    <td>@((index + 1) + (10 * (Model.PageNum - 1)))</td>
                     <td>@order.OrderDate</td>
                     <td>@order.TotalCost</td>
                     <td><a href="@Url.Action("OrderDetails", "AdminOrder", new { id = order.Id })">Szczegóły</a></td>
@@ -44,7 +48,7 @@
                     <td>
                         @if (i != Model.PageNum)
                         {
-                            <a href="javascript:PagerClick(@i, 'ViewOrders')">@i</a>
+                            <a href="javascript:PagerClick(@i)">@i</a>
                         }
                         else
                         {
@@ -54,8 +58,12 @@
                 }
             </tr>
             <form id="ViewOrders" method="get" action="@Url.Action("ViewOrders", "AdminOrder")">
-                <input type="hidden" name="pageNo" id="pageNo" />
-                <input type="hidden" name="pageSize" id="pageSize" value="10" />
+                <input type="hidden" asp-for=OrderDate name="orderDate" id="orderDate" value=@Model.OrderDate?.Date.ToString("yyyy-MM-dd") />
+                <input type="hidden" asp-for=MinValue name="min" id="min" value=@Model.MinValue />
+                <input type="hidden" asp-for=MaxValue name="max" id="max" value=@Model.MaxValue />
+                <input type="hidden" asp-for=SortByPrice name="value" id="value" value=@Model.SortByPrice />
+                <input type="hidden" asp-for=PageNum name="pageNo" id="pageNo" value="1" />
+                <input type="hidden" asp-for=PageSize name="pageSize" id="pageSize" value="10" />
             </form>
         </table>
     </div>
@@ -64,16 +72,16 @@
 <h2>Filtruj zamówienia według daty</h2>
 <form method="get" action="@Url.Action("ViewOrders", "AdminOrder")">
     <label for="orderDate">Data Zamówienia:</label>
-    <input type="date" id="orderDate" name="orderDate" />
+        <input type="date" id="orderDate" asp-for="OrderDate" value="@Model.OrderDate?.Date.ToString("yyyy-MM-dd")" name="orderDate" />
     <button type="submit">Filtruj</button>
 </form>
 
 <h2>Filtruj zamówienia według wartości</h2>
 <form method="get" action="@Url.Action("ViewOrders", "AdminOrder")">
     <label for="minValue">Minimalna wartość:</label>
-    <input type="number" id="minValue" name="min" step="0.01" />
+    <input type="number" id="minValue" name="min" asp-for="MinValue" value ="@Model.MinValue" step="0.01" />
     <label for="maxValue">Maksymalna wartość:</label>
-    <input type="number" id="maxValue" name="max" step="0.01" />
+    <input type="number" id="maxValue" name="max" asp-for="MaxValue" value="@Model.MaxValue" step="0.01" />
     <button type="submit">Filtruj</button>
 </form>
 

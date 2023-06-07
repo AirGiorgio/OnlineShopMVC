@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
-using OnlineShopMvc.Domain.Model;
 using OnlineShopMVC.Domain.Model;
 using OnlineShopMVC.Infrastructure;
 using System;
@@ -14,6 +13,7 @@ namespace OnlineShopMvc.Inf
     public class Seeder
     {
         Context _context = new Context();
+        private int i = 1;
         public void BreedTheSeedAndNeedForSpeed()
         {
             if (_context.Database.CanConnect())
@@ -22,60 +22,54 @@ namespace OnlineShopMvc.Inf
                 {
                     return;
                 }
-                _context.SaveChanges();
-                var categories = GetCategories();
+
+                var categories = GetData();
                 _context.Categories.AddRange(categories);
                 _context.SaveChanges();
             }
         }
-         
-        private IEnumerable<Category> GetCategories()
+
+        private IEnumerable<Category> GetData()
         {
             var clients = Enumerable.Range(1, 50).Select(_ => new Client
             {
-                Name = GenerateRandomString(5),
-                Surname = GenerateRandomString(5),
-                EmailAdress = GenerateRandomString(10) + "@example.com",
-                Telephone = GenerateRandomString(10),
+                Name = GenerateRandomName(),
+                Surname = GenerateRandomSurname(),
+                EmailAdress = GenerateRandomName() + "@example.com",
+                Telephone = GenerateRandomNumber(10),
                 Address = new Address
                 {
-                    Street = GenerateRandomString(10),
-                    BuildingNumber = GenerateRandomString(1),
-                    FlatNumber = GenerateRandomString(1),
-                    City = GenerateRandomString(10),
-                    ZipCode = GenerateRandomString(5)
+                    Street = GenerateRandomStreet(),
+                    BuildingNumber = GenerateRandomNumber(1),
+                    FlatNumber = GenerateRandomNumber(1),
+                    City = GenerateRandomCity(),
+                    ZipCode = GenerateRandomNumber(5)
                 },
             }).ToList();
 
             var categories = Enumerable.Range(1, 50).Select(x => new Category
             {
-                Name = GenerateRandomString(8),
-                Products = Enumerable.Range(5,10).Select(x => new Product
+                Name = GenerateRandomCategory(),
+                Products = Enumerable.Range(1, 10).Select(x => new Product
                 {
-                    Name = GenerateRandomString(8),
+                    Name = GenerateRandomProduct(),
                     Price = GenerateRandomDecimal(),
                     Quantity = GenerateRandomInt(1, 100),
-                    ProductTags = Enumerable.Range(1, 3).Select(x => new ProductTag
-                    {
-                        Tag = new Tag
+                    Tags = Enumerable.Range(1, 3).Select(x => new Tag 
                         {
-                            Name = GenerateRandomString(5)
-                        }
+                            Name = GenerateRandomTag()
                     }).ToList(),
-                    OrderProducts = Enumerable.Range(1, 3).Select(x => new OrderProduct
+                    Orders = Enumerable.Range(1, 3).Select(x => new Order
                     {
-                        Order = new Order
-                        {
                             OrderDate = GenerateRandomDateTime(),
                             TotalCost = GenerateRandomDecimal(),
                             Client = clients[GenerateRandomInt(1, clients.Count() - 1)],
-                        }
                     }).ToList()
                 }).ToList()
-        }).ToList();
-        return categories;
+            }).ToList();
+            return categories;
         }
-    
+
         private DateTime GenerateRandomDateTime()
         {
             var startDate = new DateTime(2020, 1, 1);
@@ -85,9 +79,51 @@ namespace OnlineShopMvc.Inf
             var randomTimeSpan = new TimeSpan((long)(random.NextDouble() * range.Ticks));
             return startDate + randomTimeSpan;
         }
-        private string GenerateRandomString(int length)
+        private string GenerateRandomTag()
         {
-            const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            string chars = "tag " + i;
+            i++;
+            return chars;
+        }
+        private string GenerateRandomStreet()
+        {
+            string chars = "ulica " + i;
+            i++;
+            return chars;
+        }
+        private string GenerateRandomCategory()
+        {
+            string chars = "kategoria " + i;
+            i++;
+            return chars;
+        }
+        private string GenerateRandomProduct()
+        {
+            string chars = "produkt " + i;
+            i++;
+            return chars;
+        }
+        private string GenerateRandomName()
+        {
+            string chars = "klient " + i;
+            i++;
+            return chars;
+        }
+        private string GenerateRandomCity()
+        {
+            string chars = "miasto " + i;
+            i++;
+            return chars;
+        }
+        private string GenerateRandomSurname()
+        {
+            string chars = "nazwisko " + i;
+            i++;
+            return chars;
+        }
+        private string GenerateRandomNumber(int length)
+        {
+            const string chars = "123456789";
             var random = new Random();
             return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
@@ -104,6 +140,7 @@ namespace OnlineShopMvc.Inf
             var random = new Random();
             return random.Next(minValue, maxValue + 1);
         }
-
     }
+
+
 }

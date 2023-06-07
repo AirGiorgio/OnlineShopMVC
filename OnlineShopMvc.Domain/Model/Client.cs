@@ -20,4 +20,5 @@ namespace OnlineShopMVC.Domain.Model
             return Name + "," + Surname;
         }
     }
+   
 }

@@ -32,11 +32,8 @@ namespace OnlineShopMvc.Controllers
         public IActionResult ClientDetails(int id)
         {
             var client = _clientService.GetClientById(id);
-            if (client == null)
-            {
-                return BadRequest();
-            }
-            else return View(client);
+            
+            return View(client);
         }
 
         [HttpPost]
@@ -44,23 +41,25 @@ namespace OnlineShopMvc.Controllers
             string? flatNumber, string? city, string? zipCode)
         {
             var status = _clientService.UpdateClientAndAddress(id, name, surname, email, telephone, street, buildingNumber, flatNumber, city, zipCode);
-       
-            if (status ==false)
-            {
-                return BadRequest();
-            }
-            else return RedirectToAction("ViewClients");
+
+            TempData["Message"] = status;
+            return RedirectToAction("ViewClients", "AdminClient");
         }
 
         [HttpPost]
         public IActionResult RemoveClient(int id)
         {
-            var ClientDeleted = _clientService.RemoveClient(id);
-            if (ClientDeleted == false)
+            var status = _clientService.RemoveClient(id);
+            if (status == false)
             {
-                return NotFound();
+                TempData["Message"] = "Klient już nie istnieje";
             }
-            else return RedirectToAction("ViewClients", "AdminClient");
+            else
+            {
+                TempData["Message"] = "Usunięto klienta i jego adres";
+            }
+            TempData["Message"] = status;
+            return RedirectToAction("ViewClients", "AdminClient");
         }
     
     }

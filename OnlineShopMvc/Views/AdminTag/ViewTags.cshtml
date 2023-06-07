@@ -1,0 +1,106 @@
+﻿@using OnlineShopMvc.App.DTOs.TagsDTOs
+@model TagsForListDTO
+
+<h2>Znaleziono @Model.Count Tagów</h2>
+
+@if (Model != null)
+{
+
+    @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
+    <table>
+        <thead>
+            <tr>
+                <th>Numer</th>
+                <th>Nazwa</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var (tag, index) in Model.Tags.Select((c, i) => (c, i)))
+            {
+                <tr>
+                    <td>@((index + 1) + (10 * (Model.PageNum - 1)))</td>
+                    <td>@tag.Name</td>
+                    <td></td>
+                    <td>
+                        <form method="get" action="@Url.Action("UpdateTag", "AdminTag", new { id = tag.Id, name = tag.Name})">
+                            <input type="text" name="name" placeholder="Nowa nazwa" />
+                            <button type="submit">Edytuj</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="@Url.Action("RemoveTag", "AdminTag", new { id = tag.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć ten tag?')">
+                            <button type="submit">Usuń</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="get" action="@Url.Action("TagProducts", "AdminTag", new { id = tag.Id })">
+                            <button type="submit">Zobacz produkty należące do tagu</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row">
+        <table>
+            <tr>
+                @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
+                {
+                    <td>
+                        @if (i != Model.PageNum)
+                        {
+                            <a href="javascript:PagerClick(@i)">@i</a>
+                        }
+                        else
+                        {
+                            <span>@i</span>
+                        }
+                    </td>
+                }
+            </tr>
+            <form id="ViewTags" method="get" action="@Url.Action("ViewTags", "AdminTag")">
+                <input type="hidden" asp-for=SearchString name="name" id="name" value=@Model.SearchString />
+                <input type="hidden" asp-for=PageNum name="pageNo" id="pageNo" value="1" />
+                <input type="hidden" asp-for=PageSize name="pageSize" id="pageSize" value="10" />
+            </form>
+        </table>
+
+
+    </div>
+    <form method="get" action="@Url.Action("ViewTags", "AdminTag")">
+        <button type="submit">Powrót do listy</button>
+    </form>
+
+    <h2>Dodaj tag</h2>
+    <form method="post" action="@Url.Action("AddTag", "AdminTag")">
+        <input type="text" name="name" placeholder="Nazwa" />
+        <button type="submit">Dodaj</button>
+    </form>
+
+    <h2>Wyszukaj tag</h2>
+    <form method="get" action="@Url.Action("ViewTags", "AdminTag")">
+        <input id="searchString" value="@Model.SearchString" type="text" asp-for=SearchString name="name" placeholder="Wyszukaj" />
+        <button type="submit">OK</button>
+    </form>
+    <a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>
+}
+else
+{
+
+    <p>Nie znaleziono żadnych tagów</p>
+
+}
+@section Scripts
+    {
+    <script type="text/javascript">
+        function PagerClick(index) {
+            document.getElementById("pageNo").value = index;
+            document.getElementById("ViewTags").submit();
+        }
+    </script>
+}

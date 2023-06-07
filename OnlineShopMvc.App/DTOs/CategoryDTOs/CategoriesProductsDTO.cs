@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.Mapping;
 using OnlineShopMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,5 +25,16 @@ namespace OnlineShopMvc.App.DTOs.CategoryDTOs
                 .ForMember(x => x.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(x => x.Products, opt => opt.MapFrom(s => s.Products));
         }
+    }
+    public class NewClientValidation : AbstractValidator<CategoriesProductsDTO>
+    {
+        public NewClientValidation() 
+        {
+            RuleFor(x => x.Id).NotNull();
+            RuleFor(x=>x.Name).NotNull();
+            RuleFor(x=>x.Products).NotNull();
+        }
+
+        //services.AddTransient<IValidator<CategoriesProductsDTO, NewClientValidation>>()
     }
 }

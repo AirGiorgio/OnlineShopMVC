@@ -85,8 +85,7 @@ namespace OnlineShopMvc.Inf.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -222,7 +221,7 @@ namespace OnlineShopMvc.Inf.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Adresses",
+                name: "Addresses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -236,9 +235,9 @@ namespace OnlineShopMvc.Inf.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Adresses", x => x.Id);
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Adresses_Clients_ClientId",
+                        name: "FK_Addresses_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "Id",
@@ -315,8 +314,8 @@ namespace OnlineShopMvc.Inf.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Adresses_ClientId",
-                table: "Adresses",
+                name: "IX_Addresses_ClientId",
+                table: "Addresses",
                 column: "ClientId",
                 unique: true);
 
@@ -384,7 +383,7 @@ namespace OnlineShopMvc.Inf.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Adresses");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");

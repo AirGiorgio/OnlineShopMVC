@@ -1,10 +1,14 @@
 ﻿@using OnlineShopMvc.App.DTOs.ClientDTOs
 @model ClientsForListDTO
 
-<h2>Klienci</h2>
+<h2>Znaleziono @Model.Count Klientów</h2>
 
 @if (Model != null)
 {
+    @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
     <table>
         <thead>
             <tr>
@@ -24,7 +28,7 @@
             @foreach (var (client, index) in Model.Clients.Select((c, i) => (c, i)))
             {
                 <tr>
-                    <td>@(index + 1)</td>
+                    <td>@((index + 1) + (10 * (Model.PageNum - 1)))</td>
                     <td>@client.Name</td>
                     <td>@client.Surname</td>
                     <td>@client.Adress.Street</td>
@@ -55,7 +59,7 @@
                     <td>
                         @if (i != Model.PageNum)
                         {
-                            <a href="javascript:PagerClick(@i, 'ViewClients')">@i</a>
+                            <a href="javascript:PagerClick(@i)">@i</a>
                         }
                         else
                         {
@@ -65,22 +69,26 @@
                 }
         </tr>
             <form id="ViewClients" method="get" action="@Url.Action("ViewClients", "AdminClient")">
-                <input type="hidden" name="pageNo" id="pageNo" />
-                <input type="hidden" name="pageSize" id="pageSize" value="10" />
+                <input type="hidden" asp-for=SearchName name="surname" id="surnname" value=@Model.SearchName />
+                <input type="hidden" asp-for=SearchCity name="city" id="city" value=@Model.SearchCity />
+                <input type="hidden" asp-for=SearchBuilding name="buildingNumber" id="buildingNumber" value=@Model.SearchBuilding />
+                <input type="hidden" asp-for=SearchStreet name="street" id="street" value=@Model.SearchStreet />
+                <input type="hidden" asp-for=PageNum name="pageNo" id="pageNo" value="1" />
+                <input type="hidden" asp-for=PageSize name="pageSize" id="pageSize" value="10" />
             </form>
     </table>
     </div>
 
     <h2>Wyszukaj klienta po nazwisku</h2>
-    <form id="ViewClientsBySurname" method="get" action="@Url.Action("ViewClients", "AdminClient")">
-        <input type="text" name="surname" placeholder="Wyszukaj" />
-        <button type="submit">OK</button>
+    <form id="ViewClients" method="get" action="@Url.Action("ViewClients", "AdminClient")">
+       <input id ="searchName" value="@Model.SearchName" asp-for="SearchName" type="text" name="surname" placeholder="Wyszukaj" />
+     <button type="submit">OK</button>
     </form>
     <h2>Wyszukaj klienta po:</h2>
-    <form id="ViewClientsByAddress" method="get" action="@Url.Action("ViewClients", "AdminClient")">
-        <input type="text" name="street" placeholder="Ulica" />
-        <input type="text" name="buildingNumber" placeholder="Nr budynku" />
-        <input type="text" name="city" placeholder="Miasto" />
+    <form id="ViewClients" method="get" action="@Url.Action("ViewClients", "AdminClient")">
+        <input id="searchStreet" type="text" asp-for="SearchStreet" value="@Model.SearchStreet" name="street" placeholder="Ulica" />
+        <input id="searchBuilding" asp-for="SearchBuilding" value="@Model.SearchBuilding" type="text" name="buildingNumber" placeholder="Nr budynku" />
+        <input id="searchCity" asp-for="SearchCity" value="@Model.SearchCity" type="text" name="city" placeholder="Miasto" />
         <button type="submit">OK</button>
     </form>
     <form method="get" action="@Url.Action("ViewClients", "AdminClient")">

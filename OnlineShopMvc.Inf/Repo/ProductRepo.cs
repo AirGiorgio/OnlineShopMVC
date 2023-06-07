@@ -22,38 +22,27 @@ namespace OnlineShopMvc.Inf.Repo
         }
         public IQueryable GetAllProducts() 
         {
-            return context.Products.Include(x=>x.ProductTags).Include(x=>x.Category);
+            return context.Products.Include(x=>x.Tags).Include(x=>x.Category);
         }
 
         public Product GetProductById(int id)
         {
-            return context.Products.Include(x => x.ProductTags).Include(x => x.Category).SingleOrDefault(i => i.Id == id);
+            return context.Products.Include(x => x.Tags).Include(x => x.Category).SingleOrDefault(i => i.Id == id);
         }
-        public IQueryable GetProductsFromTags(List<Tag> tags) //nie zadziała
+        public IQueryable GetProductsFromTags(List<int> tags) 
         {
-            return context.Products.Where(x => x.ProductTags== tags).OrderBy(x => x.Price);
+            return context.Products.Where(p => p.Tags.Any(t => tags.Contains(t.Id))).OrderBy(p => p.Price);
         }
         public IQueryable GetProductByName(string name)
         {
-            return context.Products.Include(x => x.ProductTags).Include(x => x.Category).Where(i => i.Name.StartsWith(name)).OrderBy(x => x.Price);
+            return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(i => i.Name.StartsWith(name)).OrderBy(x => x.Price);
         }
         public IQueryable GetProductsByCategory(int id)
         {
-            return context.Products.Include(x => x.ProductTags).Include(x => x.Category).Where(x => x.CategoryId == id).OrderBy(x => x.Price);
+            return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(x => x.CategoryId == id).OrderBy(x => x.Price);
         }
-        public bool UpdateProductAmount(int id, int quantity)
-        {
-            var productFound = GetProductById(id);
-            if (productFound != null)
-            {
-                productFound.Quantity = quantity;
-                context.Update(productFound);
-                context.SaveChanges();
-                return true;
-            }
-            else return false;
-        }
-        public bool UpdateProduct(int id, string name, decimal price, int categoryId, List<Tag> tags)
+   
+        public string UpdateProduct(int id, int amount, string name, decimal price, int categoryId, List<Tag> tags)
         {
             var productFound = GetProductById(id);
             if (productFound != null)
@@ -64,14 +53,14 @@ namespace OnlineShopMvc.Inf.Repo
                 if (cat!=null || !tags.IsNullOrEmpty())
                 {
                     productFound.Category = cat;
-                    //productFound.Tags = tags;
+                    productFound.Tags = tags;
                     context.Update(productFound);
                     context.SaveChanges();
-                    return true;
+                    return "Uaktualniono produkt";
                 }
-                else return false;
+                else return "Błędne kategorie lub tagi";
             }
-            else return false;
+            else return "Nie znaleziono produktu";
         }
         public bool RemoveProduct(int id)  
         {
@@ -85,21 +74,25 @@ namespace OnlineShopMvc.Inf.Repo
             else return false;
         }
 
-        public string AddProduct(Product product)
+        public string AddProduct(int amount, string name, decimal price, int categoryId, List<Tag> tags)
         {
+             
+            Product product = new Product()
+            {
+                Quantity = amount,
+                Price = price,
+                Name = name,
+                CategoryId = categoryId,
+                Tags = tags
+            };
             context.Add(product);
             context.SaveChanges();
             return product.Name;           
         }
 
-        public IQueryable GetProductsByOrderId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IQueryable GetProductsFromValue(decimal min, decimal max)
         {
-            return context.Products.Include(x => x.ProductTags).Include(x => x.Category).Where(x => x.Price > min && x.Price < max).OrderBy(x => x.Price);
+            return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(x => x.Price > min && x.Price < max).OrderBy(x => x.Price);
         }
     }
 }
