@@ -1,8 +1,8 @@
-﻿@using OnlineShopMvc.App.DTOs.OrderDTOs;
-@model OrdersForListDTO
+﻿@using OnlineShopMvc.App.DTOs.ClientDTOs;
+@model ClientOrdersDTO
 
 @{
-    ViewData["Title"] = "OrderController";
+    ViewData["Title"] = "ClientOrders";
 }
 
 <h2>Orders</h2>
@@ -23,16 +23,20 @@
             @foreach (var (order, index) in Model.Orders.Select((c, i) => (c, i)))
             {
                 <tr>
-                    <td>@(index + 1)</td>
+                    <td>@((index + 1) + (10 * (Model.PageNum - 1)))</td>
                     <td>@order.OrderDate</td>
                     <td>@order.TotalCost</td>
-                    <td><a href="@Url.Action("DeleteOrder", "Orders", new { id = order.Id })">Usuń</a></td>
+                    <td><a href="@Url.Action("OrderDetails", "ClientShop", new { id = order.Id })">Szczegóły</a></td>
                 </tr>
             }
         </tbody>
     </table>
+ 
 }
 else
 {
-    <p>No orders found.</p>
+        <p>Nie można dokonać tej akcji bez logowania. Nie wiemy kim jesteś.</p>
+                <form method="get" action="@Url.Action("ClientDetails", "ClientData")">
+            <button type="submit">Powrót</button>
+        </form>
 }

@@ -17,7 +17,7 @@ namespace OnlineShopMvc.Inf
         {
             _context = context;
         }
-        private int i = 1;
+        
         public void BreedTheSeedAndNeedForSpeed()
         {
             if (_context.Database.CanConnect())
@@ -86,45 +86,96 @@ namespace OnlineShopMvc.Inf
         }
         private string GenerateRandomTag()
         {
-            string chars = "tag " + i;
-            i++;
-            return chars;
+            const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            var random = new Random();
+
+            int length = random.Next(3, 9);
+
+            string tag = "tag" + new string(Enumerable.Range(0, length)
+                .Select(_ => suffix[random.Next(suffix.Length)])
+                .ToArray());
+
+            return tag;
         }
         private string GenerateRandomStreet()
         {
-            string chars = "ulica " + i;
-            i++;
-            return chars;
+            const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            var random = new Random();
+
+            int length = random.Next(3, 9);
+
+            string street = "ulica" + new string(Enumerable.Range(0, length)
+                .Select(_ => suffix[random.Next(suffix.Length)])
+                .ToArray());
+
+            return street;
         }
         private string GenerateRandomCategory()
         {
-            string chars = "kategoria " + i;
-            i++;
-            return chars;
+            const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            var random = new Random();
+
+            int length = random.Next(3, 9);
+
+            string category = "kategoria" + new string(Enumerable.Range(0, length)
+                .Select(_ => suffix[random.Next(suffix.Length)])
+                .ToArray());
+
+            return category;
         }
         private string GenerateRandomProduct()
         {
-            string chars = "produkt " + i;
-            i++;
-            return chars;
+            const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            var random = new Random();
+
+            int length = random.Next(3, 9);
+
+            string product = "produkt" + new string(Enumerable.Range(0, length)
+                .Select(_ => suffix[random.Next(suffix.Length)])
+                .ToArray());
+
+            return product;
         }
         private string GenerateRandomName()
         {
-            string chars = "klient " + i;
-            i++;
-            return chars;
+            const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            var random = new Random();
+
+            int length = random.Next(3, 9);
+
+            string name = "klient" + new string(Enumerable.Range(0, length)
+                .Select(_ => suffix[random.Next(suffix.Length)])
+                .ToArray());
+
+            return name;
         }
         private string GenerateRandomCity()
         {
-            string chars = "miasto " + i;
-            i++;
-            return chars;
+            const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            var random = new Random();
+
+            int length = random.Next(3, 9);
+
+            string cityName = "miasto" + new string(Enumerable.Range(0, length)
+                .Select(_ => suffix[random.Next(suffix.Length)])
+                .ToArray());
+
+            return cityName;
         }
         private string GenerateRandomSurname()
         {
-            string chars = "nazwisko " + i;
-            i++;
-            return chars;
+           
+            const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            var random = new Random();
+
+            int length = random.Next(3, 9);
+
+            string surname = "nazwisko" + new string(Enumerable.Range(0, length)
+                .Select(_ => suffix[random.Next(suffix.Length)])
+                .ToArray());
+
+            return surname;
+    
         }
         private string GenerateRandomNumber(int length)
         {

@@ -14,6 +14,7 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
     public class ProductDetailsDTO : IMapFrom<Product>
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
@@ -29,8 +30,15 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
                 .ForMember(x => x.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(x => x.Price, opt => opt.MapFrom(s => s.Price))
                 .ForMember(x => x.ProductTags, opt => opt.MapFrom(s => s.Tags))
-                .ForMember(x=>x.Quantity, opt=>opt.MapFrom(s => s.Quantity))
-                .ForMember(x => x.ProductCategory, opt => opt.MapFrom(s => s.Category));
+                .ForMember(x => x.Quantity, opt => opt.MapFrom(s => s.Quantity))
+                .ForMember(x => x.ProductCategory, opt => opt.MapFrom(s => s.Category))
+                .ReverseMap()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+                .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.ProductTags))
+                .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.ProductCategory));
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using OnlineShopMvc.App.DTOs.ClientDTOs
-@model ClientDetailsDTO 
+@model ClientDetailsDTO
 @{
     ViewData["Title"] = "ClientDetails";
 }
@@ -11,43 +11,67 @@
     {
         <p>@TempData["Message"]</p>
     }
-    <form method="post" action="@Url.Action("UpdateClient", "AdminClient", new {id = Model.Id})">
-        <label for="name">Imię:</label>
-        <input type="text" id="name" name="name" value="@Model.Name"/>
+    <form asp-action="UpdateClient">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+            <label for="name">Imię:</label>
+        <input type="text" id="name" asp-for="Name" class="form-control" value="@Model.Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
 
-        <label for="surname">Nazwisko:</label>
-        <input type="text" id="surname" name="surname" value="@Model.Surname"/>
+        <input type="hidden" asp-for="Id" value="@Model.Id"/>
 
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" value="@Model.EmailAdress" /> 
+        <div>
+            <label for="surname">Nazwisko:</label>
+        <input type="text" id="surname" asp-for="Surname" class="form-control" value="@Model.Surname" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>
 
-        <label for="telephone">Telefon:</label>
-        <input type="text" id="telephone" name="telephone" value="@Model.Telephone"/>
+        <div>
+            <label for="email">Email:</label>
+        <input type="text" id="email" asp-for="EmailAdress" class="form-control" value="@Model.EmailAdress" />
+            <span asp-validation-for="EmailAdress" class="text-danger"></span>
+        </div>
 
-        <label for="street">Ulica:</label>
-        <input type="text" id="street" name="street" value="@Model.Adress.Street"/>
+        <div>
+            <label for="telephone">Telefon:</label>
+        <input type="text" id="telephone" asp-for="Telephone" class="form-control" value="@Model.Telephone" />
+            <span asp-validation-for="Telephone" class="text-danger"></span>
+        </div>
 
-        <label for="buildingNumber">Nr budynku:</label>
-        <input type="text" id="buildingNumber" name="buildingNumber" value="@Model.Adress.BuildingNumber"/>
+        <div>
+            <label for="street">Ulica:</label>
+        <input type="text" id="street" asp-for="Address.Street" class="form-control" value="@Model.Address.Street" />
+            <span asp-validation-for="Address.Street" class="text-danger"></span>
+        </div>
 
-        <label for="flatNumber">Nr mieszkania:</label>
-        <input type="text" id="flatNumber" name="flatNumber" value="@Model.Adress.FlatNumber"/>
+        <div>
+            <label for="buildingNumber">Nr budynku:</label>
+        <input type="text" id="buildingNumber" asp-for="Address.BuildingNumber" class="form-control" value="@Model.Address.BuildingNumber" />
+            <span asp-validation-for="Address.BuildingNumber" class="text-danger"></span>
+        </div>
 
-        <label for="city">Miejscowość:</label>
-        <input type="text" id="city" name="city" value="@Model.Adress.City"/>
+        <div>
+            <label for="flatNumber">Nr mieszkania:</label>
+        <input type="text" id="flatNumber" asp-for="Address.FlatNumber" class="form-control" value="@Model.Address.FlatNumber" />
+            <span asp-validation-for="Address.FlatNumber" class="text-danger"></span>
+        </div>
 
-        <label for="zipCode">Kod pocztowy:</label>
-        <input type="text" id="zipCode" name="zipCode" value="@Model.Adress.ZipCode" />
-        @if (Model.Name!=null)
-        {
-            <button type="submit">Edytuj</button>
-        }
-        else
-        {
-            <button type="submit">Zarejestruj</button>
-        }
+        <div>
+            <label for="city">Miejscowość:</label>
+        <input type="text" id="city" asp-for="Address.City" class="form-control" value="@Model.Address.City" />
+            <span asp-validation-for="Address.City" class="text-danger"></span>
+        </div>
 
+        <div>
+            <label for="zipCode">Kod pocztowy:</label>
+        <input type="text" id="zipCode" asp-for="Address.ZipCode" class="form-control" value="@Model.Address.ZipCode" />
+            <span asp-validation-for="Address.ZipCode" class="text-danger"></span>
+        </div>
+
+        <button type="submit">Edytuj</button>
     </form>
+
     <form method="get" action="@Url.Action("ViewClients", "AdminClient")">
         <button type="submit">Powrót do listy</button>
     </form>

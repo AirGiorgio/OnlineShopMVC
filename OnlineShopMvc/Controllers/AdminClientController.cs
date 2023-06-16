@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using OnlineShopMvc.App.DTOs.ClientDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMVC.Domain.Model;
 using System.Drawing.Printing;
@@ -19,28 +20,33 @@ namespace OnlineShopMvc.Controllers
         [HttpGet]
         public IActionResult ViewClients(int? pageSize, int? pageNo, string? street, string? buildingNumber, string? city, string? surname)
         {
+            _logger.LogInformation("W ViewClients");
             var Clients = _clientService.ShowAllClients(pageSize,pageNo,street,buildingNumber,city,surname);
             if (Clients != null)
             {
                 return View(Clients);
             }
             else return NotFound();
-
         }
 
         [HttpPost]
         public IActionResult ClientDetails(int id)
         {
+            _logger.LogInformation("W ClientDetails");
             var client = _clientService.GetClientById(id);
             
             return View(client);
         }
 
         [HttpPost]
-        public IActionResult UpdateClient(int id, string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
-            string? flatNumber, string? city, string? zipCode)
+        public IActionResult UpdateClient(ClientDetailsDTO client)
         {
-            var status = _clientService.UpdateClientAndAddress(id, name, surname, email, telephone, street, buildingNumber, flatNumber, city, zipCode);
+            if (!ModelState.IsValid)
+            {
+                return View("ClientDetails", client);
+            }
+            _logger.LogInformation("W UpdateClients");
+            var status = _clientService.UpdateClientAndAddress(client);
 
             TempData["Message"] = status;
             return RedirectToAction("ViewClients", "AdminClient");
@@ -49,6 +55,7 @@ namespace OnlineShopMvc.Controllers
         [HttpPost]
         public IActionResult RemoveClient(int id)
         {
+            _logger.LogInformation("W RemoveClient");
             var status = _clientService.RemoveClient(id);
             if (status == false)
             {
@@ -61,6 +68,5 @@ namespace OnlineShopMvc.Controllers
             TempData["Message"] = status;
             return RedirectToAction("ViewClients", "AdminClient");
         }
-    
     }
 }

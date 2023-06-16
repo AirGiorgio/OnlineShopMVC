@@ -29,36 +29,49 @@ namespace OnlineShopMvc.Inf.Repo
         {
             return context.Products.Include(x => x.Tags).Include(x => x.Category).SingleOrDefault(i => i.Id == id);
         }
-        public IQueryable GetProductsFromTags(List<int> tags) 
+        public IQueryable GetProductsFromTags(List<Tag> tags) 
         {
-            return context.Products.Where(p => p.Tags.Any(t => tags.Contains(t.Id))).OrderBy(p => p.Price);
+            return context.Products.Where(p => p.Tags==tags).OrderBy(p => p.Price);
         }
         public IQueryable GetProductByName(string name)
         {
             return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(i => i.Name.StartsWith(name)).OrderBy(x => x.Price);
+            
         }
         public IQueryable GetProductsByCategory(int id)
         {
             return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(x => x.CategoryId == id).OrderBy(x => x.Price);
         }
-   
-        public string UpdateProduct(int id, int amount, string name, decimal price, int categoryId, List<Tag> tags)
+        public bool IsProductNameTaken(string? name)
         {
-            var productFound = GetProductById(id);
+            if (context.Products.Any(x => x.Name == name))
+            {
+                return true;
+            }
+            else return false;
+        }
+        public bool IsProductNameTaken(string? name, int id)
+        {
+            if (context.Products.Any(x => x.Name == name && x.Id != id))  
+            {
+                return true;
+            }
+            else return false;
+        }
+        public string UpdateProduct(Product product)
+        {
+            var productFound = GetProductById(product.Id);
             if (productFound != null)
             {
-                productFound.Name = name;
-                productFound.Price = price;
-                var cat = context.Categories.Where(x => x.Id == categoryId).SingleOrDefault();
-                if (cat!=null || !tags.IsNullOrEmpty())
-                {
-                    productFound.Category = cat;
-                    productFound.Tags = tags;
-                    context.Update(productFound);
-                    context.SaveChanges();
-                    return "Uaktualniono produkt";
-                }
-                else return "Błędne kategorie lub tagi";
+                productFound.Name = product.Name;
+                productFound.Price = product.Price;
+                productFound.Quantity = product.Quantity;
+                productFound.Category = product.Category;
+                productFound.Tags = product.Tags;
+                
+                context.Update(productFound);
+                context.SaveChanges();
+                return "Uaktualniono produkt";
             }
             else return "Nie znaleziono produktu";
         }
@@ -74,24 +87,23 @@ namespace OnlineShopMvc.Inf.Repo
             else return false;
         }
 
-        public string AddProduct(int amount, string name, decimal price, int categoryId, List<Tag> tags)
+        public string AddProduct(Product product)
         {
-             
-            Product product = new Product()
-            {
-                Quantity = amount,
-                Price = price,
-                Name = name,
-                CategoryId = categoryId,
-                Tags = tags
-            };
             context.Add(product);
             context.SaveChanges();
-            return product.Name;           
+            return "Dodano produkt";        
         }
 
-        public IQueryable GetProductsFromValue(decimal min, decimal max)
+        public IQueryable GetProductsFromValue(decimal? min, decimal? max)
         {
+            if (min.HasValue && !max.HasValue)
+            {
+                max = context.Products.Max(x => x.Price);
+            }
+            else if (max.HasValue && !min.HasValue)
+            {
+                min = 0;
+            }
             return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(x => x.Price > min && x.Price < max).OrderBy(x => x.Price);
         }
     }

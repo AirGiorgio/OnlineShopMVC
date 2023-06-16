@@ -1,0 +1,59 @@
+﻿@using OnlineShopMvc.App.DTOs.OrderDTOs
+@model OrderDetailsDTO
+@{
+    ViewData["Title"] = "OrderDetails";
+}
+<h2>Ceny są generowane losowo przez seeder więc nie będą się zgadzały z cenami produktów</h2>
+@if (Model != null)
+{@if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
+    <table>
+        <thead>
+            <tr>
+                <th>Id zamówienia</th>
+                <th>Imię klienta</th>
+                <th>Nazwisko klienta</th>
+                <th>Data zamówienia</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Client.Name</td>
+                <td>@Model.Client.Surname</td>
+                <td>@Model.OrderDate</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Produkty w zamówieniu:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nazwa produktu</th>
+                <th>Cena produktu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>Koszt całkowity: @Model.TotalCost</p>
+    <p>
+        <a href="@Url.Action("ViewOrders", "AdminOrder")">Powrót do listy zamówień</a>
+    </p>
+}
+else
+{
+    <p>Nie znaleziono szczegółów tego zamówienia.</p>
+   
+}

@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShopMvc.App.DTOs.CategoryDTOs;
+using OnlineShopMvc.App.DTOs.ProductDTOs;
+using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.App.Services;
 using OnlineShopMVC.Domain.Model;
@@ -18,29 +21,24 @@ namespace OnlineShopMvc.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddOrder(int id, List<Product> orderProducts)
+        public IActionResult AddOrder(int id, List<ProductDTO> orderProducts)
         {
-            var addOrder= _orderService.AddOrder(id, orderProducts);
-            if (addOrder == false)
-            {
-                return BadRequest();
-            }
-            else return Ok("Zamówienie zostało złożone");
+            _logger.LogInformation("W AddOrder klienta");
+            var addOrder = _orderService.AddOrder(id, null);
+            return Ok("Zamówienie złożone");
         }
         [HttpPost]
-        public IActionResult AddToCart(int id, List<Product> orderProducts)
+        public IActionResult AddToCart(int id, List<ProductDTO> orderProducts)
         {
-            var addOrder = _orderService.AddOrder(id, orderProducts);
-            if (addOrder == false)
-            {
-                return BadRequest();
-            }
-            else return Ok("Zamówienie zostało złożone");
+            _logger.LogInformation("W AddToCart klienta");
+            var addOrder = _orderService.AddOrder(id, null); //AddToCart 
+            return RedirectToAction("Zamówienie zostało złożone");
         }
         [HttpGet]
-        public IActionResult ViewProducts(int? pageSize, int? pageNo, int? categoryId, List<int> searchTags, decimal? min, decimal? max, string? name)
+        public IActionResult ViewProducts(int? pageSize, int? pageNo, CategoryDTO searchCategory, List<TagDTO> searchTags, decimal? min, decimal? max, string? name)
         {
-            var products = _productService.GetAllProducts(pageSize, pageNo, categoryId, searchTags, min, max, name);
+            _logger.LogInformation("W ViewProducts klienta");
+            var products = _productService.GetAllProducts(pageSize, pageNo, searchCategory, searchTags, min, max, name);
             return View(products);
 
         }

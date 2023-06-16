@@ -4,6 +4,7 @@ using OnlineShopMvc.App.DTOs;
 using OnlineShopMvc.App.DTOs.AdressDTOs;
 using OnlineShopMvc.App.DTOs.ClientDTOs;
 using OnlineShopMvc.App.DTOs.OrderDTOs;
+using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMvc.Inf.Repo;
@@ -27,7 +28,7 @@ namespace OnlineShopMvc.App.Services
             _mapper = mapper;
             
         }
-        public bool AddOrder(int id, List<Product> orderProducts)
+        public bool AddOrder(int id, List<ProductDTO> orderProducts)
         {
             if (id == null || id <= 0)
             {
@@ -37,7 +38,7 @@ namespace OnlineShopMvc.App.Services
             {
                 return false;
             }
-           else return _orderRepo.AddOrder(id, orderProducts);
+            else return false; ; 
         }
 
         public OrdersForListDTO GetAllClientOrders(int id, int? pageSize, int? pageNo, DateTime? orderDate, decimal? min, decimal? max, int? value)
@@ -55,35 +56,26 @@ namespace OnlineShopMvc.App.Services
             }
             if (orderDate == null && !min.HasValue && !max.HasValue && !value.HasValue)
             {
-                 orders = _orderRepo.GetOrdersByOrderDate(id)
+                 orders = _orderRepo.GetClientOrdersByOrderDate(id)
                 .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
              
             }
             else if (!min.HasValue && !max.HasValue && !value.HasValue)
             {
-                 orders = _orderRepo.GetOrdersFromDate(orderDate,id)
+                 orders = _orderRepo.GetClientOrdersFromDate(orderDate,id)
                     .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
                  
             }
             else if (min.HasValue || max.HasValue)
             {
-                if (min.HasValue && !max.HasValue)
-                {
-                    max = decimal.MaxValue;
-                }
-                else if (max.HasValue && !min.HasValue)
-                {
-                    min = 0;
-                }
-                orders = _orderRepo.GetOrdersFromValue(id, min.Value, max.Value)
+                orders = _orderRepo.GetClientOrdersFromValue(id, min, max)
                     .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
                 
             }
             else if (value.HasValue)
             {
-                 orders = _orderRepo.GetOrdersByValue(id)
+                 orders = _orderRepo.GetClientOrdersByValue(id)
                     .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
-               
             }
             var ordersToShow = orders.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
             var ordersDTO = new OrdersForListDTO()
@@ -133,7 +125,8 @@ namespace OnlineShopMvc.App.Services
             }
             else if (min.HasValue || max.HasValue)
             {
-                orders = _orderRepo.GetOrdersFromValue(min.Value, max.Value)
+               
+                orders = _orderRepo.GetOrdersFromValue(min, max)
                     .ProjectTo<OrderDTO>(_mapper.ConfigurationProvider).ToList();
             }
             else if (value.HasValue)

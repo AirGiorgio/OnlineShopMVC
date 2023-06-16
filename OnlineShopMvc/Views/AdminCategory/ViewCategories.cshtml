@@ -27,8 +27,13 @@
                 <td>@category.Name</td>
                 <td></td>
                <td>
-                    <form method="get" action="@Url.Action("UpdateCategory", "AdminCategory", new { id = category.Id, name = category.Name})">
-                    <input type="text" name="name" placeholder="Nowa nazwa" />
+                    <form asp-action="UpdateCategory">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="text" asp-for="NewCategory.Name" placeholder="Nowa nazwa" />
+                     <input type="hidden" asp-for="NewCategory.Id" value="@category.Id" />
+                 @*    <input type="hidden" asp-for="Categories" value="@Model.Categories" />*@
+                     <input type="hidden" asp-for="Count" value="@Model.Count" />
+                         <span asp-validation-for="NewCategory.Name"></span>
                     <button type="submit">Edytuj</button>
                     </form>
                </td>
@@ -77,8 +82,12 @@
     </form>
 
 <h2>Dodaj kategorię</h2>
-<form method="post" action="@Url.Action("AddCategory", "AdminCategory")">
-    <input type="text" name="name" placeholder="Nazwa" />
+    <form asp-action="AddCategory">
+   <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="text" asp-for="NewCategory.Name" placeholder="Nazwa" />
+        @*   <input type="hidden" asp-for="Categories" value="@Model.Categories" /> *@
+    <input type="hidden" asp-for="Count" value="@Model.Count" />  
+       <span asp-validation-for="NewCategory.Name"></span>
     <button type="submit">Dodaj</button>
 </form>
 

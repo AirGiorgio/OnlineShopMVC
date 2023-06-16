@@ -15,17 +15,7 @@ namespace OnlineShopMVC.Domain.Model
         public DateTime OrderDate { get; set; }
         public ICollection<Product> Products { get; set; }
         public decimal TotalCost { get; set; } 
-        public decimal GetTotalPrice()
-        {
-            decimal totalPrice = 0;
-
-            foreach (var product in Products)
-            {
-                totalPrice += product.Price;
-            }
-
-            return totalPrice;
-        }
+      
 
     }
 }

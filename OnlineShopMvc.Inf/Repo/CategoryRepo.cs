@@ -44,7 +44,7 @@ namespace OnlineShopMvc.Inf.Repo
                 category.Name = c;
                 context.Update(category);
                 context.SaveChanges();
-                return "Uaktualniono kateogorię";
+                return "Uaktualniono kategorię";
             }
             else return "Nie udało się odnaleźć tej kategorii";
         }

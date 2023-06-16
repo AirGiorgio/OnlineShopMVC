@@ -11,8 +11,9 @@ using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.DTOs.ProductDTOs
 {
-    public class ProductsForListDTO : IMapFrom<Product>
+    public class ProductsForListDTO 
     {
+        public List<ProductDTO> Cart { get; set; }
         public List<ProductDTO> Products { get; set; }
         public List<CategoryDTO> Categories { get; set; } 
         public decimal? MinValue { get; set; }

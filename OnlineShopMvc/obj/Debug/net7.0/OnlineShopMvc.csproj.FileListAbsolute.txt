@@ -292,3 +292,10 @@ C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\run
 C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\FluentValidation.dll
 C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\Serilog.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\Serilog.Extensions.Logging.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\Serilog.Extensions.Logging.File.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\Serilog.Formatting.Compact.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\Serilog.Sinks.Async.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\Serilog.Sinks.File.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\Serilog.Sinks.RollingFile.dll

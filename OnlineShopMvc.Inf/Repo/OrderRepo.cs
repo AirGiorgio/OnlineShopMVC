@@ -19,7 +19,7 @@ namespace OnlineShopMvc.Inf.Repo
         {
             this.context = context;
         }
-        public Order GetOrderById(int? orderId, int clientId)
+        public Order GetClientOrderById(int? orderId, int clientId)
         {
             return context.Orders.SingleOrDefault(i => i.Id == orderId && i.ClientId == clientId);
         }
@@ -28,7 +28,7 @@ namespace OnlineShopMvc.Inf.Repo
             return context.Orders.Include(x=>x.Products).Include(x=>x.Client).SingleOrDefault(i => i.Id == id);
         }
 
-        public IQueryable GetOrdersFromDate(DateTime? orderDate, int id)  
+        public IQueryable GetClientOrdersFromDate(DateTime? orderDate, int id)  
         {
             return context.Orders.Where(x => x.OrderDate > orderDate && x.ClientId == id).OrderBy(x => x.OrderDate);
                                            
@@ -38,7 +38,7 @@ namespace OnlineShopMvc.Inf.Repo
             return context.Orders.Where(x => x.OrderDate > orderDate).OrderBy(x=>x.OrderDate);
           
         }
-        public IQueryable GetOrdersByOrderDate(int id)  
+        public IQueryable GetClientOrdersByOrderDate(int id)  
         {
             return context.Orders.Where(x => x.ClientId == id).OrderBy(x => x.OrderDate);
         }
@@ -46,16 +46,31 @@ namespace OnlineShopMvc.Inf.Repo
         {
             return context.Orders.OrderBy(x => x.OrderDate);
         }
-        public IQueryable GetOrdersFromValue(int id, decimal min, decimal max)  
+        public IQueryable GetClientOrdersFromValue(int id, decimal? min, decimal? max)
         {
+            if (min.HasValue && !max.HasValue)
+            {
+                max = context.Orders.Max(x=>x.TotalCost);
+            }
+            else if (max.HasValue && !min.HasValue)
+            {
+                min = 0;
+            }
             return context.Orders.Where(x => x.TotalCost > min && x.TotalCost < max && x.ClientId == id).OrderBy(x => x.TotalCost);
         }
-        public IQueryable GetOrdersFromValue(decimal min, decimal max)  
+        public IQueryable GetOrdersFromValue(decimal? min, decimal? max)
         {
+            if (min.HasValue && !max.HasValue)
+            {
+                max = context.Orders.Max(x => x.TotalCost);
+            }
+            else if (max.HasValue && !min.HasValue)
+            {
+                min = 0;
+            }
             return context.Orders.Where(x => x.TotalCost > min && x.TotalCost < max).OrderBy(x=>x.TotalCost);
         }
-
-        public IQueryable GetOrdersByValue(int id) 
+        public IQueryable GetClientOrdersByValue(int id) 
         {
             return context.Orders.Where(x => x.ClientId == id).OrderBy(x => x.TotalCost);
         }
@@ -63,7 +78,6 @@ namespace OnlineShopMvc.Inf.Repo
         {
             return context.Orders.OrderBy(x => x.TotalCost);
         }
-
         public bool RemoveOrder(int? id) 
         {
             var order = GetOrderById(id);

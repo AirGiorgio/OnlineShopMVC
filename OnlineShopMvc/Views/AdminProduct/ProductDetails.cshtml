@@ -9,37 +9,38 @@
 
 @if (Model != null)
 {
-    <form method="post" action="@Url.Action("UpdateProduct", "AdminProduct", new { id = Model.Id })">
+    <form asp-action="UpdateProduct">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      
+        <div>
         <label for="name">Nazwa:</label>
-        <input type="text" id="name" name="name" value="@Model.Name" required />
-
+        <input type="text" id="name" asp-for="Name" value="@Model.Name" required />
+        </div>
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <div>
         <label for="price">Cena:</label>
-        <input type="text" id="price" name="price" step="0.01" value="@Model.Price" required />
-
-        <label for="quantity">Ilość w magazynie:</label>
-        <input type="number" id="quantity" name="quantity" value="@Model.Quantity" required />
-
-        <label for="category">Kategoria:</label>
-        <select id="category" name="categoryId">
-            <option >Wybierz kategorię</option>
-
-       @foreach (var category in Model.Categories)
-        {
-                <option value=@category.Id >@category.Name</option>
-        }
-            <option selected="@Model.ProductCategory"></option>
-        </select>
-        <label for="tags">Tagi:</label>
-        <select name="tags" multiple>
-            <option >Wybierz tag</option>
+        <input type="text" id="price" asp-for="Price" step="0.01" value="@Model.Price" required />
+        </div>
+        <label for="amount">Ilość w magazynie:</label>
+        <input type="number" id="amount" asp-for="Quantity" value="@Model.Quantity" required />
+        <div>
+       <label for="category">Kategoria:</label>
+       <select id="category" asp-for="ProductCategory">
+            @foreach (var category in Model.Categories)
+            {
+                  <option value="@category" selected="@(category.Id == (Model.ProductCategory.Id) ? "selected" : null)">@category.Name</option>
+            }
+       </select>
+        </div>
+        <div>
+            <label for="productTags">Tagi (zaznaczając ctrl):</label>
+        <select asp-for="ProductTags" multiple>
             @foreach (var tag in Model.Tags)
             {
-
-                <option value="@tag.Id">@tag.Name</option>
+                <option value="@tag.Id" selected="@(Model.ProductTags.Any(t => t.Id == tag.Id) ? "selected" : null)">@tag.Name</option>
             }
-            <option selected="@Model.ProductTags"></option>
         </select>
-      
+        </div>
         <button type="submit">Zatwierdź</button>
     </form>
 

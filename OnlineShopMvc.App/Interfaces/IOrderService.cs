@@ -1,5 +1,6 @@
 ﻿using OnlineShopMvc.App.DTOs.ClientDTOs;
 using OnlineShopMvc.App.DTOs.OrderDTOs;
+using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMVC.Domain.Model;
 using System;
@@ -16,6 +17,6 @@ namespace OnlineShopMvc.App.Interfaces
         OrdersForListDTO GetAllClientOrders(int id, int? pageSize, int? pageNo, DateTime? orderDate, decimal? min, decimal? max, int? value);  
         OrdersForListDTO GetOrders(int? pageSize, int? pageNo, DateTime? orderDate, decimal? min, decimal? max, int? value); 
         bool RemoveOrder(int id);
-        bool AddOrder(int id, List<Product> orderProducts); 
+        bool AddOrder(int id, List<ProductDTO> orderProducts); 
     }
 }

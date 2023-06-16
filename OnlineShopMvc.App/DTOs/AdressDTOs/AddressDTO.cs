@@ -20,7 +20,7 @@ namespace OnlineShopMvc.App.DTOs.AdressDTOs
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Address, AddressDTO>()
+            profile.CreateMap<Address, AddressDTO>().ReverseMap()
                 .ForMember(x => x.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(x => x.Street, opt => opt.MapFrom(s => s.Street))
                 .ForMember(x => x.BuildingNumber, opt => opt.MapFrom(s => s.BuildingNumber))

@@ -1,12 +1,16 @@
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using OnlineShopMvc.App;
+using OnlineShopMvc.App.DTOs.CategoryDTOs;
+using OnlineShopMvc.App.DTOs.ClientDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.App.Services;
 using OnlineShopMvc.Inf;
 using OnlineShopMVC.Infrastructure;
+using static OnlineShopMvc.App.DTOs.ClientDTOs.ClientDetailsDTO;
 
 namespace OnlineShopMvc
 {
@@ -19,17 +23,31 @@ namespace OnlineShopMvc
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<Context>(options =>
                 options.UseSqlServer(connectionString));
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            //builder.Services.AddControllersWithViews().AddFluentValidation(fv=>fv.RunDefaultMvcValidationAfterFluentValidationExecutes==false);
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
+            builder.Services.AddControllersWithViews()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
+
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
-            builder.Services.AddControllersWithViews();
-            var app = builder.Build();
+            builder.Services.AddMvc();
+            //builder.Services.AddControllersWithViews().AddFluentValidation();
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddTransient<IValidator<CategoryDTO>, CategoryValidation>();
+            builder.Services.AddTransient<IValidator<ClientDetailsDTO>, ClientValidation>();
            
-          
+
+            var app = builder.Build();
+
+            var loggerFactory = app.Services.GetService<ILoggerFactory>();
+            loggerFactory.AddFile("Logs/myLog-{Date}.txt");
 
             using (var scope = app.Services.CreateScope())
             {
@@ -61,37 +79,7 @@ namespace OnlineShopMvc
             app.MapControllerRoute(
                 name: "HomeController",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            //app.MapControllerRoute(
-            //   name: "Clients",
-            //   pattern: "{controller=AdminClientController}/{action=ViewClients}");
-            // app.MapControllerRoute(
-            //      name: "AddClient",
-            //      pattern: "{controller=AdminClientController}/{action=AddClient}");
-            // app.MapControllerRoute(
-            //      name: "AddAddress",
-            //      pattern: "{controller=AdminClientController}/{action=AddAddress}");
-
-            // app.MapControllerRoute(
-            //      name: "Orders",
-            //      pattern: "{controller=AdminOrderController}/{action=ViewOrders}");
-
-            // app.MapControllerRoute(
-            //name: "AddTag",
-            //pattern: "{controller=AdminTagController}/{action=AddTag}");
-
-            // app.MapControllerRoute(
-            // name: "Tags",
-            // pattern: "{controller=AdminTagController}/{action=ViewTags}");
-
-            // app.MapControllerRoute(
-            // name: "Categories",
-            // pattern: "{controller=AdminCategoryController}/{action=ViewCategories}");
-
-            // app.MapControllerRoute(
-            //name: "AddCategory",
-            //pattern: "{controller=AdminCategoryController}/{action=AddCategory}");
-
+          
             app.Run();
         }
     }

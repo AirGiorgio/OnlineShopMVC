@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using OnlineShopMvc.App.DTOs.AdressDTOs;
+using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.OrderDTOs;
 using OnlineShopMvc.App.Mapping;
 using OnlineShopMVC.Domain.Model;
@@ -18,17 +20,27 @@ namespace OnlineShopMvc.App.DTOs.ClientDTOs
         public string Surname { get; set; }
         public string EmailAdress { get; set; }
         public string Telephone { get; set; }
-        public AddressDTO Adress { get; set; }
+        public AddressDTO Address { get; set; }
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Client, ClientDetailsDTO>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(s => s.Id))
-                .ForMember(x => x.Name, opt => opt.MapFrom(s => s.Name))
-                .ForMember(x => x.Surname, opt => opt.MapFrom(s => s.Surname))
-                .ForMember(x => x.EmailAdress, opt => opt.MapFrom(s => s.EmailAdress))
-                .ForMember(x => x.Telephone, opt => opt.MapFrom(s => s.Telephone))
-                .ForMember(x => x.Adress, opt => opt.MapFrom(s => s.Address));
+            profile.CreateMap<Client, ClientDetailsDTO>().ReverseMap()
+                .ForMember(x => x.Address, opt => opt.MapFrom(s => s.Address));
+        }
 
+        public class ClientValidation : AbstractValidator<ClientDetailsDTO>
+        {
+            public ClientValidation()
+            {
+                RuleFor(x => x.Name).MaximumLength(255).MinimumLength(1).Matches("^[a-zA-Z]+$");
+                RuleFor(x => x.Surname).MaximumLength(255).MinimumLength(1).Matches("^[a-zA-Z]+$");
+                RuleFor(x => x.Telephone).Length(9).Matches("^[0-9]+$");
+                RuleFor(x => x.EmailAdress).NotEmpty().EmailAddress();
+                RuleFor(x => x.Address.Street).MaximumLength(255).MinimumLength(1).Matches("^[a-zA-Z]+$");
+                RuleFor(x => x.Address.BuildingNumber).MaximumLength(255).MinimumLength(1).Matches("^[0-9]+$");
+                RuleFor(x=>x.Address.FlatNumber).MaximumLength(255).MinimumLength(1).Matches("^[0-9]+$");
+                RuleFor(x=>x.Address.City).MaximumLength(255).MinimumLength(1).Matches("^[a-zA-Z]+$");
+                RuleFor(x=>x.Address.ZipCode).Length(5).Matches("^[0-9]+$");
+            }
         }
     }
 }

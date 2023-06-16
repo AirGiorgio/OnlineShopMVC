@@ -30,63 +30,33 @@ namespace OnlineShopMvc.App.Services
             _clientRepo = clientRepo;
             _mapper = mapper;
         }
-        public string UpdateClientAndAddress(int id, string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
-         string? flatNumber, string? city, string? zipCode)
+        public string UpdateClientAndAddress(ClientDetailsDTO client)
         {
-            if (id <= 0 || id == null)
+            if (client.Id <= 0 || client.Id == null)
             {
                 return null;
             }
-            if (street.IsNullOrEmpty() || buildingNumber.IsNullOrEmpty() ||flatNumber.IsNullOrEmpty()|| city.IsNullOrEmpty() || zipCode.IsNullOrEmpty())
+            if (client.Address.Street.IsNullOrEmpty() || client.Address.BuildingNumber.IsNullOrEmpty() || client.Address.FlatNumber.IsNullOrEmpty()|| client.Address.City.IsNullOrEmpty() || client.Address.ZipCode.IsNullOrEmpty())
             {
                 return "Dane adresowe są niepoprawne";
             }
-            else if (name.IsNullOrEmpty() || surname.IsNullOrEmpty() || email.IsNullOrEmpty() || telephone.IsNullOrEmpty())
+            else if (client.Name.IsNullOrEmpty() || client.Surname.IsNullOrEmpty() || client.EmailAdress.IsNullOrEmpty() || client.Telephone.IsNullOrEmpty())
             {
                 return "Dane klienta są niepoprawne";
             }
-            Client client = new Client();
-            client.Name = name;
-            client.Surname = surname;
-            client.EmailAdress = email;
-            client.Telephone = telephone;
-
-            Address address = new Address();
-            address.ClientId = id;
-            address.Street = street;
-            address.BuildingNumber = buildingNumber;
-            address.FlatNumber = flatNumber;
-            address.City = city;
-            address.ZipCode = zipCode;
-
-            return _clientRepo.UpdateClientAndAddress(address, client, id);       
+            else return _clientRepo.UpdateClientAndAddress(_mapper.Map<Client>(client));       
         }
-        public string AddClientAndAddress(string? name, string? surname, string? email, string? telephone, string? street, string? buildingNumber,
-         string? flatNumber, string? city, string? zipCode)
+        public string AddClientAndAddress(ClientDetailsDTO client)
         {
-            if (street.IsNullOrEmpty() || buildingNumber.IsNullOrEmpty() || flatNumber.IsNullOrEmpty() || city.IsNullOrEmpty() || zipCode.IsNullOrEmpty())
+            if (client.Address.Street.IsNullOrEmpty() || client.Address.BuildingNumber.IsNullOrEmpty() || client.Address.FlatNumber.IsNullOrEmpty() || client.Address.City.IsNullOrEmpty() || client.Address.ZipCode.IsNullOrEmpty())
             {
                 return "Dane adresowe są niepoprawne";
             }
-            else if (name.IsNullOrEmpty() || surname.IsNullOrEmpty() || email.IsNullOrEmpty() || telephone.IsNullOrEmpty())
+            else if (client.Name.IsNullOrEmpty() || client.Surname.IsNullOrEmpty() || client.EmailAdress.IsNullOrEmpty() || client.Telephone.IsNullOrEmpty())
             {
                 return "Dane klienta są niepoprawne";
             }
-            Address address = new Address();
-            address.Street = street;
-            address.BuildingNumber = buildingNumber;
-            address.FlatNumber = flatNumber;
-            address.City = city;
-            address.ZipCode = zipCode;
-
-            Client client = new Client();
-            client.Name = name;
-            client.Surname = surname;
-            client.EmailAdress = email;
-            client.Telephone = telephone;
-            client.Address = address;
-         
-            return _clientRepo.AddClientAndAddress(address, client);
+            else return _clientRepo.AddClientAndAddress(_mapper.Map<Client>(client));
         }
         public ClientDetailsDTO GetClientById(int id)
         {
@@ -149,10 +119,7 @@ namespace OnlineShopMvc.App.Services
                 Clients = clientsToShow,
                 Count = clients.Count
             };
-            return clientsDTO;
-                 
+            return clientsDTO;     
         }
-
-        
     }
 }

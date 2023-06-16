@@ -35,8 +35,8 @@ namespace OnlineShopMvc.App.Services
             if (name.IsNullOrEmpty())
             {
                 return null;
-            }
-            else if (_categoryRepo.IsCategoryNameTaken(name) == true)
+            }  
+            else if(_categoryRepo.IsCategoryNameTaken(name) == true)
             {
                 return "Nazwa kategorii jest zajęta";
             }

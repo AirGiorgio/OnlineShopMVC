@@ -19,22 +19,23 @@ namespace OnlineShopMvc.Controllers
         [HttpGet]
         public IActionResult ViewOrders(int? pageSize, int? pageNo, DateTime? orderDate, decimal? min, decimal? max, int? value)  
         {
+            _logger.LogInformation("W ViewOrders");
             var Orders = _orderService.GetOrders(pageSize,pageNo,orderDate,min,max,value);
              return View(Orders);
-         
         }
 
         [HttpGet]
         public IActionResult OrderDetails(int id)  
         {
+            _logger.LogInformation("W OrderDetails");
             var Order = _orderService.GetOrderById(id);
-            return View(Order);
-             
+            return View(Order);   
         }
 
         [HttpPost]
         public IActionResult RemoveOrder(int id)  
         {
+            _logger.LogInformation("W RemoveOrder");
             var status = _orderService.RemoveOrder(id);
             if (status == false)
             {

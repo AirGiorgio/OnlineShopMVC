@@ -1,11 +1,13 @@
 ﻿
 <h2>Witaj, klient!</h2>
 
-
+@if (TempData["Message"] != null)
+{
+    <p>@TempData["Message"]</p>
+}
 <div class="text-center">
-    <a href="@Url.Action("ViewOrders", "AdminOrder")" class="btn btn-primary">Przeglądaj produkty</a>
-    <a href="@Url.Action("ViewCategories", "AdminCategory")" class="btn btn-primary">Zobacz swoje zamówienia</a>
-    <a href="@Url.Action("ViewClients", "AdminClient")" class="btn btn-primary">Edytuj dane</a>
-    <a href="@Url.Action("ViewProducts", "AdminProduct")" class="btn btn-primary">Usuń konto</a>
-    <a href="@Url.Action("ViewTags", "AdminTag")" class="btn btn-primary">Wyloguj</a>
+    <a href="@Url.Action("ViewProducts", "ClientShop")" class="btn btn-primary">Przeglądaj produkty</a>
+    <a href="@Url.Action("ClientOrders", "ClientData")" class="btn btn-primary">Zobacz swoje zamówienia</a>
+    <a href="@Url.Action("UpdateClient", "ClientData")" class="btn btn-primary">Edytuj dane</a>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Wyloguj/powrót</a>
 </div>

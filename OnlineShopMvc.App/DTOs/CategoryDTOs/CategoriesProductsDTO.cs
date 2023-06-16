@@ -26,15 +26,5 @@ namespace OnlineShopMvc.App.DTOs.CategoryDTOs
                 .ForMember(x => x.Products, opt => opt.MapFrom(s => s.Products));
         }
     }
-    public class NewClientValidation : AbstractValidator<CategoriesProductsDTO>
-    {
-        public NewClientValidation() 
-        {
-            RuleFor(x => x.Id).NotNull();
-            RuleFor(x=>x.Name).NotNull();
-            RuleFor(x=>x.Products).NotNull();
-        }
-
-        //services.AddTransient<IValidator<CategoriesProductsDTO, NewClientValidation>>()
-    }
+   
 }

@@ -18,6 +18,7 @@ namespace OnlineShopMvc.Controllers
         [HttpGet]
         public IActionResult ViewTags(int? pageSize, int? pageNo, string? name)
         {
+            _logger.LogInformation("W ViewTags");
             var tags = _tagService.GetAllTags(pageSize, pageNo, name);
              return View(tags);
             
@@ -25,6 +26,7 @@ namespace OnlineShopMvc.Controllers
         [HttpPost]
         public IActionResult AddTag(string? name)
         {
+            _logger.LogInformation("W AddTag");
             var tag = _tagService.AddTag(name);
             if (tag.IsNullOrEmpty())
             {
@@ -39,6 +41,7 @@ namespace OnlineShopMvc.Controllers
         [HttpGet]
         public IActionResult UpdateTag(int id, string? name)
         {
+            _logger.LogInformation("W UpdateTag");
             var tag = _tagService.UpdateTag(id, name);
             TempData["Message"] = tag;
             return RedirectToAction("ViewTags", "AdminTag");
@@ -47,6 +50,7 @@ namespace OnlineShopMvc.Controllers
         [HttpGet]
         public IActionResult TagProducts(int id)
         {
+            _logger.LogInformation("W TagProducts");
             var category = _tagService.GetTagProducts(id);
             return View(category);
         }
@@ -54,6 +58,7 @@ namespace OnlineShopMvc.Controllers
         [HttpPost]
         public IActionResult RemoveTag(int id)
         {
+            _logger.LogInformation("W RemoveTag");
             var tag = _tagService.RemoveTag(id);
             if (tag == false)
             {

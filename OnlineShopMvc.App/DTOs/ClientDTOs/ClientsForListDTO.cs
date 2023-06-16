@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.DTOs.ClientDTOs
 {
-    public class ClientsForListDTO : IMapFrom<Client>
+    public class ClientsForListDTO 
     {
         public List<ClientDTO> Clients { get; set; }
         public int PageSize { get; set; }

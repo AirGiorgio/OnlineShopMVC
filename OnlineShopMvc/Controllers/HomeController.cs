@@ -16,17 +16,20 @@ namespace OnlineShopMvc.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("W Index/Home");
             return View();
         }
 
         public IActionResult Privacy()
         {
+            _logger.LogInformation("W Privacy/Home");
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            _logger.LogInformation("W Error/Home");
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

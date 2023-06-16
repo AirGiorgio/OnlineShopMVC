@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.DTOs.OrderDTOs
 {
-    public class OrdersForListDTO : IMapFrom<Order>
+    public class OrdersForListDTO 
     {
         public List<OrderDTO> Orders { get; set; }
         public DateTime? OrderDate { get; set; }

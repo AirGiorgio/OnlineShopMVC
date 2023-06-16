@@ -10,8 +10,8 @@ namespace OnlineShopMvc.Inf.Interfaces
     public interface IClientRepo
     {
         bool RemoveClient(int id);
-        string AddClientAndAddress(Address adres, Client client);
-        string UpdateClientAndAddress(Address adress, Client client, int id);
+        string AddClientAndAddress(Client client);
+        string UpdateClientAndAddress(Client client);
         IQueryable GetClientsBySurname(string surname);
         Client GetClientById(int id);
         IQueryable ShowAllClients();

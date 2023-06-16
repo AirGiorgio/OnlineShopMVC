@@ -23,6 +23,7 @@
                 <th>Kategoria</th>
                 <th>Cena</th>
                 <th>Ilość</th>
+                <th>Tagi</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -39,6 +40,7 @@
                         {
                             <span style="color: red;">(Brakuje w magazynie)</span>
                         }</td>
+                    <td>@string.Join(", ", product.Tags.Select(tag => tag.Name))</td>
                     <td>
                         <form method="get" action="@Url.Action("ProductDetails", "AdminProduct", new { id = product.Id})">
                             <button type="submit">Edytuj</button>
@@ -53,7 +55,7 @@
             }
         </tbody>
     </table>
-    <div class="row">
+   <div class="row">
     <table>
         <tr>
                 @for (int i = 1; i <= Math.Ceiling(Model.Count / (double)Model.PageSize); i++)
@@ -69,51 +71,50 @@
                         }
                     </td>
                 }
-        </tr>
+            </tr>
+        </table>
+    </div>
             <form id="ViewProducts" method="get" action="@Url.Action("ViewProducts", "AdminProduct")">  
                 <input type="hidden" asp-for=MinValue name="min" id="min" value=@Model.MinValue />
                 <input type="hidden" asp-for=MaxValue name="max" id="max" value=@Model.MaxValue />
                 <input type="hidden" asp-for=SearchString name="name" id="name" value=@Model.SearchString />
+                <input type="hidden" asp-for=SearchCategory name="categoryId" id="categoryIdy" value="@(Model.SearchCategory !=null ? Model.SearchCategory : null)" />
+                <input type="hidden" asp-for=SearchTags name="searchTags" id="searchTags" value="@(Model.SearchTags !=null ? Model.SearchTags : null)" />
                 <input type="hidden" asp-for=PageNum name="pageNo" id="pageNo" value="1" />
                 <input type="hidden" asp-for=PageSize name="pageSize" id="pageSize" value="10" />
             </form>
-        </table>
-    </div>
-
+      
+   
 <h2>Wyszukaj produkt po nazwie</h2>
 <form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
-  <input asp-for="SearchString" value="@Model.SearchString" type="text" name="name" placeholder="Wyszukaj" />  
+  <input id="name" name="name" value="@Model.SearchString" type="text" placeholder="Wyszukaj" />  
     <button type="submit">OK</button>
 </form>
 <h2>Filtruj produkty według ceny</h2>
-<form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
+    <form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
     <label for="minValue">Minimalna wartość:</label>
-    <input asp-for="MinValue" value="@Model.MinValue" type="number" id="minValue" name="min" step="0.01" />
+    <input name="min" value="@Model.MinValue" type="number" id="min" step="0.01" />
     <label for="maxValue">Maksymalna wartość:</label>
-    <input asp-for="MaxValue" value="@Model.MaxValue" type="number" id="maxValue" name="max" step="0.01" />
+    <input name="max" value="@Model.MaxValue" type="number" id="max" step="0.01" />
     <button type="submit">Filtruj</button>
 </form>
-    <h2>Wyszukaj po kategorii</h2>
-<form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
-    <select id="categoryId" name="categoryId">
-            <option >Wybierz kategorię</option>
-        @foreach (var category in Model.Categories)
-        {
-                <option selected="@Model.SearchCategory" value="@category.Id">@category.Name</option>
-        }
-         
-    </select>
-    <button type="submit">Sortuj</button>
-</form>
-    <h2>Wyszukaj po tagach (zaznaczając)</h2>
-    <form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
-        <select name="searchTags" multiple>
-            <option >Wybierz tag</option>
-            @foreach (var tag in Model.Tags)
+   <h2>Wyszukaj po kategorii</h2>
+    <form method="get" action="@Url.Action("ViewProducts", "ClientShop")">
+        <select id="searchCategory" name="searchCategory">
+           @* @foreach (var category in Model.Categories)
             {
-                <option selected="@Model.SearchTags" value="@tag.Id">@tag.Name</option>
-            }
-          
+                <option value=@category selected="@(Model.SearchCategory != null && Model.SearchCategory.Id== category.Id  ? "selected" : null)">@category.Name</option>
+            }*@
+        </select>
+        <button type="submit">Sortuj</button>
+    </form>
+        <h2>Wyszukaj po tagach (zaznaczając)</h2>
+    <form method="get" action="@Url.Action("ViewProducts", "ClientShop")">
+        <select id="searchTags" name="searchTags" multiple>
+           @* @foreach (var tag in Model.Tags)
+            {
+                <option value="@tag" selected="@(Model.SearchTags != null && Model.SearchTags.Any(t => t.Id == tag.Id) ? "selected" : null)">@tag.Name</option>
+            }*@
         </select>
         <button type="submit">Sortuj</button>
     </form>

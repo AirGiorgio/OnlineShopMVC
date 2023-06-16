@@ -1,0 +1,1560 @@
+2023-06-16T07:38:14.2439617+02:00  [INF] Executed DbCommand ("20"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T07:38:14.3391326+02:00  [INF] Executed DbCommand ("63"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T07:38:14.3542230+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T07:38:14.5757326+02:00  [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T07:38:15.0508718+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T07:38:15.0530603+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T07:38:15.0589541+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T07:38:15.0614165+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T07:38:15.0630246+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T07:38:15.7091153+02:00 0HMRE5FGPU92G:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T07:38:17.4299572+02:00 0HMRE5FGPU92G:00000009 [INF] W ViewProducts (1e82e5bb)
+2023-06-16T07:38:17.4970352+02:00 0HMRE5FGPU92G:00000009 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T07:38:17.5047880+02:00 0HMRE5FGPU92G:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-16T07:38:17.6105788+02:00 0HMRE5FGPU92G:00000009 [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CAST(0 AS bit), [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-16T07:38:43.5454310+02:00 0HMRE5FGPU92G:00000011 [INF] W AddProduct typu Get (00ddb0e6)
+2023-06-16T07:38:43.5877022+02:00 0HMRE5FGPU92G:00000011 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T07:38:43.5914595+02:00 0HMRE5FGPU92G:00000011 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-16T07:41:45.4089081+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T07:41:45.4625213+02:00  [INF] Executed DbCommand ("22"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T07:41:45.4739442+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T07:41:45.6539691+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T07:41:45.9966470+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T07:41:45.9977802+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T07:41:46.0008818+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T07:41:46.0020545+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T07:41:46.0030740+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T07:41:46.3620438+02:00 0HMRE5HFLR03R:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T07:41:48.2984893+02:00 0HMRE5HFLR03R:00000009 [INF] W ViewClients (a9052d4d)
+2023-06-16T07:41:48.3979075+02:00 0HMRE5HFLR03R:00000009 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name], [c].[Surname], CASE
+    WHEN [a].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [a].[Id], [a].[Street], [a].[BuildingNumber], [a].[FlatNumber], [a].[City], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]" (0723d8ff)
+2023-06-16T07:41:49.2275145+02:00 0HMRE5HFLR03R:00000011 [INF] W ClientDetails (1ccd507d)
+2023-06-16T07:41:49.3207715+02:00 0HMRE5HFLR03R:00000011 [INF] Executed DbCommand ("19"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [c].[Id], [c].[EmailAdress], [c].[Name], [c].[Surname], [c].[Telephone], [a].[Id], [a].[BuildingNumber], [a].[City], [a].[ClientId], [a].[FlatNumber], [a].[Street], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[Id] = @__id_0" (0723d8ff)
+2023-06-16T07:41:56.2257204+02:00 0HMRE5HFLR03R:00000019 [INF] W UpdateClients (df34225a)
+2023-06-16T07:41:58.5611613+02:00 0HMRE5HFLR03R:00000019 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [c].[Id], [c].[EmailAdress], [c].[Name], [c].[Surname], [c].[Telephone], [a].[Id], [a].[BuildingNumber], [a].[City], [a].[ClientId], [a].[FlatNumber], [a].[Street], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[Id] = @__id_0" (0723d8ff)
+2023-06-16T07:41:58.8253026+02:00 0HMRE5HFLR03R:00000019 [INF] Executed DbCommand ("162"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+DELETE FROM [Addresses]
+OUTPUT 1
+WHERE [Id] = @p0;
+INSERT INTO [Addresses] ([BuildingNumber], [City], [ClientId], [FlatNumber], [Street], [ZipCode])
+OUTPUT INSERTED.[Id]
+VALUES (@p1, @p2, @p3, @p4, @p5, @p6);" (0723d8ff)
+2023-06-16T07:41:58.8497273+02:00 0HMRE5HFLR03R:0000001B [INF] W ViewClients (a9052d4d)
+2023-06-16T07:41:58.8567244+02:00 0HMRE5HFLR03R:0000001B [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name], [c].[Surname], CASE
+    WHEN [a].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [a].[Id], [a].[Street], [a].[BuildingNumber], [a].[FlatNumber], [a].[City], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]" (0723d8ff)
+2023-06-16T07:57:34.0215638+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T07:57:34.0711011+02:00  [INF] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T07:57:34.0797271+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T07:57:34.2455868+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T07:57:34.6882993+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T07:57:34.6899213+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T07:57:34.6947534+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T07:57:34.6972105+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T07:57:34.6988835+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T07:57:35.3867927+02:00 0HMRE5QAFRAJM:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T07:57:37.5172217+02:00 0HMRE5QAFRAJM:00000009 [INF] W ViewClients (a9052d4d)
+2023-06-16T07:57:37.6218158+02:00 0HMRE5QAFRAJM:00000009 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name], [c].[Surname], CASE
+    WHEN [a].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [a].[Id], [a].[Street], [a].[BuildingNumber], [a].[FlatNumber], [a].[City], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]" (0723d8ff)
+2023-06-16T07:57:38.4039240+02:00 0HMRE5QAFRAJM:00000011 [INF] W ClientDetails (1ccd507d)
+2023-06-16T07:57:38.4934484+02:00 0HMRE5QAFRAJM:00000011 [INF] Executed DbCommand ("17"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [c].[Id], [c].[EmailAdress], [c].[Name], [c].[Surname], [c].[Telephone], [a].[Id], [a].[BuildingNumber], [a].[City], [a].[ClientId], [a].[FlatNumber], [a].[Street], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[Id] = @__id_0" (0723d8ff)
+2023-06-16T07:58:08.7804758+02:00 0HMRE5QAFRAJM:00000031 [INF] W ViewClients (a9052d4d)
+2023-06-16T07:58:08.7872122+02:00 0HMRE5QAFRAJM:00000031 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name], [c].[Surname], CASE
+    WHEN [a].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [a].[Id], [a].[Street], [a].[BuildingNumber], [a].[FlatNumber], [a].[City], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]" (0723d8ff)
+2023-06-16T07:58:13.5633124+02:00 0HMRE5QAFRAJM:00000039 [INF] W Index/Home (7621c325)
+2023-06-16T07:58:38.4983412+02:00  [INF] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T07:58:38.5574711+02:00  [INF] Executed DbCommand ("30"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T07:58:38.5676513+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T07:58:38.7471189+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T07:58:39.0370435+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T07:58:39.0380447+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T07:58:39.0414207+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T07:58:39.0425934+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T07:58:39.0435328+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T07:58:39.4531436+02:00 0HMRE5QTIDOQL:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T07:58:43.2368972+02:00 0HMRE5QTIDOQL:00000009 [INF] W ViewClients (a9052d4d)
+2023-06-16T07:58:43.3379923+02:00 0HMRE5QTIDOQL:00000009 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name], [c].[Surname], CASE
+    WHEN [a].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [a].[Id], [a].[Street], [a].[BuildingNumber], [a].[FlatNumber], [a].[City], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]" (0723d8ff)
+2023-06-16T07:58:43.9546420+02:00 0HMRE5QTIDOQL:00000011 [INF] W ClientDetails (1ccd507d)
+2023-06-16T07:58:44.0429176+02:00 0HMRE5QTIDOQL:00000011 [INF] Executed DbCommand ("15"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [c].[Id], [c].[EmailAdress], [c].[Name], [c].[Surname], [c].[Telephone], [a].[Id], [a].[BuildingNumber], [a].[City], [a].[ClientId], [a].[FlatNumber], [a].[Street], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[Id] = @__id_0" (0723d8ff)
+2023-06-16T08:19:01.8181167+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:19:01.8839697+02:00  [INF] Executed DbCommand ("38"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:19:01.8983801+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:19:02.0741364+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:19:02.4752375+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:19:02.4768658+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:19:02.4811160+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:19:02.4825527+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:19:02.4836761+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:19:03.1063004+02:00 0HMRE66A91JV0:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:19:56.4811298+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:19:56.5277644+02:00  [INF] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:19:56.5362805+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:19:56.7163611+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:19:57.1151779+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:19:57.1165226+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:19:57.1201969+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:19:57.1217660+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:19:57.1230987+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:19:57.6222894+02:00 0HMRE66QGI0FL:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:19:59.5657540+02:00 0HMRE66QGI0FL:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:19:59.6195847+02:00 0HMRE66QGI0FL:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:20:47.1440241+02:00  [INF] Executed DbCommand ("25"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:20:47.2091953+02:00  [INF] Executed DbCommand ("32"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:20:47.2179456+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:20:47.3717041+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:20:47.6610689+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:20:47.6619935+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:20:47.6653778+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:20:47.6662991+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:20:47.6671113+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:20:48.2986308+02:00 0HMRE679JR3KP:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:20:49.9334856+02:00 0HMRE679JR3KP:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:20:49.9868834+02:00 0HMRE679JR3KP:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:21:13.6183616+02:00  [INF] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:21:13.6628284+02:00  [INF] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:21:13.6718898+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:21:13.8644559+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:21:14.2785400+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:21:14.2802859+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:21:14.2845166+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:21:14.2863231+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:21:14.2879095+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:21:14.9121691+02:00 0HMRE67HH844E:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:21:16.7799199+02:00 0HMRE67HH844E:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:21:16.8321597+02:00 0HMRE67HH844E:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:22:17.0051455+02:00  [INF] Executed DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:22:17.0693058+02:00  [INF] Executed DbCommand ("36"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:22:17.0804375+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:22:17.2786706+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:22:17.7282139+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:22:17.7296795+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:22:17.7351880+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:22:17.7379381+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:22:17.7393301+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:22:18.4430487+02:00 0HMRE684ESLDE:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:22:20.7792929+02:00 0HMRE684ESLDE:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:22:20.8297333+02:00 0HMRE684ESLDE:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:29:53.1196703+02:00  [INF] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:29:53.1816250+02:00  [INF] Executed DbCommand ("37"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:29:53.1941143+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:29:53.3505124+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:29:53.7309507+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:29:53.7322877+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:29:53.7361743+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:29:53.7375615+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:29:53.7386007+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:29:54.3815212+02:00 0HMRE6CCBHP7M:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:29:55.7809443+02:00 0HMRE6CCBHP7M:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:29:55.8338139+02:00 0HMRE6CCBHP7M:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:30:00.1358603+02:00 0HMRE6CCBHP7M:00000013 [INF] W ViewCategories (f9181131)
+2023-06-16T08:30:00.1782588+02:00 0HMRE6CCBHP7M:00000013 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:32:11.1343519+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:32:11.1933417+02:00  [INF] Executed DbCommand ("34"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:32:11.2059991+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:32:11.3822208+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:32:11.8686750+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:32:11.8701438+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:32:11.8741473+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:32:11.8755106+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:32:11.8767491+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:32:12.4109758+02:00 0HMRE6DLG89MQ:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:32:13.6806387+02:00 0HMRE6DLG89MQ:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:32:13.7336026+02:00 0HMRE6DLG89MQ:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:32:17.6309794+02:00 0HMRE6DLG89MQ:00000013 [INF] W ViewCategories (f9181131)
+2023-06-16T08:32:17.6741428+02:00 0HMRE6DLG89MQ:00000013 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:34:24.6986507+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:34:24.7440093+02:00  [INF] Executed DbCommand ("22"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:34:24.7522804+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:34:24.9065731+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:34:25.2559898+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:34:25.2572635+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:34:25.2624288+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:34:25.2640278+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:34:25.2651810+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:34:25.8716205+02:00 0HMRE6ET6CE9Q:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:34:26.9370652+02:00 0HMRE6ET6CE9Q:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:34:26.9884685+02:00 0HMRE6ET6CE9Q:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:34:48.5161219+02:00 0HMRE6ET6CE9Q:00000011 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`3 selector)
+   at AspNetCoreGeneratedDocument.Views_AdminCategory_ViewCategories.ExecuteAsync() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\AdminCategory\ViewCategories.cshtml:line 23
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-06-16T08:34:48.5243815+02:00 0HMRE6ET6CE9Q:00000011 [INF] W Error/Home (b1345b8f)
+2023-06-16T08:35:20.4638335+02:00  [INF] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:35:20.5224423+02:00  [INF] Executed DbCommand ("29"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:35:20.5337636+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:35:20.7376550+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:35:21.2837380+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:35:21.2857990+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:35:21.2914305+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:35:21.2935683+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:35:21.2949533+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:35:21.7878247+02:00 0HMRE6FDTQM82:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:35:22.9322825+02:00 0HMRE6FDTQM82:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:35:22.9872975+02:00 0HMRE6FDTQM82:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:36:56.2115807+02:00  [INF] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:36:56.2597323+02:00  [INF] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:36:56.2678631+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:36:56.4263617+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:36:56.8173605+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:36:56.8188696+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:36:56.8246503+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:36:56.8270546+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:36:56.8285358+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:36:57.5429855+02:00 0HMRE6GAEILR3:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:36:58.7117896+02:00 0HMRE6GAEILR3:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:36:58.7636912+02:00 0HMRE6GAEILR3:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:37:05.2277580+02:00 0HMRE6GAEILR3:00000011 [INF] W AddCategory (3dbfab4d)
+2023-06-16T08:37:05.4077009+02:00 0HMRE6GAEILR3:00000011 [INF] Executed DbCommand ("120"ms) [Parameters=["@__name_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[Name] = @__name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:37:05.6723237+02:00 0HMRE6GAEILR3:00000011 [INF] Executed DbCommand ("160"ms) [Parameters=["@p0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Categories] ([Name])
+OUTPUT INSERTED.[Id]
+VALUES (@p0);" (0723d8ff)
+2023-06-16T08:37:05.6957712+02:00 0HMRE6GAEILR3:00000013 [INF] W ViewCategories (f9181131)
+2023-06-16T08:37:05.7007999+02:00 0HMRE6GAEILR3:00000013 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:37:09.2304289+02:00 0HMRE6GAEILR3:0000001B [INF] W ViewCategories (f9181131)
+2023-06-16T08:37:09.2329593+02:00 0HMRE6GAEILR3:0000001B [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:37:11.3551469+02:00 0HMRE6GAEILR3:00000023 [INF] W RemoveCategory (7edb8998)
+2023-06-16T08:37:11.4440037+02:00 0HMRE6GAEILR3:00000023 [INF] Executed DbCommand ("18"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name], [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Quantity]
+FROM (
+    SELECT TOP(2) [c].[Id], [c].[Name]
+    FROM [Categories] AS [c]
+    WHERE [c].[Id] = @__id_0
+) AS [t]
+LEFT JOIN [Products] AS [p] ON [t].[Id] = [p].[CategoryId]
+ORDER BY [t].[Id]" (0723d8ff)
+2023-06-16T08:37:11.8464388+02:00 0HMRE6GAEILR3:00000023 [INF] Executed DbCommand ("387"ms) [Parameters=["@p0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [Categories]
+OUTPUT 1
+WHERE [Id] = @p0;" (0723d8ff)
+2023-06-16T08:37:11.8544321+02:00 0HMRE6GAEILR3:00000025 [INF] W ViewCategories (f9181131)
+2023-06-16T08:37:11.8567486+02:00 0HMRE6GAEILR3:00000025 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:37:27.3914991+02:00  [INF] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:37:27.4521069+02:00  [INF] Executed DbCommand ("25"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:37:27.4645803+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:37:27.6202998+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:37:27.9282306+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:37:27.9294791+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:37:27.9336645+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:37:27.9352832+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:37:27.9365849+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:37:28.4933381+02:00 0HMRE6GJLME2U:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:37:30.2206252+02:00 0HMRE6GJLME2U:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:37:30.2756637+02:00 0HMRE6GJLME2U:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:39:00.8198248+02:00  [INF] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:39:00.8912967+02:00  [INF] Executed DbCommand ("43"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:39:00.9004090+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:39:01.0797532+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:39:01.4729418+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:39:01.4740955+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:39:01.4775765+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:39:01.4787334+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:39:01.4801610+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:39:02.3140917+02:00 0HMRE6HFL27EG:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:39:03.2393256+02:00 0HMRE6HFL27EG:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:39:03.2934897+02:00 0HMRE6HFL27EG:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:39:13.1877777+02:00 0HMRE6HFL27EG:00000011 [INF] W UpdateCategory (31a636a4)
+2023-06-16T08:39:13.2635692+02:00 0HMRE6HFL27EG:00000011 [INF] Executed DbCommand ("15"ms) [Parameters=["@__name_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[Name] = @__name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:39:13.3371263+02:00 0HMRE6HFL27EG:00000011 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name], [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Quantity]
+FROM (
+    SELECT TOP(2) [c].[Id], [c].[Name]
+    FROM [Categories] AS [c]
+    WHERE [c].[Id] = @__id_0
+) AS [t]
+LEFT JOIN [Products] AS [p] ON [t].[Id] = [p].[CategoryId]
+ORDER BY [t].[Id]" (0723d8ff)
+2023-06-16T08:39:13.3468258+02:00 0HMRE6HFL27EG:00000013 [INF] W ViewCategories (f9181131)
+2023-06-16T08:39:13.3518902+02:00 0HMRE6HFL27EG:00000013 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:40:08.3308992+02:00  [INF] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:40:08.3959897+02:00  [INF] Executed DbCommand ("36"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:40:08.4099634+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:40:08.6212479+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:40:08.9393974+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:40:08.9408696+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:40:08.9454643+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:40:08.9473096+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:40:08.9494779+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:40:09.6249457+02:00 0HMRE6I3N9LK6:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:41:16.1467937+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:41:16.1940310+02:00  [INF] Executed DbCommand ("22"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:41:16.2019343+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:41:16.4087841+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:41:16.7664075+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:41:16.7676468+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:41:16.7711321+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:41:16.7727270+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:41:16.7739807+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:41:17.4296490+02:00 0HMRE6INTFOP1:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:41:18.4820764+02:00 0HMRE6INTFOP1:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:41:18.5331518+02:00 0HMRE6INTFOP1:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:41:30.2017896+02:00 0HMRE6INTFOP1:00000011 [INF] W UpdateCategory (31a636a4)
+2023-06-16T08:41:30.2747360+02:00 0HMRE6INTFOP1:00000011 [INF] Executed DbCommand ("14"ms) [Parameters=["@__name_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Categories] AS [c]
+        WHERE [c].[Name] = @__name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:41:30.3465632+02:00 0HMRE6INTFOP1:00000011 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name], [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Quantity]
+FROM (
+    SELECT TOP(2) [c].[Id], [c].[Name]
+    FROM [Categories] AS [c]
+    WHERE [c].[Id] = @__id_0
+) AS [t]
+LEFT JOIN [Products] AS [p] ON [t].[Id] = [p].[CategoryId]
+ORDER BY [t].[Id]" (0723d8ff)
+2023-06-16T08:41:30.4582851+02:00 0HMRE6INTFOP1:00000011 [INF] Executed DbCommand ("7"ms) [Parameters=["@p1='?' (DbType = Int32), @p0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Categories] SET [Name] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;" (0723d8ff)
+2023-06-16T08:41:30.4708616+02:00 0HMRE6INTFOP1:00000013 [INF] W ViewCategories (f9181131)
+2023-06-16T08:41:30.4759582+02:00 0HMRE6INTFOP1:00000013 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:49:13.8278778+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:49:13.8770410+02:00  [INF] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:49:13.8885325+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:49:14.0478797+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:49:14.4453656+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:49:14.4483074+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:49:14.4555000+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:49:14.4574755+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:49:14.4591967+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:49:14.9861491+02:00 0HMRE6N682K1U:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:49:17.3132376+02:00 0HMRE6N682K1U:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:49:17.3660545+02:00 0HMRE6N682K1U:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:49:24.6613149+02:00 0HMRE6N682K1U:00000011 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`3 selector)
+   at AspNetCoreGeneratedDocument.Views_AdminCategory_ViewCategories.ExecuteAsync() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\AdminCategory\ViewCategories.cshtml:line 23
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-06-16T08:49:24.6661034+02:00 0HMRE6N682K1U:00000011 [INF] W Error/Home (b1345b8f)
+2023-06-16T08:49:33.3773298+02:00 0HMRE6N682K1U:00000019 [INF] W ViewCategories (f9181131)
+2023-06-16T08:49:33.4189539+02:00 0HMRE6N682K1U:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:52:40.7176767+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:52:40.7633166+02:00  [INF] Executed DbCommand ("22"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:52:40.7714453+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:52:40.9768672+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:52:41.3336929+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:52:41.3353991+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:52:41.3397575+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:52:41.3415784+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:52:41.3434822+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:52:42.2245396+02:00 0HMRE6P3UT196:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:52:45.1245687+02:00 0HMRE6P3UT196:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:52:45.1884158+02:00 0HMRE6P3UT196:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:57:39.4042403+02:00  [INF] Executed DbCommand ("17"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:57:39.4546069+02:00  [INF] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:57:39.4649958+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:57:39.6175048+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:57:39.9538450+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:57:39.9551353+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:57:39.9588262+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:57:39.9601301+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:57:39.9612679+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:57:40.4652396+02:00 0HMRE6RSSL658:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:57:43.1334633+02:00 0HMRE6RSSL658:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:57:43.1870525+02:00 0HMRE6RSSL658:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:57:47.3192892+02:00 0HMRE6RSSL658:00000011 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`3 selector)
+   at AspNetCoreGeneratedDocument.Views_AdminCategory_ViewCategories.ExecuteAsync() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\AdminCategory\ViewCategories.cshtml:line 23
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-06-16T08:57:47.3247429+02:00 0HMRE6RSSL658:00000011 [INF] W Error/Home (b1345b8f)
+2023-06-16T08:57:49.4095346+02:00 0HMRE6RSSL658:00000019 [INF] W ViewCategories (f9181131)
+2023-06-16T08:57:49.4517142+02:00 0HMRE6RSSL658:00000019 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:58:07.3661401+02:00  [INF] Executed DbCommand ("38"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:58:07.4258291+02:00  [INF] Executed DbCommand ("30"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:58:07.4348396+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:58:07.6130407+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:58:07.9849736+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:58:07.9863073+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:58:07.9900524+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:58:07.9913839+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:58:07.9924900+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:58:08.6053230+02:00 0HMRE6S58VF6T:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T08:58:10.4993851+02:00 0HMRE6S58VF6T:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T08:58:10.5523115+02:00 0HMRE6S58VF6T:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T08:59:58.4154424+02:00  [INF] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:59:58.4703932+02:00  [INF] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T08:59:58.4807872+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T08:59:58.6678883+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T08:59:59.0334601+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T08:59:59.0350239+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T08:59:59.0391530+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T08:59:59.0411408+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T08:59:59.0425169+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T08:59:59.5078367+02:00 0HMRE6T6A8URJ:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:00:02.8394495+02:00 0HMRE6T6A8URJ:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:00:02.8948481+02:00 0HMRE6T6A8URJ:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:00:49.7078038+02:00  [INF] Executed DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:00:49.7700648+02:00  [INF] Executed DbCommand ("33"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:00:49.7805541+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:00:49.9503140+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:00:50.3193068+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:00:50.3206256+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:00:50.3245197+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:00:50.3260579+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:00:50.3274481+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:00:50.6709974+02:00 0HMRE6TLIMBQG:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:00:52.2405524+02:00 0HMRE6TLIMBQG:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:00:52.2919778+02:00 0HMRE6TLIMBQG:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:10:55.6327535+02:00  [INF] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:10:55.7104915+02:00  [INF] Executed DbCommand ("45"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:10:55.7199401+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:10:55.9168338+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:10:56.3548352+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:10:56.3567552+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:10:56.3619360+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:10:56.3638175+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:10:56.3652273+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:10:56.9266795+02:00 0HMRE73A7CNT7:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:10:59.2221859+02:00 0HMRE73A7CNT7:0000000B [INF] W ViewCategories (f9181131)
+2023-06-16T09:10:59.2771442+02:00 0HMRE73A7CNT7:0000000B [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:12:50.3073182+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:12:50.3513330+02:00  [INF] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:12:50.3590390+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:12:50.5185498+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:12:50.8973601+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:12:50.8986847+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:12:50.9041613+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:12:50.9061716+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:12:50.9074893+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:12:52.0551162+02:00 0HMRE74CBBPBJ:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:12:53.1443331+02:00 0HMRE74CBBPBJ:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:12:53.1962375+02:00 0HMRE74CBBPBJ:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:13:54.7036792+02:00  [INF] Executed DbCommand ("17"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:13:54.7484611+02:00  [INF] Executed DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:13:54.7573082+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:13:54.9520385+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:13:55.3946205+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:13:55.3960047+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:13:55.3997202+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:13:55.4011789+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:13:55.4021381+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:13:55.8999359+02:00 0HMRE74VHS128:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:13:59.0502046+02:00 0HMRE74VHS128:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:13:59.1088527+02:00 0HMRE74VHS128:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:14:24.4678118+02:00 0HMRE74VHS128:00000011 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`3 selector)
+   at AspNetCoreGeneratedDocument.Views_AdminCategory_ViewCategories.ExecuteAsync() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\AdminCategory\ViewCategories.cshtml:line 23
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-06-16T09:14:24.4722348+02:00 0HMRE74VHS128:00000011 [INF] W Error/Home (b1345b8f)
+2023-06-16T09:16:58.6253073+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:16:58.6693220+02:00  [INF] Executed DbCommand ("26"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:16:58.6763432+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:16:58.8185200+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:16:59.0913390+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:16:59.0925703+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:16:59.0959084+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:16:59.0969831+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:16:59.0978715+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:16:59.8940169+02:00 0HMRE76MDOUBN:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:17:01.9508145+02:00 0HMRE76MDOUBN:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:17:02.0034865+02:00 0HMRE76MDOUBN:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:18:04.7954055+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:18:04.8393150+02:00  [INF] Executed DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:18:04.8465318+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:18:04.9840127+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:18:05.2658239+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:18:05.2668118+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:18:05.2700321+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:18:05.2710692+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:18:05.2722049+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:18:05.9389066+02:00 0HMRE77A418JM:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:18:07.7600431+02:00 0HMRE77A418JM:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:18:07.8131345+02:00 0HMRE77A418JM:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:30:58.7304135+02:00  [INF] Executed DbCommand ("12"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:30:58.7725515+02:00  [INF] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:30:58.7800979+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:30:58.9139874+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:30:59.1718998+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:30:59.1731997+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:30:59.1767883+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:30:59.1780365+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:30:59.1790427+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:30:59.5761200+02:00 0HMRE7EGMDRKB:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:31:01.7029565+02:00 0HMRE7EGMDRKB:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:31:01.7602157+02:00 0HMRE7EGMDRKB:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:32:12.5457267+02:00  [INF] Executed DbCommand ("12"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:32:12.5901398+02:00  [INF] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:32:12.5977540+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:32:12.7319441+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:32:13.0136719+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:32:13.0146985+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:32:13.0179295+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:32:13.0190595+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:32:13.0200186+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:32:13.4313727+02:00 0HMRE7F6MU0FU:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:32:15.5333555+02:00 0HMRE7F6MU0FU:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:32:15.5863008+02:00 0HMRE7F6MU0FU:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:33:11.8717852+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:33:11.9209048+02:00  [INF] Executed DbCommand ("31"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:33:11.9294836+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:33:12.0707193+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:33:12.4116221+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:33:12.4131309+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:33:12.4168789+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:33:12.4181734+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:33:12.4192591+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:33:13.0005778+02:00 0HMRE7FOEEUO5:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:33:14.7473876+02:00 0HMRE7FOEEUO5:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:33:14.8035842+02:00 0HMRE7FOEEUO5:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:33:33.2599702+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:33:33.2994931+02:00  [INF] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:33:33.3080526+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:33:33.4564622+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:33:33.7547171+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:33:33.7559641+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:33:33.7597176+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:33:33.7611066+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:33:33.7622883+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:33:34.2885683+02:00 0HMRE7FUOVT90:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:33:36.0620996+02:00 0HMRE7FUOVT90:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:33:36.1213427+02:00 0HMRE7FUOVT90:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T09:57:35.7169838+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:57:35.7713035+02:00  [INF] Executed DbCommand ("34"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T09:57:35.7820291+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T09:57:35.9385555+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T09:57:36.3300036+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T09:57:36.3316568+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T09:57:36.3358479+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T09:57:36.3373020+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T09:57:36.3384366+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T09:57:36.6815797+02:00 0HMRE7TCL0HVC:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T09:57:41.0416586+02:00 0HMRE7TCL0HVC:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T09:57:41.0957368+02:00 0HMRE7TCL0HVC:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)

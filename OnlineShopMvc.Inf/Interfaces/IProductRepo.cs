@@ -9,15 +9,17 @@ namespace OnlineShopMvc.Inf.Interfaces
 {
     public interface IProductRepo
     {
-        IQueryable GetProductsFromValue(decimal min, decimal max);
+        IQueryable GetProductsFromValue(decimal? min, decimal? max);
         IQueryable GetAllProducts();
         Product GetProductById(int id);
-        IQueryable GetProductsFromTags(List<int> tags);
+        IQueryable GetProductsFromTags(List<Tag> tags);
         IQueryable GetProductByName(string name);
         IQueryable GetProductsByCategory(int id);
-        string UpdateProduct(int id, int amount, string name, decimal price, int categoryId, List<Tag> tags);
+        string UpdateProduct(Product product);
         bool RemoveProduct(int id);
-        string AddProduct(int amount, string name, decimal price, int categoryId, List<Tag> tags);
+        bool IsProductNameTaken(string? name);
+        bool IsProductNameTaken(string? name, int id);
+        string AddProduct(Product product);
 
     }
    

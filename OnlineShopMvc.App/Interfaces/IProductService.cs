@@ -13,10 +13,11 @@ namespace OnlineShopMvc.App.Interfaces
 {
     public interface IProductService
     {
-        ProductsForListDTO GetAllProducts(int? pageSize, int? pageNo, int? categoryId, List<int> searchTags, decimal? min, decimal? max, string? name); 
+        public ProductDetailsDTO PrepareModel();
+        ProductsForListDTO GetAllProducts(int? pageSize, int? pageNo, CategoryDTO searchCategory, List<TagDTO> searchTags, decimal? min, decimal? max, string? name);
         ProductDetailsDTO GetProductById(int id);    
-        string AddProduct(int? amount, string? name, string? price, int categoryId, List<Tag>? tags);
-        string UpdateProduct(int id, int? amount, string? name, string? price, int categoryId, List<Tag>? tags);
+        string AddProduct(ProductDetailsDTO product);
+        string UpdateProduct(ProductDetailsDTO product);
         bool RemoveProduct(int id);
     }
 }

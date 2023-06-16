@@ -12,7 +12,12 @@
     {
         <p>@TempData["Message"]</p>
     }
-  
+  if (Model.Cart != null)
+    {
+         <form method="get" action="@Url.Action("AddOrder", "ClientShop")"> @*zawartosc koszyka*@
+          <button type="submit">Zobacz koszyk</button>
+         </form>
+    }
     <table>
         <thead>
             <tr>
@@ -21,6 +26,7 @@
                 <th>Kategoria</th>
                 <th>Cena</th>
                 <th>Ilość</th>
+                <th>Tagi</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -38,9 +44,10 @@
                         {
                             <span style="color: red;">(Brakuje w magazynie)</span>
                         }
-                    </td>
+                    <td>@string.Join(", ", product.Tags.Select(tag => tag.Name))</td>
                     <td>
-                        <form method="get" action="@Url.Action("AddToCart", "ClientShop", new { id = product.Id})">
+                        <form method="get" action="@Url.Action("AddToCart", "ClientShop")">
+                            <div asp-validation-summary="ModelOnly"></div>
                             <button type="submit">Dodaj do koszyka</button>
                         </form>
                     </td>
@@ -69,6 +76,8 @@
                 <input type="hidden" asp-for=MinValue name="min" id="min" value=@Model.MinValue />
                 <input type="hidden" asp-for=MaxValue name="max" id="max" value=@Model.MaxValue />
                 <input type="hidden" asp-for=SearchString name="name" id="name" value=@Model.SearchString />
+                <input type="hidden" asp-for=SearchCategory name="categoryId" id="categoryId" value="@(Model.SearchCategory !=null ? Model.SearchCategory.Id : null)" />
+                <input type="hidden" asp-for=SearchTags name="searchTags" id="searchTags" value="@string.Join(",", Model.SearchTags.Select(x => x.Id))" />
                 <input type="hidden" asp-for=PageNum name="pageNo" id="pageNo" value="1" />
                 <input type="hidden" asp-for=PageSize name="pageSize" id="pageSize" value="10" />
             </form>
@@ -90,11 +99,11 @@
     </form>
     <h2>Wyszukaj po kategorii</h2>
     <form method="get" action="@Url.Action("ViewProducts", "ClientShop")">
-        <select id="categoryId" name="categoryId">
+        <select id="categoryId" asp-for="SearchCategory">
             <option>Wybierz kategorię</option>
             @foreach (var category in Model.Categories)
             {
-                <option selected="@Model.SearchCategory" value="@category.Id">@category.Name</option>
+                <option value="@category.Id" selected="@(Model.SearchCategory != null && category.Id == Model.SearchCategory.Id ? "selected" : null)">@category.Name</option>
             }
 
         </select>
@@ -106,7 +115,7 @@
             <option>Wybierz tag</option>
             @foreach (var tag in Model.Tags)
             {
-                <option selected="@Model.SearchTags" value="@tag.Id">@tag.Name</option>
+                <option value="@tag.Id" selected="@(Model.SearchTags.Any(t => t.Id == tag.Id) ? "selected" : null)">@tag.Name</option>
             }
 
         </select>

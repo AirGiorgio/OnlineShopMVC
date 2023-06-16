@@ -25,7 +25,6 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
             if (client != null)
             {
                 context.Remove(client);
-                context.Remove(context.Addresses.SingleOrDefault(x => x.ClientId == client.Id));
                 context.SaveChanges();
                 return true;
             }
@@ -47,17 +46,16 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
             return context.Clients;
         }
 
-        public string AddClientAndAddress(Address adres, Client client)
+        public string AddClientAndAddress(Client client)
         {
             context.Add(client);
-            context.Add(adres);
             context.SaveChanges();
             return "Rejestracja udana";
         }
 
-        public string UpdateClientAndAddress(Address adress, Client client, int id)
+        public string UpdateClientAndAddress(Client client)
         {
-            var clientF = GetClientById(id);
+            var clientF = GetClientById(client.Id);
             if (clientF==null)
             {
                 return "Nie udało się znaleźć klienta";
@@ -66,7 +64,7 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
             clientF.Surname = client.Surname;
             clientF.Telephone = client.Telephone;
             clientF.EmailAdress = client.EmailAdress;
-            clientF.Address = adress;
+            clientF.Address = client.Address;
             context.SaveChanges();
             return "Udało się zaktualizować klienta";
         }

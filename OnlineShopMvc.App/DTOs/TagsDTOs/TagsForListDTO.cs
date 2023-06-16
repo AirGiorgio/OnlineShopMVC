@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.DTOs.TagsDTOs
 {
-    public class TagsForListDTO :IMapFrom<Tag>
+    public class TagsForListDTO  
     {
         public List<TagDTO> Tags { get; set; }
         public int PageSize { get; set; }

@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.Interfaces;
+using OnlineShopMvc.Inf.Repo;
 
 namespace OnlineShopMvc.Controllers
 {
@@ -17,22 +20,30 @@ namespace OnlineShopMvc.Controllers
         [HttpGet]
         public IActionResult ViewCategories(int? pageSize, int? pageNo, string? name)  
         {
-            var category = _categoryService.GetAllCategories(pageSize, pageNo, name);
-            return View(category);
-           
+            _logger.LogInformation("W ViewCategories");
+            var categories = _categoryService.GetAllCategories(pageSize, pageNo, name);
+            return View(categories);
         }
 
         [HttpGet]
         public IActionResult CategoryProducts(int id)
         {
+            _logger.LogInformation("W CategoryProducts");
             var category = _categoryService.GetCategoryProducts(id);
             return View(category);
         }
 
         [HttpPost]
-        public IActionResult AddCategory(string? name) 
+        [ValidateAntiForgeryToken]
+        public IActionResult AddCategory(CategoriesForListDTO categories) 
         {
-            var category = _categoryService.AddCategory(name);
+            if (!ModelState.IsValid)
+            {
+                return View("ViewCategories", categories);
+            }
+
+            _logger.LogInformation("W AddCategory");
+             var category = _categoryService.AddCategory(categories.NewCategory.Name);
             if (category.IsNullOrEmpty())
             {
                 TempData["Message"] = "Nazwa jest pusta";
@@ -44,16 +55,24 @@ namespace OnlineShopMvc.Controllers
             return RedirectToAction("ViewCategories", "AdminCategory");
         }
 
-        [HttpGet]
-        public IActionResult UpdateCategory(int id, string? name)  
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCategory(CategoriesForListDTO categories)
         {
-            var category = _categoryService.UpdateCategory(id, name);
+            if (!ModelState.IsValid)
+            {
+                return View("ViewCategories", categories);
+            }
+            _logger.LogInformation("W UpdateCategory");
+            var category = _categoryService.UpdateCategory(categories.NewCategory.Id, categories.NewCategory.Name);
             TempData["Message"] = category;
+            
             return RedirectToAction("ViewCategories", "AdminCategory");
         }
         [HttpPost]
         public IActionResult RemoveCategory(int id)  
         {
+            _logger.LogInformation("W RemoveCategory");
             var category = _categoryService.RemoveCategory(id);
             if (category == false)
             {
@@ -65,6 +84,5 @@ namespace OnlineShopMvc.Controllers
             }
              return RedirectToAction("ViewCategories", "AdminCategory");
         }
-
     }
 }
