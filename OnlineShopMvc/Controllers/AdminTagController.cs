@@ -42,8 +42,8 @@ namespace OnlineShopMvc.Controllers
         public IActionResult UpdateTag(int id, string? name)
         {
             _logger.LogInformation("W UpdateTag");
-            var tag = _tagService.UpdateTag(id, name);
-            TempData["Message"] = tag;
+            var status = _tagService.UpdateTag(id, name);
+            TempData["Message"] = status;
             return RedirectToAction("ViewTags", "AdminTag");
         }
 
@@ -59,8 +59,8 @@ namespace OnlineShopMvc.Controllers
         public IActionResult RemoveTag(int id)
         {
             _logger.LogInformation("W RemoveTag");
-            var tag = _tagService.RemoveTag(id);
-            if (tag == false)
+            var status = _tagService.RemoveTag(id);
+            if (status == false)
             {
                 TempData["Message"] = "Tag już nie istnieje";
             }

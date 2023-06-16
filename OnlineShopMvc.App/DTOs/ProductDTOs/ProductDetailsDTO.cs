@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
+using FluentValidation;
 
 namespace OnlineShopMvc.App.DTOs.ProductDTOs
 {
@@ -39,6 +40,18 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
                 .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.ProductTags))
                 .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.ProductCategory));
+        }
+      
+    }
+    public class ProductValidation : AbstractValidator<ProductDetailsDTO>
+    {
+        public ProductValidation()
+        {
+            RuleFor(x => x.Name).MaximumLength(255).MinimumLength(1);
+            RuleFor(x => x.Price).ScalePrecision(18,2);
+            RuleFor(x => x.ProductTags).NotNull();
+            RuleFor(x => x.ProductCategory).NotNull();
+            RuleFor(x => x.Quantity).Must(quantity => quantity % 1 == 0);
         }
     }
 }

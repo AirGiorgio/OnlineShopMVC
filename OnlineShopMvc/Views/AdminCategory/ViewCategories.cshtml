@@ -31,7 +31,7 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="text" asp-for="NewCategory.Name" placeholder="Nowa nazwa" />
                      <input type="hidden" asp-for="NewCategory.Id" value="@category.Id" />
-                 @*    <input type="hidden" asp-for="Categories" value="@Model.Categories" />*@
+                  @*   <input type="hidden" asp-for="Categories" value="@Model.Categories" />*@
                      <input type="hidden" asp-for="Count" value="@Model.Count" />
                          <span asp-validation-for="NewCategory.Name"></span>
                     <button type="submit">Edytuj</button>

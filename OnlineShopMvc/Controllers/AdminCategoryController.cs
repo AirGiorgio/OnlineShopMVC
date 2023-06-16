@@ -64,8 +64,8 @@ namespace OnlineShopMvc.Controllers
                 return View("ViewCategories", categories);
             }
             _logger.LogInformation("W UpdateCategory");
-            var category = _categoryService.UpdateCategory(categories.NewCategory.Id, categories.NewCategory.Name);
-            TempData["Message"] = category;
+            var status = _categoryService.UpdateCategory(categories.NewCategory.Id, categories.NewCategory.Name);
+            TempData["Message"] = status;
             
             return RedirectToAction("ViewCategories", "AdminCategory");
         }
@@ -73,8 +73,8 @@ namespace OnlineShopMvc.Controllers
         public IActionResult RemoveCategory(int id)  
         {
             _logger.LogInformation("W RemoveCategory");
-            var category = _categoryService.RemoveCategory(id);
-            if (category == false)
+            var status = _categoryService.RemoveCategory(id);
+            if (status == false)
             {
                 TempData["Message"] = "Kategoria już nie istnieje";
             }

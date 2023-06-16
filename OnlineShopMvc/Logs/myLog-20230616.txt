@@ -1558,3 +1558,297 @@ END" (0723d8ff)
 2023-06-16T09:57:41.0957368+02:00 0HMRE7TCL0HVC:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
 ""SELECT [c].[Id], [c].[Name]
 FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:33:18.9150022+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T11:33:18.9717369+02:00  [INF] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-16T11:33:18.9798050+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-16T11:33:19.1163055+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-16T11:33:19.4045293+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-16T11:33:19.4056966+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-16T11:33:19.4091385+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-16T11:33:19.4102714+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-16T11:33:19.4113031+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-16T11:33:20.0405728+02:00 0HMRE9ISA0VPC:00000001 [INF] W Index/Home (7621c325)
+2023-06-16T11:33:21.8345730+02:00 0HMRE9ISA0VPC:00000009 [INF] W ViewCategories (f9181131)
+2023-06-16T11:33:21.8891549+02:00 0HMRE9ISA0VPC:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:33:23.7897365+02:00 0HMRE9ISA0VPC:00000011 [INF] W ViewCategories (f9181131)
+2023-06-16T11:33:23.8299216+02:00 0HMRE9ISA0VPC:00000011 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:33:25.7547341+02:00 0HMRE9ISA0VPC:00000019 [INF] W ViewCategories (f9181131)
+2023-06-16T11:33:25.7577197+02:00 0HMRE9ISA0VPC:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:33:27.5677777+02:00 0HMRE9ISA0VPC:00000021 [INF] W Index/Home (7621c325)
+2023-06-16T11:33:28.5708082+02:00 0HMRE9ISA0VPC:00000029 [INF] W ViewClients (a9052d4d)
+2023-06-16T11:33:28.6242225+02:00 0HMRE9ISA0VPC:00000029 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name], [c].[Surname], CASE
+    WHEN [a].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [a].[Id], [a].[Street], [a].[BuildingNumber], [a].[FlatNumber], [a].[City], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]" (0723d8ff)
+2023-06-16T11:33:30.8398091+02:00 0HMRE9ISA0VPC:00000031 [INF] W ClientDetails (1ccd507d)
+2023-06-16T11:33:30.8912879+02:00 0HMRE9ISA0VPC:00000031 [INF] Executed DbCommand ("15"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [c].[Id], [c].[EmailAdress], [c].[Name], [c].[Surname], [c].[Telephone], [a].[Id], [a].[BuildingNumber], [a].[City], [a].[ClientId], [a].[FlatNumber], [a].[Street], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[Id] = @__id_0" (0723d8ff)
+2023-06-16T11:34:29.3220260+02:00 0HMRE9ISA0VPC:00000049 [INF] W UpdateClients (df34225a)
+2023-06-16T11:34:31.6017405+02:00 0HMRE9ISA0VPC:00000049 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [c].[Id], [c].[EmailAdress], [c].[Name], [c].[Surname], [c].[Telephone], [a].[Id], [a].[BuildingNumber], [a].[City], [a].[ClientId], [a].[FlatNumber], [a].[Street], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[Id] = @__id_0" (0723d8ff)
+2023-06-16T11:34:31.7077116+02:00 0HMRE9ISA0VPC:00000049 [INF] Executed DbCommand ("4"ms) [Parameters=["@p0='?' (DbType = Int32), @p5='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = Int32), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+DELETE FROM [Addresses]
+OUTPUT 1
+WHERE [Id] = @p0;
+UPDATE [Clients] SET [EmailAdress] = @p1, [Name] = @p2, [Surname] = @p3, [Telephone] = @p4
+OUTPUT 1
+WHERE [Id] = @p5;
+INSERT INTO [Addresses] ([BuildingNumber], [City], [ClientId], [FlatNumber], [Street], [ZipCode])
+OUTPUT INSERTED.[Id]
+VALUES (@p6, @p7, @p8, @p9, @p10, @p11);" (0723d8ff)
+2023-06-16T11:34:31.7325183+02:00 0HMRE9ISA0VPC:0000004B [INF] W ViewClients (a9052d4d)
+2023-06-16T11:34:31.7373282+02:00 0HMRE9ISA0VPC:0000004B [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name], [c].[Surname], CASE
+    WHEN [a].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [a].[Id], [a].[Street], [a].[BuildingNumber], [a].[FlatNumber], [a].[City], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]" (0723d8ff)
+2023-06-16T11:34:37.4256594+02:00 0HMRE9ISA0VPC:00000053 [INF] W ClientDetails (1ccd507d)
+2023-06-16T11:34:37.4287422+02:00 0HMRE9ISA0VPC:00000053 [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [c].[Id], [c].[EmailAdress], [c].[Name], [c].[Surname], [c].[Telephone], [a].[Id], [a].[BuildingNumber], [a].[City], [a].[ClientId], [a].[FlatNumber], [a].[Street], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[Id] = @__id_0" (0723d8ff)
+2023-06-16T11:34:42.5698487+02:00 0HMRE9ISA0VPC:0000005B [INF] W UpdateClients (df34225a)
+2023-06-16T11:34:44.2214021+02:00 0HMRE9ISA0VPC:0000005B [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [c].[Id], [c].[EmailAdress], [c].[Name], [c].[Surname], [c].[Telephone], [a].[Id], [a].[BuildingNumber], [a].[City], [a].[ClientId], [a].[FlatNumber], [a].[Street], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[Id] = @__id_0" (0723d8ff)
+2023-06-16T11:34:44.2287564+02:00 0HMRE9ISA0VPC:0000005B [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (DbType = Int32), @p2='?' (DbType = Int32), @p1='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+DELETE FROM [Addresses]
+OUTPUT 1
+WHERE [Id] = @p0;
+UPDATE [Clients] SET [EmailAdress] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+INSERT INTO [Addresses] ([BuildingNumber], [City], [ClientId], [FlatNumber], [Street], [ZipCode])
+OUTPUT INSERTED.[Id]
+VALUES (@p3, @p4, @p5, @p6, @p7, @p8);" (0723d8ff)
+2023-06-16T11:34:44.2349552+02:00 0HMRE9ISA0VPC:0000005D [INF] W ViewClients (a9052d4d)
+2023-06-16T11:34:44.2377735+02:00 0HMRE9ISA0VPC:0000005D [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name], [c].[Surname], CASE
+    WHEN [a].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [a].[Id], [a].[Street], [a].[BuildingNumber], [a].[FlatNumber], [a].[City], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]" (0723d8ff)
+2023-06-16T11:34:47.9925824+02:00 0HMRE9ISA0VPC:00000065 [INF] W ClientDetails (1ccd507d)
+2023-06-16T11:34:47.9967581+02:00 0HMRE9ISA0VPC:00000065 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [c].[Id], [c].[EmailAdress], [c].[Name], [c].[Surname], [c].[Telephone], [a].[Id], [a].[BuildingNumber], [a].[City], [a].[ClientId], [a].[FlatNumber], [a].[Street], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[Id] = @__id_0" (0723d8ff)
+2023-06-16T11:35:25.1543216+02:00 0HMRE9ISA0VPC:00000085 [INF] W UpdateClients (df34225a)
+2023-06-16T11:35:26.6608371+02:00 0HMRE9ISA0VPC:00000085 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [c].[Id], [c].[EmailAdress], [c].[Name], [c].[Surname], [c].[Telephone], [a].[Id], [a].[BuildingNumber], [a].[City], [a].[ClientId], [a].[FlatNumber], [a].[Street], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[Id] = @__id_0" (0723d8ff)
+2023-06-16T11:35:26.6664853+02:00 0HMRE9ISA0VPC:00000085 [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (DbType = Int32), @p3='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Int32), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+DELETE FROM [Addresses]
+OUTPUT 1
+WHERE [Id] = @p0;
+UPDATE [Clients] SET [EmailAdress] = @p1, [Telephone] = @p2
+OUTPUT 1
+WHERE [Id] = @p3;
+INSERT INTO [Addresses] ([BuildingNumber], [City], [ClientId], [FlatNumber], [Street], [ZipCode])
+OUTPUT INSERTED.[Id]
+VALUES (@p4, @p5, @p6, @p7, @p8, @p9);" (0723d8ff)
+2023-06-16T11:35:26.6725747+02:00 0HMRE9ISA0VPC:00000087 [INF] W ViewClients (a9052d4d)
+2023-06-16T11:35:26.6768719+02:00 0HMRE9ISA0VPC:00000087 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name], [c].[Surname], CASE
+    WHEN [a].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [a].[Id], [a].[Street], [a].[BuildingNumber], [a].[FlatNumber], [a].[City], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]" (0723d8ff)
+2023-06-16T11:35:32.6720985+02:00 0HMRE9ISA0VPC:0000008F [INF] W Index/Home (7621c325)
+2023-06-16T11:35:33.6807163+02:00 0HMRE9ISA0VPC:00000097 [INF] W ViewProducts (1e82e5bb)
+2023-06-16T11:35:33.6851231+02:00 0HMRE9ISA0VPC:00000097 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:35:33.6904978+02:00 0HMRE9ISA0VPC:00000097 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-16T11:35:33.7384321+02:00 0HMRE9ISA0VPC:00000097 [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CAST(0 AS bit), [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-16T11:35:39.6602925+02:00 0HMRE9ISA0VPC:0000009F [INF] W ViewProducts (1e82e5bb)
+2023-06-16T11:35:39.6627422+02:00 0HMRE9ISA0VPC:0000009F [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:35:39.6649449+02:00 0HMRE9ISA0VPC:0000009F [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-16T11:35:39.6960599+02:00 0HMRE9ISA0VPC:0000009F [INF] Executed DbCommand ("10"ms) [Parameters=["@__min_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__max_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CAST(0 AS bit), [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[Price] > @__min_0 AND [p].[Price] < @__max_1
+ORDER BY [p].[Price], [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-16T11:35:43.6020937+02:00 0HMRE9ISA0VPC:000000A7 [INF] W ViewProducts (1e82e5bb)
+2023-06-16T11:35:43.6045242+02:00 0HMRE9ISA0VPC:000000A7 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:35:43.6063090+02:00 0HMRE9ISA0VPC:000000A7 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-16T11:35:43.6110534+02:00 0HMRE9ISA0VPC:000000A7 [INF] Executed DbCommand ("2"ms) [Parameters=["@__min_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__max_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CAST(0 AS bit), [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[Price] > @__min_0 AND [p].[Price] < @__max_1
+ORDER BY [p].[Price], [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-16T11:35:44.9845068+02:00 0HMRE9ISA0VPC:000000AF [INF] W ViewProducts (1e82e5bb)
+2023-06-16T11:35:44.9867406+02:00 0HMRE9ISA0VPC:000000AF [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:35:44.9884974+02:00 0HMRE9ISA0VPC:000000AF [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-16T11:35:44.9920001+02:00 0HMRE9ISA0VPC:000000AF [INF] Executed DbCommand ("1"ms) [Parameters=["@__min_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__max_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CAST(0 AS bit), [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[Price] > @__min_0 AND [p].[Price] < @__max_1
+ORDER BY [p].[Price], [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-16T11:35:45.6170018+02:00 0HMRE9ISA0VPC:000000B7 [INF] W ViewProducts (1e82e5bb)
+2023-06-16T11:35:45.6193617+02:00 0HMRE9ISA0VPC:000000B7 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:35:45.6211765+02:00 0HMRE9ISA0VPC:000000B7 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-16T11:35:45.6248645+02:00 0HMRE9ISA0VPC:000000B7 [INF] Executed DbCommand ("1"ms) [Parameters=["@__min_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__max_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CAST(0 AS bit), [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[Price] > @__min_0 AND [p].[Price] < @__max_1
+ORDER BY [p].[Price], [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-16T11:35:46.7854129+02:00 0HMRE9ISA0VPC:000000BF [INF] W ViewProducts (1e82e5bb)
+2023-06-16T11:35:46.7876101+02:00 0HMRE9ISA0VPC:000000BF [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:35:46.7895165+02:00 0HMRE9ISA0VPC:000000BF [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-16T11:35:46.7930685+02:00 0HMRE9ISA0VPC:000000BF [INF] Executed DbCommand ("1"ms) [Parameters=["@__min_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__max_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CAST(0 AS bit), [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[Price] > @__min_0 AND [p].[Price] < @__max_1
+ORDER BY [p].[Price], [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-16T11:35:49.7600777+02:00 0HMRE9ISA0VPC:000000C7 [INF] W ViewProducts (1e82e5bb)
+2023-06-16T11:35:49.7621480+02:00 0HMRE9ISA0VPC:000000C7 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:35:49.7639824+02:00 0HMRE9ISA0VPC:000000C7 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-16T11:35:49.7675220+02:00 0HMRE9ISA0VPC:000000C7 [INF] Executed DbCommand ("1"ms) [Parameters=["@__min_0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @__max_1='?' (Precision = 18) (Scale = 2) (DbType = Decimal)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CAST(0 AS bit), [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[Price] > @__min_0 AND [p].[Price] < @__max_1
+ORDER BY [p].[Price], [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-16T11:35:50.7860405+02:00 0HMRE9ISA0VPC:000000CF [INF] W ProductDetails (41018017)
+2023-06-16T11:35:50.8108355+02:00 0HMRE9ISA0VPC:000000CF [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[CategoryId], [t].[Name], [t].[Price], [t].[Quantity], [t].[Id0], [t0].[ProductsId], [t0].[TagsId], [t0].[Id], [t0].[Name], [t].[Name0]
+FROM (
+    SELECT TOP(2) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Quantity], [c].[Id] AS [Id0], [c].[Name] AS [Name0]
+    FROM [Products] AS [p]
+    INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+    WHERE [p].[Id] = @__id_0
+) AS [t]
+LEFT JOIN (
+    SELECT [p0].[ProductsId], [p0].[TagsId], [t1].[Id], [t1].[Name]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t1] ON [p0].[TagsId] = [t1].[Id]
+) AS [t0] ON [t].[Id] = [t0].[ProductsId]
+ORDER BY [t].[Id], [t].[Id0], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-16T11:35:50.8529978+02:00 0HMRE9ISA0VPC:000000CF [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-16T11:35:50.8546782+02:00 0HMRE9ISA0VPC:000000CF [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)

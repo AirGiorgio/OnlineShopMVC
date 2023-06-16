@@ -40,6 +40,10 @@ namespace OnlineShopMvc.Controllers
         [HttpPost]
         public IActionResult UpdateProduct(ProductDetailsDTO product)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("ProductDetails", product);
+            }
             _logger.LogInformation("W UpdateProduct");
             var status = _productService.UpdateProduct(product);
        
@@ -51,11 +55,15 @@ namespace OnlineShopMvc.Controllers
         {
             _logger.LogInformation("W AddProduct typu Get");
             var product = _productService.PrepareModel();
-           return View(product);
+            return View(product);
         }
         [HttpPost]
         public IActionResult AddProduct(ProductDetailsDTO product)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("ProductDetails", product);
+            }
             _logger.LogInformation("W AddProduct typu Post");
             var status = _productService.AddProduct(product);
             

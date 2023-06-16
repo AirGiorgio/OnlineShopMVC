@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using OnlineShopMvc.App;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.ClientDTOs;
+using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.App.Services;
 using OnlineShopMvc.Inf;
@@ -38,11 +39,11 @@ namespace OnlineShopMvc
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
             builder.Services.AddMvc();
-            //builder.Services.AddControllersWithViews().AddFluentValidation();
+           
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddTransient<IValidator<CategoryDTO>, CategoryValidation>();
             builder.Services.AddTransient<IValidator<ClientDetailsDTO>, ClientValidation>();
-           
+            builder.Services.AddTransient<IValidator<ProductDetailsDTO>, ProductValidation>();
 
             var app = builder.Build();
 
