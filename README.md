@@ -2,6 +2,7 @@
 
 Żeby zrozumieć istote problemu należy porównać klasę Product i ProductDetailsDTO.
 
+var x = pokaż_textpoprawnie   [...]
 
  public class ProductDetailsDTO : IMapFrom<Product>
     {
