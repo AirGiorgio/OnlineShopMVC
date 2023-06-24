@@ -58,7 +58,7 @@ Następnie przejdźmy do widoku ProductDetailsDTO w folderze AdminProduct, inter
         </div>
         <button type="submit">Zatwierdź</button>
 
-Wysyłam z widoku value= Category.Id oraz value= tag.Id, co ma swoje odzwierciedlenie w ProductDetailsDTO CategoryId i List<int> Tag,
+Wysyłam z widoku value= Category.Id oraz value= tag.Id, co ma swoje odzwierciedlenie w ProductDetailsDTO CategoryId i List<int> TagIds,
 ponieważ value=category i value=tag okazały się nullem
 
 Zobaczmy co mamy kontrolerze UpdateProducts AdminProductController
@@ -67,7 +67,7 @@ Zobaczmy co mamy kontrolerze UpdateProducts AdminProductController
         [ValidateAntiForgeryToken]
         public IActionResult UpdateProduct( ProductDetailsDTO product)
         {
-            ModelState.Remove("Tag");
+            ModelState.Remove("TagIds");
             ModelState.Remove("Category");
             ModelState.Remove("Tags");
             ModelState.Remove("Categories");
