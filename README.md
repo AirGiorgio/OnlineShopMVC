@@ -2,9 +2,22 @@
 
 Żeby zrozumieć istote problemu należy porównać klasę Product i ProductDetailsDTO.
 
-var x = pokaż_textpoprawnie   [...]
 
- public class ProductDetailsDTO : IMapFrom<Product>
+ 
+      public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+        public int? CategoryId { get; set; }
+        public bool IsActive { get; set; }
+        public virtual Category? Category { get; set; }                -kategoria do której należy produkt
+        public ICollection<OrderProduct> OrderProducts { get; set; }
+        public ICollection<Tag> Tags { get; set; }                               -tagi które opisują produkt
+    }
+    
+public class ProductDetailsDTO : IMapFrom<Product>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -19,19 +32,6 @@ var x = pokaż_textpoprawnie   [...]
 
         [...]
      }
-      public class Product
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Quantity { get; set; }
-        public int? CategoryId { get; set; }
-        public bool IsActive { get; set; }
-        public virtual Category? Category { get; set; }                -kategoria do której należy produkt
-        public ICollection<OrderProduct> OrderProducts { get; set; }
-        public ICollection<Tag> Tags { get; set; }                               -tagi które opisują produkt
-    }
-
 Następnie przejdźmy do widoku ProductDetailsDTO w folderze AdminProduct, interesują nas poniższe części
 
 @using OnlineShopMvc.App.DTOs.ProductDTOs
