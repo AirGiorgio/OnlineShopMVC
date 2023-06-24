@@ -27,18 +27,12 @@
                 <td>@category.Name</td>
                 <td></td>
                <td>
-                    <form asp-action="UpdateCategory">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <input type="text" asp-for="NewCategory.Name" placeholder="Nowa nazwa" />
-                     <input type="hidden" asp-for="NewCategory.Id" value="@category.Id" />
-                  @*   <input type="hidden" asp-for="Categories" value="@Model.Categories" />*@
-                     <input type="hidden" asp-for="Count" value="@Model.Count" />
-                         <span asp-validation-for="NewCategory.Name"></span>
+                   <form method="get" action="@Url.Action("UpdateCategory", "AdminCategory", new { id = category.Id })">
                     <button type="submit">Edytuj</button>
                     </form>
                </td>
                 <td>
-                        <form method="post" action="@Url.Action("RemoveCategory", "AdminCategory", new { id = category.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć tą kategorię i jej produkty?')">
+                        <form method="post" action="@Url.Action("RemoveCategory", "AdminCategory", new { id = category.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć tą kategorię?')">
                         <button type="submit">Usuń</button>
                     </form>
                 </td>
@@ -75,19 +69,13 @@
             </form>
     </table>
      
-       
 </div>
     <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
         <button type="submit">Powrót do listy</button>
     </form>
 
 <h2>Dodaj kategorię</h2>
-    <form asp-action="AddCategory">
-   <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="text" asp-for="NewCategory.Name" placeholder="Nazwa" />
-        @*   <input type="hidden" asp-for="Categories" value="@Model.Categories" /> *@
-    <input type="hidden" asp-for="Count" value="@Model.Count" />  
-       <span asp-validation-for="NewCategory.Name"></span>
+ <form method="get" action="@Url.Action("AddCategory", "AdminCategory")">
     <button type="submit">Dodaj</button>
 </form>
 

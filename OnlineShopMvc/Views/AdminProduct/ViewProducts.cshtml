@@ -34,7 +34,7 @@
                 <tr>
                     <td>@((index + 1) + (10 * (Model.PageNum -1))) </td>
                     <td>@product.Name</td>
-                    <td>@product.Category.Name</td>
+                    <td>@(product.Category.Name != null ? product.Category.Name : "brak")</td>
                     <td>@product.Price</td>
                     <td>@product.Quantity @if (product.Quantity < 5)
                         {
@@ -99,22 +99,22 @@
     <button type="submit">Filtruj</button>
 </form>
    <h2>Wyszukaj po kategorii</h2>
-    <form method="get" action="@Url.Action("ViewProducts", "ClientShop")">
+    <form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
         <select id="searchCategory" name="searchCategory">
-           @* @foreach (var category in Model.Categories)
+            @foreach (var category in Model.Categories)
             {
-                <option value=@category selected="@(Model.SearchCategory != null && Model.SearchCategory.Id== category.Id  ? "selected" : null)">@category.Name</option>
-            }*@
+                <option value=@category.Id selected="@(Model.SearchCategory != null && Model.SearchCategory.Id== category.Id  ? "selected" : null)">@category.Name</option>
+            }
         </select>
         <button type="submit">Sortuj</button>
     </form>
         <h2>Wyszukaj po tagach (zaznaczając)</h2>
-    <form method="get" action="@Url.Action("ViewProducts", "ClientShop")">
+    <form method="get" action="@Url.Action("ViewProducts", "AdminProduct")">
         <select id="searchTags" name="searchTags" multiple>
-           @* @foreach (var tag in Model.Tags)
+            @foreach (var tag in Model.Tags)
             {
-                <option value="@tag" selected="@(Model.SearchTags != null && Model.SearchTags.Any(t => t.Id == tag.Id) ? "selected" : null)">@tag.Name</option>
-            }*@
+                <option value="@tag.Id" selected="@(Model.SearchTags != null && Model.SearchTags.Any(t => t.Id == tag.Id) ? "selected" : null)">@tag.Name</option>
+            }
         </select>
         <button type="submit">Sortuj</button>
     </form>

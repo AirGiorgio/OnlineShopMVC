@@ -22,11 +22,7 @@ namespace OnlineShopMvc.Controllers
         {
             _logger.LogInformation("W ViewClients");
             var Clients = _clientService.ShowAllClients(pageSize,pageNo,street,buildingNumber,city,surname);
-            if (Clients != null)
-            {
-                return View(Clients);
-            }
-            else return NotFound();
+             return View(Clients);
         }
 
         [HttpPost]
@@ -65,7 +61,6 @@ namespace OnlineShopMvc.Controllers
             {
                 TempData["Message"] = "Usunięto klienta i jego adres";
             }
-            TempData["Message"] = status;
             return RedirectToAction("ViewClients", "AdminClient");
         }
     }

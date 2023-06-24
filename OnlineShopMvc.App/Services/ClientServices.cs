@@ -1,23 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.IdentityModel.Tokens;
-using OnlineShopMvc.App.DTOs.AdressDTOs;
-using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.ClientDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.Inf.Interfaces;
-using OnlineShopMvc.Inf.Repo;
 using OnlineShopMVC.Domain.Model;
-using SteamLibraryMVC.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Sockets;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.Services
 {

@@ -2,12 +2,7 @@
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.Mapping;
-using OnlineShopMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OnlineShopMvc.Domain.Model;
 
 namespace OnlineShopMvc.App.DTOs.ProductDTOs
 {

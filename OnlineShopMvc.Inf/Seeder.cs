@@ -1,12 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using OnlineShopMvc.Domain.Model;
 using OnlineShopMVC.Domain.Model;
 using OnlineShopMVC.Infrastructure;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 
 namespace OnlineShopMvc.Inf
 {
@@ -26,22 +22,28 @@ namespace OnlineShopMvc.Inf
                 {
                     return;
                 }
-
-                var categories = GetData();
-                _context.Categories.AddRange(categories);
-                _context.SaveChanges();
-              
+                else
+                {
+                    GetClients();
+                    _context.Clients.AddRange(Clients);
+                    GetCategories();
+                    _context.Categories.AddRange(Categories);
+                    _context.SaveChanges();
+                }
             }
         }
 
-        private IEnumerable<Category> GetData()
+        private List<Client> Clients;
+        private List<Category> Categories;
+        private List<Client> GetClients()
         {
-            var clients = Enumerable.Range(1, 50).Select(_ => new Client
+            Clients = Enumerable.Range(1, 50).Select(x => new Client
             {
                 Name = GenerateRandomName(),
                 Surname = GenerateRandomSurname(),
                 EmailAdress = GenerateRandomName() + "@example.com",
                 Telephone = GenerateRandomNumber(10),
+                IsActive = true,
                 Address = new Address
                 {
                     Street = GenerateRandomStreet(),
@@ -51,32 +53,41 @@ namespace OnlineShopMvc.Inf
                     ZipCode = GenerateRandomNumber(5)
                 },
             }).ToList();
-
-            var categories = Enumerable.Range(1, 50).Select(x => new Category
+            return Clients;
+        }
+        private List<Category> GetCategories()
+        {
+            Categories = Enumerable.Range(1, 50).Select(x => new Category
             {
                 Name = GenerateRandomCategory(),
                 Products = Enumerable.Range(1, 10).Select(x => new Product
-                {
+                { 
                     Name = GenerateRandomProduct(),
                     Price = GenerateRandomDecimal(),
                     Quantity = GenerateRandomInt(1, 100),
-                    Tags = Enumerable.Range(1, 3).Select(x => new Tag 
-                        {
-                            Name = GenerateRandomTag()
-                    }).ToList(),
-                    Orders = Enumerable.Range(1, 3).Select(x => new Order
+                    IsActive = true,
+                    Tags = Enumerable.Range(1, 3).Select(x => new Tag
                     {
+                        Name = GenerateRandomTag()
+                    }).ToList(),
+                    OrderProducts = Enumerable.Range(1,10).Select(x=> new OrderProduct
+                    {
+                        Amount = GenerateRandomInt(1,5),
+                        Order = new Order()
+                        {
+                            OrderId = GenerateRandomString(),
                             OrderDate = GenerateRandomDateTime(),
                             TotalCost = GenerateRandomDecimal(),
-                            Client = clients[GenerateRandomInt(1, clients.Count() - 1)],
-                    }).ToList()
-                }).ToList()
+                            Client = Clients[GenerateRandomInt(1, Clients.Count() - 1)]
+                        }
+                    }).ToList(),
+                }).ToList(),
             }).ToList();
-            return categories;
+            return Categories;
         }
-
-        private DateTime GenerateRandomDateTime()
-        {
+      
+          private DateTime GenerateRandomDateTime()
+          {
             var startDate = new DateTime(2020, 1, 1);
             var endDate = DateTime.Now;
             var random = new Random();
@@ -164,7 +175,6 @@ namespace OnlineShopMvc.Inf
         }
         private string GenerateRandomSurname()
         {
-           
             const string suffix = "abcdefghijklmnopqrstuvwxyz";
             var random = new Random();
 
@@ -175,7 +185,6 @@ namespace OnlineShopMvc.Inf
                 .ToArray());
 
             return surname;
-    
         }
         private string GenerateRandomNumber(int length)
         {
@@ -195,6 +204,16 @@ namespace OnlineShopMvc.Inf
         {
             var random = new Random();
             return random.Next(minValue, maxValue + 1);
+        }
+
+        private string GenerateRandomString()
+        {
+            const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            var random = new Random();
+            int length = random.Next(5,5);
+            return new string(Enumerable.Range(0, length)
+                .Select(_ => suffix[random.Next(suffix.Length)])
+                .ToArray());
         }
     }
 

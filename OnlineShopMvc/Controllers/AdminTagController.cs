@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.App.Services;
 using OnlineShopMVC.Domain.Model;
@@ -23,11 +25,28 @@ namespace OnlineShopMvc.Controllers
              return View(tags);
             
         }
-        [HttpPost]
-        public IActionResult AddTag(string? name)
+        [HttpGet]
+        public IActionResult AddTag()
         {
+            var tag = _tagService.PrepareModel();
+            return View("NewTag", tag);
+        }
+        [HttpGet]
+        public IActionResult UpdateTag(int id)
+        {
+            var tag = _tagService.GetTagById(id);
+            return View("TagDetails", tag);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddTag(TagDTO newTag)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("NewTag", newTag);
+            }
             _logger.LogInformation("W AddTag");
-            var tag = _tagService.AddTag(name);
+            var tag = _tagService.AddTag(newTag.Name);
             if (tag.IsNullOrEmpty())
             {
                 TempData["Message"] = "Nazwa jest pusta";
@@ -38,11 +57,16 @@ namespace OnlineShopMvc.Controllers
             }
             return RedirectToAction("ViewTags", "AdminTag");
         }
-        [HttpGet]
-        public IActionResult UpdateTag(int id, string? name)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateTag(TagDTO newTag)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("TagDetails", newTag);
+            }
             _logger.LogInformation("W UpdateTag");
-            var status = _tagService.UpdateTag(id, name);
+            var status = _tagService.UpdateTag(newTag.Id, newTag.Name);
             TempData["Message"] = status;
             return RedirectToAction("ViewTags", "AdminTag");
         }

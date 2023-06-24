@@ -27,8 +27,7 @@
                     <td>@tag.Name</td>
                     <td></td>
                     <td>
-                        <form method="get" action="@Url.Action("UpdateTag", "AdminTag", new { id = tag.Id, name = tag.Name})">
-                            <input type="text" name="name" placeholder="Nowa nazwa" />
+                        <form method="get" action="@Url.Action("UpdateTag", "AdminTag", new { id = tag.Id})">
                             <button type="submit">Edytuj</button>
                         </form>
                     </td>
@@ -77,8 +76,7 @@
     </form>
 
     <h2>Dodaj tag</h2>
-    <form method="post" action="@Url.Action("AddTag", "AdminTag")">
-        <input type="text" name="name" placeholder="Nazwa" />
+    <form method="get" action="@Url.Action("AddTag", "AdminTag")">
         <button type="submit">Dodaj</button>
     </form>
 

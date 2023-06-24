@@ -1,4 +1,5 @@
-﻿using OnlineShopMVC.Domain.Model;
+﻿using OnlineShopMvc.Domain.Model;
+using OnlineShopMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace OnlineShopMvc.Inf.Interfaces
         IQueryable GetProductsFromValue(decimal? min, decimal? max);
         IQueryable GetAllProducts();
         Product GetProductById(int id);
-        IQueryable GetProductsFromTags(List<Tag> tags);
+        IQueryable GetProductsFromTags(List<int> tags);
         IQueryable GetProductByName(string name);
         IQueryable GetProductsByCategory(int id);
         string UpdateProduct(Product product);

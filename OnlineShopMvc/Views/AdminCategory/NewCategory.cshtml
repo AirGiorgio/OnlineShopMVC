@@ -1,0 +1,35 @@
+﻿@using OnlineShopMvc.App.DTOs.CategoryDTOs
+@model CategoryDTO
+
+@{
+    ViewData["Title"] = "CategoryDetails";
+}
+
+<h2>Dodawanie kategorii</h2>
+
+@if (Model != null)
+{
+    @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
+    <form asp-action="AddCategory">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+            <label for="name">Nazwa:</label>
+            <input type="text" id="name" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    
+        <button type="submit">Zatwierdź</button>
+    </form>
+    
+    <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
+        <button type="submit">Powrót do listy</button>
+    </form>
+}
+else
+{
+    <p>Nie znaleziono danych kategorii</p>
+
+}

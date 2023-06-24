@@ -1,23 +1,13 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.IdentityModel.Tokens;
-using OnlineShopMvc.App.DTOs.AdressDTOs;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
-using OnlineShopMvc.App.DTOs.ClientDTOs;
-using OnlineShopMvc.App.DTOs.OrderDTOs;
 using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.Interfaces;
+using OnlineShopMvc.Domain.Model;
 using OnlineShopMvc.Inf.Interfaces;
-using OnlineShopMvc.Inf.Repo;
 using OnlineShopMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.Services
 {
@@ -56,11 +46,12 @@ namespace OnlineShopMvc.App.Services
                     .ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
                 var tags = _tagRepo.GetAllTags(null).ProjectTo<TagDTO>(_mapper.ConfigurationProvider).ToList();
                 productDTO.Categories = categories;
+                productDTO.ProductCategory = (product.CategoryId.HasValue==true ? product.CategoryId.Value : 0);
+                productDTO.ProductTags = product.Tags.Select(x=>x.Id).ToList();
                 productDTO.Tags = tags;
 
                 return productDTO;
             }
-            
         }
         public bool RemoveProduct(int id)
         {
@@ -68,11 +59,10 @@ namespace OnlineShopMvc.App.Services
             {
                 return false;
             }
-
             return _productRepo.RemoveProduct(id);
         }
 
-        public ProductsForListDTO GetAllProducts(int? pageSize, int? pageNo, CategoryDTO searchCategory, List<TagDTO> searchTags, decimal? min, decimal? max, string? name)
+        public ProductsForListDTO GetAllProducts(int? pageSize, int? pageNo, int? searchCategory, List<int> searchTags, decimal? min, decimal? max, string? name)
         {
             ProductsForListDTO productsForListDTO = new ProductsForListDTO();
             var products = new List<ProductDTO>();
@@ -88,17 +78,17 @@ namespace OnlineShopMvc.App.Services
                 pageNo = 1;
                 pageSize = 10;
             }
-            if (searchCategory.Name.IsNullOrEmpty() && !min.HasValue && !max.HasValue && name.IsNullOrEmpty() && searchTags.IsNullOrEmpty())
+            if (searchCategory==null && !min.HasValue && !max.HasValue && name.IsNullOrEmpty() && searchTags.IsNullOrEmpty())
             {
                 products = _productRepo.GetAllProducts()
                .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
 
             }
-            else if (!searchCategory.Name.IsNullOrEmpty() && !min.HasValue && !max.HasValue && name.IsNullOrEmpty() && searchTags.IsNullOrEmpty())
+            else if (searchCategory.HasValue && name.IsNullOrEmpty() && searchTags.IsNullOrEmpty())
             {
-                products = _productRepo.GetProductsByCategory(searchCategory.Id)
+                products = _productRepo.GetProductsByCategory(searchCategory.Value)
                .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
-                productsForListDTO.SearchCategory = searchCategory;  
+                productsForListDTO.SearchCategory = _mapper.Map<CategoryDTO>(_categoryRepo.GetCategoryById(searchCategory));  
             }
             else if (min.HasValue || max.HasValue)
             {
@@ -112,14 +102,15 @@ namespace OnlineShopMvc.App.Services
             }
             else if (searchTags.Count > 0)
             {
-                List<Tag> sTags = new List<Tag>();
+                products = _productRepo.GetProductsFromTags(searchTags)
+                   .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
+
+                List<TagDTO> sTagsDto = new List<TagDTO>();
                 foreach (var item in searchTags)
                 {
-                    sTags.Add(_mapper.Map<Tag>(item));
+                    sTagsDto.Add(_mapper.Map<TagDTO>(_tagRepo.GetTagById(item)));
                 }
-                products = _productRepo.GetProductsFromTags(sTags)
-                   .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
-                productsForListDTO.SearchTags = searchTags;
+                productsForListDTO.SearchTags = sTagsDto;
             }
             var productsToShow = products.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
 
@@ -153,7 +144,18 @@ namespace OnlineShopMvc.App.Services
             {
                 return "Istnieje już taki produkt";
             }
-            else return _productRepo.UpdateProduct(_mapper.Map<Product>(product));
+            else
+            {
+                product.Tag = new List<TagDTO>();
+                product.Category = _mapper.Map<CategoryDTO>(_categoryRepo.GetCategoryById(product.ProductCategory));
+                foreach (var item in product.ProductTags)
+                {
+                    product.Tag.Add(_mapper.Map<TagDTO>(_tagRepo.GetTagById(item)));
+                }
+                var p = _mapper.Map<Product>(product);
+                p.IsActive = true;
+                return _productRepo.UpdateProduct(p);
+            }
         }
         public string AddProduct(ProductDetailsDTO product)
         {
@@ -169,7 +171,17 @@ namespace OnlineShopMvc.App.Services
             {
                 return "Istnieje już taki produkt";
             }
-            else return _productRepo.AddProduct(_mapper.Map<Product>(product));
+            else
+            {
+                product.Tag = new List<TagDTO>();
+                product.Category = _mapper.Map<CategoryDTO>(_categoryRepo.GetCategoryById(product.ProductCategory));
+                foreach (var item in product.ProductTags)
+                {
+                    product.Tag.Add(_mapper.Map<TagDTO>(_tagRepo.GetTagById(item)));
+                }
+                return _productRepo.AddProduct(_mapper.Map<Product>(product));
+            }
+               
         }
     }
 }

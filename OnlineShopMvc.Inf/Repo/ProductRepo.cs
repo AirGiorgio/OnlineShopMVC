@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.IdentityModel.Tokens;
+using OnlineShopMvc.Domain.Model;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
 using OnlineShopMVC.Infrastructure;
@@ -22,25 +23,30 @@ namespace OnlineShopMvc.Inf.Repo
         }
         public IQueryable GetAllProducts() 
         {
-            return context.Products.Include(x=>x.Tags).Include(x=>x.Category);
+            return context.Products.Where(x=>x.IsActive==true).Include(x=>x.Tags).Include(x=>x.Category);
         }
 
         public Product GetProductById(int id)
         {
             return context.Products.Include(x => x.Tags).Include(x => x.Category).SingleOrDefault(i => i.Id == id);
         }
-        public IQueryable GetProductsFromTags(List<Tag> tags) 
+        public IQueryable GetProductsFromTags(List<int> tags) 
         {
-            return context.Products.Where(p => p.Tags==tags).OrderBy(p => p.Price);
+            var col = context.Products.Where(p => p.IsActive == true);
+            foreach (var item in tags)
+            {
+                col = col.Where(p => p.Tags.Any(t => t.Id == item));
+            }
+            return col.OrderBy(p => p.Price); ;
         }
         public IQueryable GetProductByName(string name)
         {
-            return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(i => i.Name.StartsWith(name)).OrderBy(x => x.Price);
+            return context.Products.Include(x => x.Tags ).Include(x => x.Category).Where(i => i.Name.StartsWith(name) && i.IsActive == true).OrderBy(x => x.Price);
             
         }
         public IQueryable GetProductsByCategory(int id)
         {
-            return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(x => x.CategoryId == id).OrderBy(x => x.Price);
+            return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(x => x.CategoryId == id && x.IsActive == true).OrderBy(x => x.Price);
         }
         public bool IsProductNameTaken(string? name)
         {
@@ -63,6 +69,7 @@ namespace OnlineShopMvc.Inf.Repo
             var productFound = GetProductById(product.Id);
             if (productFound != null)
             {
+                productFound.IsActive = true;
                 productFound.Name = product.Name;
                 productFound.Price = product.Price;
                 productFound.Quantity = product.Quantity;
@@ -80,7 +87,8 @@ namespace OnlineShopMvc.Inf.Repo
             var product = GetProductById(id);
             if (product != null)
             {
-                context.Remove(product);
+                product.IsActive = false;
+                context.Update(product);
                 context.SaveChanges();
                 return true;
             }
@@ -89,6 +97,7 @@ namespace OnlineShopMvc.Inf.Repo
 
         public string AddProduct(Product product)
         {
+          
             context.Add(product);
             context.SaveChanges();
             return "Dodano produkt";        
@@ -104,7 +113,7 @@ namespace OnlineShopMvc.Inf.Repo
             {
                 min = 0;
             }
-            return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(x => x.Price > min && x.Price < max).OrderBy(x => x.Price);
+            return context.Products.Include(x => x.Tags).Include(x => x.Category).Where(x => x.Price > min && x.Price < max && x.IsActive==true).OrderBy(x => x.Price);
         }
     }
 }

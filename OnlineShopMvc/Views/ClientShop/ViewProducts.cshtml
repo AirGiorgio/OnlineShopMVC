@@ -47,7 +47,6 @@
                     <td>@string.Join(", ", product.Tags.Select(tag => tag.Name))</td>
                     <td>
                         <form method="get" action="@Url.Action("AddToCart", "ClientShop")">
-                            <div asp-validation-summary="ModelOnly"></div>
                             <button type="submit">Dodaj do koszyka</button>
                         </form>
                     </td>

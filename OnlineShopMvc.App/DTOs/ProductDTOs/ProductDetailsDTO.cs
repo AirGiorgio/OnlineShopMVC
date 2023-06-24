@@ -1,27 +1,26 @@
-﻿using System;
-using OnlineShopMvc.App.Mapping;
-using OnlineShopMVC.Domain.Model;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OnlineShopMvc.App.Mapping;
 using AutoMapper;
 using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
+using System.ComponentModel.DataAnnotations;
+using OnlineShopMvc.Domain.Model;
 using FluentValidation;
+using System.Text.RegularExpressions;
 
 namespace OnlineShopMvc.App.DTOs.ProductDTOs
 {
     public class ProductDetailsDTO : IMapFrom<Product>
     {
         public int Id { get; set; }
-
         public string Name { get; set; }
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
         public int Quantity { get; set; }
-        public CategoryDTO ProductCategory { get; set; }
+        public int ProductCategory { get; set; }
+        public CategoryDTO Category { get; set; }
         public List<CategoryDTO> Categories { get; set; }
-        public List<TagDTO> ProductTags { get; set; }
+        public List<int> ProductTags { get; set; }
+        public List<TagDTO> Tag { get; set; }
         public List<TagDTO> Tags { get; set; }
 
         public void Mapping(Profile profile)
@@ -30,28 +29,29 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
                 .ForMember(x => x.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(x => x.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(x => x.Price, opt => opt.MapFrom(s => s.Price))
-                .ForMember(x => x.ProductTags, opt => opt.MapFrom(s => s.Tags))
                 .ForMember(x => x.Quantity, opt => opt.MapFrom(s => s.Quantity))
-                .ForMember(x => x.ProductCategory, opt => opt.MapFrom(s => s.Category))
+                .ForMember(x => x.Tag, opt => opt.MapFrom(s => s.Tags))
+                .ForMember(x => x.Category, opt => opt.MapFrom(s => s.Category))
+                .ForMember(x => x.Categories, opt => opt.Ignore())
+                .ForMember(x => x.Tags, opt => opt.Ignore())
+                .ForMember(x => x.ProductTags, opt => opt.Ignore())
+                .ForMember(x => x.ProductCategory, opt => opt.Ignore())
                 .ReverseMap()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
-                .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.ProductTags))
                 .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
-                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.ProductCategory));
+                .ForMember(x => x.Tags, opt => opt.MapFrom(s => s.Tag))
+                .ForMember(x => x.Category, opt => opt.MapFrom(s => s.Category))
+                .ForMember(x => x.IsActive, opt => opt.Ignore());
         }
-      
     }
     public class ProductValidation : AbstractValidator<ProductDetailsDTO>
     {
         public ProductValidation()
         {
             RuleFor(x => x.Name).MaximumLength(255).MinimumLength(1);
-            RuleFor(x => x.Price).ScalePrecision(18,2);
-            RuleFor(x => x.ProductTags).NotNull();
-            RuleFor(x => x.ProductCategory).NotNull();
-            RuleFor(x => x.Quantity).Must(quantity => quantity % 1 == 0);
+            RuleFor(x => x.Quantity).Must(quantity => quantity >= 0);
         }
     }
 }

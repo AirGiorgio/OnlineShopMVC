@@ -1,18 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using OnlineShopMvc.Domain.Model;
 using OnlineShopMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Emit;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShopMVC.Infrastructure
 {
-        public class Context : IdentityDbContext
+    public class Context : IdentityDbContext
         {
             public DbSet<Address> Addresses { get; set; }
             public DbSet<Category> Categories { get; set; }
@@ -20,8 +16,7 @@ namespace OnlineShopMVC.Infrastructure
             public DbSet<Order> Orders { get; set; }
             public DbSet<Product> Products { get; set; }
             public DbSet<Tag> Tags { get; set; }
-  
-  
+            public DbSet<OrderProduct> OrderProduct { get; set; }
             public Context(DbContextOptions options) : base(options)
             {
 
@@ -30,30 +25,42 @@ namespace OnlineShopMVC.Infrastructure
             protected override void OnModelCreating(ModelBuilder builder)
             {
                 base.OnModelCreating(builder);
+        
+            builder.Entity<Category>()
+                .HasMany(c => c.Products)
+                .WithOne(p => p.Category)
+                 .HasForeignKey(p => p.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-                 builder.Entity<Product>()
-                .Property(p => p.Price)
-                .HasPrecision(18, 2);
+            builder.Entity<Product>()
+                    .Property(p => p.Price)
+                    .HasPrecision(18, 2);
 
                 builder.Entity<Order>()
-                  .Property(p => p.TotalCost)
-                  .HasPrecision(18, 2);
-
-                 builder.Entity<Product>()
-                 .HasMany(e => e.Tags)
-                 .WithMany(e => e.Products);
-
-                builder.Entity<Tag>()
-                 .HasMany(e => e.Products)
-                 .WithMany(e => e.Tags);
+                    .Property(p => p.TotalCost)
+                    .HasPrecision(18, 2);
 
                 builder.Entity<Product>()
-                .HasMany(e => e.Orders)
-                .WithMany(e => e.Products);
+                    .HasMany(e => e.Tags)
+                    .WithMany(e => e.Products);
 
-                builder.Entity<Order>()
-                .HasMany(e => e.Products)
-                .WithMany(e => e.Orders);
-        }    
+                builder.Entity<Tag>()
+                    .HasMany(e => e.Products)
+                    .WithMany(e => e.Tags);
+
+                builder.Entity<OrderProduct>()
+                        .HasKey(x => new { x.OrderId, x.ProductId });
+
+                builder.Entity<OrderProduct>()
+                    .HasOne<Product>(x => x.Product)
+                    .WithMany(x => x.OrderProducts)
+                    .HasForeignKey(x => x.ProductId);
+
+                builder.Entity<OrderProduct>()
+                  .HasOne<Order>(x => x.Order)
+                  .WithMany(x => x.OrderProducts)
+                  .HasForeignKey(x => x.OrderId);
+             
+        }
     }
 }

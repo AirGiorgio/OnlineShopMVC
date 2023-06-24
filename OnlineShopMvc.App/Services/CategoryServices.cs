@@ -1,20 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.IdentityModel.Tokens;
-using OnlineShopMvc.App.DTOs.AdressDTOs;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
-using OnlineShopMvc.App.DTOs.ClientDTOs;
-using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.Inf.Interfaces;
-using OnlineShopMvc.Inf.Repo;
-using OnlineShopMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.Services
 {
@@ -29,7 +18,6 @@ namespace OnlineShopMvc.App.Services
             _categoryRepo = categoryRepo;
             _mapper = mapper;
         }
-
         public string AddCategory(string? name)
         {
             if (name.IsNullOrEmpty())
@@ -42,15 +30,13 @@ namespace OnlineShopMvc.App.Services
             }
             else return _categoryRepo.AddCategory(name); 
         }
-
         public CategoriesProductsDTO GetCategoryProducts(int id)
         {
             var category = _categoryRepo.GetCategoryById(id);
             var categoryDTO = _mapper.Map<CategoriesProductsDTO>(category);
-         
-           return categoryDTO;
-        }
 
+            return categoryDTO;
+        }
         public CategoriesForListDTO GetAllCategories(int? pageSize, int? pageNo, string? name)
         {
             if (!pageNo.HasValue || !pageSize.HasValue)
@@ -71,7 +57,6 @@ namespace OnlineShopMvc.App.Services
              };
             return categoriesDTO;         
         }
-
         public CategoryDTO GetCategoryById(int id)
         {
             if (id<=0 || id ==null)
@@ -85,7 +70,11 @@ namespace OnlineShopMvc.App.Services
                 return categoryDTO;
             }
         }
-
+        public CategoryDTO PrepareModel()
+        {
+            CategoryDTO newCategory = new CategoryDTO();
+            return newCategory;
+        }
         public bool RemoveCategory(int id)
         {
             if (id<=0 || id == null)
@@ -94,7 +83,6 @@ namespace OnlineShopMvc.App.Services
             }
             else return _categoryRepo.RemoveCategory(id);
         }
-
         public string UpdateCategory(int id, string? name)
         {
             if (name.IsNullOrEmpty())

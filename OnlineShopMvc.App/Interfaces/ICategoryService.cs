@@ -1,16 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OnlineShopMvc.App.DTOs.CategoryDTOs;
-using OnlineShopMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OnlineShopMvc.App.DTOs.CategoryDTOs;
 
 namespace OnlineShopMvc.App.Interfaces
 {
     public interface ICategoryService
     {
+        public CategoryDTO PrepareModel();
         CategoriesProductsDTO GetCategoryProducts(int id);
         CategoryDTO GetCategoryById(int id);      
         CategoriesForListDTO GetAllCategories(int? pageSize, int? pageNo, string? name);        

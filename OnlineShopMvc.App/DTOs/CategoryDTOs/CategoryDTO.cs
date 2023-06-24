@@ -2,13 +2,6 @@
 using FluentValidation;
 using OnlineShopMvc.App.Mapping;
 using OnlineShopMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.DTOs.CategoryDTOs
 {
@@ -19,7 +12,7 @@ namespace OnlineShopMvc.App.DTOs.CategoryDTOs
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Category, CategoryDTO>()
+            profile.CreateMap<Category, CategoryDTO>().ReverseMap()
                 .ForMember(x => x.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(x => x.Name, opt => opt.MapFrom(s => s.Name));
         }

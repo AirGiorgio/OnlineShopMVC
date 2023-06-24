@@ -13,20 +13,21 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div>
         <label for="name">Nazwa:</label>
-        <input type="text" id="name" asp-for="Name"   />
+            <input type="text" id="name" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div>
         <label for="price">Cena:</label>
-        <input type="text" id="price" asp-for="Price" step="0.01"   />
+            <input type="text" id="price" asp-for="Price" class="form-control" step="0.01" />
+            <span asp-validation-for="Price" class="text-danger"></span>
         </div>
         <div>
         <label for="amount">Ilość w magazynie:</label>
-        <input type="number" id="quantity" asp-for="Quantity" />
+            <input type="number" id="quantity" step="1" asp-for="Quantity" class="form-control" />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
         </div>
         <label for="category">Kategoria:</label>
         <select id="category" asp-for="ProductCategory">
-            <option>Wybierz kategorię</option>
-
             @foreach (var category in Model.Categories)
             {
                 <option value=@category.Id>@category.Name</option>

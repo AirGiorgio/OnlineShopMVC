@@ -1,16 +1,10 @@
-﻿using OnlineShopMvc.App.DTOs.CategoryDTOs;
-using OnlineShopMvc.App.DTOs.TagsDTOs;
-using OnlineShopMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OnlineShopMvc.App.DTOs.TagsDTOs;
 
 namespace OnlineShopMvc.App.Interfaces
 {
     public interface ITagService
     {
+        public TagDTO PrepareModel();
         TagProductsDTO GetTagProducts(int id);
         TagDTO GetTagById(int id);  
         TagsForListDTO GetAllTags(int? pageSize, int? pageNo, string? name);  

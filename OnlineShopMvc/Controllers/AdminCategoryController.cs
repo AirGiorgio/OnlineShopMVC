@@ -33,17 +33,29 @@ namespace OnlineShopMvc.Controllers
             return View(category);
         }
 
+        [HttpGet]
+        public IActionResult AddCategory()
+        {
+            var category = _categoryService.PrepareModel();
+            return View("NewCategory",category);
+        }
+        [HttpGet]
+        public IActionResult UpdateCategory(int id)
+        {
+            var category = _categoryService.GetCategoryById(id);
+            return View("CategoryDetails",category);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddCategory(CategoriesForListDTO categories) 
+        public IActionResult AddCategory(CategoryDTO newCategory) 
         {
             if (!ModelState.IsValid)
             {
-                return View("ViewCategories", categories);
+                return View("NewCategory", newCategory);
             }
 
             _logger.LogInformation("W AddCategory");
-             var category = _categoryService.AddCategory(categories.NewCategory.Name);
+             var category = _categoryService.AddCategory(newCategory.Name);
             if (category.IsNullOrEmpty())
             {
                 TempData["Message"] = "Nazwa jest pusta";
@@ -57,14 +69,14 @@ namespace OnlineShopMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateCategory(CategoriesForListDTO categories)
+        public IActionResult UpdateCategory(CategoryDTO newCategory)
         {
             if (!ModelState.IsValid)
             {
-                return View("ViewCategories", categories);
+                return View("CategoryDetails", newCategory);
             }
             _logger.LogInformation("W UpdateCategory");
-            var status = _categoryService.UpdateCategory(categories.NewCategory.Id, categories.NewCategory.Name);
+            var status = _categoryService.UpdateCategory(newCategory.Id, newCategory.Name);
             TempData["Message"] = status;
             
             return RedirectToAction("ViewCategories", "AdminCategory");
@@ -80,7 +92,8 @@ namespace OnlineShopMvc.Controllers
             }
             else
             {
-                TempData["Message"] = "Usunięto kategorię i jej produkty";
+                TempData["Message"] = "Usunięto kategorię. Produkty należące do tej kategorii jeśli istniały przepisano" +
+                    "do nowej kategorii";
             }
              return RedirectToAction("ViewCategories", "AdminCategory");
         }

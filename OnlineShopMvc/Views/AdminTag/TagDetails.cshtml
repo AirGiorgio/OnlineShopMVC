@@ -1,0 +1,35 @@
+﻿@using OnlineShopMvc.App.DTOs.TagsDTOs
+@model TagDTO
+
+@{
+    ViewData["Title"] = "TagDetails";
+}
+
+<h2>Edytowanie tagu</h2>
+
+@if (Model != null)
+{ @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
+    <form asp-action="UpdateTag">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+            <label for="name">Nazwa:</label>
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <input type="text" id="name" asp-for="Name" class="form-control" value="@Model.Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <button type="submit">Zatwierdź</button>
+    </form>
+
+    <form method="get" action="@Url.Action("ViewTags", "AdminTag")">
+        <button type="submit">Powrót do listy</button>
+    </form>
+}
+else
+{
+    <p>Nie znaleziono danych tego tagu</p>
+
+}

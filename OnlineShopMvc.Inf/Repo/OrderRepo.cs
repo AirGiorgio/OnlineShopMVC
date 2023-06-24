@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OnlineShopMvc.Domain.Model;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
 using OnlineShopMVC.Infrastructure;
@@ -25,7 +26,7 @@ namespace OnlineShopMvc.Inf.Repo
         }
         public Order GetOrderById(int? id)
         {
-            return context.Orders.Include(x=>x.Products).Include(x=>x.Client).SingleOrDefault(i => i.Id == id);
+            return context.Orders.Include(x=>x.OrderProducts).Include(x=>x.Client).SingleOrDefault(i => i.Id == id);
         }
 
         public IQueryable GetClientOrdersFromDate(DateTime? orderDate, int id)  

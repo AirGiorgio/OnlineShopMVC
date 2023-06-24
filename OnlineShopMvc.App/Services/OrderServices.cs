@@ -1,20 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using OnlineShopMvc.App.DTOs;
-using OnlineShopMvc.App.DTOs.AdressDTOs;
-using OnlineShopMvc.App.DTOs.ClientDTOs;
 using OnlineShopMvc.App.DTOs.OrderDTOs;
 using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.Inf.Interfaces;
-using OnlineShopMvc.Inf.Repo;
-using OnlineShopMVC.Domain.Model;
-using SteamLibraryMVC.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.Services
 {

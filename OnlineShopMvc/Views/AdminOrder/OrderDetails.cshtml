@@ -15,14 +15,16 @@
                 <th>Id zamówienia</th>
                 <th>Imię klienta</th>
                 <th>Nazwisko klienta</th>
+                <th>Status klienta</th>
                 <th>Data zamówienia</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>@Model.Id</td>
+                <td>@Model.OrderId</td>
                 <td>@Model.Client.Name</td>
                 <td>@Model.Client.Surname</td>
+                <td>@(Model.Client.IsActive==true?"Aktywny":"Nieaktywny")</td>
                 <td>@Model.OrderDate</td>
             </tr>
         </tbody>

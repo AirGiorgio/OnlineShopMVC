@@ -51,8 +51,16 @@ namespace OnlineShopMvc.Inf.Repo
         public bool RemoveCategory(int? id)
         {
             var category = GetCategoryById(id);
-            if (category != null)
+            if (category != null )
             {
+                //if (category.Products.Count != 0)
+                //{
+                //    Category UndefinedProducts = new Category();
+                //    UndefinedProducts.Name = "Niezdefiniowane";
+                //    UndefinedProducts.Products = category.Products;
+                //    context.Add(UndefinedProducts);
+                //    context.SaveChanges();
+                //}
                 context.Remove(category);
                 context.SaveChanges();
                 return true;

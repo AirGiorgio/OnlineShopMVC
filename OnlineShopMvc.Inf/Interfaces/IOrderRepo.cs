@@ -1,4 +1,5 @@
-﻿using OnlineShopMVC.Domain.Model;
+﻿using OnlineShopMvc.Domain.Model;
+using OnlineShopMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

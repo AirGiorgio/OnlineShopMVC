@@ -1,20 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Azure;
 using Microsoft.IdentityModel.Tokens;
-using OnlineShopMvc.App.DTOs.CategoryDTOs;
-using OnlineShopMvc.App.DTOs.OrderDTOs;
-using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.Inf.Interfaces;
-using OnlineShopMvc.Inf.Repo;
-using OnlineShopMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.Services
 {
@@ -27,6 +16,11 @@ namespace OnlineShopMvc.App.Services
         {
            _tagRepo = tagRepo;
             _mapper = mapper;
+        }
+        public TagDTO PrepareModel()
+        {
+            TagDTO newTag = new TagDTO();
+            return newTag;
         }
         public TagProductsDTO GetTagProducts(int id)
         {
@@ -85,7 +79,6 @@ namespace OnlineShopMvc.App.Services
                 return tagDTO;
             }   
         }
-  
         public bool RemoveTag(int id)
         {
             if (id <= 0 || id==null)
@@ -94,7 +87,6 @@ namespace OnlineShopMvc.App.Services
             }
             return _tagRepo.RemoveTag(id);
         }
-
         public string UpdateTag(int id, string? name)
         {
             if (name.IsNullOrEmpty())

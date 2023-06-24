@@ -35,7 +35,7 @@ namespace OnlineShopMvc.Controllers
             return RedirectToAction("Zamówienie zostało złożone");
         }
         [HttpGet]
-        public IActionResult ViewProducts(int? pageSize, int? pageNo, CategoryDTO searchCategory, List<TagDTO> searchTags, decimal? min, decimal? max, string? name)
+        public IActionResult ViewProducts(int? pageSize, int? pageNo, int? searchCategory, List<int> searchTags, decimal? min, decimal? max, string? name)
         {
             _logger.LogInformation("W ViewProducts klienta");
             var products = _productService.GetAllProducts(pageSize, pageNo, searchCategory, searchTags, min, max, name);

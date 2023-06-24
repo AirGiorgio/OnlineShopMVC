@@ -5,6 +5,7 @@ using OnlineShopMVC.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,7 +25,8 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
             var client = GetClientById(id);
             if (client != null)
             {
-                context.Remove(client);
+                client.IsActive = false;
+                context.Update(client);
                 context.SaveChanges();
                 return true;
             }
@@ -33,7 +35,7 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
 
         public IQueryable GetClientsBySurname(string surname)
         {
-            return context.Clients.Where(i => i.Surname.StartsWith(surname));
+            return context.Clients.Where(i => i.Surname.StartsWith(surname) && i.IsActive==true);
         }
 
         public Client GetClientById(int id) 
@@ -43,7 +45,7 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
 
         public IQueryable ShowAllClients()
         {
-            return context.Clients;
+            return context.Clients.Where(i=>i.IsActive == true);
         }
 
         public string AddClientAndAddress(Client client)
@@ -71,7 +73,7 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
 
         public IQueryable GetClientByStreetName(string? street, string? buildingNumber, string? city)
         {
-            IQueryable<Client> query = context.Clients;
+            IQueryable<Client> query = context.Clients.Where(x=>x.IsActive==true);
 
             if (!string.IsNullOrEmpty(street) && !string.IsNullOrEmpty(buildingNumber) && !string.IsNullOrEmpty(city))
             {
@@ -112,7 +114,7 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
             }
             else
             {
-                query = context.Clients;
+                query = context.Clients.Where(x => x.IsActive == true);
             }
             return query;
 

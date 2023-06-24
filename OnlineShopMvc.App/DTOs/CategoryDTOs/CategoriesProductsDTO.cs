@@ -1,14 +1,7 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.Mapping;
 using OnlineShopMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShopMvc.App.DTOs.CategoryDTOs
 {

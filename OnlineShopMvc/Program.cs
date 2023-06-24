@@ -2,16 +2,16 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using OnlineShopMvc.App;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.ClientDTOs;
 using OnlineShopMvc.App.DTOs.ProductDTOs;
-using OnlineShopMvc.App.Interfaces;
-using OnlineShopMvc.App.Services;
+using OnlineShopMvc.App.DTOs.TagsDTOs;
+using OnlineShopMvc.Areas.Identity.Data;
 using OnlineShopMvc.Inf;
 using OnlineShopMVC.Infrastructure;
 using static OnlineShopMvc.App.DTOs.ClientDTOs.ClientDetailsDTO;
+using static OnlineShopMvc.App.DTOs.TagsDTOs.TagDTO;
 
 namespace OnlineShopMvc
 {
@@ -22,13 +22,13 @@ namespace OnlineShopMvc
             var builder = WebApplication.CreateBuilder(args);
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<Context>(options =>
+            builder.Services.AddDbContext<OnlineShopMVC.Infrastructure.Context>(options =>
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<Context>();
+                .AddEntityFrameworkStores<OnlineShopMVC.Infrastructure.Context>();
             builder.Services.AddControllersWithViews()
             .AddJsonOptions(options =>
             {
@@ -42,6 +42,7 @@ namespace OnlineShopMvc
            
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddTransient<IValidator<CategoryDTO>, CategoryValidation>();
+            builder.Services.AddTransient<IValidator<TagDTO>, TagValidation>();
             builder.Services.AddTransient<IValidator<ClientDetailsDTO>, ClientValidation>();
             builder.Services.AddTransient<IValidator<ProductDetailsDTO>, ProductValidation>();
 
@@ -52,7 +53,7 @@ namespace OnlineShopMvc
 
             using (var scope = app.Services.CreateScope())
             {
-                var context = scope.ServiceProvider.GetRequiredService<Context>();
+                var context = scope.ServiceProvider.GetRequiredService<OnlineShopMVC.Infrastructure.Context>();
                 context.Database.EnsureCreated();
                 Seeder seeder = new Seeder(context);
                 seeder.BreedTheSeedAndNeedForSpeed();
