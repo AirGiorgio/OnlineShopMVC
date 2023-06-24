@@ -5,6 +5,8 @@
 
  [...]
 
+
+
  
  public class ProductDetailsDTO : IMapFrom<Product>
     {
