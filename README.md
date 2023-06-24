@@ -3,11 +3,6 @@
 Żeby zrozumieć istote problemu należy porównać klasę Product i ProductDetailsDTO.
 
 
- [...]
-
-
-
- 
  public class ProductDetailsDTO : IMapFrom<Product>
     {
         public int Id { get; set; }
