@@ -10,7 +10,6 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public int ProductCategory { get; set; }   - kombinatorstwo zamiast obiektu CategoryDTO to jego Id 
