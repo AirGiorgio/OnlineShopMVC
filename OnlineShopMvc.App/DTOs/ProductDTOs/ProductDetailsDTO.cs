@@ -17,10 +17,8 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public int ProductCategory { get; set; }
-        public CategoryDTO Category { get; set; }
         public List<CategoryDTO> Categories { get; set; }
         public List<int> ProductTags { get; set; }
-        public List<TagDTO> Tag { get; set; }
         public List<TagDTO> Tags { get; set; }
 
         public void Mapping(Profile profile)
@@ -30,8 +28,6 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
                 .ForMember(x => x.Name, opt => opt.MapFrom(s => s.Name))
                 .ForMember(x => x.Price, opt => opt.MapFrom(s => s.Price))
                 .ForMember(x => x.Quantity, opt => opt.MapFrom(s => s.Quantity))
-                .ForMember(x => x.Tag, opt => opt.MapFrom(s => s.Tags))
-                .ForMember(x => x.Category, opt => opt.MapFrom(s => s.Category))
                 .ForMember(x => x.Categories, opt => opt.Ignore())
                 .ForMember(x => x.Tags, opt => opt.Ignore())
                 .ForMember(x => x.ProductTags, opt => opt.Ignore())
@@ -41,8 +37,6 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
                 .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
-                .ForMember(x => x.Tags, opt => opt.MapFrom(s => s.Tag))
-                .ForMember(x => x.Category, opt => opt.MapFrom(s => s.Category))
                 .ForMember(x => x.IsActive, opt => opt.Ignore());
         }
     }

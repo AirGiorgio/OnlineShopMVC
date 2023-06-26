@@ -2,6 +2,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using OnlineShopMvc.App;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.ClientDTOs;
@@ -45,6 +46,18 @@ namespace OnlineShopMvc
             builder.Services.AddTransient<IValidator<TagDTO>, TagValidation>();
             builder.Services.AddTransient<IValidator<ClientDetailsDTO>, ClientValidation>();
             builder.Services.AddTransient<IValidator<ProductDetailsDTO>, ProductValidation>();
+
+            builder.Services.Configure<IdentityOptions>(options => 
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 10;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredUniqueChars = 1;
+
+                options.SignIn.RequireConfirmedEmail= false;
+                options.User.RequireUniqueEmail = true;
+            });
 
             var app = builder.Build();
 

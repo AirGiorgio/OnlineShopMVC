@@ -277,3 +277,4 @@ C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\vi\
 C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\zh-CN\Humanizer.resources.dll
 C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\zh-Hans\Humanizer.resources.dll
 C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\zh-Hant\Humanizer.resources.dll
+C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll

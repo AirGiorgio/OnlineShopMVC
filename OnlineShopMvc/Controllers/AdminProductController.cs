@@ -43,8 +43,6 @@ namespace OnlineShopMvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateProduct( ProductDetailsDTO product)
         {
-            ModelState.Remove("Tag");
-            ModelState.Remove("Category");
             ModelState.Remove("Tags");
             ModelState.Remove("Categories");
             if (!ModelState.IsValid)
@@ -72,8 +70,6 @@ namespace OnlineShopMvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddProduct(ProductDetailsDTO product)
         {
-            ModelState.Remove("Tag");
-            ModelState.Remove("Category");
             ModelState.Remove("Tags");
             ModelState.Remove("Categories");
             if (!ModelState.IsValid)

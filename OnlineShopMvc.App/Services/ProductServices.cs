@@ -146,13 +146,15 @@ namespace OnlineShopMvc.App.Services
             }
             else
             {
-                product.Tag = new List<TagDTO>();
-                product.Category = _mapper.Map<CategoryDTO>(_categoryRepo.GetCategoryById(product.ProductCategory));
+                Category category = _categoryRepo.GetCategoryById(product.ProductCategory);
+                var tagsIds = new List<Tag>();
                 foreach (var item in product.ProductTags)
                 {
-                    product.Tag.Add(_mapper.Map<TagDTO>(_tagRepo.GetTagById(item)));
+                    tagsIds.Add(_tagRepo.GetTagById(item));
                 }
                 var p = _mapper.Map<Product>(product);
+                p.Category= category;
+                p.Tags = tagsIds;
                 p.IsActive = true;
                 return _productRepo.UpdateProduct(p);
             }
@@ -173,13 +175,17 @@ namespace OnlineShopMvc.App.Services
             }
             else
             {
-                product.Tag = new List<TagDTO>();
-                product.Category = _mapper.Map<CategoryDTO>(_categoryRepo.GetCategoryById(product.ProductCategory));
+                Category category = _categoryRepo.GetCategoryById(product.ProductCategory);
+                var tagsIds = new List<Tag>();
                 foreach (var item in product.ProductTags)
                 {
-                    product.Tag.Add(_mapper.Map<TagDTO>(_tagRepo.GetTagById(item)));
+                    tagsIds.Add(_tagRepo.GetTagById(item));
                 }
-                return _productRepo.AddProduct(_mapper.Map<Product>(product));
+                var p = _mapper.Map<Product>(product);
+                p.Category = category;
+                p.Tags = tagsIds;
+                p.IsActive = true;
+                return _productRepo.AddProduct(p);
             }
                
         }

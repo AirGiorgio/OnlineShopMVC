@@ -34,14 +34,16 @@
             <tr>
                 <th>Nazwa produktu</th>
                 <th>Cena produktu</th>
+                <th>Ilość produktu</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var product in Model.Products)
             {
                 <tr>
-                    <td>@product.Name</td>
-                    <td>@product.Price</td>
+                    <td>@product.Product.Name</td>
+                    <td>@product.Product.Price</td>
+                    <td>@product.Amount</td>
                 </tr>
             }
         </tbody>

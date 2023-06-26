@@ -17,7 +17,7 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Product, ProductDTO>()
+            profile.CreateMap<Product, ProductDTO>().ReverseMap()
                 .ForMember(x => x.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(x => x.Category, opt => opt.MapFrom(s => s.Category))
                 .ForMember(x => x.Name, opt => opt.MapFrom(s => s.Name))

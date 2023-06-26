@@ -19,7 +19,10 @@ namespace OnlineShopMvc.Controllers
             _logger.LogInformation("W Index/Home");
             return View();
         }
-
+        public IActionResult _LoginPartial()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             _logger.LogInformation("W Privacy/Home");
