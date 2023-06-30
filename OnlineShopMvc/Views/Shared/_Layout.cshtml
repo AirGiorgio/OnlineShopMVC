@@ -25,12 +25,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Polityka Prywatności</a>
                         </li>
-                        @if (User.IsInRole("Admin"))
-                        {
+                     @*   @if (User.IsInRole("Admin"))
+                        {*@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ShopManaging">Zarządzanie sklepem</a>
                             </li>
-                        }
+                       @* }*@
                         
                     </ul>
                     <partial name="_LoginPartial" />

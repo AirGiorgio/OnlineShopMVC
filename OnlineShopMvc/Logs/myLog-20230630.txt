@@ -1046,3 +1046,249 @@ LEFT JOIN (
 ) AS [t0] ON [p].[Id] = [t0].[ProductsId]
 WHERE [p].[IsActive] = CAST(1 AS bit)
 ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T10:11:47.6575939+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T10:11:47.7105106+02:00  [INF] Executed DbCommand ("28"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T10:11:47.7193651+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T10:11:47.8717338+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T10:11:48.2042922+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T10:11:48.2056206+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T10:11:48.2098590+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T10:11:48.2114575+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T10:11:48.2126348+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T10:11:48.9505064+02:00 0HMRP86JGUMKH:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T10:11:50.8985376+02:00 0HMRP86JGUMKH:00000009 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T10:11:50.9515400+02:00 0HMRP86JGUMKH:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T10:11:50.9595650+02:00 0HMRP86JGUMKH:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T10:11:51.0566631+02:00 0HMRP86JGUMKH:00000009 [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T10:11:53.3386154+02:00 0HMRP86JGUMKH:00000011 [INF] W Index/Home (7621c325)
+2023-06-30T10:15:17.3032324+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T10:15:17.3485652+02:00  [INF] Executed DbCommand ("26"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T10:15:17.3566909+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T10:15:17.4887683+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T10:15:17.7777129+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T10:15:17.7791476+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T10:15:17.7827127+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T10:15:17.7842107+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T10:15:17.7855931+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T10:15:18.2610715+02:00 0HMRP88HTIT99:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T10:16:26.4303062+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T10:16:26.4723329+02:00  [INF] Executed DbCommand ("20"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T10:16:26.4798342+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T10:16:26.6119254+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T10:16:26.8816166+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T10:16:26.8828423+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T10:16:26.8861482+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T10:16:26.8871642+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T10:16:26.8881606+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T10:16:27.4300468+02:00 0HMRP896H77CQ:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T10:17:22.8238554+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T10:17:22.8646650+02:00  [INF] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T10:17:22.8733783+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T10:17:23.0129771+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T10:17:23.2854974+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T10:17:23.2866992+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T10:17:23.2900692+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T10:17:23.2912466+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T10:17:23.2923284+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T10:17:24.0486228+02:00 0HMRP89NDBRFJ:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T10:30:33.3153770+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T10:30:33.3580205+02:00  [INF] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T10:30:33.3658934+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T10:30:33.5007144+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T10:30:33.7748752+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T10:30:33.7759716+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T10:30:33.7793264+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T10:30:33.7806414+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T10:30:33.7817180+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T10:30:34.3028765+02:00 0HMRP8H2TUT0G:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T10:30:43.6608610+02:00 0HMRP8H2TUT0G:00000019 [INF] W Index/Home (7621c325)
+2023-06-30T10:30:45.9677906+02:00 0HMRP8H2TUT0G:00000029 [INF] W ViewCategories (f9181131)
+2023-06-30T10:30:46.0178634+02:00 0HMRP8H2TUT0G:00000029 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T10:30:47.4817917+02:00 0HMRP8H2TUT0G:00000031 [INF] W ViewCategories (f9181131)
+2023-06-30T10:30:47.5209649+02:00 0HMRP8H2TUT0G:00000031 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T10:30:48.1741961+02:00 0HMRP8H2TUT0G:00000039 [INF] W ViewCategories (f9181131)
+2023-06-30T10:30:48.1769370+02:00 0HMRP8H2TUT0G:00000039 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T10:30:48.9245669+02:00 0HMRP8H2TUT0G:00000041 [INF] W ViewCategories (f9181131)
+2023-06-30T10:30:48.9269570+02:00 0HMRP8H2TUT0G:00000041 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T10:30:50.4866026+02:00 0HMRP8H2TUT0G:00000049 [INF] W Index/Home (7621c325)
+2023-06-30T10:30:53.9184366+02:00 0HMRP8H2TUT0G:00000059 [INF] W ViewClients (a9052d4d)
+2023-06-30T10:30:53.9771847+02:00 0HMRP8H2TUT0G:00000059 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name], [c].[Surname], [c].[IsActive], CASE
+    WHEN [a].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [a].[Id], [a].[Street], [a].[BuildingNumber], [a].[FlatNumber], [a].[City], [a].[ZipCode]
+FROM [Clients] AS [c]
+LEFT JOIN [Addresses] AS [a] ON [c].[Id] = [a].[ClientId]
+WHERE [c].[IsActive] = CAST(1 AS bit)" (0723d8ff)
+2023-06-30T10:30:55.7403007+02:00 0HMRP8H2TUT0G:00000061 [INF] W Index/Home (7621c325)
+2023-06-30T10:30:57.4770206+02:00 0HMRP8H2TUT0G:00000071 [INF] W ViewProducts (1e82e5bb)
+2023-06-30T10:30:57.4808653+02:00 0HMRP8H2TUT0G:00000071 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T10:30:57.4868925+02:00 0HMRP8H2TUT0G:00000071 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T10:30:57.5416255+02:00 0HMRP8H2TUT0G:00000071 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T10:30:59.4047150+02:00 0HMRP8H2TUT0G:00000079 [INF] W Index/Home (7621c325)
+2023-06-30T10:31:01.1183201+02:00 0HMRP8H2TUT0G:00000089 [INF] W ViewTags (acd4b626)
+2023-06-30T10:31:01.1220986+02:00 0HMRP8H2TUT0G:00000089 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T10:31:07.1021503+02:00 0HMRP8H2TUT0G:00000093 [INF] W ViewOrders (51c533c2)
+2023-06-30T10:31:07.1157982+02:00 0HMRP8H2TUT0G:00000093 [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [o].[Id], [o].[OrderDate], [o].[TotalCost]
+FROM [Orders] AS [o]
+ORDER BY [o].[OrderDate]" (0723d8ff)
