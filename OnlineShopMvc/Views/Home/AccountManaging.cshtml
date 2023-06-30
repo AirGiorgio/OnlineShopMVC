@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Strona Główna";
+}
+
+@if (User.IsInRole("User"))
+{
+    <div class="text-center">
+        <h1 class="display-4">Witaj user</h1>
+        <a href="@Url.Action("ClientDetails", "ClientData")" class="btn btn-primary">Panel klienta</a>
+        <a href="@Url.Action("AddClient", "ClientData")" class="btn btn-primary">Dodaj swoje dane dostawy</a>
+    </div>
+}
+else 
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}

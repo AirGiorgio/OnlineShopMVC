@@ -1,0 +1,1048 @@
+2023-06-30T08:31:33.4806627+02:00  [INF] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:31:33.5361587+02:00  [INF] Executed DbCommand ("35"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T08:31:33.5472925+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:31:33.7158562+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T08:31:34.1139358+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T08:31:34.1157198+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T08:31:34.1209265+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T08:31:34.1229106+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T08:31:34.1243262+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T08:31:34.6819079+02:00 0HMRP6EJ41ELP:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T08:35:29.0609609+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:35:29.1042477+02:00  [INF] Executed DbCommand ("22"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T08:35:29.1116971+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:35:29.2414880+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T08:35:29.5111820+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T08:35:29.5123311+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T08:35:29.5157427+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T08:35:29.5169821+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T08:35:29.5181351+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T08:35:30.3291267+02:00 0HMRP6GPC59P7:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T08:35:33.7430959+02:00 0HMRP6GPC59P7:00000009 [INF] W Index/Home (7621c325)
+2023-06-30T08:35:34.6530618+02:00 0HMRP6GPC59P7:00000011 [INF] W Privacy/Home (4b66de61)
+2023-06-30T08:35:36.4351903+02:00 0HMRP6GPC59P7:00000019 [INF] W Index/Home (7621c325)
+2023-06-30T08:36:19.5885553+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:36:19.6362753+02:00  [INF] Executed DbCommand ("28"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T08:36:19.6442888+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:36:19.7795210+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T08:36:20.1439029+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T08:36:20.1452181+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T08:36:20.1490246+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T08:36:20.1503595+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T08:36:20.1514664+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T08:36:20.6654529+02:00 0HMRP6H8C2PHI:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T08:36:22.5909503+02:00 0HMRP6H8C2PHI:00000009 [INF] W Privacy/Home (4b66de61)
+2023-06-30T08:37:16.2670855+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:37:16.3039016+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T08:37:16.3119367+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:37:16.4538212+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T08:37:16.8110115+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T08:37:16.8125979+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T08:37:16.8164065+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T08:37:16.8177400+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T08:37:16.8188551+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T08:37:17.5938210+02:00 0HMRP6HPBASL9:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T08:37:20.5915629+02:00 0HMRP6HPBASL9:00000009 [INF] W Privacy/Home (4b66de61)
+2023-06-30T08:38:01.4374271+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:38:01.4854538+02:00  [INF] Executed DbCommand ("28"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T08:38:01.4944571+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:38:01.6379218+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T08:38:01.9521405+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T08:38:01.9538524+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T08:38:01.9591135+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T08:38:01.9608117+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T08:38:01.9626631+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T08:38:02.6607152+02:00 0HMRP6I6OJ9R3:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T08:38:04.9291739+02:00 0HMRP6I6OJ9R3:00000009 [INF] W Privacy/Home (4b66de61)
+2023-06-30T08:38:09.1232265+02:00 0HMRP6I6OJ9R3:00000011 [INF] W Index/Home (7621c325)
+2023-06-30T08:38:10.1086917+02:00 0HMRP6I6OJ9R3:00000019 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T08:38:10.1682161+02:00 0HMRP6I6OJ9R3:00000019 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T08:38:10.1759764+02:00 0HMRP6I6OJ9R3:00000019 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T08:38:10.2809768+02:00 0HMRP6I6OJ9R3:00000019 [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T08:38:10.4299456+02:00 0HMRP6I6OJ9R3:00000019 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.<ExecuteAsync>b__38_1() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 88
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(Boolean useCachedResult, HtmlEncoder encoder)
+   at Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.<RunAsync>g__Awaited|0_0(Task task, TagHelperExecutionContext executionContext, Int32 i, Int32 count)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.ExecuteAsync() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 83
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-06-30T08:38:10.4350422+02:00 0HMRP6I6OJ9R3:00000019 [INF] W Error/Home (b1345b8f)
+2023-06-30T08:39:15.2303401+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:39:15.2727047+02:00  [INF] Executed DbCommand ("20"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T08:39:15.2803364+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:39:15.4124730+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T08:39:15.6821420+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T08:39:15.6832430+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T08:39:15.6864079+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T08:39:15.6875914+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T08:39:15.6886847+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T08:39:16.3448258+02:00 0HMRP6ISO3J4J:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T08:39:17.5182025+02:00 0HMRP6ISO3J4J:00000009 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T08:39:17.5687688+02:00 0HMRP6ISO3J4J:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T08:39:17.5761308+02:00 0HMRP6ISO3J4J:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T08:39:17.6780994+02:00 0HMRP6ISO3J4J:00000009 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T08:39:17.8216500+02:00 0HMRP6ISO3J4J:00000009 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.<ExecuteAsync>b__38_1() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 88
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(Boolean useCachedResult, HtmlEncoder encoder)
+   at Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.<RunAsync>g__Awaited|0_0(Task task, TagHelperExecutionContext executionContext, Int32 i, Int32 count)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.ExecuteAsync() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 83
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-06-30T08:39:17.8271788+02:00 0HMRP6ISO3J4J:00000009 [INF] W Error/Home (b1345b8f)
+2023-06-30T08:48:45.7119070+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:48:45.7575269+02:00  [INF] Executed DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T08:48:45.7675102+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:48:45.9175439+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T08:48:46.2170351+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T08:48:46.2185635+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T08:48:46.2224285+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T08:48:46.2237195+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T08:48:46.2248131+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T08:48:46.8220275+02:00 0HMRP6O6OK0HT:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T08:48:48.9207194+02:00 0HMRP6O6OK0HT:00000009 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T08:48:48.9736007+02:00 0HMRP6O6OK0HT:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T08:48:48.9812145+02:00 0HMRP6O6OK0HT:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T08:48:49.0776657+02:00 0HMRP6O6OK0HT:00000009 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T08:48:49.2167767+02:00 0HMRP6O6OK0HT:00000009 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.<ExecuteAsync>b__36_1() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 88
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(Boolean useCachedResult, HtmlEncoder encoder)
+   at Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.<RunAsync>g__Awaited|0_0(Task task, TagHelperExecutionContext executionContext, Int32 i, Int32 count)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.ExecuteAsync() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 83
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-06-30T08:48:49.2228269+02:00 0HMRP6O6OK0HT:00000009 [INF] W Error/Home (b1345b8f)
+2023-06-30T08:49:04.1341990+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:49:04.1704056+02:00  [INF] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T08:49:04.1783354+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T08:49:04.3181192+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T08:49:04.6322583+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T08:49:04.6334799+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T08:49:04.6372092+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T08:49:04.6385951+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T08:49:04.6397457+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T08:49:05.3674322+02:00 0HMRP6OC93VM9:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T08:49:06.2632167+02:00 0HMRP6OC93VM9:00000009 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T08:49:06.3244137+02:00 0HMRP6OC93VM9:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T08:49:06.3329198+02:00 0HMRP6OC93VM9:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T08:49:06.4387209+02:00 0HMRP6OC93VM9:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T08:49:06.5862626+02:00 0HMRP6OC93VM9:00000009 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.<ExecuteAsync>b__36_1() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 88
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(Boolean useCachedResult, HtmlEncoder encoder)
+   at Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.<RunAsync>g__Awaited|0_0(Task task, TagHelperExecutionContext executionContext, Int32 i, Int32 count)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.ExecuteAsync() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 83
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-06-30T08:49:06.5918707+02:00 0HMRP6OC93VM9:00000009 [INF] W Error/Home (b1345b8f)
+2023-06-30T08:49:13.3504769+02:00 0HMRP6OC93VM9:00000021 [INF] W Privacy/Home (4b66de61)
+2023-06-30T08:49:13.7808262+02:00 0HMRP6OC93VM9:00000029 [INF] W Index/Home (7621c325)
+2023-06-30T09:37:44.6832691+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:37:44.7283089+02:00  [INF] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T09:37:44.7362335+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:37:44.8687282+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T09:37:45.1508125+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T09:37:45.1519773+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T09:37:45.1552020+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T09:37:45.1565585+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T09:37:45.1580042+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T09:37:45.6269344+02:00 0HMRP7JIHHHRO:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T09:38:31.9382372+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:38:31.9866501+02:00  [INF] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T09:38:31.9961150+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:38:32.1382364+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T09:38:32.4357463+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T09:38:32.4370476+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T09:38:32.4410445+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T09:38:32.4425268+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T09:38:32.4437048+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T09:38:32.8759797+02:00 0HMRP7K0L92QV:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T09:39:23.3301134+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:39:23.3780033+02:00  [INF] Executed DbCommand ("20"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T09:39:23.3861910+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:39:23.5145329+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T09:39:23.7969349+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T09:39:23.7987006+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T09:39:23.8030898+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T09:39:23.8051397+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T09:39:23.8066934+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T09:39:24.2548810+02:00 0HMRP7KFVQD9L:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T09:49:07.1768865+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:49:07.2204873+02:00  [INF] Executed DbCommand ("22"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T09:49:07.2283262+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:49:07.3635516+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T09:49:07.6347651+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T09:49:07.6358176+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T09:49:07.6389145+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T09:49:07.6400283+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T09:49:07.6411707+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T09:49:08.1419850+02:00 0HMRP7PTVEITS:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T09:49:09.1532532+02:00 0HMRP7PTVEITS:00000009 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:49:09.2073836+02:00 0HMRP7PTVEITS:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:49:09.2152162+02:00 0HMRP7PTVEITS:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:49:09.3184644+02:00 0HMRP7PTVEITS:00000009 [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:49:09.4774536+02:00 0HMRP7PTVEITS:00000009 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.<ExecuteAsync>b__37_1() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 88
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(Boolean useCachedResult, HtmlEncoder encoder)
+   at Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.<RunAsync>g__Awaited|0_0(Task task, TagHelperExecutionContext executionContext, Int32 i, Int32 count)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.ExecuteAsync() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 83
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-06-30T09:49:09.4829458+02:00 0HMRP7PTVEITS:00000009 [INF] W Error/Home (b1345b8f)
+2023-06-30T09:49:31.4820582+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:49:31.5223261+02:00  [INF] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T09:49:31.5309359+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:49:31.6738045+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T09:49:32.0299825+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T09:49:32.0321108+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T09:49:32.0383010+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T09:49:32.0405565+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T09:49:32.0423233+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T09:49:32.4839025+02:00 0HMRP7Q57N12L:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T09:49:33.4940721+02:00 0HMRP7Q57N12L:00000009 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:49:33.5557484+02:00 0HMRP7Q57N12L:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:49:33.5634494+02:00 0HMRP7Q57N12L:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:49:33.6694289+02:00 0HMRP7Q57N12L:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:49:33.8335775+02:00 0HMRP7Q57N12L:00000009 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Select[TSource,TResult](IEnumerable`1 source, Func`2 selector)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.<ExecuteAsync>b__36_1() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 88
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.GetChildContentAsync(Boolean useCachedResult, HtmlEncoder encoder)
+   at Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.<RunAsync>g__Awaited|0_0(Task task, TagHelperExecutionContext executionContext, Int32 i, Int32 count)
+   at AspNetCoreGeneratedDocument.Views_ClientShop_ViewProducts.ExecuteAsync() in C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc\Views\ClientShop\ViewProducts.cshtml:line 83
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-06-30T09:49:33.8400220+02:00 0HMRP7Q57N12L:00000009 [INF] W Error/Home (b1345b8f)
+2023-06-30T09:50:48.5862566+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:50:48.6339610+02:00  [INF] Executed DbCommand ("28"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T09:50:48.6417541+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:50:48.7860973+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T09:50:49.0779639+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T09:50:49.0792272+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T09:50:49.0826635+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T09:50:49.0838579+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T09:50:49.0849731+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T09:50:49.5146849+02:00 0HMRP7QS6OVI8:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T09:50:50.3875093+02:00 0HMRP7QS6OVI8:00000009 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:50:50.4424623+02:00 0HMRP7QS6OVI8:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:50:50.4501079+02:00 0HMRP7QS6OVI8:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:50:50.5534656+02:00 0HMRP7QS6OVI8:00000009 [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:51:21.7999143+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:51:21.8505635+02:00  [INF] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-06-30T09:51:21.8584942+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-06-30T09:51:22.0031887+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-06-30T09:51:22.3160320+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-06-30T09:51:22.3171737+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-06-30T09:51:22.3206900+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-06-30T09:51:22.3218823+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-06-30T09:51:22.3229613+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-06-30T09:51:22.8750836+02:00 0HMRP7R64OB9D:00000001 [INF] W Index/Home (7621c325)
+2023-06-30T09:51:25.8083197+02:00 0HMRP7R64OB9D:00000009 [INF] W Index/Home (7621c325)
+2023-06-30T09:51:26.5839485+02:00 0HMRP7R64OB9D:00000011 [INF] W Privacy/Home (4b66de61)
+2023-06-30T09:51:28.5272067+02:00 0HMRP7R64OB9D:00000019 [INF] W Privacy/Home (4b66de61)
+2023-06-30T09:51:29.3582727+02:00 0HMRP7R64OB9D:00000021 [INF] W Index/Home (7621c325)
+2023-06-30T09:51:30.3870998+02:00 0HMRP7R64OB9D:00000029 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:51:30.4407453+02:00 0HMRP7R64OB9D:00000029 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:51:30.4482014+02:00 0HMRP7R64OB9D:00000029 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:51:30.5478027+02:00 0HMRP7R64OB9D:00000029 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:51:33.8745985+02:00 0HMRP7R64OB9D:00000031 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:51:33.9143179+02:00 0HMRP7R64OB9D:00000031 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:51:33.9167406+02:00 0HMRP7R64OB9D:00000031 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:51:33.9218211+02:00 0HMRP7R64OB9D:00000031 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:51:35.8727241+02:00 0HMRP7R64OB9D:00000039 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:51:35.8751602+02:00 0HMRP7R64OB9D:00000039 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:51:35.8769752+02:00 0HMRP7R64OB9D:00000039 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:51:35.8802453+02:00 0HMRP7R64OB9D:00000039 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:51:37.3843930+02:00 0HMRP7R64OB9D:00000041 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:51:37.3869621+02:00 0HMRP7R64OB9D:00000041 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:51:37.3889019+02:00 0HMRP7R64OB9D:00000041 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:51:37.3922196+02:00 0HMRP7R64OB9D:00000041 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:51:38.6237432+02:00 0HMRP7R64OB9D:00000049 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:51:38.6264752+02:00 0HMRP7R64OB9D:00000049 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:51:38.6284972+02:00 0HMRP7R64OB9D:00000049 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:51:38.6323521+02:00 0HMRP7R64OB9D:00000049 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:51:39.7906238+02:00 0HMRP7R64OB9D:00000051 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:51:39.7928717+02:00 0HMRP7R64OB9D:00000051 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:51:39.7946262+02:00 0HMRP7R64OB9D:00000051 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:51:39.8010175+02:00 0HMRP7R64OB9D:00000051 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:51:41.0395280+02:00 0HMRP7R64OB9D:00000059 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:51:41.0418935+02:00 0HMRP7R64OB9D:00000059 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:51:41.0437171+02:00 0HMRP7R64OB9D:00000059 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:51:41.0470306+02:00 0HMRP7R64OB9D:00000059 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:51:42.0708538+02:00 0HMRP7R64OB9D:00000061 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:51:42.0736778+02:00 0HMRP7R64OB9D:00000061 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:51:42.0754433+02:00 0HMRP7R64OB9D:00000061 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:51:42.0785293+02:00 0HMRP7R64OB9D:00000061 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-06-30T09:51:42.6789391+02:00 0HMRP7R64OB9D:00000069 [INF] W ViewProducts klienta (ad799f7a)
+2023-06-30T09:51:42.6823842+02:00 0HMRP7R64OB9D:00000069 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-06-30T09:51:42.6847485+02:00 0HMRP7R64OB9D:00000069 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-06-30T09:51:42.6877299+02:00 0HMRP7R64OB9D:00000069 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)

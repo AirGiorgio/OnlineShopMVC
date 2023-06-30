@@ -1,24 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Strona główna";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Witaj admin</h1>
-</div>
-
-<div class="text-center">
-    <a href="@Url.Action("ViewCategories", "AdminCategory")" class="btn btn-primary">Zarządzaj kategoriami</a>
-    <a href="@Url.Action("ViewClients", "AdminClient")" class="btn btn-primary">Zarządzaj klientami</a>
-    <a href="@Url.Action("ViewProducts", "AdminProduct")" class="btn btn-primary">Zarządzaj produktami</a>
-    <a href="@Url.Action("ViewTags", "AdminTag")" class="btn btn-primary">Zarządzaj tagami</a>
-    <a href="@Url.Action("ViewOrders", "AdminOrder")" class="btn btn-primary">Zarządzaj zamówieniami</a>
-</div>
-
-<div class="text-center">
-    <h1 class="display-4">Witaj user</h1>
+    <h2 class="display-4">Witaj w sklepie internetowym</h2>
     <a href="@Url.Action("ViewProducts", "ClientShop")" class="btn btn-primary">Przeglądaj produkty</a>
-    <a href="@Url.Action("ClientDetails", "ClientData")" class="btn btn-primary">Panel klienta</a>
-    <a href="@Url.Action("RegisterClient", "ClientData")" class="btn btn-primary">Zarejestruj sie</a>
-    <a href="@Url.Action("LoginClient", "ClientData")" class="btn btn-primary">Zaloguj sie</a>
-    
 </div>
+
+
+

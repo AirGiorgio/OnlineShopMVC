@@ -2,15 +2,12 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using OnlineShopMvc.App;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.ClientDTOs;
 using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.DTOs.TagsDTOs;
-using OnlineShopMvc.Areas.Identity.Data;
 using OnlineShopMvc.Inf;
-using OnlineShopMVC.Infrastructure;
 using static OnlineShopMvc.App.DTOs.ClientDTOs.ClientDetailsDTO;
 using static OnlineShopMvc.App.DTOs.TagsDTOs.TagDTO;
 
@@ -41,7 +38,8 @@ namespace OnlineShopMvc
             builder.Services.AddInfrastructure();
             builder.Services.AddMvc();
            
-            builder.Services.AddFluentValidationAutoValidation();
+
+          builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddTransient<IValidator<CategoryDTO>, CategoryValidation>();
             builder.Services.AddTransient<IValidator<TagDTO>, TagValidation>();
             builder.Services.AddTransient<IValidator<ClientDetailsDTO>, ClientValidation>();
@@ -58,6 +56,13 @@ namespace OnlineShopMvc
                 options.SignIn.RequireConfirmedEmail= false;
                 options.User.RequireUniqueEmail = true;
             });
+
+            //builder.Services.AddAuthentication().AddGoogle(options =>
+            //{
+            //    //IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
+            //    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+            //    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            //});
 
             var app = builder.Build();
 
@@ -82,7 +87,7 @@ namespace OnlineShopMvc
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.MapRazorPages();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

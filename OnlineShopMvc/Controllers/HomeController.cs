@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShopMvc.Filters;
 using OnlineShopMvc.Inf;
 using OnlineShopMvc.Models;
 using OnlineShopMVC.Infrastructure;
@@ -13,7 +14,11 @@ namespace OnlineShopMvc.Controllers
         {
             _logger = logger;
         }
-
+        public IActionResult ShopManaging()
+        {
+            return View();
+        }
+     
         public IActionResult Index()
         {
             _logger.LogInformation("W Index/Home");

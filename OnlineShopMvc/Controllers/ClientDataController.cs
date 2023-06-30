@@ -22,7 +22,7 @@ namespace OnlineShopMvc.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegisterClient(ClientDetailsDTO client)
+        public IActionResult AddClient(ClientDetailsDTO client)
         {
             _logger.LogInformation("W RegisterClient typu Post klienta");
             var status = _clientService.AddClientAndAddress(client);
@@ -30,17 +30,12 @@ namespace OnlineShopMvc.Controllers
                 return RedirectToAction("ClientDetails","ClientData");
          }
         [HttpGet]
-        public IActionResult RegisterClient()
+        public IActionResult AddClient()
         {
             _logger.LogInformation("W RegisterClient typu Get klienta");
             return View();
         }
-        [HttpGet]
-        public IActionResult LoginClient()
-        {
-            _logger.LogInformation("W LoginClient typu Get klienta");
-            return View();
-        }
+
         [HttpGet]
         public IActionResult ClientDetails()
         {
