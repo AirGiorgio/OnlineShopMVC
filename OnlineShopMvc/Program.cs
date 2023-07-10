@@ -59,9 +59,9 @@ namespace OnlineShopMvc
 
             //builder.Services.AddAuthentication().AddGoogle(options =>
             //{
-            //    //IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
-            //    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-            //    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            //    //  IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
+            //    //options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+            //    //options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
             //});
 
             var app = builder.Build();
