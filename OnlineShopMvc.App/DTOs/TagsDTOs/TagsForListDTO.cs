@@ -1,6 +1,6 @@
 ﻿namespace OnlineShopMvc.App.DTOs.TagsDTOs
 {
-    public class TagsForListDTO  
+    public class TagsForListDTO
     {
         public List<TagDTO> Tags { get; set; }
         public int PageSize { get; set; }

@@ -1,23 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using OnlineShopMvc.App.DTOs;
-using OnlineShopMvc.App.DTOs.CategoryDTOs;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnlineShopMvc.App.DTOs.ProductDTOs;
-using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.Interfaces;
-using OnlineShopMvc.App.Services;
-using OnlineShopMVC.Domain.Model;
-using System.Collections.Generic;
 
 namespace OnlineShopMvc.Controllers
 {
     public class AdminProductController : Controller
     {
         private readonly IProductService _productService;
-    
+
         private readonly ILogger<AdminProductController> _logger;
+
         public AdminProductController(IProductService productService, ILogger<AdminProductController> logger)
         {
             _productService = productService;
@@ -29,9 +21,9 @@ namespace OnlineShopMvc.Controllers
         {
             _logger.LogInformation("W ViewProducts");
             var products = _productService.GetAllProducts(pageSize, pageNo, searchCategory, searchTags, min, max, name);
-             return View(products);
-            
+            return View(products);
         }
+
         [HttpGet]
         public IActionResult ProductDetails(int id)
         {
@@ -39,9 +31,10 @@ namespace OnlineShopMvc.Controllers
             var product = _productService.GetProductById(id);
             return View(product);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult UpdateProduct( ProductDetailsDTO product)
+        public IActionResult UpdateProduct(ProductDetailsDTO product)
         {
             ModelState.Remove("Tags");
             ModelState.Remove("Categories");
@@ -55,10 +48,11 @@ namespace OnlineShopMvc.Controllers
             }
             _logger.LogInformation("W UpdateProduct");
             var status = _productService.UpdateProduct(product);
-       
+
             TempData["Message"] = status;
             return RedirectToAction("ViewProducts");
         }
+
         [HttpGet]
         public IActionResult AddProduct()
         {
@@ -66,6 +60,7 @@ namespace OnlineShopMvc.Controllers
             var product = _productService.PrepareModel();
             return View(product);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddProduct(ProductDetailsDTO product)
@@ -82,10 +77,11 @@ namespace OnlineShopMvc.Controllers
             }
             _logger.LogInformation("W AddProduct typu Post");
             var status = _productService.AddProduct(product);
-            
+
             TempData["Message"] = status;
             return RedirectToAction("ViewProducts");
         }
+
         [HttpPost]
         public IActionResult RemoveProduct(int id)
         {

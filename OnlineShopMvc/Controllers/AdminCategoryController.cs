@@ -1,9 +1,7 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.Interfaces;
-using OnlineShopMvc.Inf.Repo;
 
 namespace OnlineShopMvc.Controllers
 {
@@ -11,14 +9,15 @@ namespace OnlineShopMvc.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly ILogger<AdminCategoryController> _logger;
+
         public AdminCategoryController(ICategoryService categoryService, ILogger<AdminCategoryController> logger)
         {
             _categoryService = categoryService;
             _logger = logger;
         }
-    
+
         [HttpGet]
-        public IActionResult ViewCategories(int? pageSize, int? pageNo, string? name)  
+        public IActionResult ViewCategories(int? pageSize, int? pageNo, string? name)
         {
             _logger.LogInformation("W ViewCategories");
             var categories = _categoryService.GetAllCategories(pageSize, pageNo, name);
@@ -37,17 +36,19 @@ namespace OnlineShopMvc.Controllers
         public IActionResult AddCategory()
         {
             var category = _categoryService.PrepareModel();
-            return View("NewCategory",category);
+            return View("NewCategory", category);
         }
+
         [HttpGet]
         public IActionResult UpdateCategory(int id)
         {
             var category = _categoryService.GetCategoryById(id);
-            return View("CategoryDetails",category);
+            return View("CategoryDetails", category);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddCategory(CategoryDTO newCategory) 
+        public IActionResult AddCategory(CategoryDTO newCategory)
         {
             if (!ModelState.IsValid)
             {
@@ -55,7 +56,7 @@ namespace OnlineShopMvc.Controllers
             }
 
             _logger.LogInformation("W AddCategory");
-             var category = _categoryService.AddCategory(newCategory.Name);
+            var category = _categoryService.AddCategory(newCategory.Name);
             if (category.IsNullOrEmpty())
             {
                 TempData["Message"] = "Nazwa jest pusta";
@@ -78,11 +79,12 @@ namespace OnlineShopMvc.Controllers
             _logger.LogInformation("W UpdateCategory");
             var status = _categoryService.UpdateCategory(newCategory.Id, newCategory.Name);
             TempData["Message"] = status;
-            
+
             return RedirectToAction("ViewCategories", "AdminCategory");
         }
+
         [HttpPost]
-        public IActionResult RemoveCategory(int id)  
+        public IActionResult RemoveCategory(int id)
         {
             _logger.LogInformation("W RemoveCategory");
             var status = _categoryService.RemoveCategory(id);
@@ -95,7 +97,7 @@ namespace OnlineShopMvc.Controllers
                 TempData["Message"] = "Usunięto kategorię. Produkty należące do tej kategorii jeśli istniały przepisano" +
                     "do nowej kategorii";
             }
-             return RedirectToAction("ViewCategories", "AdminCategory");
+            return RedirectToAction("ViewCategories", "AdminCategory");
         }
     }
 }

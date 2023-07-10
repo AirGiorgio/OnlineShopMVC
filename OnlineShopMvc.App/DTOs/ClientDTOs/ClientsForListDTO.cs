@@ -1,6 +1,6 @@
-﻿namespace OnlineShopMvc.App.DTOs.ClientDTOs
-{
-    public class ClientsForListDTO 
+﻿namespace OnlineShopMvc.App.DTOs.ClientDTOs;
+
+public class ClientsForListDTO 
     {
         public List<ClientDTO> Clients { get; set; }
         public int PageSize { get; set; }
@@ -11,4 +11,4 @@
         public string SearchStreet { get; set; }
         public int Count { get; set; }
     }
-}
+

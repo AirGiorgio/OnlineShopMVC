@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineShopMvc.App.Interfaces;
-using OnlineShopMVC.Domain.Model;
-using static NuGet.Packaging.PackagingConstants;
 
 namespace OnlineShopMvc.Controllers
 {
@@ -10,6 +8,7 @@ namespace OnlineShopMvc.Controllers
         private readonly IOrderService _orderService;
 
         private readonly ILogger<AdminOrderController> _logger;
+
         public AdminOrderController(IOrderService orderService, ILogger<AdminOrderController> logger)
         {
             _orderService = orderService;
@@ -17,23 +16,23 @@ namespace OnlineShopMvc.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewOrders(int? pageSize, int? pageNo, DateTime? orderDate, decimal? min, decimal? max, int? value)  
+        public IActionResult ViewOrders(int? pageSize, int? pageNo, DateTime? orderDate, decimal? min, decimal? max, int? value)
         {
             _logger.LogInformation("W ViewOrders");
-            var Orders = _orderService.GetOrders(pageSize,pageNo,orderDate,min,max,value);
-             return View(Orders);
+            var Orders = _orderService.GetOrders(pageSize, pageNo, orderDate, min, max, value);
+            return View(Orders);
         }
 
         [HttpGet]
-        public IActionResult OrderDetails(int id)  
+        public IActionResult OrderDetails(int id)
         {
             _logger.LogInformation("W OrderDetails");
             var Order = _orderService.GetOrderById(id);
-            return View(Order);   
+            return View(Order);
         }
 
         [HttpPost]
-        public IActionResult RemoveOrder(int id)  
+        public IActionResult RemoveOrder(int id)
         {
             _logger.LogInformation("W RemoveOrder");
             var status = _orderService.RemoveOrder(id);

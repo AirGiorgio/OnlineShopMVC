@@ -2,9 +2,8 @@
 
 namespace OnlineShopMVC.Domain.Model
 {
-    public class Order
+    public class Order :BaseEntity
     {
-        public int Id { get; set; }
         public int ClientId { get; set; }
         public virtual Client Client { get; set; }
         public string OrderId { get; set; }

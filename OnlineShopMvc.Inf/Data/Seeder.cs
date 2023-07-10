@@ -1,19 +1,17 @@
 ﻿using OnlineShopMvc.Domain.Model;
 using OnlineShopMVC.Domain.Model;
-using OnlineShopMVC.Infrastructure;
-using System.Collections.Generic;
-using System;
 
-namespace OnlineShopMvc.Inf
+namespace OnlineShopMvc.Inf.Data
 {
     public class Seeder
     {
         private readonly Context _context;
+
         public Seeder(Context context)
         {
             _context = context;
         }
-        
+
         public void BreedTheSeedAndNeedForSpeed()
         {
             if (_context.Database.CanConnect())
@@ -35,6 +33,7 @@ namespace OnlineShopMvc.Inf
 
         private List<Client> Clients;
         private List<Category> Categories;
+
         private List<Client> GetClients()
         {
             Clients = Enumerable.Range(1, 50).Select(x => new Client
@@ -55,13 +54,14 @@ namespace OnlineShopMvc.Inf
             }).ToList();
             return Clients;
         }
+
         private List<Category> GetCategories()
         {
             Categories = Enumerable.Range(1, 50).Select(x => new Category
             {
                 Name = GenerateRandomCategory(),
                 Products = Enumerable.Range(1, 10).Select(x => new Product
-                { 
+                {
                     Name = GenerateRandomProduct(),
                     Price = GenerateRandomDecimal(),
                     Quantity = GenerateRandomInt(1, 100),
@@ -70,9 +70,9 @@ namespace OnlineShopMvc.Inf
                     {
                         Name = GenerateRandomTag()
                     }).ToList(),
-                    OrderProducts = Enumerable.Range(1,10).Select(x=> new OrderProduct
+                    OrderProducts = Enumerable.Range(1, 10).Select(x => new OrderProduct
                     {
-                        Amount = GenerateRandomInt(1,5),
+                        Amount = GenerateRandomInt(1, 5),
                         Order = new Order()
                         {
                             OrderId = GenerateRandomString(),
@@ -85,9 +85,9 @@ namespace OnlineShopMvc.Inf
             }).ToList();
             return Categories;
         }
-      
-          private DateTime GenerateRandomDateTime()
-          {
+
+        private DateTime GenerateRandomDateTime()
+        {
             var startDate = new DateTime(2020, 1, 1);
             var endDate = DateTime.Now;
             var random = new Random();
@@ -95,6 +95,7 @@ namespace OnlineShopMvc.Inf
             var randomTimeSpan = new TimeSpan((long)(random.NextDouble() * range.Ticks));
             return startDate + randomTimeSpan;
         }
+
         private string GenerateRandomTag()
         {
             const string suffix = "abcdefghijklmnopqrstuvwxyz";
@@ -108,6 +109,7 @@ namespace OnlineShopMvc.Inf
 
             return tag;
         }
+
         private string GenerateRandomStreet()
         {
             const string suffix = "abcdefghijklmnopqrstuvwxyz";
@@ -121,6 +123,7 @@ namespace OnlineShopMvc.Inf
 
             return street;
         }
+
         private string GenerateRandomCategory()
         {
             const string suffix = "abcdefghijklmnopqrstuvwxyz";
@@ -134,6 +137,7 @@ namespace OnlineShopMvc.Inf
 
             return category;
         }
+
         private string GenerateRandomProduct()
         {
             const string suffix = "abcdefghijklmnopqrstuvwxyz";
@@ -147,6 +151,7 @@ namespace OnlineShopMvc.Inf
 
             return product;
         }
+
         private string GenerateRandomName()
         {
             const string suffix = "abcdefghijklmnopqrstuvwxyz";
@@ -160,6 +165,7 @@ namespace OnlineShopMvc.Inf
 
             return name;
         }
+
         private string GenerateRandomCity()
         {
             const string suffix = "abcdefghijklmnopqrstuvwxyz";
@@ -173,6 +179,7 @@ namespace OnlineShopMvc.Inf
 
             return cityName;
         }
+
         private string GenerateRandomSurname()
         {
             const string suffix = "abcdefghijklmnopqrstuvwxyz";
@@ -186,6 +193,7 @@ namespace OnlineShopMvc.Inf
 
             return surname;
         }
+
         private string GenerateRandomNumber(int length)
         {
             const string chars = "123456789";
@@ -210,12 +218,10 @@ namespace OnlineShopMvc.Inf
         {
             const string suffix = "abcdefghijklmnopqrstuvwxyz";
             var random = new Random();
-            int length = random.Next(5,5);
+            int length = random.Next(5, 5);
             return new string(Enumerable.Range(0, length)
                 .Select(_ => suffix[random.Next(suffix.Length)])
                 .ToArray());
         }
     }
-
-
 }

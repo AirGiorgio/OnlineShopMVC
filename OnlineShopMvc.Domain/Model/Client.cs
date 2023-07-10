@@ -1,9 +1,9 @@
-﻿namespace OnlineShopMVC.Domain.Model
+﻿using OnlineShopMvc.Domain.Model;
+
+namespace OnlineShopMVC.Domain.Model
 {
-    public class Client
+    public class Client : NamedEntity
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public string Surname { get; set; }
         public string EmailAdress { get; set; }
         public string Telephone { get; set; }

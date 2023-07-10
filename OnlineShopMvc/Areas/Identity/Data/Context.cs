@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
-namespace OnlineShopMvc.Areas.Identity.Data;
+﻿namespace OnlineShopMvc.Areas.Identity.Data;
 
 //public class Context : IdentityDbContext<IdentityUser>
 //{

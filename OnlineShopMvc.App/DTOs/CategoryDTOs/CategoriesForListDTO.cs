@@ -1,6 +1,6 @@
 ﻿namespace OnlineShopMvc.App.DTOs.CategoryDTOs
 {
-    public class CategoriesForListDTO 
+    public class CategoriesForListDTO
     {
         public List<CategoryDTO> Categories { get; set; }
         public int PageSize { get; set; }

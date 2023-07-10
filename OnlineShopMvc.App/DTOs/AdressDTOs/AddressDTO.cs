@@ -2,9 +2,9 @@
 using OnlineShopMvc.App.Mapping;
 using OnlineShopMVC.Domain.Model;
 
-namespace OnlineShopMvc.App.DTOs.AdressDTOs
-{
-    public class AddressDTO : IMapFrom<Address>
+namespace OnlineShopMvc.App.DTOs.AdressDTOs;
+
+public class AddressDTO : IMapFrom<Address>
     {
         public int Id { get; set; }
         public string Street { get; set; }
@@ -24,4 +24,4 @@ namespace OnlineShopMvc.App.DTOs.AdressDTOs
                 .ForMember(x => x.ZipCode, opt => opt.MapFrom(s => s.ZipCode));
         }
     }
-}
+

@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineShopMvc.Filters;
-using OnlineShopMvc.Inf;
 using OnlineShopMvc.Models;
-using OnlineShopMVC.Infrastructure;
 using System.Diagnostics;
 
 namespace OnlineShopMvc.Controllers

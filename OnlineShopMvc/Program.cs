@@ -2,12 +2,13 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using OnlineShopMvc.App;
 using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.ClientDTOs;
 using OnlineShopMvc.App.DTOs.ProductDTOs;
 using OnlineShopMvc.App.DTOs.TagsDTOs;
-using OnlineShopMvc.Inf;
+using OnlineShopMvc.App.NewFolder;
+using OnlineShopMvc.Inf.Data;
+using OnlineShopMvc.Inf.Extensions;
 using static OnlineShopMvc.App.DTOs.ClientDTOs.ClientDetailsDTO;
 using static OnlineShopMvc.App.DTOs.TagsDTOs.TagDTO;
 
@@ -20,13 +21,13 @@ namespace OnlineShopMvc
             var builder = WebApplication.CreateBuilder(args);
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<OnlineShopMVC.Infrastructure.Context>(options =>
+            builder.Services.AddDbContext<Context>(options =>
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<OnlineShopMVC.Infrastructure.Context>();
+                .AddEntityFrameworkStores<Context>();
             builder.Services.AddControllersWithViews()
             .AddJsonOptions(options =>
             {
@@ -71,7 +72,7 @@ namespace OnlineShopMvc
 
             using (var scope = app.Services.CreateScope())
             {
-                var context = scope.ServiceProvider.GetRequiredService<OnlineShopMVC.Infrastructure.Context>();
+                var context = scope.ServiceProvider.GetRequiredService<Context>();
                 context.Database.EnsureCreated();
                 Seeder seeder = new Seeder(context);
                 seeder.BreedTheSeedAndNeedForSpeed();

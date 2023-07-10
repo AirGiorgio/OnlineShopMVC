@@ -1,8 +1,9 @@
-﻿namespace OnlineShopMVC.Domain.Model
+﻿using OnlineShopMvc.Domain.Model;
+
+namespace OnlineShopMVC.Domain.Model
 {
-    public class Address
+    public class Address :BaseEntity
     {
-        public int Id { get; set; }
         public int ClientId { get; set; }
         public string Street { get; set; }
         public string BuildingNumber { get; set; }

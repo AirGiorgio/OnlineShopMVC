@@ -17,6 +17,5 @@ namespace OnlineShopMvc.App.DTOs.OrderDTOs
                 .ForMember(x => x.OrderDate, opt => opt.MapFrom(s => s.OrderDate))
                 .ForMember(x => x.TotalCost, opt => opt.MapFrom(s => s.TotalCost));
         }
-
     }
 }

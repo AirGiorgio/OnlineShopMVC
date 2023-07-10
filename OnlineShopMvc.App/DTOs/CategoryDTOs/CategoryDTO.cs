@@ -3,9 +3,9 @@ using FluentValidation;
 using OnlineShopMvc.App.Mapping;
 using OnlineShopMVC.Domain.Model;
 
-namespace OnlineShopMvc.App.DTOs.CategoryDTOs
-{
-    public class CategoryDTO : IMapFrom<Category>
+namespace OnlineShopMvc.App.DTOs.CategoryDTOs;
+
+public class CategoryDTO : IMapFrom<Category>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -25,4 +25,4 @@ namespace OnlineShopMvc.App.DTOs.CategoryDTOs
         }
     }
    
-}
+

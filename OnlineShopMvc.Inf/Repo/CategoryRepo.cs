@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using OnlineShopMvc.Inf.Data;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
-using OnlineShopMVC.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;

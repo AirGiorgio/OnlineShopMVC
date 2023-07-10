@@ -13,7 +13,7 @@ namespace OnlineShopMvc.App.DTOs.OrderDTOs
         public decimal TotalCost { get; set; }
         public string OrderId { get; set; }
         public ClientDTO Client { get; set; }
-     
+
         public List<OrderProductDTO> Products { get; set; }
 
         public void Mapping(Profile profile)
@@ -28,6 +28,5 @@ namespace OnlineShopMvc.App.DTOs.OrderDTOs
                .ReverseMap()
                .ForMember(x => x.OrderProducts, opt => opt.MapFrom(s => s.Products));
         }
-
     }
 }

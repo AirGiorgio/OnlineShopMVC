@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineShopMvc.App.DTOs.CategoryDTOs;
 using OnlineShopMvc.App.DTOs.ProductDTOs;
-using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.Interfaces;
-using OnlineShopMvc.App.Services;
-using OnlineShopMVC.Domain.Model;
 
 namespace OnlineShopMvc.Controllers
 {
@@ -13,6 +9,7 @@ namespace OnlineShopMvc.Controllers
         private readonly IOrderService _orderService;
         private readonly IProductService _productService;
         private readonly ILogger<ClientShopController> _logger;
+
         public ClientShopController(IOrderService orderService, ILogger<ClientShopController> logger, IProductService productService)
         {
             _orderService = orderService;
@@ -27,20 +24,21 @@ namespace OnlineShopMvc.Controllers
             var addOrder = _orderService.AddOrder(id, null);
             return Ok("Zamówienie złożone");
         }
+
         [HttpPost]
         public IActionResult AddToCart(int id, List<ProductDTO> orderProducts)
         {
             _logger.LogInformation("W AddToCart klienta");
-            var addOrder = _orderService.AddOrder(id, null); //AddToCart 
+            var addOrder = _orderService.AddOrder(id, null); //AddToCart
             return RedirectToAction("Zamówienie zostało złożone");
         }
+
         [HttpGet]
         public IActionResult ViewProducts(int? pageSize, int? pageNo, int? searchCategory, List<int> searchTags, decimal? min, decimal? max, string? name)
         {
             _logger.LogInformation("W ViewProducts klienta");
             var products = _productService.GetAllProducts(pageSize, pageNo, searchCategory, searchTags, min, max, name);
             return View(products);
-
         }
     }
 }

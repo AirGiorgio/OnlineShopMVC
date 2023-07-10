@@ -3,9 +3,9 @@ using OnlineShopMVC.Domain.Model;
 using AutoMapper;
 using OnlineShopMvc.App.DTOs.AdressDTOs;
 
-namespace OnlineShopMvc.App.DTOs.ClientDTOs
-{
-    public class ClientDTO : IMapFrom<Client>
+namespace OnlineShopMvc.App.DTOs.ClientDTOs;
+
+public class ClientDTO : IMapFrom<Client>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -22,4 +22,3 @@ namespace OnlineShopMvc.App.DTOs.ClientDTOs
                  .ForMember(x => x.Adress, opt => opt.MapFrom(s => s.Address));
         }
     }
-}

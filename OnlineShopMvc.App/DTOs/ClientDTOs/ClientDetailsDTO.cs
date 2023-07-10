@@ -4,9 +4,9 @@ using OnlineShopMvc.App.DTOs.AdressDTOs;
 using OnlineShopMvc.App.Mapping;
 using OnlineShopMVC.Domain.Model;
 
-namespace OnlineShopMvc.App.DTOs.ClientDTOs
-{
-    public class ClientDetailsDTO : IMapFrom<Client>
+namespace OnlineShopMvc.App.DTOs.ClientDTOs;
+
+public class ClientDetailsDTO : IMapFrom<Client>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -36,4 +36,4 @@ namespace OnlineShopMvc.App.DTOs.ClientDTOs
             }
         }
     }
-}
+

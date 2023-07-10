@@ -1,10 +1,7 @@
-﻿using Azure;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.Interfaces;
-using OnlineShopMvc.App.Services;
-using OnlineShopMVC.Domain.Model;
 
 namespace OnlineShopMvc.Controllers
 {
@@ -12,31 +9,35 @@ namespace OnlineShopMvc.Controllers
     {
         private readonly ITagService _tagService;
         private readonly ILogger<AdminProductController> _logger;
+
         public AdminTagController(ITagService tagService, ILogger<AdminProductController> logger)
         {
             _tagService = tagService;
             _logger = logger;
         }
+
         [HttpGet]
         public IActionResult ViewTags(int? pageSize, int? pageNo, string? name)
         {
             _logger.LogInformation("W ViewTags");
             var tags = _tagService.GetAllTags(pageSize, pageNo, name);
-             return View(tags);
-            
+            return View(tags);
         }
+
         [HttpGet]
         public IActionResult AddTag()
         {
             var tag = _tagService.PrepareModel();
             return View("NewTag", tag);
         }
+
         [HttpGet]
         public IActionResult UpdateTag(int id)
         {
             var tag = _tagService.GetTagById(id);
             return View("TagDetails", tag);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddTag(TagDTO newTag)
@@ -57,6 +58,7 @@ namespace OnlineShopMvc.Controllers
             }
             return RedirectToAction("ViewTags", "AdminTag");
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult UpdateTag(TagDTO newTag)

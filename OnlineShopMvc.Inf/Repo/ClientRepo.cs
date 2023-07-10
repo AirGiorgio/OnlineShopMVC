@@ -1,13 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OnlineShopMvc.Inf.Data;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
-using OnlineShopMVC.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SteamLibraryMVC.Infrastructure.Repositories
 {
@@ -19,8 +13,8 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
         {
             this.context = context;
         }
- 
-        public bool RemoveClient(int id) 
+
+        public bool RemoveClient(int id)
         {
             var client = GetClientById(id);
             if (client != null)
@@ -35,17 +29,17 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
 
         public IQueryable GetClientsBySurname(string surname)
         {
-            return context.Clients.Where(i => i.Surname.StartsWith(surname) && i.IsActive==true);
+            return context.Clients.Where(i => i.Surname.StartsWith(surname) && i.IsActive == true);
         }
 
-        public Client GetClientById(int id) 
+        public Client GetClientById(int id)
         {
-            return context.Clients.Include(x => x.Address).SingleOrDefault(x =>x.Id==id); 
+            return context.Clients.Include(x => x.Address).SingleOrDefault(x => x.Id == id);
         }
 
         public IQueryable ShowAllClients()
         {
-            return context.Clients.Where(i=>i.IsActive == true);
+            return context.Clients.Where(i => i.IsActive == true);
         }
 
         public string AddClientAndAddress(Client client)
@@ -58,7 +52,7 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
         public string UpdateClientAndAddress(Client client)
         {
             var clientF = GetClientById(client.Id);
-            if (clientF==null)
+            if (clientF == null)
             {
                 return "Nie udało się znaleźć klienta";
             }
@@ -73,7 +67,7 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
 
         public IQueryable GetClientByStreetName(string? street, string? buildingNumber, string? city)
         {
-            IQueryable<Client> query = context.Clients.Where(x=>x.IsActive==true);
+            IQueryable<Client> query = context.Clients.Where(x => x.IsActive == true);
 
             if (!string.IsNullOrEmpty(street) && !string.IsNullOrEmpty(buildingNumber) && !string.IsNullOrEmpty(city))
             {
@@ -117,7 +111,6 @@ namespace SteamLibraryMVC.Infrastructure.Repositories
                 query = context.Clients.Where(x => x.IsActive == true);
             }
             return query;
-
         }
     }
 }
