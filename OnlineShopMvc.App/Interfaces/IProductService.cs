@@ -6,14 +6,14 @@ namespace OnlineShopMvc.App.Interfaces
     {
         public ProductDetailsDTO PrepareModel();
 
-        ProductsForListDTO GetAllProducts(int? pageSize, int? pageNo, int? searchCategory, List<int> searchTags, decimal? min, decimal? max, string? name);
+        public ProductsForListDTO GetAllProducts(int? pageSize, int? pageNo, int? searchCategory, List<int> searchTags, decimal? min, decimal? max, string? name);
 
-        ProductDetailsDTO GetProductById(int id);
+        public ProductDetailsDTO GetProductById(int id);
 
-        string AddProduct(ProductDetailsDTO product);
+        public string AddProduct(ProductDetailsDTO product);
 
-        string UpdateProduct(ProductDetailsDTO product);
+        public string UpdateProduct(ProductDetailsDTO product);
 
-        bool RemoveProduct(int id);
+        public bool RemoveProduct(int id);
     }
 }

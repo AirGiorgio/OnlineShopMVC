@@ -1,4 +1,6 @@
 ﻿using OnlineShopMvc.Domain.Model;
+using System.Data;
+using System.Reflection.Metadata;
 
 namespace OnlineShopMVC.Domain.Model
 {
@@ -10,6 +12,7 @@ namespace OnlineShopMVC.Domain.Model
         public bool IsActive { get; set; }
         public virtual Address Address { get; set; }
         public virtual ICollection<Order> OrderHistory { get; set; }
+        public int UserId { get; set; }
         public override string ToString()
         {
             return Name + "," + Surname;

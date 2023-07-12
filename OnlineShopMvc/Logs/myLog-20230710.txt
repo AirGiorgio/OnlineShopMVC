@@ -163,3 +163,1268 @@ FROM [Categories] AS [c]" (0723d8ff)
 FROM [Categories] AS [c]
 WHERE @__name_0 = N'' OR LEFT([c].[Name], LEN(@__name_0)) = @__name_0" (0723d8ff)
 2023-07-10T11:03:22.8180270+02:00 0HMS14HTHVBA0:00000039 [INF] W Index/Home (7621c325)
+2023-07-10T11:20:40.9989577+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:20:41.0474730+02:00  [INF] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T11:20:41.0576420+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:20:41.1993901+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T11:20:41.5641342+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T11:20:41.5658284+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T11:20:41.5699114+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T11:20:41.5714672+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T11:20:41.5726730+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T11:20:42.3357072+02:00 0HMS14RNEJAO1:00000001 [INF] W Index/Home (7621c325)
+2023-07-10T11:20:44.2605340+02:00 0HMS14RNEJAO1:0000000D [INF] W Privacy/Home (4b66de61)
+2023-07-10T11:20:45.1092454+02:00 0HMS14RNEJAO1:00000015 [INF] W Index/Home (7621c325)
+2023-07-10T11:20:54.4183073+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:20:54.4687557+02:00  [INF] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T11:20:54.4768877+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:20:54.6125779+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T11:20:54.8907463+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T11:20:54.8919760+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T11:20:54.8956599+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T11:20:54.8970155+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T11:20:54.8981341+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T11:20:55.5803514+02:00 0HMS14RRCLB4M:00000001 [INF] W Index/Home (7621c325)
+2023-07-10T11:20:56.6138295+02:00 0HMS14RRCLB4M:00000009 [INF] W ViewProducts klienta (ad799f7a)
+2023-07-10T11:20:56.6678807+02:00 0HMS14RRCLB4M:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:20:56.6768646+02:00 0HMS14RRCLB4M:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:20:56.7795482+02:00 0HMS14RRCLB4M:00000009 [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:21:03.4847316+02:00 0HMS14RRCLB4M:00000019 [INF] W ViewProducts klienta (ad799f7a)
+2023-07-10T11:21:03.5261898+02:00 0HMS14RRCLB4M:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:21:03.5282738+02:00 0HMS14RRCLB4M:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:21:03.5329687+02:00 0HMS14RRCLB4M:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:21:07.3882983+02:00 0HMS14RRCLB4M:0000001D [INF] W Index/Home (7621c325)
+2023-07-10T11:21:08.3071872+02:00 0HMS14RRCLB4M:00000025 [INF] W Privacy/Home (4b66de61)
+2023-07-10T11:21:09.6828540+02:00 0HMS14RRCLB4M:00000035 [INF] W Index/Home (7621c325)
+2023-07-10T11:21:11.2909593+02:00 0HMS14RRCLB4M:0000003D [INF] W Privacy/Home (4b66de61)
+2023-07-10T11:25:15.4865687+02:00  [INF] Executed DbCommand ("13"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:25:15.5334976+02:00  [INF] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T11:25:15.5422237+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:25:15.6920588+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T11:25:15.9995298+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T11:25:16.0008388+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T11:25:16.0040246+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T11:25:16.0052709+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T11:25:16.0063112+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T11:25:16.7502023+02:00 0HMS14U96GPFF:00000001 [INF] W Index/Home (7621c325)
+2023-07-10T11:25:19.1314365+02:00 0HMS14U96GPFF:00000011 [INF] W ViewCategories (f9181131)
+2023-07-10T11:25:19.1819097+02:00 0HMS14U96GPFF:00000011 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:25:23.6687463+02:00 0HMS14U96GPFF:00000021 [INF] W ViewCategories (f9181131)
+2023-07-10T11:25:23.7100156+02:00 0HMS14U96GPFF:00000021 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:32:21.7848756+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:32:21.8321840+02:00  [INF] Executed DbCommand ("19"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T11:32:21.8409492+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:32:21.9850195+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T11:32:22.2874024+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T11:32:22.2889827+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T11:32:22.2926745+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T11:32:22.2940461+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T11:32:22.2952747+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T11:32:22.8412005+02:00 0HMS15286V325:00000001 [INF] W Index/Home (7621c325)
+2023-07-10T11:32:26.6419589+02:00 0HMS15286V325:00000015 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:32:26.6986491+02:00 0HMS15286V325:00000015 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:32:26.7074667+02:00 0HMS15286V325:00000015 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:32:26.8096700+02:00 0HMS15286V325:00000015 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:32:30.4097453+02:00 0HMS15286V325:0000001D [INF] W AddProduct typu Get (00ddb0e6)
+2023-07-10T11:32:30.4508956+02:00 0HMS15286V325:0000001D [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:32:30.4531105+02:00 0HMS15286V325:0000001D [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:32:32.9011265+02:00 0HMS15286V325:00000025 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:32:32.9038511+02:00 0HMS15286V325:00000025 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:34:03.9103578+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:34:03.9634043+02:00  [INF] Executed DbCommand ("27"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T11:34:03.9722540+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:34:04.1129213+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T11:34:04.4157319+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T11:34:04.4169559+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T11:34:04.4205074+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T11:34:04.4217014+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T11:34:04.4228162+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T11:34:04.8490887+02:00 0HMS1536K57D3:00000001 [INF] W Index/Home (7621c325)
+2023-07-10T11:34:09.4696590+02:00 0HMS1536K57D3:00000011 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:34:09.5217853+02:00 0HMS1536K57D3:00000011 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:34:09.5297157+02:00 0HMS1536K57D3:00000011 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:34:09.6382503+02:00 0HMS1536K57D3:00000011 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:34:12.6554801+02:00 0HMS1536K57D3:00000019 [INF] W AddProduct typu Get (00ddb0e6)
+2023-07-10T11:34:12.6961395+02:00 0HMS1536K57D3:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:34:12.6983958+02:00 0HMS1536K57D3:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:34:14.3741685+02:00 0HMS1536K57D3:00000021 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:34:14.3767562+02:00 0HMS1536K57D3:00000021 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:34:14.3787831+02:00 0HMS1536K57D3:00000021 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:34:14.3837586+02:00 0HMS1536K57D3:00000021 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:34:16.6993169+02:00 0HMS1536K57D3:00000029 [INF] W Index/Home (7621c325)
+2023-07-10T11:34:18.2679509+02:00 0HMS1536K57D3:00000039 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:34:18.2705377+02:00 0HMS1536K57D3:00000039 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:34:18.2726807+02:00 0HMS1536K57D3:00000039 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:34:18.2769124+02:00 0HMS1536K57D3:00000039 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:34:32.7002966+02:00 0HMS1536K57D3:00000041 [INF] W Index/Home (7621c325)
+2023-07-10T11:34:33.2351065+02:00 0HMS1536K57D3:00000049 [INF] W Index/Home (7621c325)
+2023-07-10T11:34:38.6344131+02:00 0HMS1536K57D3:00000051 [INF] W Index/Home (7621c325)
+2023-07-10T11:34:51.5150999+02:00 0HMS1536K57D3:00000061 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:34:51.5174360+02:00 0HMS1536K57D3:00000061 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:34:51.5194367+02:00 0HMS1536K57D3:00000061 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:34:51.5221238+02:00 0HMS1536K57D3:00000061 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:34:55.3243993+02:00 0HMS1536K57D3:00000069 [INF] W AddProduct typu Get (00ddb0e6)
+2023-07-10T11:34:55.3272178+02:00 0HMS1536K57D3:00000069 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:34:55.3290732+02:00 0HMS1536K57D3:00000069 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:35:04.8635342+02:00 0HMS1536K57D3:00000071 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:35:04.8655623+02:00 0HMS1536K57D3:00000071 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:35:06.3188240+02:00 0HMS1536K57D3:00000079 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:35:06.3206909+02:00 0HMS1536K57D3:00000079 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:35:08.8712964+02:00 0HMS1536K57D3:00000081 [INF] W AddProduct typu Post (05b2406d)
+2023-07-10T11:35:08.9050539+02:00 0HMS1536K57D3:00000081 [INF] Executed DbCommand ("22"ms) [Parameters=["@__name_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]
+        WHERE [p].[Name] = @__name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T11:35:08.9421007+02:00 0HMS1536K57D3:00000081 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name], [p].[Id], [p].[CategoryId], [p].[IsActive], [p].[Name], [p].[Price], [p].[Quantity]
+FROM (
+    SELECT TOP(2) [c].[Id], [c].[Name]
+    FROM [Categories] AS [c]
+    WHERE [c].[Id] = @__id_0
+) AS [t]
+LEFT JOIN [Products] AS [p] ON [t].[Id] = [p].[CategoryId]
+ORDER BY [t].[Id]" (0723d8ff)
+2023-07-10T11:35:09.0155011+02:00 0HMS1536K57D3:00000081 [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [t0].[Id], [t0].[Name], [t1].[ProductsId], [t1].[TagsId], [t1].[Id], [t1].[CategoryId], [t1].[IsActive], [t1].[Name], [t1].[Price], [t1].[Quantity]
+FROM (
+    SELECT TOP(2) [t].[Id], [t].[Name]
+    FROM [Tags] AS [t]
+    WHERE [t].[Id] = @__id_0
+) AS [t0]
+LEFT JOIN (
+    SELECT [p].[ProductsId], [p].[TagsId], [p0].[Id], [p0].[CategoryId], [p0].[IsActive], [p0].[Name], [p0].[Price], [p0].[Quantity]
+    FROM [ProductTag] AS [p]
+    INNER JOIN [Products] AS [p0] ON [p].[ProductsId] = [p0].[Id]
+) AS [t1] ON [t0].[Id] = [t1].[TagsId]
+ORDER BY [t0].[Id], [t1].[ProductsId], [t1].[TagsId]" (0723d8ff)
+2023-07-10T11:35:09.1608695+02:00 0HMS1536K57D3:00000081 [INF] Executed DbCommand ("19"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (Size = 4000), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [IsActive], [Name], [Price], [Quantity])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4);" (0723d8ff)
+2023-07-10T11:35:09.1760837+02:00 0HMS1536K57D3:00000081 [INF] Executed DbCommand ("2"ms) [Parameters=["@p5='?' (DbType = Int32), @p6='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [ProductTag] ([ProductsId], [TagsId])
+VALUES (@p5, @p6);" (0723d8ff)
+2023-07-10T11:35:09.1915816+02:00 0HMS1536K57D3:00000083 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:35:09.1937211+02:00 0HMS1536K57D3:00000083 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:35:09.1952283+02:00 0HMS1536K57D3:00000083 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:35:09.2022979+02:00 0HMS1536K57D3:00000083 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:36:08.6856254+02:00  [INF] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:36:08.7495880+02:00  [INF] Executed DbCommand ("39"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T11:36:08.7599194+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:36:08.9397658+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T11:36:09.3869399+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T11:36:09.3885043+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T11:36:09.3926642+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T11:36:09.3938811+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T11:36:09.3951651+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T11:36:09.9801159+02:00 0HMS154BT86T6:00000001 [INF] W Index/Home (7621c325)
+2023-07-10T11:36:10.9536580+02:00 0HMS154BT86T6:00000009 [INF] W ViewProducts klienta (ad799f7a)
+2023-07-10T11:36:11.0063095+02:00 0HMS154BT86T6:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:36:11.0142488+02:00 0HMS154BT86T6:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:36:11.1185150+02:00 0HMS154BT86T6:00000009 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:36:12.9676590+02:00 0HMS154BT86T6:00000019 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:36:13.0087964+02:00 0HMS154BT86T6:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:36:13.0108187+02:00 0HMS154BT86T6:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:36:13.0156950+02:00 0HMS154BT86T6:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:36:14.6795455+02:00 0HMS154BT86T6:00000021 [INF] W AddProduct typu Get (00ddb0e6)
+2023-07-10T11:36:14.6827304+02:00 0HMS154BT86T6:00000021 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:36:14.6846539+02:00 0HMS154BT86T6:00000021 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:36:19.3890374+02:00 0HMS154BT86T6:00000029 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:36:19.3908342+02:00 0HMS154BT86T6:00000029 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:36:23.1252844+02:00 0HMS154BT86T6:00000031 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:36:23.1277855+02:00 0HMS154BT86T6:00000031 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:36:23.1295964+02:00 0HMS154BT86T6:00000031 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:36:23.1328337+02:00 0HMS154BT86T6:00000031 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:36:27.1903862+02:00 0HMS154BT86T6:00000039 [INF] W AddProduct typu Get (00ddb0e6)
+2023-07-10T11:36:27.1935662+02:00 0HMS154BT86T6:00000039 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:36:27.1957260+02:00 0HMS154BT86T6:00000039 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:36:28.0846103+02:00 0HMS154BT86T6:00000041 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:36:28.0882922+02:00 0HMS154BT86T6:00000041 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:36:28.0907446+02:00 0HMS154BT86T6:00000041 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:36:28.0943494+02:00 0HMS154BT86T6:00000041 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:36:39.4484637+02:00  [INF] Executed DbCommand ("14"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:36:39.4973019+02:00  [INF] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T11:36:39.5074513+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T11:36:39.6634606+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T11:36:39.9696099+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T11:36:39.9708900+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T11:36:39.9745444+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T11:36:39.9758565+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T11:36:39.9769336+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T11:36:40.5270478+02:00 0HMS154KVVVQI:00000001 [INF] W Index/Home (7621c325)
+2023-07-10T11:36:43.9468832+02:00 0HMS154KVVVQI:00000011 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:36:44.0009139+02:00 0HMS154KVVVQI:00000011 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:36:44.0087025+02:00 0HMS154KVVVQI:00000011 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:36:44.1074893+02:00 0HMS154KVVVQI:00000011 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:36:46.1565663+02:00 0HMS154KVVVQI:00000019 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:36:46.1963309+02:00 0HMS154KVVVQI:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:36:46.1986461+02:00 0HMS154KVVVQI:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:36:46.2038763+02:00 0HMS154KVVVQI:00000019 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T11:36:53.7985265+02:00 0HMS154KVVVQI:00000021 [INF] W ViewProducts (1e82e5bb)
+2023-07-10T11:36:53.8010938+02:00 0HMS154KVVVQI:00000021 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Name]
+FROM [Categories] AS [c]" (0723d8ff)
+2023-07-10T11:36:53.8032572+02:00 0HMS154KVVVQI:00000021 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Name]
+FROM [Tags] AS [t]" (0723d8ff)
+2023-07-10T11:36:53.8065929+02:00 0HMS154KVVVQI:00000021 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], CASE
+    WHEN [c].[Id] IS NULL THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END, [c].[Id], [c].[Name], [t0].[Id], [t0].[Name], [t0].[ProductsId], [t0].[TagsId], [p].[Quantity], [p].[Price], [p].[Name]
+FROM [Products] AS [p]
+LEFT JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+LEFT JOIN (
+    SELECT [t].[Id], [t].[Name], [p0].[ProductsId], [p0].[TagsId]
+    FROM [ProductTag] AS [p0]
+    INNER JOIN [Tags] AS [t] ON [p0].[TagsId] = [t].[Id]
+) AS [t0] ON [p].[Id] = [t0].[ProductsId]
+WHERE [p].[IsActive] = CAST(1 AS bit)
+ORDER BY [p].[Id], [c].[Id], [t0].[ProductsId], [t0].[TagsId]" (0723d8ff)
+2023-07-10T12:00:53.9635368+02:00  [INF] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:00:54.0264779+02:00  [INF] Executed DbCommand ("29"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T12:00:54.0372999+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:00:54.2364338+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T12:00:54.6818186+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T12:00:54.6841128+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T12:00:54.6944571+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T12:00:54.6975935+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T12:00:54.7000486+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T12:00:55.4131150+02:00 0HMS15I6JIG5A:00000001 [INF] W Index/Home (7621c325)
+2023-07-10T12:13:48.1137514+02:00  [INF] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:13:48.1779083+02:00  [INF] Executed DbCommand ("26"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T12:13:48.1889887+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:13:48.3947772+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T12:13:48.8067803+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T12:13:48.8090158+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T12:13:48.8144919+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T12:13:48.8168802+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T12:13:48.8183859+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T12:13:49.5112218+02:00 0HMS15PD9Q2IN:00000001 [INF] W Index/Home (7621c325)
+2023-07-10T12:14:04.0043487+02:00  [INF] Executed DbCommand ("15"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:14:04.0567179+02:00  [INF] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T12:14:04.0670610+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:14:04.2871732+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T12:14:04.6747230+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T12:14:04.6767743+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T12:14:04.6821845+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T12:14:04.6844692+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T12:14:04.6867410+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T12:14:05.4256547+02:00 0HMS15PI03PTN:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-07-10T12:14:05.4334409+02:00 0HMS15PI03PTN:00000001 [ERR] An exception was thrown attempting to execute the error handler. (e55ade05)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-07-10T12:14:05.4583134+02:00 0HMS15PI03PTN:00000001 [ERR] Connection id ""0HMS15PI03PTN"", Request id ""0HMS15PI03PTN:00000001"": An unhandled exception was thrown by the application. (560e7d32)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.ExecuteWithFilterAsync(IHttpSocketAdapter injectScriptSocket, String requestId, HttpContext httpContext)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2023-07-10T12:14:08.6688715+02:00 0HMS15PI03PTN:00000003 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-07-10T12:14:08.6732878+02:00 0HMS15PI03PTN:00000003 [ERR] An exception was thrown attempting to execute the error handler. (e55ade05)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2023-07-10T12:14:08.6759297+02:00 0HMS15PI03PTN:00000003 [ERR] Connection id ""0HMS15PI03PTN"", Request id ""0HMS15PI03PTN:00000003"": An unhandled exception was thrown by the application. (560e7d32)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.ExecuteWithFilterAsync(IHttpSocketAdapter injectScriptSocket, String requestId, HttpContext httpContext)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2023-07-10T12:14:20.0237047+02:00  [INF] Executed DbCommand ("16"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:14:20.0658687+02:00  [INF] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T12:14:20.0755335+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:14:20.2556101+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T12:14:20.6230259+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T12:14:20.6239110+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T12:14:20.6275280+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T12:14:20.6286366+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T12:14:20.6297501+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T12:14:21.7867896+02:00 0HMS15PMQ67OT:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-07-10T12:14:21.7953007+02:00 0HMS15PMQ67OT:00000001 [ERR] An exception was thrown attempting to execute the error handler. (e55ade05)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2023-07-10T12:14:21.8085480+02:00 0HMS15PMQ67OT:00000001 [ERR] Connection id ""0HMS15PMQ67OT"", Request id ""0HMS15PMQ67OT:00000001"": An unhandled exception was thrown by the application. (560e7d32)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.ExecuteWithFilterAsync(IHttpSocketAdapter injectScriptSocket, String requestId, HttpContext httpContext)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2023-07-10T12:14:42.4665487+02:00  [INF] Executed DbCommand ("23"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:14:42.5405600+02:00  [INF] Executed DbCommand ("41"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T12:14:42.5530144+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:14:42.7476719+02:00  [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T12:14:43.1870438+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T12:14:43.1883272+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T12:14:43.1921270+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T12:14:43.1933318+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T12:14:43.1943899+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T12:53:33.3042117+02:00  [INF] Executed DbCommand ("21"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:53:33.3808634+02:00  [INF] Executed DbCommand ("49"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T12:53:33.3938193+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:53:33.6327061+02:00  [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T12:53:34.0833567+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T12:53:34.0851159+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T12:53:34.0896245+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T12:53:34.0911715+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T12:53:34.0925900+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T12:53:34.4943537+02:00 0HMS16FK2DR7H:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-07-10T12:53:34.5041463+02:00 0HMS16FK2DR7H:00000001 [ERR] An exception was thrown attempting to execute the error handler. (e55ade05)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-07-10T12:53:34.5172155+02:00 0HMS16FK2DR7H:00000001 [ERR] Connection id ""0HMS16FK2DR7H"", Request id ""0HMS16FK2DR7H:00000001"": An unhandled exception was thrown by the application. (560e7d32)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.ExecuteWithFilterAsync(IHttpSocketAdapter injectScriptSocket, String requestId, HttpContext httpContext)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2023-07-10T12:53:35.6860608+02:00 0HMS16FK2DR7H:00000003 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-07-10T12:53:35.6905125+02:00 0HMS16FK2DR7H:00000003 [ERR] An exception was thrown attempting to execute the error handler. (e55ade05)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2023-07-10T12:53:35.6932864+02:00 0HMS16FK2DR7H:00000003 [ERR] Connection id ""0HMS16FK2DR7H"", Request id ""0HMS16FK2DR7H:00000003"": An unhandled exception was thrown by the application. (560e7d32)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.ExecuteWithFilterAsync(IHttpSocketAdapter injectScriptSocket, String requestId, HttpContext httpContext)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2023-07-10T12:53:36.5444672+02:00 0HMS16FK2DR7H:00000005 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-07-10T12:53:36.5475170+02:00 0HMS16FK2DR7H:00000005 [ERR] An exception was thrown attempting to execute the error handler. (e55ade05)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+2023-07-10T12:53:36.5503382+02:00 0HMS16FK2DR7H:00000005 [ERR] Connection id ""0HMS16FK2DR7H"", Request id ""0HMS16FK2DR7H:00000005"": An unhandled exception was thrown by the application. (560e7d32)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.ExecuteWithFilterAsync(IHttpSocketAdapter injectScriptSocket, String requestId, HttpContext httpContext)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2023-07-10T12:56:53.9595173+02:00  [INF] Executed DbCommand ("28"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:56:54.0250324+02:00  [INF] Executed DbCommand ("36"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0" (0723d8ff)
+2023-07-10T12:56:54.0346125+02:00  [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT 1" (0723d8ff)
+2023-07-10T12:56:54.2659952+02:00  [INF] Executed DbCommand ("4"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Clients] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END" (0723d8ff)
+2023-07-10T12:56:54.7431722+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2023-07-10T12:56:54.7452233+02:00  [INF] Now listening on: "http://localhost:5000" (d826f4b8)
+2023-07-10T12:56:54.7506999+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2023-07-10T12:56:54.7533504+02:00  [INF] Hosting environment: "Production" (bc5a1a4e)
+2023-07-10T12:56:54.7552836+02:00  [INF] Content root path: "C:\Users\Jan Klata\source\repos\OnlineShopMvc\OnlineShopMvc" (cc26f24e)
+2023-07-10T12:56:55.3807343+02:00 0HMS16HFTO1R1:00000001 [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-07-10T12:56:55.3897125+02:00 0HMS16HFTO1R1:00000001 [ERR] An exception was thrown attempting to execute the error handler. (e55ade05)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2023-07-10T12:56:55.4026558+02:00 0HMS16HFTO1R1:00000001 [ERR] Connection id ""0HMS16HFTO1R1"", Request id ""0HMS16HFTO1R1:00000001"": An unhandled exception was thrown by the application. (560e7d32)
+System.ArgumentException: The 'ClientId' option must be provided. (Parameter 'ClientId')
+   at Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.Validate()
+   at Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.Validate(String scheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationBuilder.<>c__DisplayClass4_0`2.<AddSchemeHelper>b__1(TOptions o)
+   at Microsoft.Extensions.Options.ValidateOptions`1.Validate(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.Extensions.Options.OptionsCache`1.GetOrAdd[TArg](String name, Func`3 createOptions, TArg factoryArgument)
+   at Microsoft.Extensions.Options.OptionsMonitor`1.Get(String name)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandler`1.InitializeAsync(AuthenticationScheme scheme, HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationHandlerProvider.GetHandlerAsync(HttpContext context, String authenticationScheme)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.HandleException(HttpContext context, ExceptionDispatchInfo edi)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|8_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+   at Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware.ExecuteWithFilterAsync(IHttpSocketAdapter injectScriptSocket, String requestId, HttpContext httpContext)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)

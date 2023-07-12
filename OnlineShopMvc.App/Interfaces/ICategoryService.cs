@@ -4,18 +4,16 @@ namespace OnlineShopMvc.App.Interfaces
 {
     public interface ICategoryService
     {
-        public CategoryDTO PrepareModel();
+        public CategoriesProductsDTO GetCategoryProducts(int id);
 
-        CategoriesProductsDTO GetCategoryProducts(int id);
+        public CategoryDTO GetCategoryById(int id);
 
-        CategoryDTO GetCategoryById(int id);
+        public CategoriesForListDTO GetAllCategories(int? pageSize, int? pageNo, string? name);
 
-        CategoriesForListDTO GetAllCategories(int? pageSize, int? pageNo, string? name);
+        public string UpdateCategory(int id, string? name);
 
-        string UpdateCategory(int id, string? name);
+        public bool RemoveCategory(int id);
 
-        bool RemoveCategory(int id);
-
-        string AddCategory(string? name);
+        public string AddCategory(string? name);
     }
 }

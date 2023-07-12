@@ -35,7 +35,7 @@ namespace OnlineShopMvc.Controllers
         [HttpGet]
         public IActionResult AddCategory()
         {
-            var category = _categoryService.PrepareModel();
+            var category = new CategoryDTO();
             return View("NewCategory", category);
         }
 

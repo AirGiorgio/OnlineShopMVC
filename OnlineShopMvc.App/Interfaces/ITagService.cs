@@ -4,8 +4,6 @@ namespace OnlineShopMvc.App.Interfaces
 {
     public interface ITagService
     {
-        public TagDTO PrepareModel();
-
         public TagProductsDTO GetTagProducts(int id);
 
         public TagDTO GetTagById(int id);

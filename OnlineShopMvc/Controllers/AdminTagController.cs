@@ -27,7 +27,7 @@ namespace OnlineShopMvc.Controllers
         [HttpGet]
         public IActionResult AddTag()
         {
-            var tag = _tagService.PrepareModel();
+            var tag = new TagDTO();
             return View("NewTag", tag);
         }
 

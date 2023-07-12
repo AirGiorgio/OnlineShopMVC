@@ -74,12 +74,6 @@ namespace OnlineShopMvc.App.Services
             }
         }
 
-        public CategoryDTO PrepareModel()
-        {
-            CategoryDTO newCategory = new CategoryDTO();
-            return newCategory;
-        }
-
         public bool RemoveCategory(int id)
         {
             if (id <= 0 || id == null)

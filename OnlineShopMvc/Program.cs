@@ -1,16 +1,10 @@
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using OnlineShopMvc.App.DTOs.CategoryDTOs;
-using OnlineShopMvc.App.DTOs.ClientDTOs;
-using OnlineShopMvc.App.DTOs.ProductDTOs;
-using OnlineShopMvc.App.DTOs.TagsDTOs;
 using OnlineShopMvc.App.NewFolder;
+using OnlineShopMvc.Areas.Identity.Data;
 using OnlineShopMvc.Inf.Data;
 using OnlineShopMvc.Inf.Extensions;
-using static OnlineShopMvc.App.DTOs.ClientDTOs.ClientDetailsDTO;
-using static OnlineShopMvc.App.DTOs.TagsDTOs.TagDTO;
 
 namespace OnlineShopMvc
 {
@@ -26,8 +20,10 @@ namespace OnlineShopMvc
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
+
+
             builder.Services.AddControllersWithViews()
             .AddJsonOptions(options =>
             {
@@ -41,10 +37,7 @@ namespace OnlineShopMvc
            
 
           builder.Services.AddFluentValidationAutoValidation();
-            builder.Services.AddTransient<IValidator<CategoryDTO>, CategoryValidation>();
-            builder.Services.AddTransient<IValidator<TagDTO>, TagValidation>();
-            builder.Services.AddTransient<IValidator<ClientDetailsDTO>, ClientValidation>();
-            builder.Services.AddTransient<IValidator<ProductDetailsDTO>, ProductValidation>();
+         
 
             builder.Services.Configure<IdentityOptions>(options => 
             {
@@ -57,13 +50,14 @@ namespace OnlineShopMvc
                 options.SignIn.RequireConfirmedEmail= false;
                 options.User.RequireUniqueEmail = true;
             });
+            builder.Configuration.AddUserSecrets<Program>();
 
-            //builder.Services.AddAuthentication().AddGoogle(options =>
-            //{
-            //    //  IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
-            //    //options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-            //    //options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-            //});
+            builder.Services.AddAuthentication().AddGoogle(options =>
+            {
+                IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
+                options.ClientId = googleAuthNSection["ClientId"];
+                options.ClientSecret = googleAuthNSection["ClientSecret"];
+            });
 
             var app = builder.Build();
 

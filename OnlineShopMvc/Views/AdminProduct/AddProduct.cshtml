@@ -8,7 +8,10 @@
 <h2>Dodawanie produktu</h2>
 
 @if (Model != null)
-{
+{@if (TempData["Message"] != null)
+    {
+                <p>@TempData["Message"]</p>
+    }
     <form asp-action="AddProduct">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div>

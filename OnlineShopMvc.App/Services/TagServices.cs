@@ -18,12 +18,6 @@ namespace OnlineShopMvc.App.Services
             _mapper = mapper;
         }
 
-        public TagDTO PrepareModel()
-        {
-            TagDTO newTag = new TagDTO();
-            return newTag;
-        }
-
         public TagProductsDTO GetTagProducts(int id)
         {
             var tag = _tagRepo.GetTagById(id);

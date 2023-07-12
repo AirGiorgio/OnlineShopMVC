@@ -8,10 +8,7 @@
 <h2>Znaleziono @Model.Count Produktów</h2>
 
 @if (Model != null  )
-{ @if (TempData["Message"] != null)
-    {
-        <p>@TempData["Message"]</p>
-    }
+{ 
     <form method="get" action="@Url.Action("AddProduct", "AdminProduct")">
         <button type="submit">Dodaj Produkt</button>
     </form>
