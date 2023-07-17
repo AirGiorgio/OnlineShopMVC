@@ -9,7 +9,8 @@ O tej aplikacji:
 * operacje CRUD na danych,
 * obiekty DTO wykonane za pomocą paczki Automapper,
 * walidacja danych za pomocą Data Annotations oraz paczki Fluent Validation,
-* możliwość logowania i rejestracji, w tym za pomocą konta Google,
+* możliwość logowania i rejestracji, w tym za pomocą konta Google
+
 Funkcjonalności obecnie rozwijane:
 * praktyka zarządzania użytkownikami oparta na rolach
 * tworzenie JWT
