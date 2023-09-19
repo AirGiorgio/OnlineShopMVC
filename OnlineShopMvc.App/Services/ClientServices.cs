@@ -73,7 +73,7 @@ namespace OnlineShopMvc.App.Services
             return _clientRepo.RemoveClient(id);
         }
 
-        public ClientsForListDTO ShowAllClients(int? pageSize, int? pageNo, string? street, string? buildingNumber, string? city, string? surname)
+        public ClientsForListDTO ShowAllClients(int? pageSize, int? pageNo, string? street, string? buildingNumber, string? city, string? surname, string? username)
         {
             if (!pageNo.HasValue || !pageSize.HasValue)
             {
@@ -82,24 +82,31 @@ namespace OnlineShopMvc.App.Services
             }
 
             List<ClientDTO> clients = new List<ClientDTO>();
-            if (surname.IsNullOrEmpty() && street.IsNullOrEmpty() && buildingNumber.IsNullOrEmpty() && city.IsNullOrEmpty())
+            if (surname.IsNullOrEmpty() && street.IsNullOrEmpty() && buildingNumber.IsNullOrEmpty() && city.IsNullOrEmpty() && username.IsNullOrEmpty())
             {
                 clients = _clientRepo.ShowAllClients()
                .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
             }
-            else if (street.IsNullOrEmpty() && buildingNumber.IsNullOrEmpty() && city.IsNullOrEmpty())
+            else if (street.IsNullOrEmpty() && buildingNumber.IsNullOrEmpty() && city.IsNullOrEmpty() && username.IsNullOrEmpty())
             {
                 clients = _clientRepo.GetClientsBySurname(surname)
                 .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
             }
-            else if (surname.IsNullOrEmpty())
+            else if (surname.IsNullOrEmpty() && username.IsNullOrEmpty())
             {
                 clients = _clientRepo.GetClientByStreetName(street, buildingNumber, city)
                 .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
             }
+            else if (surname.IsNullOrEmpty() && street.IsNullOrEmpty() && buildingNumber.IsNullOrEmpty() && city.IsNullOrEmpty())
+            {
+                clients = _clientRepo.GetClientByUserName(username)
+                    .ProjectTo<ClientDTO>(_mapper.ConfigurationProvider).ToList();
+            }
+
             var clientsToShow = clients.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
             var clientsDTO = new ClientsForListDTO()
             {
+                UserName = username,
                 PageNum = pageNo.Value,
                 PageSize = pageSize.Value,
                 SearchBuilding = buildingNumber,

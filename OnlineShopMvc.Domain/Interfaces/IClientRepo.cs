@@ -17,5 +17,7 @@ namespace OnlineShopMvc.Inf.Interfaces
         IQueryable ShowAllClients();
 
         IQueryable GetClientByStreetName(string? street, string? buildingNumber, string? city);
+
+        IQueryable GetClientByUserName(string name);
     }
 }

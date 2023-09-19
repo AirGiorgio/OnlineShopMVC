@@ -83,14 +83,21 @@ namespace OnlineShopMvc.Inf.Repo
 
         public bool RemoveOrder(int? id)
         {
-            var order = GetOrderById(id);
-            if (order != null)
+            try
             {
-                context.Remove(order);
-                context.SaveChanges();
-                return true;
+                var order = GetOrderById(id);
+                if (order != null)
+                {
+                    context.Remove(order);
+                    context.SaveChanges();
+                    return true;
+                }
+                else return false;
             }
-            else return false;
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool AddOrder(int id, List<Product> orderProducts)

@@ -3,11 +3,6 @@ using Microsoft.IdentityModel.Tokens;
 using OnlineShopMvc.Inf.Data;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMVC.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShopMvc.Inf.Repo
 {
@@ -19,10 +14,10 @@ namespace OnlineShopMvc.Inf.Repo
         {
             this.context = context;
         }
-        
+
         public Category GetCategoryById(int? id)
         {
-            return context.Categories.Include(x=>x.Products).SingleOrDefault(i => i.Id == id);
+            return context.Categories.Include(x => x.Products).SingleOrDefault(i => i.Id == id);
         }
 
         public IQueryable GetAllCategories(string? name)
@@ -36,39 +31,61 @@ namespace OnlineShopMvc.Inf.Repo
                 return context.Categories.Where(x => x.Name.StartsWith(name));
             }
         }
+
         public string UpdateCategory(int id, string c)
         {
-            var category = GetCategoryById(id);
-            if (category != null)
+            try
             {
-                category.Name = c;
-                context.Update(category);
-                context.SaveChanges();
-                return "Uaktualniono kategorię";
+                var category = GetCategoryById(id);
+                if (category != null)
+                {
+                    category.Name = c;
+                    context.Update(category);
+                    context.SaveChanges();
+                    return "Uaktualniono kategorię";
+                }
+                else return "Nie udało się odnaleźć tej kategorii";
             }
-            else return "Nie udało się odnaleźć tej kategorii";
+            catch (Exception)
+            {
+                return "Wystąpił błąd połączenia z bazą danych";
+            }
         }
+
         public bool RemoveCategory(int? id)
         {
-            var category = GetCategoryById(id);
-            if (category != null )
+            try
             {
-         
-                context.Remove(category);
-                context.SaveChanges();
-                return true;
+                var category = GetCategoryById(id);
+                if (category != null)
+                {
+                    context.Remove(category);
+                    context.SaveChanges();
+                    return true;
+                }
+                else return false;
             }
-            else return false;
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public string AddCategory(string name)
         {
-            Category category = new Category();
-            category.Name=name;
+            try
+            {
+                Category category = new Category();
+                category.Name = name;
 
-            context.Add(category);
-            context.SaveChanges();
-            return "Udało się dodać kategorię " + category.Name; 
+                context.Add(category);
+                context.SaveChanges();
+                return "Udało się dodać kategorię " + category.Name;
+            }
+            catch (Exception)
+            {
+                return "Wystąpił błąd połączenia z bazą danych";
+            }
         }
 
         public bool IsCategoryNameTaken(string? name)

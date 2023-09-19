@@ -7,10 +7,12 @@ namespace OnlineShopMvc.Filters
     public class Permissions : Attribute, IAuthorizationFilter
     {
         private readonly string _permission;
+
         public Permissions(string permission)
         {
             _permission = permission;
         }
+
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             bool isAuthorized = CheckUserPermission(context.HttpContext.User, _permission);
@@ -23,8 +25,6 @@ namespace OnlineShopMvc.Filters
 
         private bool CheckUserPermission(ClaimsPrincipal user, string permission)
         {
-
-
             return permission == "Read";
         }
     }

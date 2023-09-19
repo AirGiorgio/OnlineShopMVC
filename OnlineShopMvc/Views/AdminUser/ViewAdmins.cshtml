@@ -1,5 +1,5 @@
 ﻿@using OnlineShopMvc.App.DTOs.UserDTOs
-@model UsersForListDTO
+@model AdminsForListDTO
 
 <h2>Znaleziono @Model.Count Użytkowników</h2>
 
@@ -14,32 +14,30 @@
             <tr>
                 <th></th>
                 <th>Nazwa użytkownika</th>
-                <th>Email użytkownika</th>
-                <th>Dane klienta</th>      
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var (user, index) in Model.Users.Select((c, i) => (c, i)))
+            @foreach (var (user, index) in Model.Admins.Select((c, i) => (c, i)))
             {
                 <tr>
                     <td>
                         @((index + 1) + (10 * (Model.PageNum - 1)))
                     </td>
-                   <td>@user.UserName</td>
-                    <td>@user.Email</td>
-                    <td>@(
-                    user.ClientId==0 ? "Nie" : "Tak"
-                    )</td> 
-                    <td></td>
+                    <td>@user.UserName</td>
                     <td>
-                        <form method="get" action="@Url.Action("UserDetails", "AdminUser", new { id = user.Id})">
+                        <form method="get" action="@Url.Action("AdminDetails", "AdminUser", new { id = user.Id})">
                             <button type="submit">Resetuj hasło</button>
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="@Url.Action("DeleteUser", "AdminUser", new { id = user.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć tego użytkownika?')">
+                        <form method="post" action="@Url.Action("DeleteAdmin", "AdminUser", new { id = user.Id })" onsubmit="return confirm('Czy na pewno chcesz usunąć tego użytkownika?')">
                             <button type="submit">Usuń</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="get" action="@Url.Action("UpdateAdmin", "AdminUser", new { id = user.Id})">
+                            <button type="submit">Edytuj</button>
                         </form>
                     </td>
                 </tr>
@@ -63,24 +61,28 @@
                     </td>
                 }
             </tr>
-            <form id="ViewUsers" method="get" action="@Url.Action("ViewUsers", "AdminUser")">
-            <input type="hidden" asp-for=SearchName name="searchname" id="searchname" value=@Model.SearchName />
-            <input type="hidden" asp-for=PageNum name="pageNo" id="pageNo" value="1" />
-            <input type="hidden" asp-for=PageSize name="pageSize" id="pageSize" value="10" />
+            <form id="ViewUsers" method="get" action="@Url.Action("ViewAdmins", "AdminUser")">
+                <input type="hidden" asp-for=SearchName name="searchname" id="searchname" value=@Model.SearchName />
+                <input type="hidden" asp-for=PageNum name="pageNo" id="pageNo" value="1" />
+                <input type="hidden" asp-for=PageSize name="pageSize" id="pageSize" value="10" />
             </form>
         </table>
     </div>
 
+    <h2>Dodaj administratora</h2>
+    <form id="AddAdmin" method="Get" action="@Url.Action("AddAdmin", "AdminUser")">
+        <button type="submit">Dodaj</button>
+    </form>
 
-    <h2>Wyszukaj klienta po Emailu</h2>
-    <form id="ViewUsers" method="get" action="@Url.Action("ViewUsers", "AdminUser")">
+    <h2>Wyszukaj administratora</h2>
+    <form id="ViewUsers" method="get" action="@Url.Action("ViewAdmins", "AdminUser")">
         <input id="userName" value="@Model.SearchName" asp-for="SearchName" type="text" name="searchname" placeholder="Wyszukaj" />
         <button type="submit">OK</button>
     </form>
-       <form method="get" action="@Url.Action("ViewUsers", "AdminUser")">
+    <form method="get" action="@Url.Action("ViewUsers", "AdminUser")">
         <button type="submit">Powrót do pełnej listy</button>
     </form>
-     <a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>
+    <a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>
 }
 else
 {

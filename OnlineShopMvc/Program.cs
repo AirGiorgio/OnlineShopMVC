@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineShopMvc.App.NewFolder;
 using OnlineShopMvc.Areas.Identity.Data;
+using OnlineShopMvc.Domain.Model;
 using OnlineShopMvc.Inf.Data;
 using OnlineShopMvc.Inf.Extensions;
 
@@ -21,8 +22,8 @@ namespace OnlineShopMvc
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+                 .AddRoles<Role>()
                 .AddEntityFrameworkStores<Context>();
-
 
             builder.Services.AddControllersWithViews()
             .AddJsonOptions(options =>
@@ -33,13 +34,12 @@ namespace OnlineShopMvc
 
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure();
+
             builder.Services.AddMvc();
-           
+            builder.Services.AddValidation();
+            builder.Services.AddFluentValidationAutoValidation();
 
-          builder.Services.AddFluentValidationAutoValidation();
-         
-
-            builder.Services.Configure<IdentityOptions>(options => 
+            builder.Services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 10;
@@ -47,7 +47,7 @@ namespace OnlineShopMvc
                 options.Password.RequireLowercase = true;
                 options.Password.RequiredUniqueChars = 1;
 
-                options.SignIn.RequireConfirmedEmail= false;
+                options.SignIn.RequireConfirmedEmail = false;
                 options.User.RequireUniqueEmail = true;
             });
             builder.Configuration.AddUserSecrets<Program>();
@@ -69,7 +69,7 @@ namespace OnlineShopMvc
                 var context = scope.ServiceProvider.GetRequiredService<Context>();
                 context.Database.EnsureCreated();
                 Seeder seeder = new Seeder(context);
-                seeder.BreedTheSeedAndNeedForSpeed();
+                seeder.Seed();
             }
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -94,7 +94,7 @@ namespace OnlineShopMvc
             app.MapControllerRoute(
                 name: "HomeController",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-          
+
             app.Run();
         }
     }

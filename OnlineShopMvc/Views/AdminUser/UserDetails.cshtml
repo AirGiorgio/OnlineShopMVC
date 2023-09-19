@@ -1,0 +1,40 @@
+﻿@using OnlineShopMvc.App.DTOs.UserDTOs
+@model UserPasswordDTO
+
+
+@if (Model != null)
+{
+    @if (TempData["Message"] != null)
+    {
+        <p>@TempData["Message"]</p>
+    }
+    <th>Resetowanie hasła użytkownika: @Model.UserName</th>
+
+    <form asp-action="ResetUserPassword">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <input type="hidden" asp-for="UserName" value="@Model.UserName" />
+
+        <div class="form-floating mb-3">
+            <input type="text" asp-for="Password" type="password" class="form-control" aria-required="true" placeholder="Hasło" />
+            <label asp-for="Password">Hasło</label>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3">
+                <input type="text" asp-for="ConfirmPassword" type="password" class="form-control" aria-required="true" placeholder="Potwierdź hasło" />
+            <label asp-for="ConfirmPassword">Potwierdź hasło</label>
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <button id="registerSubmit" type="submit">Zmień</button>
+
+    </form>
+
+    <form method="get" action="@Url.Action("ViewUsers", "AdminUser")">
+        <button type="submit">Powrót do listy</button>
+    </form>
+}
+else
+{
+    <p>Nie znaleziono danych użytkownika</p>
+}

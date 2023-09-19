@@ -7,24 +7,28 @@ namespace OnlineShopMvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
+
         public IActionResult ShopManaging()
         {
             return View();
         }
-     
+
         public IActionResult Index()
         {
             _logger.LogInformation("W Index/Home");
             return View();
         }
+
         public IActionResult _LoginPartial()
         {
             return View();
         }
+
         public IActionResult Privacy()
         {
             _logger.LogInformation("W Privacy/Home");

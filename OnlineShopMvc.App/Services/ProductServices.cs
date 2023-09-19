@@ -17,6 +17,7 @@ namespace OnlineShopMvc.App.Services
         private readonly IProductRepo _productRepo;
         private readonly ICategoryRepo _categoryRepo;
         private readonly IMapper _mapper;
+
         public ProductServices(IProductRepo productRepo, IMapper mapper, ITagRepo tagRepo, ICategoryRepo categoryRepo)
         {
             _productRepo = productRepo;
@@ -32,27 +33,29 @@ namespace OnlineShopMvc.App.Services
             newProductDTO.Tags = _tagRepo.GetAllTags(null).ProjectTo<TagDTO>(_mapper.ConfigurationProvider).ToList();
             return newProductDTO;
         }
+
         public ProductDetailsDTO GetProductById(int id)
         {
-            if (id <= 0 || id==null)
+            if (id <= 0 || id == null)
             {
                 return null;
             }
             else
             {
                 var product = _productRepo.GetProductById(id);
-                var productDTO = _mapper.Map<ProductDetailsDTO>(product);     
+                var productDTO = _mapper.Map<ProductDetailsDTO>(product);
                 var categories = _categoryRepo.GetAllCategories(null)
                     .ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
                 var tags = _tagRepo.GetAllTags(null).ProjectTo<TagDTO>(_mapper.ConfigurationProvider).ToList();
                 productDTO.Categories = categories;
-                productDTO.ProductCategory = (product.CategoryId.HasValue==true ? product.CategoryId.Value : 0);
-                productDTO.ProductTags = product.Tags.Select(x=>x.Id).ToList();
+                productDTO.ProductCategory = (product.CategoryId.HasValue == true ? product.CategoryId.Value : 0);
+                productDTO.ProductTags = product.Tags.Select(x => x.Id).ToList();
                 productDTO.Tags = tags;
 
                 return productDTO;
             }
         }
+
         public bool RemoveProduct(int id)
         {
             if (id <= 0 || id == null)
@@ -66,7 +69,7 @@ namespace OnlineShopMvc.App.Services
         {
             ProductsForListDTO productsForListDTO = new ProductsForListDTO();
             var products = new List<ProductDTO>();
-            
+
             var categories = _categoryRepo.GetAllCategories(null)
                 .ProjectTo<CategoryDTO>(_mapper.ConfigurationProvider).ToList();
 
@@ -78,17 +81,16 @@ namespace OnlineShopMvc.App.Services
                 pageNo = 1;
                 pageSize = 10;
             }
-            if (searchCategory==null && !min.HasValue && !max.HasValue && name.IsNullOrEmpty() && searchTags.IsNullOrEmpty())
+            if (searchCategory == null && !min.HasValue && !max.HasValue && name.IsNullOrEmpty() && searchTags.IsNullOrEmpty())
             {
                 products = _productRepo.GetAllProducts()
                .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
-
             }
             else if (searchCategory.HasValue && name.IsNullOrEmpty() && searchTags.IsNullOrEmpty())
             {
                 products = _productRepo.GetProductsByCategory(searchCategory.Value)
                .ProjectTo<ProductDTO>(_mapper.ConfigurationProvider).ToList();
-                productsForListDTO.SearchCategory = _mapper.Map<CategoryDTO>(_categoryRepo.GetCategoryById(searchCategory));  
+                productsForListDTO.SearchCategory = _mapper.Map<CategoryDTO>(_categoryRepo.GetCategoryById(searchCategory));
             }
             else if (min.HasValue || max.HasValue)
             {
@@ -123,20 +125,21 @@ namespace OnlineShopMvc.App.Services
             productsForListDTO.Tags = tags;
             productsForListDTO.PageSize = pageSize.Value;
             productsForListDTO.Count = products.Count;
-            
+
             return productsForListDTO;
         }
+
         public string UpdateProduct(ProductDetailsDTO product)
         {
-            if (product.Id<=0 || product.Id==null)
+            if (product.Id <= 0 || product.Id == null)
             {
                 return null;
             }
-            if (product.Name == null || product.Price == null || product.ProductCategory ==null || product.Quantity == null || product.ProductTags.IsNullOrEmpty())
+            if (product.Name == null || product.Price == null || product.ProductCategory == null || product.Quantity == null || product.ProductTags.IsNullOrEmpty())
             {
                 return "Nieprawidłowe dane produktu";
             }
-            else if (product.Price<=0 || product.Quantity<=0)
+            else if (product.Price <= 0 || product.Quantity <= 0)
             {
                 return "Nieprawidłowa cena produktu";
             }
@@ -153,12 +156,13 @@ namespace OnlineShopMvc.App.Services
                     tagsIds.Add(_tagRepo.GetTagById(item));
                 }
                 var p = _mapper.Map<Product>(product);
-                p.Category= category;
+                p.Category = category;
                 p.Tags = tagsIds;
                 p.IsActive = true;
                 return _productRepo.UpdateProduct(p);
             }
         }
+
         public string AddProduct(ProductDetailsDTO product)
         {
             if (product.Name == null || product.Price == null || product.ProductCategory == null || product.Quantity <= 0 || product.ProductTags.IsNullOrEmpty())
@@ -187,7 +191,6 @@ namespace OnlineShopMvc.App.Services
                 p.IsActive = true;
                 return _productRepo.AddProduct(p);
             }
-               
         }
     }
 }

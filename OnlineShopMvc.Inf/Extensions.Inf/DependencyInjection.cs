@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using OnlineShopMvc.Domain.Interfaces;
 using OnlineShopMvc.Inf.Interfaces;
 using OnlineShopMvc.Inf.Repo;
 using SteamLibraryMVC.Infrastructure.Repositories;
@@ -14,8 +15,8 @@ public static class DependencyInjection
         services.AddTransient<ICategoryRepo, CategoryRepo>();
         services.AddTransient<IProductRepo, ProductRepo>();
         services.AddTransient<ITagRepo, TagRepo>();
+        services.AddTransient<IUserRepo, UserRepo>();
 
         return services;
     }
 }
-

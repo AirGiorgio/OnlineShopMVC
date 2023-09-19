@@ -34,37 +34,58 @@ namespace OnlineShopMvc.Inf.Repo
 
         public bool RemoveTag(int? id)
         {
-            var tag = GetTagById(id);
-            if (tag != null)
+            try
             {
-                context.Remove(tag);
-                context.SaveChanges();
-                return true;
+                var tag = GetTagById(id);
+                if (tag != null)
+                {
+                    context.Remove(tag);
+                    context.SaveChanges();
+                    return true;
+                }
+                else return false;
             }
-            else return false;
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public string UpdateTag(int id, string? name)
         {
-            var tagFound = GetTagById(id);
-            if (tagFound != null)
+            try
             {
-                tagFound.Name = name;
-                context.Update(tagFound);
-                context.SaveChanges();
-                return "Uaktualniono tag";
+                var tagFound = GetTagById(id);
+                if (tagFound != null)
+                {
+                    tagFound.Name = name;
+                    context.Update(tagFound);
+                    context.SaveChanges();
+                    return "Uaktualniono tag";
+                }
+                else return "Nie udało się odnaleźć tego tagu";
             }
-            else return "Nie udało się odnaleźć tego tagu";
+            catch (Exception)
+            {
+                return "Wystąpił błąd połączenia z bazą danych";
+            }
         }
 
         public string AddTag(string name)
         {
-            Tag tag = new Tag();
-            tag.Name = name;
+            try
+            {
+                Tag tag = new Tag();
+                tag.Name = name;
 
-            context.Add(tag);
-            context.SaveChanges();
-            return "Udało się dodać tag " + tag.Name;
+                context.Add(tag);
+                context.SaveChanges();
+                return "Udało się dodać tag " + tag.Name;
+            }
+            catch (Exception)
+            {
+                return "Wystąpił błąd połączenia z bazą danych";
+            }
         }
 
         public bool IsTagNameTaken(string? name)

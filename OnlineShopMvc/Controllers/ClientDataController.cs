@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using OnlineShopMvc.App.DTOs;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnlineShopMvc.App.DTOs.ClientDTOs;
 using OnlineShopMvc.App.Interfaces;
-using OnlineShopMvc.App.Services;
-using OnlineShopMVC.Domain.Model;
 
 namespace OnlineShopMvc.Controllers
 {
@@ -14,6 +9,7 @@ namespace OnlineShopMvc.Controllers
         private readonly IClientService _clientService;
         private readonly IOrderService _orderService;
         private readonly ILogger<ClientDataController> _logger;
+
         public ClientDataController(IClientService clientService, ILogger<ClientDataController> logger, IOrderService orderService)
         {
             _clientService = clientService;
@@ -26,9 +22,10 @@ namespace OnlineShopMvc.Controllers
         {
             _logger.LogInformation("W RegisterClient typu Post klienta");
             var status = _clientService.AddClientAndAddress(client);
-                TempData["Message"] = status;
-                return RedirectToAction("ClientDetails","ClientData");
-         }
+            TempData["Message"] = status;
+            return RedirectToAction("ClientDetails", "ClientData");
+        }
+
         [HttpGet]
         public IActionResult AddClient()
         {
@@ -42,12 +39,14 @@ namespace OnlineShopMvc.Controllers
             _logger.LogInformation("W ClientDetails typu Get klienta");
             return View();
         }
+
         [HttpGet]
         public IActionResult UpdateClient()
         {
             _logger.LogInformation("W UpdateClient typu Get klienta");
             return View();
         }
+
         [HttpGet]
         public IActionResult ClientOrders()
         {
@@ -89,7 +88,5 @@ namespace OnlineShopMvc.Controllers
             TempData["Message"] = status;
             return RedirectToAction("Index", "Home");
         }
-
-
     }
 }

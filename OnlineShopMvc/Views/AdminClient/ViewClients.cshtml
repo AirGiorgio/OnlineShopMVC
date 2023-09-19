@@ -20,6 +20,8 @@
                 <th>Nr mieszkania</th>
                 <th>Miasto</th>
                 <th>Kod pocztowy</th>
+                <th>Użytkownik</th>
+                <th>Email</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -36,6 +38,8 @@
                     <td>@client.Adress.FlatNumber</td>
                     <td>@client.Adress.City</td>
                     <td>@client.Adress.ZipCode</td>
+                    <td>@client.User.UserName</td>
+                    <td>@client.User.Email</td>
                     <td></td>
                     <td>
                         <form method="post" action="@Url.Action("ClientDetails", "AdminClient", new { id = client.Id})">
@@ -70,6 +74,7 @@
         </tr>
             <form id="ViewClients" method="get" action="@Url.Action("ViewClients", "AdminClient")">
                 <input type="hidden" asp-for=SearchName name="surname" id="surnname" value=@Model.SearchName />
+                    <input type="hidden" asp-for=UserName name="username" id="username" value=@Model.UserName />
                 <input type="hidden" asp-for=SearchCity name="city" id="city" value=@Model.SearchCity />
                 <input type="hidden" asp-for=SearchBuilding name="buildingNumber" id="buildingNumber" value=@Model.SearchBuilding />
                 <input type="hidden" asp-for=SearchStreet name="street" id="street" value=@Model.SearchStreet />
@@ -78,11 +83,19 @@
             </form>
     </table>
     </div>
-
+   
+  
     <h2>Wyszukaj klienta po nazwisku</h2>
     <form id="ViewClients" method="get" action="@Url.Action("ViewClients", "AdminClient")">
        <input id ="searchName" value="@Model.SearchName" asp-for="SearchName" type="text" name="surname" placeholder="Wyszukaj" />
      <button type="submit">OK</button>
+
+        <h2>Wyszukaj klienta po nazwie użytkownika</h2>
+    <form id="ViewClients" method="get" action="@Url.Action("ViewClients", "AdminClient")">
+       <input id ="userName" value="@Model.UserName" asp-for="UserName" type="text" name="username" placeholder="Wyszukaj" />
+     <button type="submit">OK</button>
+    </form>
+
     </form>
     <h2>Wyszukaj klienta po:</h2>
     <form id="ViewClients" method="get" action="@Url.Action("ViewClients", "AdminClient")">
@@ -92,7 +105,7 @@
         <button type="submit">OK</button>
     </form>
     <form method="get" action="@Url.Action("ViewClients", "AdminClient")">
-        <button type="submit">Powrót do listy</button>
+        <button type="submit">Powrót do pełnej listy</button>
     </form>
     <a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>
 }

@@ -14,6 +14,7 @@ namespace OnlineShopMvc.App.NewFolder
             services.AddTransient<ICategoryService, CategoryServices>();
             services.AddTransient<IProductService, ProductServices>();
             services.AddTransient<ITagService, TagServices>();
+            services.AddTransient<IUserService, UserServices>();
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;

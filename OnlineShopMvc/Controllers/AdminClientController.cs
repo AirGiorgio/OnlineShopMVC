@@ -17,10 +17,10 @@ namespace OnlineShopMvc.Controllers
         }
 
         [HttpGet]
-        public IActionResult ViewClients(int? pageSize, int? pageNo, string? street, string? buildingNumber, string? city, string? surname)
+        public IActionResult ViewClients(int? pageSize, int? pageNo, string? street, string? buildingNumber, string? city, string? surname, string? username)
         {
             _logger.LogInformation("W ViewClients");
-            var Clients = _clientService.ShowAllClients(pageSize, pageNo, street, buildingNumber, city, surname);
+            var Clients = _clientService.ShowAllClients(pageSize, pageNo, street, buildingNumber, city, surname, username);
             return View(Clients);
         }
 

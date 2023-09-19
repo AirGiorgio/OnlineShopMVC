@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using OnlineShopMvc.Areas.Identity.Data;
 using OnlineShopMvc.Domain.Model;
 using OnlineShopMVC.Domain.Model;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Emit;
-using System.Security.Cryptography.X509Certificates;
 
 namespace OnlineShopMvc.Inf.Data;
 
-public class Context : IdentityDbContext
+public class Context : IdentityDbContext<User>
 {
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Category> Categories { get; set; }
@@ -17,14 +15,26 @@ public class Context : IdentityDbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<Tag> Tags { get; set; }
     public DbSet<OrderProduct> OrderProduct { get; set; }
+
     public Context(DbContextOptions options) : base(options)
     {
-
-
     }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+
+        builder.Entity<Role>()
+            .HasMany(x => x.Users)
+            .WithOne(x => x.Role)
+            .HasForeignKey(x => x.Id)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        //builder.Entity<User>()
+        //    .HasOne(x => x.Role)
+        //    .WithMany(x => x.Users)
+        //    .HasForeignKey(x => x.Id)
+        //    .OnDelete(DeleteBehavior.Restrict);
 
         builder.Entity<Category>()
             .HasMany(c => c.Products)
@@ -60,6 +70,5 @@ public class Context : IdentityDbContext
           .HasOne(x => x.Order)
           .WithMany(x => x.OrderProducts)
           .HasForeignKey(x => x.OrderId);
-
     }
 }

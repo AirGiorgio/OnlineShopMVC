@@ -25,6 +25,5 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
                 .ForMember(x => x.Tags, opt => opt.MapFrom(s => s.Tags))
                 .ForMember(x => x.Quantity, opt => opt.MapFrom(s => s.Quantity));
         }
-        
     }
 }

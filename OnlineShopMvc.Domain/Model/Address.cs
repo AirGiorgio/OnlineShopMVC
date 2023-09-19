@@ -2,7 +2,7 @@
 
 namespace OnlineShopMVC.Domain.Model
 {
-    public class Address :BaseEntity
+    public class Address : BaseEntity
     {
         public int ClientId { get; set; }
         public string Street { get; set; }

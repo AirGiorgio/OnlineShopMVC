@@ -1,5 +1,9 @@
-﻿using OnlineShopMvc.Domain.Model;
+﻿using Microsoft.AspNetCore.Identity;
+using OnlineShopMvc.Areas.Identity.Data;
+using OnlineShopMvc.Domain.Model;
 using OnlineShopMVC.Domain.Model;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace OnlineShopMvc.Inf.Data
 {
@@ -12,7 +16,7 @@ namespace OnlineShopMvc.Inf.Data
             _context = context;
         }
 
-        public void BreedTheSeedAndNeedForSpeed()
+        public void Seed()
         {
             if (_context.Database.CanConnect())
             {
@@ -22,10 +26,13 @@ namespace OnlineShopMvc.Inf.Data
                 }
                 else
                 {
+                    GetRoles();
                     GetClients();
                     _context.Clients.AddRange(Clients);
                     GetCategories();
+                    GetAdmins();
                     _context.Categories.AddRange(Categories);
+                    _context.Users.AddRange(Admins);
                     _context.SaveChanges();
                 }
             }
@@ -33,9 +40,12 @@ namespace OnlineShopMvc.Inf.Data
 
         private List<Client> Clients;
         private List<Category> Categories;
-
+        private List<Role> Roles;
+        private List<User> Admins;
         private List<Client> GetClients()
         {
+            //Role userRole = Roles.FirstOrDefault(x => x.Name == "User");
+
             Clients = Enumerable.Range(1, 50).Select(x => new Client
             {
                 Name = GenerateRandomName(),
@@ -51,9 +61,43 @@ namespace OnlineShopMvc.Inf.Data
                     City = GenerateRandomCity(),
                     ZipCode = GenerateRandomNumber(5)
                 },
+                User = new User()
+                {
+                    Role = new Role { Name="User"},
+                    Email = GenerateRandomEmail(),
+                    UserName = GenerateRandomName(),
+                    PasswordHash =GenerateRandomString()   
+                }
             }).ToList();
             return Clients;
         }
+
+        private List<User> GetAdmins()
+        {
+            Admins = Enumerable.Range(1, 10).Select(x => new User
+            {
+                Role = new Role { Name = "Admin" },
+                Email = GenerateRandomEmail(),
+                UserName = GenerateRandomName(),
+                PasswordHash = GenerateRandomString()  
+            }).ToList();
+            return Admins;
+        }
+
+        private List<Role> GetRoles()
+        {
+            Role admin = new Role();
+            admin.Name = "Admin";
+            Role user = new Role();
+            user.Name = "User";
+            Roles = new List<Role>();
+            Roles.Add(user);
+            Roles.Add(admin);
+            return Roles;
+        }
+
+
+
 
         private List<Category> GetCategories()
         {
@@ -84,6 +128,19 @@ namespace OnlineShopMvc.Inf.Data
                 }).ToList(),
             }).ToList();
             return Categories;
+        }
+
+        private string GenerateRandomEmail()
+        {
+            const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            var random = new Random();
+
+            int length = random.Next(3, 9);
+            string user = "User" + new string(Enumerable.Range(0, length)
+              .Select(_ => suffix[random.Next(suffix.Length)])
+              .ToArray()) + "@przyklad.com";
+
+            return user;
         }
 
         private DateTime GenerateRandomDateTime()
@@ -217,11 +274,29 @@ namespace OnlineShopMvc.Inf.Data
         private string GenerateRandomString()
         {
             const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            const string specialCharacters = "!@#$%^&*()_+[]{}|;:,.<>?";
+            const string digits = "0123456789";
+            
+
             var random = new Random();
-            int length = random.Next(5, 5);
-            return new string(Enumerable.Range(0, length)
+            int length = random.Next(5, 10);
+
+            string randomString = new string(Enumerable.Range(0, length - 2)
                 .Select(_ => suffix[random.Next(suffix.Length)])
+                .Concat(new[] { digits[random.Next(digits.Length)], specialCharacters[random.Next(specialCharacters.Length)] })
                 .ToArray());
+
+            return randomString;
+
+
         }
+
+        //private string HashPassword(string password)
+        //{
+        //    SHA512 hash = SHA512.Create();
+        //    var passwordBytes = Encoding.Default.GetBytes(password);
+        //    var hashedPassword = hash.ComputeHash(passwordBytes);
+        //    return Convert.ToHexString(hashedPassword);
+        //}
     }
 }

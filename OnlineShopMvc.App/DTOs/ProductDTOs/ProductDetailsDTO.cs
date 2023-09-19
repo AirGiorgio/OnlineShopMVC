@@ -1,11 +1,10 @@
-﻿using OnlineShopMvc.App.Mapping;
-using AutoMapper;
-using OnlineShopMvc.App.DTOs.TagsDTOs;
-using OnlineShopMvc.App.DTOs.CategoryDTOs;
-using System.ComponentModel.DataAnnotations;
-using OnlineShopMvc.Domain.Model;
+﻿using AutoMapper;
 using FluentValidation;
-using System.Text.RegularExpressions;
+using OnlineShopMvc.App.DTOs.CategoryDTOs;
+using OnlineShopMvc.App.DTOs.TagsDTOs;
+using OnlineShopMvc.App.Mapping;
+using OnlineShopMvc.Domain.Model;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineShopMvc.App.DTOs.ProductDTOs
 {
@@ -13,8 +12,10 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
+
         public int Quantity { get; set; }
         public int ProductCategory { get; set; }
         public List<CategoryDTO> Categories { get; set; }
@@ -40,6 +41,7 @@ namespace OnlineShopMvc.App.DTOs.ProductDTOs
                 .ForMember(x => x.IsActive, opt => opt.Ignore());
         }
     }
+
     public class ProductValidation : AbstractValidator<ProductDetailsDTO>
     {
         public ProductValidation()

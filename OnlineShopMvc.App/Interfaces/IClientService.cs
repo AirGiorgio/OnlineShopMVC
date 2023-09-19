@@ -10,7 +10,7 @@ namespace OnlineShopMvc.App.Interfaces
 
         public ClientDetailsDTO GetClientById(int id);
 
-        public ClientsForListDTO ShowAllClients(int? pageSize, int? pageNo, string? street, string? buildingNumber, string? city, string? surname);
+        public ClientsForListDTO ShowAllClients(int? pageSize, int? pageNo, string? street, string? buildingNumber, string? city, string? surname, string? username);
 
         public string AddClientAndAddress(ClientDetailsDTO client);
     }
