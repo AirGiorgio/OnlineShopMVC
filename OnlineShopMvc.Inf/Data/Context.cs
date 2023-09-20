@@ -24,18 +24,6 @@ public class Context : IdentityDbContext<User>
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<Role>()
-            .HasMany(x => x.Users)
-            .WithOne(x => x.Role)
-            .HasForeignKey(x => x.Id)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        //builder.Entity<User>()
-        //    .HasOne(x => x.Role)
-        //    .WithMany(x => x.Users)
-        //    .HasForeignKey(x => x.Id)
-        //    .OnDelete(DeleteBehavior.Restrict);
-
         builder.Entity<Category>()
             .HasMany(c => c.Products)
             .WithOne(p => p.Category)

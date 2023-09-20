@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using FluentValidation;
-using OnlineShopMvc.App.DTOs.RoleDTOs;
 using OnlineShopMvc.App.Mapping;
 using OnlineShopMvc.Areas.Identity.Data;
 
@@ -13,7 +12,6 @@ namespace OnlineShopMvc.App.DTOs.UserDTOs
         public string Email { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
-        public RoleDTO Role { get; set; }
 
         public void Mapping(Profile profile)
         {

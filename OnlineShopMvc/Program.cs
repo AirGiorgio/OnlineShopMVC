@@ -68,7 +68,10 @@ namespace OnlineShopMvc
             {
                 var context = scope.ServiceProvider.GetRequiredService<Context>();
                 context.Database.EnsureCreated();
-                Seeder seeder = new Seeder(context);
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<Role>>();
+
+                Seeder seeder = new Seeder(context,userManager,roleManager);
                 seeder.Seed();
             }
             // Configure the HTTP request pipeline.

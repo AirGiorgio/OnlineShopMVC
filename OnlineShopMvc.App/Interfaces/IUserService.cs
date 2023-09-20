@@ -4,20 +4,20 @@ namespace OnlineShopMvc.App.Interfaces
 {
     public interface IUserService
     {
-        public UsersForListDTO GetAllUsers(int? pageSize, int? pageNo, string searchName);
+         UsersForListDTO GetAllUsers(int? pageSize, int? pageNo, string searchName);
 
-        public AdminsForListDTO GetAdmins(int? pageSize, int? pageNo, string searchName);
+         AdminsForListDTO GetAdmins(int? pageSize, int? pageNo, string searchName);
 
-        public UserPasswordDTO GetUserPassword(string id);
+         UserPasswordDTO GetUserPassword(string id);
 
-        public bool SetUserPassword(string id, string password);
+         bool SetUserPassword(string id, string password);
 
-        public bool DeleteUser(string id);
+         bool DeleteUser(string id);
 
-        public bool UpdateAdmin(AdminDetailsDTO admin);
+         bool UpdateAdmin(AdminDetailsDTO admin);
 
-        public string AddAdmin(AdminDetailsDTO admin);
+         Task<string> AddAdmin(AdminDetailsDTO admin);
 
-        public AdminDetailsDTO PrepareModel(string id);
+         AdminDetailsDTO PrepareModel(string id);
     }
 }

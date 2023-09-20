@@ -31,10 +31,6 @@ namespace OnlineShopMvc.Inf.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -51,10 +47,6 @@ namespace OnlineShopMvc.Inf.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -438,13 +430,6 @@ namespace OnlineShopMvc.Inf.Migrations
                     b.ToTable("ProductTag");
                 });
 
-            modelBuilder.Entity("OnlineShopMvc.Domain.Model.Role", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
-
-                    b.HasDiscriminator().HasValue("Role");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -524,15 +509,7 @@ namespace OnlineShopMvc.Inf.Migrations
                         .WithOne("User")
                         .HasForeignKey("OnlineShopMvc.Areas.Identity.Data.User", "ClientId");
 
-                    b.HasOne("OnlineShopMvc.Domain.Model.Role", "Role")
-                        .WithMany("Users")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Client");
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("OnlineShopMvc.Domain.Model.OrderProduct", b =>
@@ -603,11 +580,6 @@ namespace OnlineShopMvc.Inf.Migrations
             modelBuilder.Entity("OnlineShopMvc.Domain.Model.Product", b =>
                 {
                     b.Navigation("OrderProducts");
-                });
-
-            modelBuilder.Entity("OnlineShopMvc.Domain.Model.Role", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,7 +8,6 @@ namespace OnlineShopMvc.Areas.Identity.Data
     {
         public int? ClientId { get; set; }
         public virtual Client? Client { get; set; }
-        public virtual Role Role { get; set; }
 
         public User()
         {

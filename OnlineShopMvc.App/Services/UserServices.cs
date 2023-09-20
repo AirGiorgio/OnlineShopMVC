@@ -6,6 +6,7 @@ using OnlineShopMvc.App.DTOs.UserDTOs;
 using OnlineShopMvc.App.Interfaces;
 using OnlineShopMvc.Areas.Identity.Data;
 using OnlineShopMvc.Domain.Interfaces;
+using OnlineShopMvc.Domain.Model;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -16,12 +17,13 @@ namespace OnlineShopMvc.App.Services
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IUserRepo _userRepo;
-
-        public UserServices(IMapper mapper, UserManager<User> userManager, IUserRepo userRepo)
+        private readonly RoleManager<Role> _roleManager;
+        public UserServices(IMapper mapper, RoleManager<Role> roleManager, UserManager<User> userManager, IUserRepo userRepo)
         {
             _userRepo = userRepo;
             _mapper = mapper;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public bool DeleteUser(string id)
@@ -46,11 +48,16 @@ namespace OnlineShopMvc.App.Services
 
             if (searchName.IsNullOrEmpty())
             {
-                admins = _userManager.Users.Where(x => x.Role.Name == "Admin").ProjectTo<AdminDTO>(_mapper.ConfigurationProvider).ToList();
+                var adminUsers = _userManager.GetUsersInRoleAsync("Admin").Result;  
+                admins = adminUsers.Select(user => _mapper.Map<AdminDTO>(user)).ToList();
             }
             else
             {
-                admins = _userManager.Users.Where(x => x.Role.Name == "Admin" && x.UserName.StartsWith(searchName)).ProjectTo<AdminDTO>(_mapper.ConfigurationProvider).ToList();
+                var adminUsers = _userManager.GetUsersInRoleAsync("Admin")
+                                   .Result 
+                                   .Where(user => user.UserName.StartsWith(searchName));
+
+                admins = adminUsers.Select(user => _mapper.Map<AdminDTO>(user)).ToList();
             }
             var adminsToShow = admins.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
 
@@ -76,11 +83,15 @@ namespace OnlineShopMvc.App.Services
 
             if (searchName.IsNullOrEmpty())
             {
-                users = _userManager.Users.Where(x => x.Role.Name == "User").ProjectTo<UserDTO>(_mapper.ConfigurationProvider).ToList();
+                var Users = _userManager.GetUsersInRoleAsync("User").Result;
+                users = Users.Select(user => _mapper.Map<UserDTO>(user)).ToList();
             }
             else
             {
-                users = _userManager.Users.Where(x => x.Role.Name == "User" && x.UserName.StartsWith(searchName)).ProjectTo<UserDTO>(_mapper.ConfigurationProvider).ToList();
+                var Users = _userManager.GetUsersInRoleAsync("User")
+                                   .Result
+                                   .Where(user => user.UserName.StartsWith(searchName));
+                users.Select(user => _mapper.Map<UserDTO>(user)).ToList();
             }
 
             var usersToShow = users.Skip(pageSize.Value * (pageNo.Value - 1)).Take(pageSize.Value).ToList();
@@ -125,7 +136,7 @@ namespace OnlineShopMvc.App.Services
                 var user = _userManager.FindByIdAsync(id).Result;
                 if (user != null)
                 {
-                    user.PasswordHash = HashPassword(password);
+                    user.PasswordHash = password;
                     var status = _userRepo.UpdateUser(user);
                     return status;
                 }
@@ -141,24 +152,43 @@ namespace OnlineShopMvc.App.Services
             return result;
         }
 
-        public string AddAdmin(AdminDetailsDTO adminDTO)
+        public async Task<string> AddAdmin(AdminDetailsDTO adminDTO)
         {
             var admin = _mapper.Map<User>(adminDTO);
-            admin.PasswordHash = HashPassword(adminDTO.Password);
+            admin.PasswordHash = adminDTO.Password;
             admin.Id = Guid.NewGuid().ToString();
-            admin.Role = new Domain.Model.Role();
-            admin.Role.Name = "Admin";
-            var result = _userRepo.AddUser(admin);
 
-            return result;
+            var roleExists = await _roleManager.RoleExistsAsync("Admin");
+            if (!roleExists)
+            {
+                var newRole = new Role { Name = "Admin" }; 
+                var createRoleResult = await _roleManager.CreateAsync(newRole);
+                if (!createRoleResult.Succeeded)
+                {
+                    return "Error: Unable to create role.";
+                }
+            }
+
+            var result = await _userManager.AddToRoleAsync(admin, "Admin");
+
+            if (result.Succeeded)
+            {
+                var addUserResult = _userRepo.AddUser(admin);
+                return addUserResult;
+            }
+            else
+            {
+
+                return "Error: Unable to assign role.";
+            }
         }
 
-        private string HashPassword(string password)
-        {
-            SHA512 hash = SHA512.Create();
-            var passwordBytes = Encoding.Default.GetBytes(password);
-            var hashedPassword = hash.ComputeHash(passwordBytes);
-            return Convert.ToHexString(hashedPassword);
-        }
+        //private string HashPassword(string password)
+        //{
+        //    SHA512 hash = SHA512.Create();
+        //    var passwordBytes = Encoding.Default.GetBytes(password);
+        //    var hashedPassword = hash.ComputeHash(passwordBytes);
+        //    return Convert.ToHexString(hashedPassword);
+        //}
     }
 }

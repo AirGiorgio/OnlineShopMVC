@@ -10,10 +10,13 @@ namespace OnlineShopMvc.Inf.Data
     public class Seeder
     {
         private readonly Context _context;
-
-        public Seeder(Context context)
+        private readonly RoleManager<Role> _roleManager;
+        private readonly UserManager<User> _userManager;
+        public Seeder(Context context, UserManager<User> userManager, RoleManager<Role> roleManager)
         {
             _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public void Seed()
@@ -26,81 +29,87 @@ namespace OnlineShopMvc.Inf.Data
                 }
                 else
                 {
-                    GetRoles();
-                    GetClients();
-                    _context.Clients.AddRange(Clients);
-                    GetCategories();
-                    GetAdmins();
+                    InitializeRoles(_roleManager);
+                    CreateUsers(_userManager);
+                    var Clients = _context.Clients.ToList(); 
+                    GetCategories(Clients);
                     _context.Categories.AddRange(Categories);
-                    _context.Users.AddRange(Admins);
                     _context.SaveChanges();
                 }
             }
         }
 
-        private List<Client> Clients;
         private List<Category> Categories;
-        private List<Role> Roles;
-        private List<User> Admins;
-        private List<Client> GetClients()
+        
+        public void InitializeRoles(RoleManager<Role> roleManager)
         {
-            //Role userRole = Roles.FirstOrDefault(x => x.Name == "User");
 
-            Clients = Enumerable.Range(1, 50).Select(x => new Client
+            string[] roleNames = { "Admin", "User" };
+
+            foreach (var roleName in roleNames)
             {
-                Name = GenerateRandomName(),
-                Surname = GenerateRandomSurname(),
-                EmailAdress = GenerateRandomName() + "@example.com",
-                Telephone = GenerateRandomNumber(10),
-                IsActive = true,
-                Address = new Address
+                var roleExist = roleManager.RoleExistsAsync(roleName).Result;
+
+                if (!roleExist)
                 {
-                    Street = GenerateRandomStreet(),
-                    BuildingNumber = GenerateRandomNumber(1),
-                    FlatNumber = GenerateRandomNumber(1),
-                    City = GenerateRandomCity(),
-                    ZipCode = GenerateRandomNumber(5)
-                },
-                User = new User()
-                {
-                    Role = new Role { Name="User"},
-                    Email = GenerateRandomEmail(),
-                    UserName = GenerateRandomName(),
-                    PasswordHash =GenerateRandomString()   
+                    var role = new Role
+                    {
+                        Name = roleName
+                    };
+
+                    var createResult = roleManager.CreateAsync(role).Result;
                 }
-            }).ToList();
-            return Clients;
+            }
         }
 
-        private List<User> GetAdmins()
+        public void CreateUsers(UserManager<User> userManager)
         {
-            Admins = Enumerable.Range(1, 10).Select(x => new User
+            for (int i = 1; i <= 100; i++)
             {
-                Role = new Role { Name = "Admin" },
-                Email = GenerateRandomEmail(),
-                UserName = GenerateRandomName(),
-                PasswordHash = GenerateRandomString()  
-            }).ToList();
-            return Admins;
+                var userName = $"user{i}";
+                var password = $"{userName}@123";
+                var roleName = i % 2 == 0 ? "Admin" : "User";
+
+                var user = new User
+                {
+                    UserName = userName,
+                    Email = $"{userName}@example.com",
+                };
+
+                var result = userManager.CreateAsync(user, password).Result;
+
+                if (result.Succeeded)
+                {
+                    var roleResult = userManager.AddToRoleAsync(user, roleName).Result;
+
+                    if (roleName == "User")
+                    {
+                        user.Client = new Client
+                        {
+                            Name = GenerateRandomName(),
+                            Surname = GenerateRandomSurname(),
+                            EmailAdress = GenerateRandomEmail(),
+                            Telephone = GenerateRandomNumber(10),
+                            IsActive = true,
+                            Address = new Address
+                            {
+                                Street = GenerateRandomStreet(),
+                                BuildingNumber = GenerateRandomNumber(1),
+                                FlatNumber = GenerateRandomNumber(1),
+                                City = GenerateRandomCity(),
+                                ZipCode = GenerateRandomNumber(5)
+                            },
+                        };
+
+                        _context.Clients.Add(user.Client);
+                        _context.SaveChanges();
+                    }
+                }
+            }
         }
-
-        private List<Role> GetRoles()
-        {
-            Role admin = new Role();
-            admin.Name = "Admin";
-            Role user = new Role();
-            user.Name = "User";
-            Roles = new List<Role>();
-            Roles.Add(user);
-            Roles.Add(admin);
-            return Roles;
-        }
-
-
-
-
-        private List<Category> GetCategories()
-        {
+           
+         private List<Category> GetCategories(List<Client> Clients)
+         {
             Categories = Enumerable.Range(1, 50).Select(x => new Category
             {
                 Name = GenerateRandomCategory(),
@@ -128,7 +137,7 @@ namespace OnlineShopMvc.Inf.Data
                 }).ToList(),
             }).ToList();
             return Categories;
-        }
+         }
 
         private string GenerateRandomEmail()
         {

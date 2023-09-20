@@ -5,31 +5,50 @@
     ViewData["Title"] = "CategoryDetails";
 }
 
-<h2>Dodawanie kategorii</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dodaj kategorię</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
 
-@if (Model != null)
-{
-    @if (TempData["Message"] != null)
-    {
-        <p>@TempData["Message"]</p>
-    }
-    <form asp-action="AddCategory">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div>
-            <label for="name">Nazwa:</label>
-            <input type="text" id="name" asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-    
-        <button type="submit">Zatwierdź</button>
-    </form>
-    
-    <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
-        <button type="submit">Powrót do listy</button>
-    </form>
-}
-else
-{
-    <p>Nie znaleziono danych kategorii</p>
+    <div class="container mt-4">
 
-}
+        <h2>Add Category</h2>
+
+        @if (Model != null)
+        {
+            @if (TempData["Message"] != null)
+            {
+                <p>@TempData["Message"]</p>
+            }
+
+            <form asp-action="AddCategory">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+        
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        
+            <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
+                <button type="submit" class="btn btn-secondary">Back to List</button>
+            </form>
+        }
+        else
+        {
+            <p>No data found for this category</p>
+        }
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -23,7 +23,6 @@ namespace OnlineShopMvc.Inf.Repo
 
                 if (user != null && !user.ClientId.HasValue)
                 {
-                    context.Remove(user.Role);
                     context.Remove(user);
                     context.SaveChanges();
                     return true;
@@ -33,7 +32,6 @@ namespace OnlineShopMvc.Inf.Repo
                     var client = GetClientById(user.ClientId.Value);
                     client.IsActive = false;
                     context.Update(client);
-                    context.Remove(user.Role);
                     context.Remove(user);
                     context.SaveChanges();
                     return true;
@@ -53,7 +51,7 @@ namespace OnlineShopMvc.Inf.Repo
 
         public User GetUserById(string id)
         {
-            return context.Users.Include(x => x.Role).SingleOrDefault(x => x.Id == id);
+            return context.Users.SingleOrDefault(x => x.Id == id);
         }
 
         public string AddUser(User user)

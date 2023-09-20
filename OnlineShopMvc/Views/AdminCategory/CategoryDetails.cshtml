@@ -5,31 +5,95 @@
     ViewData["Title"] = "CategoryDetails";
 }
 
-<h2>Edytowanie kategorii</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edytuj kategorię</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
 
-@if (Model != null)
-{ @if (TempData["Message"] != null)
+        h2 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+        p {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Edytuj kategorię</h2>
+
+    @if (Model != null)
     {
-        <p>@TempData["Message"]</p>
+        @if (TempData["Message"] != null)
+        {
+            <p>@TempData["Message"]</p>
+        }
+
+        <form asp-action="UpdateCategory">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                <label for="name">Name:</label>
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <input type="text" id="name" asp-for="Name" class="form-control" value="@Model.Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
+            <button type="submit">Powrót do listy</button>
+        </form>
     }
-    <form asp-action="UpdateCategory">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div>
-        <label for="name">Nazwa:</label>
-            <input type="hidden" asp-for="Id" value="@Model.Id"/>
-            <input type="text" id="name" asp-for="Name" class="form-control" value="@Model.Name" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
+    else
+    {
+        <p>Nie znaleziono szczegółów tej kategorii</p>
+    }
 
-        <button type="submit">Zatwierdź</button>
-    </form>
-
-    <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
-        <button type="submit">Powrót do listy</button>
-    </form>
-}
-else
-{
-    <p>Nie znaleziono danych tej kategorii</p>
-
-}
+</body>
+</html>
