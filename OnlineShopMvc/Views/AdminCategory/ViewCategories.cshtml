@@ -3,6 +3,92 @@
 
 <h2>Znaleziono @Model.Count Kategorii</h2>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Page Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: #007BFF;
+        }
+
+        table {
+            width: 80%; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the table */
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .pagination {
+            margin: 0;
+            list-style: none;
+        }
+
+            .pagination li {
+                display: inline;
+                margin: 0 5px;
+            }
+
+            .pagination a {
+                text-decoration: none;
+                padding: 5px 10px;
+                border: 1px solid #007BFF;
+                color: #007BFF;
+                border-radius: 3px;
+            }
+
+            .pagination .current {
+                background-color: #007BFF;
+                color: #fff;
+                border: 1px solid #007BFF;
+            }
+
+        .btn {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+            .btn:hover {
+                background-color: #0056b3;
+            }
+
+        .search-input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+<body>
 @if (Model != null)
 {
 
@@ -71,18 +157,18 @@
      
 </div>
     <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")">
-        <button type="submit">Powrót do listy</button>
+            <button class="btn" type="submit">Powrót do listy</button>
     </form>
 
 <h2>Dodaj kategorię</h2>
  <form method="get" action="@Url.Action("AddCategory", "AdminCategory")">
-    <button type="submit">Dodaj</button>
+    <button class="btn" type="submit">Dodaj</button>
 </form>
 
 <h2>Wyszukaj kategorię</h2>
 <form method="get" action="@Url.Action("ViewCategories", "AdminCategory")"> 
  <input id="searchString" value="@Model.SearchString" type="text" asp-for=SearchString name="name" placeholder="Wyszukaj" />
- <button type="submit">OK</button>
+            <button class="btn" type="submit">OK</button>
 </form>
     <a href="@Url.Action("Index", "Home")">Powrót do strony głównej</a>
 }
@@ -92,6 +178,10 @@ else
     <p>Nie znaleziono żadnych kategorii</p>
 
 }
+</body>
+</html>
+
+
 @section Scripts
 {
     <script type="text/javascript">

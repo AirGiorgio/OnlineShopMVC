@@ -6,7 +6,7 @@ using OnlineShopMVC.Domain.Model;
 
 namespace OnlineShopMvc.Inf.Data;
 
-public class Context : IdentityDbContext<User>
+public class Context : IdentityDbContext<User, Role, string>
 {
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Category> Categories { get; set; }

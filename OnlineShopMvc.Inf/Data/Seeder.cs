@@ -67,7 +67,7 @@ namespace OnlineShopMvc.Inf.Data
             for (int i = 1; i <= 100; i++)
             {
                 var userName = $"user{i}";
-                var password = $"{userName}@123";
+                var password = GenerateRandomString();
                 var roleName = i % 2 == 0 ? "Admin" : "User";
 
                 var user = new User
@@ -282,18 +282,23 @@ namespace OnlineShopMvc.Inf.Data
 
         private string GenerateRandomString()
         {
-            const string suffix = "abcdefghijklmnopqrstuvwxyz";
+            const string suffix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string specialCharacters = "!@#$%^&*()_+[]{}|;:,.<>?";
             const string digits = "0123456789";
             
 
             var random = new Random();
-            int length = random.Next(5, 10);
+            int length = random.Next(12, 12);
 
-            string randomString = new string(Enumerable.Range(0, length - 2)
-                .Select(_ => suffix[random.Next(suffix.Length)])
-                .Concat(new[] { digits[random.Next(digits.Length)], specialCharacters[random.Next(specialCharacters.Length)] })
-                .ToArray());
+            string randomString = new string(Enumerable.Range(0, length - 3)
+            .Select(_ => suffix[random.Next(suffix.Length)])
+            .Concat(new[]
+            {
+                    char.ToUpper(suffix[random.Next(suffix.Length)]),  
+                    digits[random.Next(digits.Length)],
+                    specialCharacters[random.Next(specialCharacters.Length)]
+            })
+            .ToArray());
 
             return randomString;
 
